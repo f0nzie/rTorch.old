@@ -11,6 +11,13 @@ output:
   toc_depth: 3
 ---
 
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
 ## Import libraries
 
 ```{r}
