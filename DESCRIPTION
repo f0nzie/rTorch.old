@@ -2,10 +2,11 @@ Package: rTorch
 Title: R bindings to PyTorch
 Version: 0.0.0.9000
 Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: Machine Learning
+Description: R implementation of Machine Learning platform developed in Python. 
 Depends: R (>= 3.4.3)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Suggests: 
     testthat
+RoxygenNote: 6.0.1
