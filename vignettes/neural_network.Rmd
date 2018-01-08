@@ -1,0 +1,164 @@
+---
+title: "Vignette Title"
+author: "Vignette Author"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Import libraries
+
+```{r}
+library(reticulate)
+
+torch      = import("torch")
+nn         = import("torch.nn") 
+dsets      = import ("torchvision.datasets") 
+transforms = import("torchvision.transforms")
+Variable   = import( "torch.autograd")$Variable
+```
+
+
+
+## Model Parameters
+
+```{r}
+# Hyper Parameters 
+input_size = 784L
+hidden_size = 500L
+num_classes = 10L
+num_epochs = 5
+batch_size = 100L
+learning_rate = 0.001
+```
+
+
+
+## Load datasets
+
+```{r}
+# MNIST Dataset 
+train_dataset = dsets$MNIST(root='./data', 
+                            train=TRUE, 
+                            transform=transforms$ToTensor(),  
+                            download=TRUE)
+
+test_dataset = dsets$MNIST(root='./data', 
+                           train=FALSE, 
+                           transform=transforms$ToTensor())
+
+# Data Loader (Input Pipeline)
+train_loader = torch$utils$data$DataLoader(dataset=train_dataset, 
+                                           batch_size=batch_size, 
+                                           shuffle=TRUE)
+
+test_loader = torch$utils$data$DataLoader(dataset=test_dataset, 
+                                          batch_size=batch_size, 
+                                          shuffle=FALSE)
+```
+
+
+## Build Model
+
+```{r}
+main = py_run_string(
+"
+import torch.nn as nn
+class Net(nn.Module):
+    def __init__(self, input_size, hidden_size, num_classes):
+        super(Net, self).__init__()
+        self.fc1 = nn.Linear(input_size, hidden_size) 
+        self.relu = nn.ReLU()
+        self.fc2 = nn.Linear(hidden_size, num_classes)  
+    
+    def forward(self, x):
+        out = self.fc1(x)
+        out = self.relu(out)
+        out = self.fc2(out)
+        return out
+")
+
+Net <- main$Net
+net = Net(input_size, hidden_size, num_classes)
+```
+
+
+
+## Run Model
+
+```{r}
+# Loss and Optimizer
+criterion = nn$CrossEntropyLoss()  
+optimizer = torch$optim$Adam(net$parameters(), lr=learning_rate)  
+
+
+py = import_builtins()
+py$enumerate
+
+train_loader_iter = iterate(py$enumerate(train_loader), simplify = FALSE)
+
+# Train the Model
+for (epoch in 1:num_epochs) {
+    # for i, (images, labels) in enumerate(train_loader):
+    i = 0
+    for (item in train_loader_iter) {
+        i <- i + 1
+        # Convert torch tensor to Variable
+        images <- item[[2]][[1]]
+        labels <- item[[2]][[2]]
+        images = Variable(images$view(-1L, 28L*28L))
+        labels = Variable(labels)
+        
+        # Forward + Backward + Optimize
+        optimizer$zero_grad()  # zero the gradient buffer
+        outputs = net(images)
+        loss = criterion(outputs, labels)
+        loss$backward()
+        optimizer$step()
+        
+        if ((i) %% 100 == 0) {
+            cat(epoch, num_epochs, i, 
+                py$len(train_dataset) %/% batch_size, loss$data$numpy(), "\n")
+        }
+    }
+}
+```
+
+
+
+
+## Run network on test data
+
+```{r}
+correct <-  0
+total   <-  0
+
+test_loader_iter = iterate(py$enumerate(test_loader), simplify = FALSE)
+
+for (test_item in test_loader_iter) {
+        images <- test_item[[2]][[1]]
+        labels <- test_item[[2]][[2]]
+        
+        images = Variable(images$view(-1L, 28L*28L))
+        outputs = net(images)
+        
+        predicted = torch$max(outputs$data, 1L)[[2]]
+        
+        total = total + labels$size(0L)
+        
+        correct = correct + sum((predicted$numpy() == labels$numpy()))
+} 
+cat("Accuracy of the networks on 1000 test images:", 100 * correct / total)
+```
+
+
