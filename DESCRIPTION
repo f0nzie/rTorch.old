@@ -1,9 +1,11 @@
 Package: rTorch
-Title: What the Package Does (one line, title case)
+Title: R bindings to PyTorch
 Version: 0.0.0.9000
 Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Description: Machine Learning
 Depends: R (>= 3.4.3)
-License: What license is it under?
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Suggests: 
+    testthat
