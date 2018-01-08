@@ -8,6 +8,9 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Suggests: 
-    testthat
+    testthat,
+    knitr,
+    rmarkdown
 RoxygenNote: 6.0.1
 URL: https://github.com/f0nzie/rTorch
+VignetteBuilder: knitr
