@@ -1,0 +1,165 @@
+---
+title: "Vignette Title"
+author: "Vignette Author"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Import libraries
+```{r}
+# using pytorch in R via R reticulate
+library(reticulate)
+
+
+torch      = import("torch")
+nn         = import("torch.nn") 
+dsets      = import ("torchvision.datasets") 
+transforms = import("torchvision.transforms")
+Variable   = import( "torch.autograd")$Variable
+```
+
+## Model parameters
+
+```{r}
+input_size    = 784L
+num_classes   = 10L
+num_epochs    = 5
+batch_size    = 100L
+learning_rate = 0.001
+```
+
+
+
+## Load datasets
+
+```{r}
+# will download the data if not found locally
+train_dataset = dsets$MNIST(
+  root = 'data', 
+  train = TRUE, 
+  transform = transforms$ToTensor(),
+  download = TRUE
+)
+
+test_dataset = dsets$MNIST(
+  root = 'data', 
+  train = FALSE, 
+  transform = transforms$ToTensor()
+)
+
+train_loader = torch$utils$data$DataLoader(
+  dataset = train_dataset, 
+  batch_size = batch_size, 
+  shuffle = TRUE
+)
+
+test_loader = torch$utils$data$DataLoader(
+  dataset = test_dataset, 
+  batch_size = batch_size, 
+  shuffle = FALSE
+)
+```
+
+
+## Build model
+
+```{r}
+# Python class for the model
+main = py_run_string(
+"
+import torch.nn as nn
+class LogisticRegression(nn.Module):
+  def __init__(self, input_size, num_classes):
+    super(LogisticRegression, self).__init__()
+    self.linear = nn.Linear(input_size, num_classes)
+  def forward(self, x):
+    out = self.linear(x)
+    return out
+")
+
+model = main$LogisticRegression(input_size, num_classes)
+```
+
+
+
+## Run optimization
+
+```{r}
+# prepare to use Python enumerate function
+py = import_builtins()
+py$enumerate
+zz = py$enumerate(train_loader)
+qq = iterate(zz, simplify = FALSE)
+
+# Loss and Optimizer
+# Softmax is internally computed.
+# Set parameters to be updated.
+criterion = nn$CrossEntropyLoss()  
+optimizer = torch$optim$SGD( model$parameters(), lr = learning_rate)  
+
+for (epoch in 1:num_epochs)
+{
+  i=0
+  for (a in qq)
+  {
+    i=i+1
+    images = Variable(a[[2]][[1]]$view(-1L, 28L*28L))
+    labels = Variable(a[[2]][[2]])
+
+    # Forward + Backward + Optimize
+    optimizer$zero_grad()
+    # outputs = model$call(images)
+    outputs = model(images)
+    # loss = criterion$call(outputs, labels)
+    loss = criterion(outputs, labels)
+    loss$backward()
+    optimizer$step()
+
+    if (i%%100 == 0){
+      cat("epoch ");cat(epoch); cat(" / ");cat(num_epochs);
+      cat(" step "); cat(i+1)
+      cat(" loss: ");cat(loss$data$numpy())
+      cat("\n")
+      
+    }
+  }
+}
+
+```
+
+
+## Compare prediction
+
+```{r}
+# Test the Model on test images
+correct = 0
+total   = 0
+
+zz = py$enumerate(test_loader)
+qq = iterate(zz, simplify = FALSE)
+
+for (a in qq){
+  images = Variable(a[[2]][[1]]$view(-1L, 28L*28L))
+  labels = Variable(a[[2]][[2]])
+  outputs = model(images)
+  predicted = torch$max(outputs$data, 1L)
+  correct = correct + 
+    sum(  as.vector(predicted[[2]]$numpy()) == labels$data$numpy())
+  }
+
+sprintf("Accuracy of the model on the 10000 test images: %f  ", correct/10000)
+```
+
+
+
