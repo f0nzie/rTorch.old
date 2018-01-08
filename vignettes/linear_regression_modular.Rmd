@@ -1,0 +1,165 @@
+---
+title: "Vignette Title"
+author: "Vignette Author"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+```{r}
+library(reticulate)
+
+torch      = import("torch")
+Variable   = import("torch.autograd")$Variable
+np         = import("numpy")
+optim      <- import("torch.optim") 
+
+py <-  import_builtins()
+
+```
+
+
+```{r}
+build_model <- function() {
+    model <- torch$nn$Sequential()
+    model$add_module("linear", torch$nn$Linear(1L, 1L, bias = FALSE))
+    return(model)
+}
+
+
+train <- function(model, loss, optimizer, x, y) {
+    
+    x = Variable(x, requires_grad = FALSE)
+    y = Variable(y, requires_grad = FALSE)
+    
+    # reset gradient
+    optimizer$zero_grad()
+    
+    # forward
+    fx  <- model$forward(x$view(py$len(x), 1L))
+    output <- loss$forward(fx, y)
+    
+    # backward
+    output$backward()
+    
+    # update parameters
+    optimizer$step()
+    
+    return(output$data$index(0L))
+}
+
+```
+
+
+
+> need to make `*` and `+` functions of $mul and $add
+
+```{r}
+torch$manual_seed(42L)
+X <- torch$linspace(-1L, 1L, 101L)
+y1 <- X$mul(2) 
+y2 <- torch$randn(X$size())$mul(0.33)
+Y <- y1$add(y2)
+
+model <- build_model()
+loss <-  torch$nn$MSELoss(size_average = TRUE)
+optimizer <- optim$SGD(model$parameters(), lr = 0.01, momentum = 0.9)
+batch_size <- 10L
+
+
+
+for (i in seq(1, 100)) {
+    ccost <-  0.0
+    num_batches <- py$len(X) %/% batch_size
+    
+    for (k in seq(1, num_batches)) {
+        k <- k - 1              # index in Python start at [0]
+        start <- as.integer(k * batch_size)
+        end   <- as.integer((k + 1) * batch_size)
+        
+        cost  <- train(model, loss, optimizer,
+                             X$narrow(-1L, start, end-start),
+                             Y$narrow(-1L, start, end-start))
+        
+        ccost <-  ccost + cost$numpy()
+    }
+    cat(sprintf("Epoch = %d, cost = %s \n", i, ccost / num_batches))
+}
+model_param <- model$parameters()
+# w <- iter_next(model_param)$data
+w <- iter_next(model$parameters())$data
+cat(sprintf("w = %.3f", w$numpy()))
+```
+
+
+```{r}
+for (i in seq(1, 100)) {
+    cost <-  0.0
+    num_batches <- py$len(X) %/% batch_size
+    
+    for (k in seq(1, num_batches)) {
+        cat(i-1, k-1, "\n")
+    }
+}    
+```
+
+
+```{r}
+X$narrow(-1L, 5L, 10L)
+```
+
+```{r}
+X$narrow(-1L, 50L, 10L)
+```
+
+```{r}
+X_it <- iterate(py$enumerate(X))
+```
+
+
+```{r}
+X$element_size()
+# [1] 4
+```
+
+```{r}
+X$nelement()
+# [1] 101
+```
+
+```{r}
+X$ndimension()
+# [1] 1
+```
+
+
+```{r}
+X$index(1L)
+X$index(10L)
+
+# -0.9800
+# [torch.FloatTensor of size 1]
+
+# -0.8000
+# [torch.FloatTensor of size 1]
+```
+
+```{r}
+X$view(-1L, 1L)
+```
+
+
+> narrow(dimension, start, length) -> Tensor
+
+> Returns a new tensor that is a narrowed version of this tensor. The dimension :attr:`dim` is narrowed from :attr:`start` to :attr:`start + length`. The returned tensor and this tensor share the same underlying storage.
