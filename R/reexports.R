@@ -18,6 +18,12 @@ reticulate::array_reshape
 #' @export
 reticulate::iterate
 
+#' @export
+reticulate::import_builtins
+
+#' @export
+reticulate::py_run_file
+
 #' #' @export
 #' reticulate::`%as%`
 #'

@@ -14,6 +14,10 @@
 \alias{array_reshape}
 \alias{reexports}
 \alias{iterate}
+\alias{reexports}
+\alias{import_builtins}
+\alias{reexports}
+\alias{py_run_file}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -21,6 +25,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{reticulate}{\code{\link[reticulate]{import}}, \code{\link[reticulate]{dict}}, \code{\link[reticulate]{tuple}}, \code{\link[reticulate]{np_array}}, \code{\link[reticulate]{array_reshape}}, \code{\link[reticulate]{iterate}}}
+  \item{reticulate}{\code{\link[reticulate]{import}}, \code{\link[reticulate]{dict}}, \code{\link[reticulate]{tuple}}, \code{\link[reticulate]{np_array}}, \code{\link[reticulate]{array_reshape}}, \code{\link[reticulate]{iterate}}, \code{\link[reticulate]{import_builtins}}, \code{\link[reticulate]{py_run_file}}}
 }}
 
