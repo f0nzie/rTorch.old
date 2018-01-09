@@ -7,16 +7,6 @@ test_that("reads the size of a tensor ", {
     expect_equal(torch_size(t), c(256, 3, 9, 9, 2))
 })
 
-# build a tensor
-
-
-# class(p)
-# it <- iterate(py$enumerate(p$size()))
-# class(sapply(it, `[`))
-# m <- sapply(it, `[`)
-# v <- m[2, ]
-# class(unlist(v))
-# unlist(v)
 
 test_that("the function works for two different objects", {
     x = torch$rand(20L, 50L, 100L)   # build the tensor
@@ -26,14 +16,4 @@ test_that("the function works for two different objects", {
     expect_equal(torch_size(x_size), c(20, 50, 100))
 })
 
-
-
-
-
-
-# torch_size(p)
-#
-# torch_size(t_size)
-# torch_size(v)
-# torch_size(1)
 
