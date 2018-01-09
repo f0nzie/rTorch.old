@@ -66,3 +66,63 @@ unlist(v)
 p
 ```
 
+## Get the maximum values of a tensor
+https://groups.google.com/forum/#!topic/torch7/a1EAEwLn15g
+
+```{r}
+torch$manual_seed(42L)
+a <- torch$randn(4L, 4L)
+a
+
+# expected to be in range of [-2, 1]
+val <- torch$max(a, 1L)[[1]]
+idx <- torch$max(a, 1L)[[2]]
+
+val
+idx
+```
+
+```{r}
+
+```
+
+## Test dimensions of a tensor
+
+https://github.com/pytorch/pytorch/issues/1310
+
+```{r}
+library(rTorch)
+
+dims <- as.integer(c(3, 4, 5, 6, 7, 8))
+a <-  torch$randn(torch$Size(dims))
+a$size()
+
+
+for (dim in seq(1, length(dims))) {
+    dim <- as.integer(dim - 1)
+    for (i in seq(a$size(dim))) {
+        i <- as.integer(i - 1)
+        a$select(dim, i)$fill_(i)  # slice and fill with the dim number
+    }
+    val    <- a$max(dim)[[1]]
+    argmax <- a$max(dim)[[2]]
+    cat(argmax$min(), "\t")    # min and max should be the same since
+    cat(argmax$max(), "\n")    # the tensor was filled with the same value
+}
+a$size()
+```
+
+
+```{python}
+import torch
+
+dims = (3, 4, 5, 6, 7, 8)
+a = torch.randn(*dims)
+for dim in range(len(dims)):
+    for i in range(a.size(dim)):
+        # print(dim, i)
+        a.select(dim,i).fill_(i)
+    val, argmax = a.max(dim)
+    print(argmax.max())
+```
+
