@@ -1,6 +1,6 @@
 ---
-title: "Vignette Title"
-author: "Vignette Author"
+title: "Logistic Regression - rTorch"
+author: "Alfonso R. Reyes"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -19,16 +19,12 @@ knitr::opts_chunk$set(
 ## Import libraries
 
 ```{r}
-# library(reticulate)
-# torch      <- import("torch")
-
 library(rTorch)
 
 Variable   <- import("torch.autograd")$Variable
 np         <- import("numpy")
 optim      <- import("torch.optim") 
 py         <- import_builtins()
-
 data_util  <- py_run_file("data_util.py")
 load_mnist <- data_util$load_mnist
 ```
@@ -42,8 +38,7 @@ torch$manual_seed(42L)
 
 # load or download MNIST dataset
 mnist <- load_mnist(onehot = FALSE)
-
-trX = mnist[[1]]; teX = mnist[[2]]; trY = mnist[[3]]; teY = mnist[[4]]
+trX   <- mnist[[1]]; teX = mnist[[2]]; trY = mnist[[3]]; teY = mnist[[4]]
 
 trX <- torch$from_numpy(trX)$float()      # FloatTensor
 teX <- torch$from_numpy(teX)$float()      # FloatTensor
@@ -55,8 +50,8 @@ teY <- torch$from_numpy(teY)$long()       # LongTensor
 ```{r}
 # in Python was: n_examples, n_features = trX.size()
 # using new R function torch_size()
-n_examples <- torch_size(trX$size())[1]
-n_features <- torch_size(trX$size())[2]
+n_examples    <- torch_size(trX$size())[1]
+n_features    <- torch_size(trX$size())[2]
 
 learning_rate <- 0.01
 momentum      <- 0.9
@@ -79,7 +74,6 @@ build_model <- function(input_dim, output_dim) {
 }
 
 train <- function(model, loss, optimizer, x, y) {
-    
     x = Variable(x, requires_grad = FALSE)
     y = Variable(y, requires_grad = FALSE)
     
@@ -102,7 +96,6 @@ train <- function(model, loss, optimizer, x, y) {
 predict <- function(model, x) {
     xvar <-  Variable(x, requires_grad = FALSE)
     output = model$forward(xvar)
-    # return(output$data$numpy()$argmax(axis = 1))
     return(np$argmax(output$data, axis = 1))
 }
 
@@ -137,8 +130,8 @@ for (i in seq(1, epochs)) {
     
     # using lapply for the batch
     batch_li <- lapply(seq(1, num_batches), batching)[[num_batches]]
-    ccost <- batch_li$cost
-    predY <- predict(batch_li$model, teX)
+    ccost    <- batch_li$cost
+    predY    <- predict(batch_li$model, teX)
     cat(sprintf("Epoch = %3d, cost = %f, acc = %.2f%% \n",
               i, ccost / num_batches, 100 * mean(predY$numpy() == teY$numpy())))
 }
