@@ -98,7 +98,7 @@ model  <- build_model(n_features, n_classes)
 loss   <- torch$nn$CrossEntropyLoss(size_average = TRUE)
 optimizer  <- optim$SGD(model$parameters(), lr = 0.01, momentum = 0.9)
 batch_size <- 100L
-
+epochs     <- 5
 ```
 
 ```{r}
@@ -113,31 +113,14 @@ batching <- function(k) {
                        trY$narrow(0L, start, end-start))
     
     ccost <<- ccost + cost$numpy()   # because we don't have yet `+` func
-    # predY <- predict(model, teX)
-    # return(list(predY = predY, ccost = ccost))
     return(list(model = model, cost = ccost))
 }
 
 
-# for (i in seq(1, 50)) {
-#     ccost <- 0.0
-#     num_batches <- n_examples %/% batch_size
-#     for (k in seq(1, num_batches)) {
-#         batch_li <- batching(k)
-#         ccost <- ccost + batch_li$cost
-#         predY <- predict(batch_li$model, teX)
-#     }
-#     cat(sprintf("Epoch = %3d, cost = %f, acc = %.2f%% \n",
-#                 i, ccost / num_batches, 
-#                 100 * mean(predY$numpy() == teY$numpy())))
-# }
-
-
-for (i in seq(1, 50)) {
+for (i in seq(1, epochs)) {
     ccost <- 0.0
     num_batches <- n_examples %/% batch_size
     batch_li <- lapply(seq(1, num_batches), batching)[[600]]
-    # ccost <- ccost + batch_li$cost
     ccost <- batch_li$cost
     predY <- predict(batch_li$model, teX)
     cat(sprintf("Epoch = %3d, cost = %f, acc = %.2f%% \n",
@@ -145,8 +128,11 @@ for (i in seq(1, 50)) {
                 100 * mean(predY$numpy() == teY$numpy())))
 }
 
-# Epoch =   1, cost = 0.547787, acc = 90.15% 
-# Epoch =  50, cost = 0.261484, acc = 92.42% 
+# Epochs
+#    5    Epoch =   1, cost = 0.547787, acc = 90.15% 
+#    5    Epoch =   5, cost = 0.315265, acc = 91.73%
+#   50    Epoch =   1, cost = 0.547787, acc = 90.15% 
+#   50    Epoch =  50, cost = 0.261484, acc = 92.42% 
 ```
 
 
