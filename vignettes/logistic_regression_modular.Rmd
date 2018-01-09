@@ -1,0 +1,56 @@
+---
+title: "Vignette Title"
+author: "Vignette Author"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Import libraries
+
+```{r}
+library(reticulate)
+
+torch      <- import("torch")
+Variable   <- import("torch.autograd")$Variable
+np         <- import("numpy")
+optim      <- import("torch.optim") 
+py         <- import_builtins()
+
+data_util  <- py_run_file("data_util.py")
+load_mnist <- data_util$load_mnist
+```
+
+
+```{r}
+torch$manual_seed(42L)
+mnist <- load_mnist(onehot=FALSE)
+trX = mnist[[1]]; teX = mnist[[2]]; trY = mnist[[3]]; teY = mnist[[4]]
+trX = torch$from_numpy(trX)$float()      # FloatTensor
+teX = torch$from_numpy(teX)$float()      # FloatTensor
+trY = torch$from_numpy(trY)$long()       # LongTensor
+
+
+```
+
+```{r}
+n_examples = trX$size()
+n_features = trX$size()
+n_classes = 10L
+# model = build_model(n_features, n_classes)
+```
+
+```{r}
+
+```
+
