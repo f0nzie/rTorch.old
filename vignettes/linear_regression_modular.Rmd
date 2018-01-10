@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 ## Import libraries
 
 ```{r}
-library(reticulate)
+library(rTorch)
 
 torch      <- import("torch")
 Variable   <- import("torch.autograd")$Variable
@@ -31,20 +31,35 @@ py         <- import_builtins()
 ## Generate the data
 
 ```{r}
+# make it reproducible
 torch$manual_seed(42L)
-X <- torch$linspace(-1L, 1L, 101L)
+
+X  <- torch$linspace(-1L, 1L, 101L)
 y1 <- X$mul(2) 
 y2 <- torch$randn(X$size())$mul(0.33)
-Y <- y1$add(y2)
+Y  <- y1$add(y2)
+```
+
+## Model parameters
+```{r}
+n_examples    <- torch_size(X)
+n_features    <- 1L
+
+learning_rate <- 0.01
+momentum      <- 0.9
+n_classes     <- 1L
+batch_size    <- 10L
+epochs        <- 100        # original value for epochs = 100
+neurons       <- 512L
 ```
 
 
 ## Build the model
 
 ```{r}
-build_model <- function() {
+build_model <- function(input_dim, output_dim) {
     model <- torch$nn$Sequential()
-    model$add_module("linear", torch$nn$Linear(1L, 1L, bias = FALSE))
+    model$add_module("linear", torch$nn$Linear(input_dim, output_dim, bias = FALSE))
     return(model)
 }
 
@@ -69,7 +84,9 @@ train <- function(model, loss, optimizer, x, y) {
     return(output$data$index(0L))
 }
 
-model <- build_model()
+model     <- build_model(n_features, n_classes)
+loss      <- torch$nn$MSELoss(size_average = TRUE)
+optimizer <- optim$SGD(model$parameters(), lr = learning_rate, momentum = momentum)
 ```
 
 ## Optimize
@@ -77,14 +94,9 @@ model <- build_model()
 > need to make `*` and `+` functions of $mul and $add
 
 ```{r}
-loss <-  torch$nn$MSELoss(size_average = TRUE)
-optimizer <- optim$SGD(model$parameters(), lr = 0.01, momentum = 0.9)
-batch_size <- 10L
-
-
-for (i in seq(1, 100)) {
+for (i in seq(1, epochs)) {
     ccost <-  0.0
-    num_batches <- py$len(X) %/% batch_size
+    num_batches <- n_examples %/% batch_size
     
     for (k in seq(1, num_batches)) {
         k <- k - 1                             # index in Python start at [0]
@@ -102,66 +114,9 @@ for (i in seq(1, 100)) {
 model_param <- model$parameters()
 w <- iter_next(model$parameters())$data
 cat(sprintf("w = %.3f", w$numpy()))
+
+# Epoch =   1, cost = 0.103987852856517 
+# Epoch = 100, cost = 0.103722278773785 
+# w = 1.968
 ```
 
-
-```{r}
-for (i in seq(1, 100)) {
-    cost <-  0.0
-    num_batches <- py$len(X) %/% batch_size
-    
-    for (k in seq(1, num_batches)) {
-        cat(i-1, k-1, "\n")
-    }
-}    
-```
-
-
-```{r}
-X$narrow(-1L, 5L, 10L)
-```
-
-```{r}
-X$narrow(-1L, 50L, 10L)
-```
-
-```{r}
-X_it <- iterate(py$enumerate(X))
-```
-
-
-```{r}
-X$element_size()
-# [1] 4
-```
-
-```{r}
-X$nelement()
-# [1] 101
-```
-
-```{r}
-X$ndimension()
-# [1] 1
-```
-
-
-```{r}
-X$index(1L)
-X$index(10L)
-
-# -0.9800
-# [torch.FloatTensor of size 1]
-
-# -0.8000
-# [torch.FloatTensor of size 1]
-```
-
-```{r}
-X$view(-1L, 1L)
-```
-
-
-> narrow(dimension, start, length) -> Tensor
-
-> Returns a new tensor that is a narrowed version of this tensor. The dimension :attr:`dim` is narrowed from :attr:`start` to :attr:`start + length`. The returned tensor and this tensor share the same underlying storage.
