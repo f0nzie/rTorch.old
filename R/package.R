@@ -1,11 +1,8 @@
 #' Torch for R
 #' @import methods
 #' @import R6
+#' @importFrom reticulate import dict iterate import_from_path array_reshape np_array py_run_file  py_iterator py_call py_capture_output py_get_attr py_has_attr py_is_null_xptr py_to_r r_to_py tuple
 #' @import reticulate
-#' @importFrom reticulate import dict iterate import_from_path array_reshape
-#' import_builtins iter_next np_array py_run_file
-#' py_iterator py_call py_capture_output py_get_attr py_has_attr py_is_null_xptr
-#' py_to_r r_to_py tuple
 #' @importFrom graphics par plot points
 #' @docType package
 #' @name rTorch
@@ -29,7 +26,7 @@ NULL
 
 
 .onLoad <- function(libname, pkgname) {
-    torch <<- import("torch", delay_load = list(
+    torch <<- reticulate::import("torch", delay_load = list(
         priority = 5,
         environment = "r-torch"
 
