@@ -32,11 +32,12 @@ py         <- import_builtins()
 ## Load the data
 
 ```{r}
-data_util  <- py_run_file("data_util.py")
-load_mnist <- data_util$load_mnist
+# data_util  <- py_run_file("data_util.py")
+# load_mnist <- data_util$load_mnist
 
 # load or download MNIST dataset
-mnist <- load_mnist(onehot = FALSE)
+# mnist <- load_mnist(onehot = FALSE)
+mnist <- dataset_mnist(onehot = FALSE)
 trX   <- mnist[[1]]; teX = mnist[[2]]; trY = mnist[[3]]; teY = mnist[[4]]
 
 trX <- torch$from_numpy(trX)$float()      # FloatTensor
