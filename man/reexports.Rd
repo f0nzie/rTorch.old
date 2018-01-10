@@ -5,8 +5,6 @@
 \alias{reexports}
 \alias{import}
 \alias{reexports}
-\alias{iterate}
-\alias{reexports}
 \alias{dict}
 \alias{reexports}
 \alias{tuple}
@@ -14,6 +12,12 @@
 \alias{np_array}
 \alias{reexports}
 \alias{array_reshape}
+\alias{reexports}
+\alias{iterate}
+\alias{reexports}
+\alias{iter_next}
+\alias{reexports}
+\alias{import_builtins}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -21,6 +25,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{reticulate}{\code{\link[reticulate]{import}}, \code{\link[reticulate]{iterate}}, \code{\link[reticulate]{dict}}, \code{\link[reticulate]{tuple}}, \code{\link[reticulate]{np_array}}, \code{\link[reticulate]{array_reshape}}}
+  \item{reticulate}{\code{\link[reticulate]{import}}, \code{\link[reticulate]{dict}}, \code{\link[reticulate]{tuple}}, \code{\link[reticulate]{np_array}}, \code{\link[reticulate]{array_reshape}}, \code{\link[reticulate]{iterate}}, \code{\link[reticulate]{iter_next}}, \code{\link[reticulate]{import_builtins}}}
 }}
 
