@@ -28,6 +28,7 @@ py         <- import_builtins()
 ```
 
 
+
 ## Load the data
 
 ```{r}
@@ -57,7 +58,7 @@ n_features    <- torch_size(trX$size())[2]
 
 n_classes     <- 10L
 batch_size    <- 100L
-epochs        <- 5        # original value for epochs = 100
+epochs        <- 2        # original value for epochs = 100
 neurons       <- 512L
 dropout       <- 0.2
 ```
