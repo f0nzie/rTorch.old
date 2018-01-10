@@ -4,6 +4,9 @@
 reticulate::import
 
 #' @export
+reticulate::iterate
+
+#' @export
 reticulate::dict
 
 #' @export
@@ -15,23 +18,10 @@ reticulate::np_array
 #' @export
 reticulate::array_reshape
 
+#' @noRd
 #' @export
-reticulate::iterate
+reticulate::iter_next
 
+#' @noRd
 #' @export
 reticulate::import_builtins
-
-#' @export
-reticulate::py_run_file
-
-#' #' @export
-#' reticulate::`%as%`
-#'
-#' #' @export
-#' reticulate::use_python
-#'
-#' #' @export
-#' reticulate::use_virtualenv
-#'
-#' #' @export
-#' reticulate::use_condaenv
