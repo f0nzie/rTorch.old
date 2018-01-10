@@ -35,9 +35,6 @@ py         <- import_builtins()
 torch$manual_seed(42L)
 
 # load or download MNIST dataset
-    # data_util  <- py_run_file("data_util.py")
-    # load_mnist <- data_util$load_mnist
-    # mnist <- load_mnist(onehot = FALSE)
 mnist <- dataset_mnist(onehot = FALSE)
 
 trX   <- mnist[[1]]; teX = mnist[[2]]; trY = mnist[[3]]; teY = mnist[[4]]
