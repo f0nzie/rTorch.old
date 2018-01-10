@@ -9,8 +9,11 @@ LazyData: true
 Depends: R (>= 3.1)
 Imports:
     reticulate,
+    magrittr,
     utils,
     yaml,
+    methods,
+    R6,
     rstudioapi (>= 0.7)
 Suggests: 
     testthat,
