@@ -1,5 +1,8 @@
 
-# #' @importFrom reticulate import_builtins
+#' @title Size of a torch tensor object
+#' @description Get the size of a torch tensor or of torch.size object
+#'
+#' @param obj a torch tensor object
 #' @export
 torch_size <- function(obj) {
     py <- reticulate::import_builtins()
