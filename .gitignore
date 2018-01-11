@@ -5,3 +5,7 @@ inst/doc
 notebooks
 vignettes/data
 vignettes/datasets
+
+*.Rd
+
+*.pyc
