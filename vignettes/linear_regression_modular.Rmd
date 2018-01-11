@@ -40,6 +40,11 @@ y2 <- torch$randn(X$size())$mul(0.33)
 Y  <- y1$add(y2)
 ```
 
+```{r}
+# y1 <- 2 * X
+```
+
+
 ## Model parameters
 ```{r}
 n_examples    <- torch_size(X)
