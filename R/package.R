@@ -42,7 +42,24 @@ packageStartupMessage("loading PyTorch")
 
 .onLoad <- function(libname, pkgname) {
 
-    torch <<- import("torch", delay_load = TRUE)
+    torch <<- import("torch", delay_load = list(
+        priority = 5,
+
+        environment = "r-tensorflow"
+
+    ))
+
+    # provide a common base S3 class for tensors
+    reticulate::register_class_filter(function(classes) {
+        if (any(c("torch.autograd.variable.Variable",
+                  "torch._C.FloatTensorBase")
+                %in%
+                classes)) {
+            c("torch.tensor", classes)      # this enables the generics + * - /
+        } else {
+            classes
+        }
+    })
 }
 
 
