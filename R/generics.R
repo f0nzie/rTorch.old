@@ -67,3 +67,13 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
 "==.torch.tensor" <- function(a, b) {
     torch$equal(a, b)
 }
+
+
+#' Matrix/Tensor multiplication
+#' PyTorch matmul
+#' @param a Tensor 1
+#' @param b Tensor 2
+#' @export
+`%**%` <- function(a, b) {
+    torch$matmul(a, b)
+}
