@@ -35,13 +35,13 @@ py         <- import_builtins()
 torch$manual_seed(42L)
 
 X  <- torch$linspace(-1L, 1L, 101L)
-y1 <- X$mul(2) 
-y2 <- torch$randn(X$size())$mul(0.33)
-Y  <- y1$add(y2)
+y1 <- 2 * X                           # X$mul(2) 
+y2 <- torch$randn(X$size()) * 0.33
+Y  <- y1 + y2                         # y1$add(y2)
 ```
 
 ```{r}
-# y1 <- 2 * X
+Y$sum()
 ```
 
 
@@ -94,9 +94,7 @@ loss      <- torch$nn$MSELoss(size_average = TRUE)
 optimizer <- optim$SGD(model$parameters(), lr = learning_rate, momentum = momentum)
 ```
 
-## Optimize
-
-> need to make `*` and `+` functions of $mul and $add
+## Run optimization with batch
 
 ```{r}
 for (i in seq(1, epochs)) {
