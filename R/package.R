@@ -1,7 +1,7 @@
 #' Torch for R
 #' @import methods
 #' @import R6
-#' @importFrom reticulate import dict iterate import_from_path array_reshape np_array py_run_file  py_iterator py_call py_capture_output py_get_attr py_has_attr py_is_null_xptr py_to_r r_to_py tuple
+#' @importFrom reticulate import dict iterate import_from_path array_reshape np_array py_run_file  py_run_string py_iterator py_call py_capture_output py_get_attr py_has_attr py_is_null_xptr py_to_r r_to_py tuple
 #' @import reticulate
 #' @importFrom graphics par plot points
 #' @docType package

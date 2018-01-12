@@ -22,3 +22,15 @@ reticulate::iter_next
 
 #' @export
 reticulate::import_builtins
+
+#' @export
+reticulate::py_run_string
+
+#' @export
+reticulate::r_to_py
+
+#' @export
+reticulate::py_to_r
+
+#' @export
+reticulate::import_from_path
