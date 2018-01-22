@@ -1,5 +1,5 @@
 ---
-title: "Vignette Title"
+title: "Linear Regression with batch"
 author: "Vignette Author"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -38,10 +38,6 @@ X  <- torch$linspace(-1L, 1L, 101L)
 y1 <- 2 * X                           # X$mul(2) 
 y2 <- torch$randn(X$size()) * 0.33
 Y  <- y1 + y2                         # y1$add(y2)
-```
-
-```{r}
-Y$sum()
 ```
 
 
