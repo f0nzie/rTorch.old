@@ -22,7 +22,7 @@ NULL
 # ' NULL
 
 .globals <- new.env(parent = emptyenv())
-.globals$torch <- NULL
+.globals$torchboard <- NULL
 
 
 # .onLoad <- function(libname, pkgname) {
@@ -52,7 +52,7 @@ packageStartupMessage("loading PyTorch")
     # provide a common base S3 class for tensors
     reticulate::register_class_filter(function(classes) {
         if (any(c("torch.autograd.variable.Variable",
-                  "torch._C.FloatTensorBase")
+                  "torch.tensor._TensorBase")
                 %in%
                 classes)) {
             c("torch.tensor", classes)      # this enables the generics + * - /
