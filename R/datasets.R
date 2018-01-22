@@ -10,7 +10,7 @@
 #' @family datasets
 #'
 #' @export
-dataset_mnist <- function(ntrain = 60000, ntest = 10000, onehot = TRUE) {
+dataset_mnist <- function(ntrain = 60000L, ntest = 10000L, onehot = TRUE) {
     # import data_utils module
     python_path <- system.file("python", package = "rTorch")
     tools <- import_from_path("torchtools", path = python_path)
