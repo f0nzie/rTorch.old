@@ -99,7 +99,7 @@ train <- function(model, loss, optimizer, x, y) {
 predict <- function(model, x) {
     xvar <-  Variable(x, requires_grad = FALSE)
     output = model$forward(xvar)
-    return(np$argmax(output$data, axis = 1))
+    return(np$argmax(output$data, axis = 1L))
 }
 
 
