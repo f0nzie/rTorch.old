@@ -23,3 +23,274 @@ This is a basic example which shows you how to solve a common problem:
 ```{r example}
 ## basic example code
 ```
+
+
+## Matrices and Linear Algebra
+
+There are four major type of Tensors in PyTorch
+```{r}
+library(reticulate)
+reticulate::use_condaenv("pytorch-tf")
+reticulate::py_config()
+library(tensorflow)
+```
+
+
+```{r}
+library(rTorch)
+
+torch    <- import("torch")
+
+bt <- torch$ByteTensor(3L, 3L)
+ft <- torch$FloatTensor(3L, 3L)
+dt <- torch$DoubleTensor(3L, 3L)
+lt <- torch$LongTensor(3L, 3L)
+
+ft2d <- torch$FloatTensor(3L, 6L)
+ft2d
+# ft3d <- torch$FloatTensor(2L, 3L)
+ft2d[1:2, 4:6]
+ft2d[, ]
+```
+
+```{r}
+ft3d <- torch$FloatTensor(4L, 3L, 2L)
+ft3d
+```
+
+```{r}
+ft3d[1,1,1]
+```
+
+
+```{r}
+bt
+#  168  100  207
+#   12  252  127
+#    0    0    0
+# [torch.ByteTensor of size 3x3]
+```
+
+```{r}
+ft
+#  1.3494e-05  4.3442e-05  2.6542e+20
+#  2.1271e+23  1.6536e-04  1.2982e-11
+#  3.3585e-06  4.2531e-05  1.0616e-08
+# [torch.FloatTensor of size 3x3]
+```
+
+
+## Basic Tensor Operations
+
+### Uniform matrix
+
+```{r}
+library(rTorch)
+
+torch    <- import("torch")
+
+# 3x5 matrix uniformly distributed between 0 and 1
+mat0 <- torch$FloatTensor(3L, 5L)$uniform_(0L, 1L)
+
+# fill a 3x5 matrix with 0.1
+mat1 <- torch$FloatTensor(3L, 5L)$uniform_(0.1, 0.1)
+
+# a vector with all ones
+mat2 <- torch$FloatTensor(5L)$uniform_(1, 1)
+
+```
+
+
+
+```{r}
+mat0 + 0.1
+```
+
+> The expression ``tensor.index(m)`` is equivalent to ``tensor[m]``.
+
+```{r}
+mat1$index(0L) + mat2
+mat1[[1L]] + mat2
+```
+
+```{r}
+mat1 + mat0
+```
+
+## NumPy and PyTorch
+
+```{r}
+library(rTorch)
+
+torch    <- import("torch")
+npt      <- import("torch")$np
+np       <- import("numpy")
+```
+
+
+```{r}
+syn0 <- np$random$rand(3L, 5L)
+syn0
+```
+
+
+```{r}
+syn1 <- np$zeros(c(5L, 10L))
+syn1
+```
+
+```{r}
+syn1 = syn1 + 0.1
+syn1
+```
+
+
+```{r}
+l1 <- np$ones(5L)
+l1
+```
+
+
+```{r}
+# vector-matrix multiplication
+np$dot(syn0, syn1)
+
+```
+
+```{r}
+X <- np$array(rbind(c(1,2,3), c(4,5,6), c(7,8,9)))
+X
+```
+
+```{r}
+np$transpose(X)
+```
+
+## 
+
+```{r}
+ft1 <- torch$FloatTensor(np$random$rand(5L))
+ft1
+```
+
+## Building a neural network using numpy
+
+```{r}
+# https://iamtrask.github.io/2017/01/15/pytorch-tutorial/
+
+library(rTorch)
+
+torch    <- import("torch")
+np       <- import("torch")$np
+
+
+nonlin <- function(x, deriv = FALSE){
+	if (deriv == TRUE)
+	    return(x * (1 - x))
+    return(1 / ( 1 + np$exp(-x)))
+}    
+
+# input array
+X = np$array(rbind(
+            c(0,0,1),
+            c(0,1,1),
+            c(1,0,1),
+            c(1,1,1)))
+X
+
+# output array
+y = np$array(rbind(
+            c(0),
+			c(1),
+			c(1),
+			c(0)))
+y
+
+np$random$seed(1L)
+
+# randomly initialize our weights with mean 0
+syn0 = 2 * np$random$random(c(3L, 4L)) - 1
+syn1 = 2 * np$random$random(c(4L, 1L)) - 1
+
+
+for (j in seq(1, 60000)) {
+    
+    # Feed forward through layers 0, 1, and 2
+    l0 <- X
+    l1 <- nonlin(np$dot(l0, syn0))
+    l2 <- nonlin(np$dot(l1, syn1))
+    
+    # how much did we miss the target value?
+    l2_error = y - l2
+    
+    if ((j %% 10000) == 0)
+        cat(sprintf("Error: %f \n", np$mean(np$abs(l2_error))))
+    
+    # in what direction is the target value?
+    # were we really sure? if so, don't change too much.
+    l2_delta = l2_error * nonlin(l2, deriv = TRUE)
+    
+    # how much did each l1 value contribute to the l2 error (according to the weights)?
+    l1_error <- np$dot(l2_delta, np$transpose(syn1))
+    
+    # in what direction is the target l1?
+    # were we really sure? if so, don't change too much.
+    l1_delta = l1_error * nonlin(l1, deriv = TRUE)
+        
+    # lets update our weights
+    syn1 <- syn1 + np$dot(np$transpose(l1), l2_delta)
+    
+    syn0 <- syn0 + np$dot(np$transpose(l0), l1_delta)
+}
+```
+
+Create a tensor of size (5 x 7) with uninitialized memory:
+
+```{r}
+a <- torch$FloatTensor(5L, 7L)
+print(a)
+```
+
+Initialize a tensor randomized with a normal distribution with mean=0, var=1:
+
+```{r}
+a  <- torch$randn(5L, 7L)
+print(a)
+print(a$size())
+```
+
+
+## Inplace / Out-of-place
+
+```{r}
+a$fill_(3.5)
+# a has now been filled with the value 3.5
+
+b <- a$add(4.0)
+
+# a is still filled with 3.5
+# new tensor b is returned with values 3.5 + 4.0 = 7.5
+
+print(a)
+print(b)
+```
+
+Some operations like`narrow` do not have in-place versions, and hence, `.narrow_` does not exist. Similarly, some operations like `fill_` do not have an out-of-place version, so `.fill` does not exist.
+
+```{r}
+a[[0L, 3L]]
+```
+
+
+```{r}
+x <- torch$ones(5L, 5L)
+print(x)
+```
+
+```{r}
+z = torch$Tensor(5L, 2L)
+z[, 0] = 10
+z[, 1] = 100
+print(z)
+```
+
