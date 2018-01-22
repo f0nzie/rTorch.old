@@ -36,9 +36,27 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
 }
 
 
+
+#' @export
+"[.torch.tensor" <- function(x, ...) {
+
+    call <- match.call()
+    check_zero_based(call)
+
+    one_based_extract <- getOption("torch.one_based_extract", TRUE)
+
+    basis <- ifelse(one_based_extract, 1, 0)
+    call_list <- as.list(call)[-1]
+    do.call(extract_manual,
+            c(call_list, basis = basis),
+            envir = parent.frame())
+}
+
+
+
 #' @export
 "+.torch.tensor" <- function(a, b) {
-    if (any(class(a) == "torch._C.FloatTensorBase"))
+    if (any(class(a) == "torch.tensor"))
         torch$add(a, b)
     else
         torch$add(b, a)
