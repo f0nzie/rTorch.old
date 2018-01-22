@@ -64,7 +64,7 @@ test_that("index_select", {
     -1.1229 -0.1863  2.2082 -0.6380
      0.4617  0.2674  0.5349  0.8094
     "
-    # select indices by rows, dim = 0
+    # select indices by rows, dim = 0L
     indices = torch$LongTensor(c(0L, 2L))
     x0 <- torch$index_select(x, 0L, indices)
     src <- "
@@ -74,12 +74,12 @@ test_that("index_select", {
     x0_expect <- torch$FloatTensor(as.matrix(read.table(text = src)))
     expect_equal(x0, x0_expect)
 
-    # select indices by columns, dim = 1
+    # select indices by columns, dim = 1L
     x1 <- torch$index_select(x, 1L, indices)
     src <- "
      0.3367  0.2345
     -1.1229  2.2082
-    0.4617  0.5349
+     0.4617  0.5349
     "
     x1_expect <- torch$FloatTensor(as.matrix(read.table(text = src)))
     expect_equal(x1, x1_expect)
@@ -126,19 +126,27 @@ test_that("split", {
 
 
 test_that("squeeze", {
+    # removes dimensions of size 1
     x = torch$zeros(2L, 1L, 2L, 1L, 2L)
     expect_equal(x$size(), torch$Size(c(2L, 1L, 2L, 1L, 2L)))
+
     y = torch$squeeze(x)
     expect_equal(y$size(), torch$Size(c(2L, 2L, 2L)))
+
+    # squeeze specified dimension at index=0. if size not 1, skip
     y0 = torch$squeeze(x, 0L)
     # print(y0$size())
     expect_equal(y0$size(), torch$Size(c(2L, 1L, 2L, 1L, 2L)))
+
+    # squeeze specified dimension at index=1; removed because it is 1
     y1 = torch$squeeze(x, 1L)
     expect_equal(y1$size(), torch$Size(c(2L, 2L, 1L, 2L)))
 
 })
 
 test_that("take", {
+    # treats the tensor like a vector and extracts elements in the order
+    # specified by the 2nd argument
     src <- torch$Tensor(rbind(c(4, 3, 5),
                               c(6, 7, 8)))
     res <- torch$take(src, torch$LongTensor(c(0L, 2L, 5L)))
