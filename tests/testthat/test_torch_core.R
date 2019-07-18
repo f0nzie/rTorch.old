@@ -2,7 +2,7 @@ library(testthat)
 
 context("core PyTorch functions")
 
-test_that("masked_select matches", {
+test_that("masked_select", {
 
     torch$manual_seed(42L)
     x <- torch$randn(3L, 4L)
@@ -24,7 +24,8 @@ test_that("masked_select matches", {
 })
 
 
-test_that("cat concatenates by rows and columns", {
+test_that("cat", {
+    #  concatenates by rows and columns
     # Concatenates the given sequence of seq tensors in the given dimension. All
     # tensors must either have the same shape (except in the cat dimension) or
     # be empty.
@@ -71,7 +72,8 @@ test_that("index_select", {
      0.3367  0.1288  0.2345  0.2303
      0.4617  0.2674  0.5349  0.8094
     "
-    x0_expect <- torch$FloatTensor(as.matrix(read.table(text = src)))
+    x0_expect <- torch$FloatTensor(
+        as.matrix(read.table(text = src)))
     expect_equal(x0, x0_expect)
 
     # select indices by columns, dim = 1L
@@ -81,7 +83,8 @@ test_that("index_select", {
     -1.1229  2.2082
      0.4617  0.5349
     "
-    x1_expect <- torch$FloatTensor(as.matrix(read.table(text = src)))
+    x1_expect <- torch$FloatTensor(
+        as.matrix(read.table(text = src)))
     expect_equal(x1, x1_expect)
 })
 
@@ -89,6 +92,11 @@ test_that("split", {
     # Splits the tensor into chunks.
     # Last chunk will be smaller if tensor size along dimension is not divisible
     # torch.split(tensor, split_size_or_sections, dim=0)
+    #
+    #  0.3367  0.1288  0.2345  0.2303
+    # -1.1229 -0.1863  2.2082 -0.6380
+    #  0.4617  0.2674  0.5349  0.8094
+
     torch$manual_seed(42L)
     x <- torch$randn(3L, 4L)
 
@@ -151,4 +159,37 @@ test_that("take", {
                               c(6, 7, 8)))
     res <- torch$take(src, torch$LongTensor(c(0L, 2L, 5L)))
     expect_equal(res, torch$FloatTensor(c(4, 5, 8)))
+})
+
+
+
+test_that("narrow", {
+    # Returns a new tensor that is a narrowed version of self tensor. The
+    # dimension dim is narrowed from start to start + length.
+
+    # narrow # 1
+    x_t <- "
+    1  2  3
+    4  5  6
+    7  8  9
+    "
+    x_ <- as.matrix(read.table(text = x_t))
+    x  <- torch$Tensor(x_)
+
+    r_t <- "
+    1  2  3
+    4  5  6
+    "
+    r <- torch$Tensor(as.matrix(read.table(text = r_t)))
+    expect_equal(x$narrow(0L, 0L , 2L), r)
+
+    # narrow #2
+    r_t <- "
+    2  3
+    5  6
+    8  9
+    "
+    r <- torch$Tensor(as.matrix(read.table(text = r_t)))
+    expect_equal(x$narrow(1L, 1L , 2L), r)
+
 })
