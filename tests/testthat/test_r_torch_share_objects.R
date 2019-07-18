@@ -2,6 +2,42 @@ library(testthat)
 
 source("tensor_functions.R")
 
+
+context("print R values from within Python")
+
+# these objects have to be global to be able to be seen from the test
+A <<- 100
+B <<- 250
+
+Ap <<- r_to_py(A)
+Bp <<- r_to_py(B)
+
+
+test_that("R objects are multiplied within Python and printed", {
+
+  result <- py_run_string("ab = r.A * r.B")  # multiply to R objects in Python
+  expect_equal(result$ab, 25000)
+
+  expect_equal(py_run_string("")$ab, 25000)     # return value in ab
+  expect_equal(py_eval("ab"), 25000)
+})
+
+test_that("R objects are detected within Python",  {
+  result <- py_run_string("ab")
+  expect_equal(names(result), c("sys", "R", "r", "ab"))
+  expect_equal(py_eval("r.Ap"), 100)
+  expect_equal(py_eval("r.Bp"), 250)
+})
+
+
+test_that("multiplication result returns via the py object", {
+  expect_equal(py$ab, 25000)
+  py_run_string("del ab") # remove Python object for the other tests
+})
+
+
+
+
 context("R and Python share variables")
 
 
