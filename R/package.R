@@ -42,30 +42,32 @@ packageStartupMessage("loading PyTorch")
 
 .onLoad <- function(libname, pkgname) {
 
+    # delay load PyTorch
     torch <<- import("torch", delay_load = list(
+
         priority = 5,
 
-        # environment = "r-tensorflow"
-        environment = "pytorch-tf"          # this is a user generated environment
+        # environment = "pytorch-tf"          # this is a user generated environment
+        environment = "r-torch"          # this is a user generated environment
 
     ))
 
-    # provide a common base S3 class for tensors
-    reticulate::register_class_filter(function(classes) {
-        if (any(c("torch.autograd.variable.Variable",
+  # provide a common base S3 class for tensors
+  reticulate::register_class_filter(function(classes) {
+      if (any(c("torch.autograd.variable.Variable",
                   "torch.tensor._TensorBase")
-                %in%
-                classes)) {
-            c("torch.tensor", classes)      # this enables the generics + * - /
-        } else {
-            classes
-        }
-    })
+              %in%
+              classes)) {
+        c("torch.tensor", classes)      # this enables the generics + * - /
+      } else {
+          classes
+      }
+  })
 }
 
 
 
-#' PyTorch configuration information
+#' Torch configuration information
 #'
 #' @return List with information on the current configuration of TensorFlow.
 #'   You can determine whether TensorFlow was found using the `available`
@@ -76,7 +78,7 @@ packageStartupMessage("loading PyTorch")
 #' @export
 torch_config <- function() {
 
-    # first check if we found tensorflow
+    # first check if we found Torch
     have_torch <- py_module_available("torch")
 
     # get py config
@@ -135,7 +137,7 @@ print.pytorch_config <- function(x, ...) {
 
 # Build error message for TensorFlow configuration errors
 torch_config_error_message <- function() {
-    message <- "Installation of PyTorch not found."
+    message <- "Installation of Torch not found."
     config <- py_config()
     if (!is.null(config)) {
         if (length(config$python_versions) > 0) {
