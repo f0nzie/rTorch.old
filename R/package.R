@@ -45,7 +45,8 @@ packageStartupMessage("loading PyTorch")
     torch <<- import("torch", delay_load = list(
         priority = 5,
 
-        environment = "r-tensorflow"
+        # environment = "r-tensorflow"
+        environment = "pytorch-tf"          # this is a user generated environment
 
     ))
 

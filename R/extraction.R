@@ -76,6 +76,11 @@ extract_manual <- function (x, i, j, ..., drop = TRUE, basis = 0) {
     end <- pmin(end, x_size) + 1
 
     # convert to shapes. `shape`` is tensorflow function. begin_shape is a list
+    # what does shape returns?
+    # begin_shape <- do.call('shape', as.list(begin))
+    # end_shape   <- do.call('shape', as.list(end))
+    print(begin)
+
     begin_shape <- do.call('shape', as.list(begin))
     end_shape   <- do.call('shape', as.list(end))
 
@@ -107,6 +112,14 @@ extract_manual <- function (x, i, j, ..., drop = TRUE, basis = 0) {
     list(begin = begin, end = end, begin_shape = begin_shape, end_shape = end_shape,
          begin_mask = begin_mask, end_mask = end_mask,
          stride_shape = stride_shape)
+
+    # tf$strided_slice(input_ = x,
+    #                  begin = begin_shape,
+    #                  end = end_shape,
+    #                  strides = stride_shape,
+    #                  begin_mask = begin_mask,
+    #                  end_mask = end_mask,
+    #                  shrink_axis_mask = shrink_integer)
 
 
 }

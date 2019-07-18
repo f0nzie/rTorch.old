@@ -46,10 +46,12 @@ ft <- torch$FloatTensor(3L, 3L)
 dt <- torch$DoubleTensor(3L, 3L)
 lt <- torch$LongTensor(3L, 3L)
 
+ft
+
 ft2d <- torch$FloatTensor(3L, 6L)
 ft2d
 # ft3d <- torch$FloatTensor(2L, 3L)
-ft2d[1:2, 4:6]
+# ft2d[1:2, 4:6]
 ft2d[, ]
 ```
 
