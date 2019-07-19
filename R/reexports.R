@@ -3,6 +3,12 @@
 reticulate::import
 
 #' @export
+reticulate::import_builtins
+
+#' @export
+reticulate::import_from_path
+
+#' @export
 reticulate::dict
 
 #' @export
@@ -21,10 +27,10 @@ reticulate::iterate
 reticulate::iter_next
 
 #' @export
-reticulate::import_builtins
+reticulate::py_run_string
 
 #' @export
-reticulate::py_run_string
+reticulate::py_eval
 
 #' @export
 reticulate::r_to_py
@@ -33,4 +39,6 @@ reticulate::r_to_py
 reticulate::py_to_r
 
 #' @export
-reticulate::import_from_path
+reticulate::py_get_item
+
+
