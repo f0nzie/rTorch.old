@@ -116,7 +116,7 @@ torch_config <- function() {
 torch_version <- function() {
     config <- torch_config()
     if (config$available)
-        config$version
+        as.character(config$version)
     else
         NULL
 }
