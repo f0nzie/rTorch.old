@@ -581,7 +581,7 @@ as_nullable_integer <- function (x) {
     as.integer(x)
 }
 
-is_tensor <- function(x) inherits(x, "torch.Tensor")
+is_tensor <- function(x) inherits(x, "torch.Tensor")  # do not use torch.tensor
 
 isFALSE <- function(x) identical(x, FALSE)
 
