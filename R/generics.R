@@ -8,7 +8,7 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
 
 #' @importFrom utils str
 #' @export
-"print.torch.tensor" <- function(x, ...) {
+"print.torch.Tensor" <- function(x, ...) {
     if (py_is_null_xptr(x))
         cat("<pointer: 0x0>\n")
     else {
@@ -36,6 +36,148 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
 }
 
 
+#' @export
+"dim.torch.Tensor" <- function(x) {        # change .tensor to .Tensor
+    if (py_is_null_xptr(x))
+        NULL
+    else {
+        shape <- import_builtins()$list(x$size())  # return a list
+        # shape <- x$dim()   # torch has a dim() function
+        if (!is.null(shape))
+            shape
+        else
+            NULL
+    }
+}
+
+
+#' @export
+"length.torch.Tensor" <- function(x) {
+    if (py_is_null_xptr(x))
+        length(NULL)
+    else
+        Reduce(`*`, dim(x))
+}
+
+
+
+
+#' @export
+"+.torch.Tensor" <- function(a, b) {
+    if (any(class(a) == "torch.Tensor"))
+        torch$add(a, b)
+    else
+        torch$add(b, a)
+}
+
+
+#' @export
+"-.torch.Tensor" <- function(a, b) {
+    if (missing(b)) {
+        if (py_has_attr(torch, "negative"))
+            torch$negative(a)
+        else
+            torch$neg(a)
+    } else {
+        if (py_has_attr(torch, "subtract"))
+            torch$subtract(a, b)
+        else
+            torch$sub(a, b)
+    }
+}
+
+
+#' @export
+"*.torch.Tensor" <- function(a, b) {
+    if (py_has_attr(torch, "multiply"))
+        torch$multiply(a, b)
+    else
+        torch$mul(a, b)
+}
+
+#' @export
+"/.torch.Tensor" <- function(a, b) {
+    torch$div(a, b)
+}
+
+
+#' @export
+`%.*%` <- function(a, b) {
+    torch$dot(a, b)
+}
+
+
+# TODO: finish these two and tensor float ###################
+#' @export
+"*.torch.Tensor" <- function(a, b) {
+    if (any(class(a) == "torch._C.FloatTensorBase"))
+        torch$mul(a, b)
+    else
+        torch$mul(b, a)
+}
+
+
+#' @export
+"/.torch.Tensor" <- function(a, b) {
+    if (any(class(a) == "torch._C.FloatTensorBase"))
+        torch$div(a, b)
+    else
+        torch$div(b, a)
+}
+
+##################################################################
+
+
+#' @export
+"==.torch.Tensor" <- function(a, b) {
+    torch$equal(a, b)
+}
+
+
+#' @export
+"!=.torch.Tensor" <- function(a, b) {
+    # there is not not_equal function in PyTorch
+    !torch$equal(a, b)
+}
+
+
+
+#' @export
+"<.torch.Tensor" <- function(a, b) {
+    torch$lt(a, b)
+}
+
+
+#' @export
+"<=.torch.Tensor" <- function(a, b) {
+    torch$le(a, b)
+}
+
+
+#' @export
+">.torch.Tensor" <- function(a, b) {
+    torch$gt(a, b)
+}
+
+
+#' @export
+">=.torch.Tensor" <- function(a, b) {
+    torch$ge(a, b)
+}
+
+
+
+
+#' Matrix/Tensor multiplication
+#' PyTorch matmul
+#' @param a Tensor 1
+#' @param b Tensor 2
+#' @export
+`%**%` <- function(a, b) {
+    torch$matmul(a, b)
+}
+
+
 
 #' #' @export
 #' "[.torch.tensor" <- function(x, ...) {
@@ -51,47 +193,3 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
 #'             c(call_list, basis = basis),
 #'             envir = parent.frame())
 #' }
-
-
-
-#' @export
-"+.torch.tensor" <- function(a, b) {
-    if (any(class(a) == "torch.tensor"))
-        torch$add(a, b)
-    else
-        torch$add(b, a)
-}
-
-
-#' @export
-"*.torch.tensor" <- function(a, b) {
-    if (any(class(a) == "torch._C.FloatTensorBase"))
-        torch$mul(a, b)
-    else
-        torch$mul(b, a)
-}
-
-
-#' @export
-"/.torch.tensor" <- function(a, b) {
-    if (any(class(a) == "torch._C.FloatTensorBase"))
-        torch$div(a, b)
-    else
-        torch$div(b, a)
-}
-
-
-#' @export
-"==.torch.tensor" <- function(a, b) {
-    torch$equal(a, b)
-}
-
-
-#' Matrix/Tensor multiplication
-#' PyTorch matmul
-#' @param a Tensor 1
-#' @param b Tensor 2
-#' @export
-`%**%` <- function(a, b) {
-    torch$matmul(a, b)
-}
