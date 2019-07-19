@@ -73,5 +73,6 @@ y = 20
   obj <- py_run_string("r.__dir__()")
   # print(class(obj))
   # print(obj$keys())
-
+  py_run_string("del x")
+  py_run_string("del y")
 })
