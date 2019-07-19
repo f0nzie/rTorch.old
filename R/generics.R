@@ -211,9 +211,9 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
     if (is_tensor(base) || base != exp(1L)) {
         base <- torch$as_tensor(base, x$dtype)
         torch$log(x) / torch$log(base)
-        print("here")
+        # print("here")
     } else {
-        print("not here")
+        # print("not here")
         torch$log(x)
     }
 
