@@ -18,3 +18,12 @@ test_that("Number of CPUs", {
     expect_equal(torch$get_num_threads(), 4)
 })
 
+
+
+context("package config functions")
+
+test_that("torch_version returns value", {
+  expect_equal(torch_version(), "1.1")
+  # print(torch_version())
+
+})
