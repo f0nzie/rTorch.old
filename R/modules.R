@@ -6,4 +6,4 @@
 #' @format PyTorch module
 #'
 #' @export
-dummy <- NULL
+torch <- NULL
