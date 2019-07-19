@@ -8,6 +8,7 @@ source("tensor_functions.R")
 context("test slicing with chunk() and select_index()")
 
 test_that("test tensor has 3 dimensions", {
+    builtins    <- import_builtins()
     img <- torch$ones(3L, 28L, 28L)
     result <- builtins$list(img$size())
     # print(result)

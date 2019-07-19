@@ -7,6 +7,7 @@ source("tensor_functions.R")
 context("basic tests")
 
 test_that("Python integer is R integer", {
+    builtins    <- import_builtins()
     num_epochs <- 1L
     expect_equal(builtins$int(num_epochs), 1L)
     expect_equal(builtins$int(num_epochs), 1)
@@ -15,7 +16,7 @@ test_that("Python integer is R integer", {
 
 
 test_that("Python integers can be compared", {
-    py <- import_builtins()
+    builtins    <- import_builtins()
     a <- builtins$int(1)
     b <- builtins$int(2)
     expect_true(a <= 1)
