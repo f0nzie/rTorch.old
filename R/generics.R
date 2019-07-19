@@ -232,7 +232,7 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
     torch$log10(x)
 }
 
-np <- import("numpy")
+# np <- import("numpy")
 
 tensor_logical_and <- function(x, y) {
     x <- r_to_py(x$numpy())
