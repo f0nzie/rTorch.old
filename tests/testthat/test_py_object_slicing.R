@@ -7,6 +7,7 @@ source("tensor_functions.R")
 context("extract parts of a Python object")
 
 test_that("extract a slice from a list", {
+    builtins    <- import_builtins()
     py_run_string("li = [0, 1, 2, 3, 4, 5]")
     sl <- builtins$slice(1L, 3L)
     py_li <- r_to_py(py$li)
