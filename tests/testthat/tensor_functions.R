@@ -27,12 +27,12 @@ tensor_sum <- function(tensor) {
     tensor$sum()$item()
 }
 
-is_tensor <- function(object) {
-    class(object) %in% c("torch.Tensor")
-    class_obj <- class(object)
-    all(class_obj[grepl("Tensor", class_obj)] %in%
-            c("torch.Tensor", "torch._C._TensorBase"))
-}
+# is_tensor <- function(object) {
+#     class(object) %in% c("torch.Tensor")
+#     class_obj <- class(object)
+#     all(class_obj[grepl("Tensor", class_obj)] %in%
+#             c("torch.Tensor", "torch._C._TensorBase"))
+# }
 
 py_object_last <- function(object) {
     if (py_has_length(object)) py_len(object) - 1L
