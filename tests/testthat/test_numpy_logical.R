@@ -1,4 +1,4 @@
-skip("skip")
+
 source("tensor_functions.R")
 
 context("numpy logical operations")
