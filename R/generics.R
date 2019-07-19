@@ -1,10 +1,4 @@
 
-#' @export
-py_str.torch.python.ops.variables.Variable <- function(object, ...) {
-    paste0("Variable(shape=", py_str(object$size()), ", ",
-           "dtype=", object$dtype$name, ")\n", sep = "")
-}
-
 
 #' @importFrom utils str
 #' @export
@@ -20,6 +14,14 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
         }
     }
 }
+
+
+#' @export
+py_str.torch.python.ops.variables.Variable <- function(object, ...) {
+    paste0("Variable(shape=", py_str(object$size()), ", ",
+           "dtype=", object$dtype$name, ")\n", sep = "")
+}
+
 
 
 #' @importFrom utils .DollarNames
