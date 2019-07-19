@@ -193,3 +193,67 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
 #'             c(call_list, basis = basis),
 #'             envir = parent.frame())
 #' }
+
+#' @export
+"^.torch.Tensor" <- function(a, b) {
+    torch$pow(a, b)
+}
+
+#' @export
+"exp.torch.Tensor" <- function(x) {
+    torch$exp(x)
+}
+
+#' @export
+"log.torch.Tensor" <- function(x, base = exp(1L)) {
+    if (is_tensor(base) || base != exp(1L)) {
+        base <- torch$as_tensor(base, x$dtype)
+        torch$log(x) / torch$log(base)
+        print("here")
+    } else {
+        print("not here")
+        torch$log(x)
+    }
+
+
+}
+
+#' @export
+#' @method log2 torch.Tensor
+"log2.torch.Tensor" <- function(x) {
+    torch$log2(x)
+}
+
+#' @export
+#' @method log10 torch.Tensor
+"log10.torch.Tensor" <- function(x) {
+    torch$log10(x)
+}
+
+np <- import("numpy")
+
+tensor_logical_and <- function(x, y) {
+    x <- r_to_py(x$numpy())
+    y <- r_to_py(y$numpy())
+    torch$BoolTensor(np$logical_and(x, y))
+}
+
+tensor_logical_or <- function(x, y) {
+    x <- r_to_py(x$numpy())
+    y <- r_to_py(y$numpy())
+    torch$BoolTensor(np$logical_or(x, y))
+}
+
+
+#' @export
+"&.torch.Tensor" <- function(a, b) {
+    tensor_logical_and(a, b)
+}
+
+
+#' @export
+"|.torch.Tensor" <- function(a, b) {
+    tensor_logical_or(a, b)
+}
+
+
