@@ -435,7 +435,9 @@ translate_one_based_to_zero_based <- function(x) {
 
 
 stop_if_any_out_of_bounds <- function(x, dots, options) {
-  dims <- x$shape$as_list()
+  # dims <- x$shape$as_list()
+  dims <- import_builtins()$list(x$size())
+
   dots <- dropNULL(dots) # possible new dims specified
 
   is_elip <- vapply(dots, is_py_ellipsis, FALSE)
