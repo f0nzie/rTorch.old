@@ -86,9 +86,12 @@ context("tensor extraction of 4D tensor with index_select()")
 test_that("get first element in a tensor", {
     # https://discuss.pytorch.org/t/is-there-anyway-to-get-the-first-element-of-a-tensor-as-a-scalar/2097
     img <- torch$ones(60000L, 3L, 28L, 28L)        # 4D image tensor
-    expect_equal(tensor_dim(img$data[0]), c(3, 28, 28)) # 3D tensor
-    expect_equal(tensor_dim(img$data[0][0]), c(28, 28)) # 2D tensor
-    expect_equal(tensor_dim(img$data[0][0][0]), c(28))  # 1D tensor
+
+    # ERROR with new slicing
+    # print(tensor_dim(img$data[1,,,]))
+    expect_equal(tensor_dim(img$data[1,,,]), c(3, 28, 28)) # 3D tensor
+    expect_equal(tensor_dim(img$data[1, 1,,]), c(28, 28)) # 2D tensor
+    expect_equal(tensor_dim(img$data[1, 1, 1, ]), c(28))  # 1D tensor
 })
 
 test_that("select_index() can also select a tensor layer", {
