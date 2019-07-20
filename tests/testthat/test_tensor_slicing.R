@@ -1,8 +1,6 @@
 library(testthat)
 
-
 source("tensor_functions.R")
-
 
 # test slicing with chunk() and select_index() ---------------------------------
 context("test slicing with chunk() and select_index()")

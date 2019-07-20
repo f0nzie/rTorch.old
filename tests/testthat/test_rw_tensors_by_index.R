@@ -1,8 +1,6 @@
 library(testthat)
 
 
-
-
 # read, write by index ---------------------------------------------------------
 context("read, write tensors by index")
 
