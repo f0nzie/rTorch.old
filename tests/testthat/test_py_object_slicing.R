@@ -23,11 +23,22 @@ test_that("tensor dimension is 4D: 60000x3x28x28", {
     expect_equal(tensor_dim_(img), 4)
     # print(img[10:11][0:1])
     expect_equal(tensor_dim(py_eval("r.img[0:10]")), c(10, 3, 28, 28))
-    expect_equal(tensor_dim(img[0:9]), c(10, 3, 28, 28))
+
+
+    # error with new slicing
+    # expect_equal(tensor_dim(img[0:9]), c(10, 3, 28, 28))
+    expect_equal(tensor_dim(img[1:10,,,]), c(10, 3, 28, 28))
+    # print(tensor_dim(img[1:10,,,]))
 
     expect_equal(tensor_dim(py_eval("r.img[0:10, 0:1]")), c(10, 1, 28, 28))
-    expect_error(tensor_dim(img[0:10, 0:1]))
-    expect_error(tensor_dim(img[c(list(0:10), list(0:1))]))
+
+    # ERROR with new slicing
+    # expect_error(tensor_dim(img[0:10, 0:1]))
+    expect_equal(tensor_dim(img[1:10, 1:2,,]), c(10, 2, 28, 28))
+
+    # ERROR with new slicing
+    # expect_error(tensor_dim(img[c(list(0:10), list(0:1))]))
+    expect_equal(tensor_dim(img[1:10, 1:2, 1:5, 1:5]), c(10, 2, 5, 5))
 
 
     slice1D <- py_eval("[x for x in range(100)]")
