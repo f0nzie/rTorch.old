@@ -5,7 +5,7 @@
 #' @param ... slicing specs. See examples and details.
 #' @param drop whether to drop scalar dimensions
 #' @param style One of `"python"` or `"R"`.
-#' @param options An object returned by `tf_extract_opts()`
+#' @param options An object returned by `torch_extract_opts()`
 #'
 #' @export
 #'
@@ -64,13 +64,13 @@
 #' sess$run( x[1, , style = 'python'] ) # second row
 #'
 #' # example of slices with exclusive stop
-#' options(tensorflow.extract.style = 'python')
+#' options(torch.extract.style = 'python')
 #' sess$run( x[, 0:1] ) # just the first column
 #' sess$run( x[, 0:2] ) # first and second column
 #'
 #' # example of out-of-bounds index
 #' sess$run( x[, 0:10] )
-#' options(tensorflow.extract.style = NULL)
+#' options(torch.extract.style = NULL)
 #'
 #' # slicing with tensors is valid too, but note, tensors are never
 #' # translated and are always interpreted python-style.
@@ -81,17 +81,17 @@
 #'
 #' # To silence the warnings about tensors being passed as-is and negative numbers
 #' # being interpreted python-style, set
-#' options(tensorflow.extract.style = 'R')
+#' options(torch.extract.style = 'R')
 #'
 #' # clean up from examples
-#' options(tensorflow.extract.style = NULL)
+#' options(torch.extract.style = NULL)
 #' }
-`[.tensorflow.tensor` <-
+`[.torch.Tensor` <-
   function(x, ..., drop = TRUE,
-           style = getOption("tensorflow.extract.style"),
-           options = tf_extract_opts(style)) {
+           style = getOption("torch.extract.style"),
+           options = torch_extract_opts(style)) {
 
-    stopifnot(inherits(options, "tf_extract_options"))
+    stopifnot(inherits(options, "torch_extract_options"))
     check_is_TRUE_or_FALSE(drop)
     options$drop <- drop
 
@@ -156,38 +156,39 @@
 #'   a warning the first time a negative number is supplied to `[` about the
 #'   non-standard (python-style) interpretation
 #'
-#' @return an object with class "tf_extract_opts", suitable for passing to
-#'   `[.tensorflow.tensor()`
+#' @return an object with class "torch_extract_opts", suitable for passing to
+#'   `[.torch.tensor()`
 #' @export
 #'
 #' @examples
 #' \dontrun{
 #' x <- tf$constant(1:10)
 #'
-#' opts <-  tf_extract_opts("R")
+#' opts <-  torch_extract_opts("R")
 #' x[1, options = opts]
 #'
 #' # or for more fine-grained control
-#' opts <- tf_extract_opts(
+#' opts <- torch_extract_opts(
 #'     one_based = FALSE,
 #'     warn_tensors_passed_asis = FALSE,
 #'     warn_negatives_pythonic = FALSE
 #' )
 #' x[0:2, options = opts]
 #' }
-tf_extract_opts <- function(
-  style = getOption("tensorflow.extract.style"),
+#' @export
+torch_extract_opts <- function(
+  style = getOption("torch.extract.style"),
   ...,
   one_based =
-    getOption("tensorflow.extract.one_based", TRUE),
+    getOption("torch.extract.one_based", TRUE),
   inclusive_stop =
-    getOption("tensorflow.extract.inclusive_stop", TRUE),
+    getOption("torch.extract.inclusive_stop", TRUE),
   disallow_out_of_bounds =
-    getOption("tensorflow.extract.dissallow_out_of_bounds", TRUE),
+    getOption("torch.extract.dissallow_out_of_bounds", TRUE),
   warn_tensors_passed_asis =
-    getOption("tensorflow.extract.warn_tensors_passed_asis", TRUE),
+    getOption("torch.extract.warn_tensors_passed_asis", TRUE),
   warn_negatives_pythonic =
-    getOption("tensorflow.extract.warn_negatives_pythonic", TRUE)
+    getOption("torch.extract.warn_negatives_pythonic", TRUE)
 ) {
 
   if(length(list(...)))
@@ -202,15 +203,15 @@ tf_extract_opts <- function(
   )
 
   # backwards compatability, one_based_extract -> renamed to extract.one_based
-  if (!is.null(getOption("tensorflow.one_based_extract"))) {
-    check_is_TRUE_or_FALSE(getOption("tensorflow.one_based_extract"))
-    if (missing(one_based) || is.null(getOption("tensorflow.extract.one_based"))) {
-      one_based <- getOption("tensorflow.one_based_extract")
-      # warning("option tensorflow.one_based_extract ",
-      #         "renamed to tensorflow.extract.one_based")
+  if (!is.null(getOption("torch.one_based_extract"))) {
+    check_is_TRUE_or_FALSE(getOption("torch.one_based_extract"))
+    if (missing(one_based) || is.null(getOption("torch.extract.one_based"))) {
+      one_based <- getOption("torch.one_based_extract")
+      # warning("option torch.one_based_extract ",
+      #         "renamed to torch.extract.one_based")
     } else
-      warning("options `tensorflow.one_based_extract` is ignored and",
-              "overridden by option `tensorflow.extract.one_based")
+      warning("options `torch.one_based_extract` is ignored and",
+              "overridden by option `torch.extract.one_based")
   }
 
   opts <- nlist(
@@ -240,7 +241,7 @@ tf_extract_opts <- function(
 
   }
 
-  class(opts) <- "tf_extract_options"
+  class(opts) <- "torch_extract_options"
   opts
 }
 
@@ -275,8 +276,8 @@ builtin_slice <- function(...) {
 
 py_slice <-
   function(start = NULL, stop = NULL, step = NULL,
-           one_based = tf_extract_opts()$one_based,
-           inclusive_stop = tf_extract_opts()$inclusive_stop) {
+           one_based = torch_extract_opts()$one_based,
+           inclusive_stop = torch_extract_opts()$inclusive_stop) {
 
     # early return for most common case
     if(is.null(start) && is.null(stop) && is.null(step))
@@ -483,7 +484,7 @@ stop_if_any_out_of_bounds <- function(x, dots, options) {
     stop(paste(
       "Arg supplied to index dimension", which(out_of_bounds),
       "is out bounds. Please supply a different value, or alternatively, set",
-      "options(tensorflow.extract.disallow_out_of_bounds = FALSE)"))
+      "options(torch.extract.disallow_out_of_bounds = FALSE)"))
 }
 
 
@@ -494,7 +495,7 @@ stop_if_any_zeros <- function(dots) {
         "It looks like you might be using 0-based indexing to extract using `[`.",
         "The tensorflow package now uses 1-based extraction by default.\n",
         "You can switch to the old behavior (0-based extraction) with:",
-        "  options(tensorflow.extract.one_based = FALSE)\n", sep = "\n" ),
+        "  options(torch.extract.one_based = FALSE)\n", sep = "\n" ),
       call. = FALSE
       ))
 }
@@ -515,20 +516,20 @@ warn_if_any_negative <- function(dots) {
         "(they select items by counting from the back). For more details, see: ",
         "https://docs.scipy.org/doc/numpy-1.13.0/reference/arrays.indexing.html#basic-slicing-and-indexing\n",
         "To turn off this warning, set ",
-        "'options(tensorflow.extract.warn_negatives_pythonic = FALSE)'")
+        "'options(torch.extract.warn_negatives_pythonic = FALSE)'")
       warned_about$negative_indices <- TRUE
     })
 }
 
 warn_if_any_tensors <- function(dots) {
   recursivly_check_dots(dots,
-    function(x) TRUE, classes = "tensorflow.tensor",
+    function(x) TRUE, classes = "torch.tensor",
     if_any_TRUE = {
       warning(call. = FALSE,
         "Indexing tensors are passed as-is to python, no index offsetting or ",
         "R to python translation is performed. Selected options for one_based ",
         "and inclusive_stop are ignored and treated as FALSE. To silence this warning, set ",
-        "option(tensorflow.extract.warn_tensors_passed_asis = FALSE)")
+        "option(torch.extract.warn_tensors_passed_asis = FALSE)")
       warned_about$tensors_passed_asis <- TRUE
     })
 }
