@@ -39,7 +39,7 @@ library(tensorflow)
 ```{r}
 library(rTorch)
 
-torch    <- import("torch")
+# torch    <- import("torch")
 
 bt <- torch$ByteTensor(3L, 3L)
 ft <- torch$FloatTensor(3L, 3L)
@@ -89,7 +89,7 @@ ft
 ```{r}
 library(rTorch)
 
-torch    <- import("torch")
+# torch    <- import("torch")
 
 # 3x5 matrix uniformly distributed between 0 and 1
 mat0 <- torch$FloatTensor(3L, 5L)$uniform_(0L, 1L)
@@ -111,8 +111,10 @@ mat0 + 0.1
 > The expression ``tensor.index(m)`` is equivalent to ``tensor[m]``.
 
 ```{r}
-mat1$index(0L) + mat2
-mat1[[1L]] + mat2
+# mat1$index(0L) + mat2
+# mat1[[1L]] + mat2
+
+# Error in py_get_attr_impl(x, name, silent) : AttributeError: 'Tensor' object has no attribute 'index'
 ```
 
 ```{r}
@@ -122,10 +124,10 @@ mat1 + mat0
 ## NumPy and PyTorch
 
 ```{r}
-library(rTorch)
+# library(rTorch)
 
-torch    <- import("torch")
-npt      <- import("torch")$np
+# torch    <- import("torch")
+# npt      <- import("torch")$np
 np       <- import("numpy")
 ```
 
@@ -277,11 +279,18 @@ print(a)
 print(b)
 ```
 
+```{r}
+a[1, 1] <- 7.7
+print(a)
+# Error in a[1, 1] <- 7.7 : object of type 'environment' is not subsettable
+```
+
+
 Some operations like`narrow` do not have in-place versions, and hence, `.narrow_` does not exist. Similarly, some operations like `fill_` do not have an out-of-place version, so `.fill` does not exist.
 
 ```{r}
 # a[[0L, 3L]]
-a[0, 3]
+a[1, 4]
 ```
 
 
