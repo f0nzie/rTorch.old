@@ -1,4 +1,4 @@
-
+# np <- import("numpy")
 
 #' @importFrom utils str
 #' @export
@@ -103,10 +103,12 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
 }
 
 
+#' @rdname dot
 #' @export
 `%.*%` <- function(a, b) {
     torch$dot(a, b)
 }
+
 
 
 # TODO: finish these two and tensor float ###################
@@ -232,7 +234,7 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
     torch$log10(x)
 }
 
-# np <- import("numpy")
+
 
 tensor_logical_and <- function(x, y) {
     x <- r_to_py(x$numpy())
