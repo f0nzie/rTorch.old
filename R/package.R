@@ -45,12 +45,13 @@ packageStartupMessage("loading PyTorch")
 
     # delay load PyTorch
     torch <<- import("torch", delay_load = list(
-
         priority = 5,
-
-        # environment = "pytorch-tf"          # this is a user generated environment
         environment = "r-torch"          # this is a user generated environment
+    ))
 
+    np <<- import("numpy", delay_load = list(
+      priority = 6,
+      environment = "r-np"          # this is a user generated environment
     ))
 
   # provide a common base S3 class for tensors
