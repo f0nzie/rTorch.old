@@ -103,11 +103,6 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
 }
 
 
-#' @rdname dot
-#' @export
-`%.*%` <- function(a, b) {
-    torch$dot(a, b)
-}
 
 
 
@@ -169,6 +164,16 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
     torch$ge(a, b)
 }
 
+
+
+#' Dot product
+#' PyTorch dot function
+#' @param a Tensor 1
+#' @param b Tensor 2
+#' @export
+`%.*%` <- function(a, b) {
+    torch$dot(a, b)
+}
 
 
 
