@@ -20,7 +20,7 @@ Source: https://www.guru99.com/pytorch-tutorial.html
 
 ## Creating the network model
 
-Our network model is a simple Linear layer with an input and an output shape of 1.
+Our network model is a simple Linear layer with an input and an output shape of one.
 
 And the network output should be like this
 
@@ -85,6 +85,7 @@ Before you start the training process, you need to convert the numpy array to Va
 
 ### Code in R
 Notice that before converting to a Torch tensor, we need first to convert the R numeric vector to a `numpy` array:
+
 ```{r}
 # convert numpy array to tensor in shape of input size
 x <- r_to_py(x)
@@ -98,6 +99,7 @@ print(x, y)
 Next, you should define the Optimizer and the Loss Function for our training process.
 
 ### Equivalent code in R
+
 ```{r}
 # Define Optimizer and Loss Function
 optimizer <- torch$optim$SGD(net$parameters(), lr=0.2)
@@ -107,7 +109,7 @@ print(loss_func)
 ```
 
 ## Training
-### Code in Python
+
 Now let's start our training process. With an epoch of 250, you will iterate our data to find the best value for our hyperparameters.
 
 ### Code in R
@@ -138,6 +140,6 @@ for (i in 1:250) {
 
 ## Result
 
-As you can see below, you successfully performed regression with a neural network. Actually, on every iteration, the red line in the plot will update and change its position to fit the data. But in this picture, you only show you the final result
+As you can see below, you successfully performed regression with a neural network. Actually, on every iteration, the red line in the plot will update and change its position to fit the data. But in this picture, you only show you the final result.
 
 
