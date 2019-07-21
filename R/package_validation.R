@@ -17,7 +17,7 @@
 assert <- function(cond, fail_msg = NULL, ...) {
   if (!cond) {
     if (is.null(fail_msg) || missing(fail_msg)) {
-      fail_msg <- sprintf("Condition failed: %s", 
+      fail_msg <- sprintf("Condition failed: %s",
                           deparse(substitute(cond), width.cutoff = 30L))
     } else {
       fail_msg <- sprintf(fail_msg, ...)
@@ -42,7 +42,7 @@ assert <- function(cond, fail_msg = NULL, ...) {
 #' @noRd
 #'
 dt_validate <- function(dt, dt_arg, expected_col_class) {
-  assert(is.data.table(dt),
+  assert(data.table::is.data.table(dt),
          fail_msg = sprintf("data.table expected for '%s'", dt_arg))
 
   expected_names <- names(expected_col_class)
@@ -88,7 +88,7 @@ dt_validate_and_groom <- function(dt, dt_arg, expected_col_class) {
 
   expected_names <- names(expected_col_class)
   res_dt <- dt[, expected_names, with = FALSE] # select only requested colums
-  setcolorder(res_dt, expected_names) # set proper column ordering
+  data.table::setcolorder(res_dt, expected_names) # set proper column ordering
 
   return(res_dt)
 }
