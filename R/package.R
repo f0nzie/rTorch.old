@@ -50,7 +50,7 @@ packageStartupMessage("loading PyTorch")
     ))
 
     np <<- import("numpy", delay_load = list(
-      priority = 6,
+      priority = 4,                 # decrease priority so we don't get collision with torch
       environment = "r-np"          # this is a user generated environment
     ))
 
