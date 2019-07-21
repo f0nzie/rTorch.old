@@ -1,7 +1,7 @@
 #' Torch for R
 #' @import methods
 #' @import R6
-#' @importFrom reticulate import dict iterate import_from_path array_reshape np_array py_run_file  py_run_string py_iterator py_call py_capture_output py_get_attr py_has_attr py_is_null_xptr py_to_r r_to_py tuple
+#' @importFrom reticulate import dict iterate import_from_path array_reshape np_array py_run_file py_run_string py_iterator py_call py_capture_output py_get_attr py_has_attr py_is_null_xptr py_to_r r_to_py tuple
 #' @import reticulate
 #' @importFrom graphics par plot points
 #' @docType package
@@ -10,61 +10,48 @@ NULL
 
 
 
-# #' #' @keywords internal
-# #' "_PACKAGE"
-
-
-# ' #' Torch for R
-# ' #'
-# ' #' @import reticulate
-# ' #' @docType package
-# ' #' @name rTorch
-# ' NULL
 
 .globals <- new.env(parent = emptyenv())
 .globals$torchboard <- NULL
 
 
-# .onLoad <- function(libname, pkgname) {
-#     torch <<- reticulate::import("torch", delay_load = list(
-#         priority = 5,
-#         environment = "r-torch"
-#
-#         # on_load = function() {
-#         #     python_path <- system.file("python", package = "rTorch")
-#         #     tools <- import_from_path("torchtools", path = python_path)
-#         # }
-#
-#     ))
-# }
 
 packageStartupMessage("loading PyTorch")
 
 .onLoad <- function(libname, pkgname) {
 
+    # delay load PyTorch
     torch <<- import("torch", delay_load = list(
         priority = 5,
-
-        environment = "r-tensorflow"
-
+        environment = "r-torch"       # this is a user generated environment
     ))
 
-    # provide a common base S3 class for tensors
-    reticulate::register_class_filter(function(classes) {
-        if (any(c("torch.autograd.variable.Variable",
+    torchvision <<- import("torchvision", delay_load = list(
+      priority = 4,                    # decrease priority so we don't get collision with torch
+      environment = "r-torchvision"    # this is a user generated environment
+    ))
+
+    np <<- import("numpy", delay_load = list(
+      priority = 3,                 # decrease priority so we don't get collision with torch
+      environment = "r-np"          # this is a user generated environment
+    ))
+
+  # provide a common base S3 class for tensors
+  reticulate::register_class_filter(function(classes) {
+      if (any(c("torch.autograd.variable.Variable",
                   "torch.tensor._TensorBase")
-                %in%
-                classes)) {
-            c("torch.tensor", classes)      # this enables the generics + * - /
-        } else {
-            classes
-        }
-    })
+              %in%
+              classes)) {
+        c("torch.tensor", classes)      # this enables the generics + * - /
+      } else {
+          classes
+      }
+  })
 }
 
 
 
-#' PyTorch configuration information
+#' Torch configuration information
 #'
 #' @return List with information on the current configuration of TensorFlow.
 #'   You can determine whether TensorFlow was found using the `available`
@@ -75,7 +62,7 @@ packageStartupMessage("loading PyTorch")
 #' @export
 torch_config <- function() {
 
-    # first check if we found tensorflow
+    # first check if we found Torch
     have_torch <- py_module_available("torch")
 
     # get py config
@@ -113,7 +100,7 @@ torch_config <- function() {
 torch_version <- function() {
     config <- torch_config()
     if (config$available)
-        config$version
+        as.character(config$version)
     else
         NULL
 }
@@ -134,7 +121,7 @@ print.pytorch_config <- function(x, ...) {
 
 # Build error message for TensorFlow configuration errors
 torch_config_error_message <- function() {
-    message <- "Installation of PyTorch not found."
+    message <- "Installation of Torch not found."
     config <- py_config()
     if (!is.null(config)) {
         if (length(config$python_versions) > 0) {
