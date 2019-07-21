@@ -1,9 +1,25 @@
 Package: rTorch
-Title: What the Package Does (one line, title case)
-Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
-Depends: R (>= 3.4.3)
-License: What license is it under?
+Title: R bindings to PyTorch
+Version: 0.0.1
+Authors@R: person("Alfonso R.", "Reyes", role = c("aut", "cre"), email = "alfonso.reyes@oilgainsanalytics.com")
+Description: R implementation of Machine Learning platform developed in Python. 
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Depends: R (>= 3.1)
+Imports: logging,
+    config,
+    reticulate,
+    utils,
+    yaml,
+    methods,
+    R6,
+    rstudioapi (>= 0.7),
+    data.table
+Suggests: 
+    testthat,
+    knitr,
+    rmarkdown
+RoxygenNote: 6.1.1
+URL: https://github.com/f0nzie/rTorch
+VignetteBuilder: knitr
