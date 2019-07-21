@@ -1,3 +1,8 @@
+# rTorch 0.0.9001
+* July 21 2019
+* Adding first example as a vignette.
+* import Python torch with `py_run_string("import torch")`
+
 # rTorch 0.0.1
 * July 21 2019
 * alpha version
