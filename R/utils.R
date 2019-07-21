@@ -31,7 +31,7 @@ dir_exists <- function(x) {
 }
 
 ensure_loaded <- function() {
-  invisible(tf$`__version__`)
+  invisible(torch$`__version__`)
 }
 
 aliased <- function(path) {
