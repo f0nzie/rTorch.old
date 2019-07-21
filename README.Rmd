@@ -16,15 +16,17 @@ knitr::opts_chunk$set(
 
 # rTorch
 
-The goal of rTorch is providing an R wrapper to [PyTorch](https://pytorch.org/. We have borrowed ideas and code used in R [tensorflow](https://github.com/rstudio/tensorflow) to implement `rTorch`.
+The goal of `rTorch` is providing an R wrapper to [PyTorch](https://pytorch.org/. We have borrowed ideas and code used in R [tensorflow](https://github.com/rstudio/tensorflow) to implement `rTorch`.
 
-Besides the module `torch`, which provides `PyTorch` methods, classes and functions, we are also providing numpy as a method `np`, and `torchvision` as well. The dollar sign after the module will provide you access to their objects.
+Besides the module `torch`, which provides `PyTorch` methods, classes and functions, the package also provides `numpy` as a method called `np`, and `torchvision`, as well. The dollar sign `$` after the module will provide you access to those objects.
 
 
 ## Installation
 `rTorch` is available in GitHub only at this moment.
 
-Install rTorch with: `devtools::install_github("f0nzie/rTorch")`
+Install `rTorch` with: 
+
+`devtools::install_github("f0nzie/rTorch")`
 
 Before start running `rTorch`, install a Python Anaconda environment first. 
 
@@ -36,9 +38,13 @@ Before start running `rTorch`, install a Python Anaconda environment first.
 
 `conda install python=3.6.6 pytorch-cpu torchvision-cpu matplotlib pandas -c pytorch`
 
+
 Now, you can load `rTorch` in R or RStudio.
 
 The automatic installation, like in `rtensorflow`, may be available later.
+
+**Note.** `matplotlib` and `pandas` are not really necessary, but I was asked if `matplotlib` or `pandas` would in PyTorch, that I decided to put them for testing and experimentation. They both work.
+
 
 
 ## Matrices and Linear Algebra
@@ -231,12 +237,21 @@ ft2 <- torch$as_tensor(np$random$rand(5L), dtype= torch$float64)
 ft2
 ```
 
+
+```{r}
+# convert tensor to float 16-bits
+ft2_dbl <- torch$as_tensor(ft2, dtype = torch$float16)
+ft2_dbl
+```
+
+
 Create a tensor of size (5 x 7) with uninitialized memory:
 
 ```{r}
 a <- torch$FloatTensor(5L, 7L)
 print(a)
 ```
+
 
 Initialize a tensor randomized with a normal distribution with mean=0, var=1:
 
@@ -268,8 +283,18 @@ Exponential <- torch$distributions$exponential$Exponential
 
 m = Exponential(torch$tensor(list(1.0)))
 m$sample()  # Exponential distributed with rate=1
+```
+
+**Weibull distribution**
+
+```{r}
+Weibull <- torch$distributions$weibull$Weibull
+
+m = Weibull(torch$tensor(list(1.0)), torch$tensor(list(1.0)))
+m$sample()  # sample from a Weibull distribution with scale=1, concentration=1
 
 ```
+
 
 ## Tensor data types
 
