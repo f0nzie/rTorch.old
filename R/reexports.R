@@ -24,6 +24,9 @@ reticulate::array_reshape
 reticulate::iterate
 
 #' @export
+reticulate::`%as%`
+
+#' @export
 reticulate::iter_next
 
 #' @export
@@ -41,4 +44,11 @@ reticulate::py_to_r
 #' @export
 reticulate::py_get_item
 
+#' @export
+reticulate::use_python
 
+#' @export
+reticulate::use_virtualenv
+
+#' @export
+reticulate::use_condaenv
