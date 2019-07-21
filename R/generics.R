@@ -176,7 +176,6 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
 }
 
 
-
 #' Matrix/Tensor multiplication
 #' PyTorch matmul
 #' @param a Tensor 1
