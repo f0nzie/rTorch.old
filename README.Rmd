@@ -59,13 +59,6 @@ dt
 Bt
 ```
 
-A 3D tensor:
-
-```{r}
-ft3d <- torch$FloatTensor(4L, 3L, 2L)
-ft3d
-```
-
 A 4D tensor like in MNIST hand-written digits recognition dataset:
 
 ```{r}
@@ -84,9 +77,15 @@ mnist_4d$shape
 mnist_4d$numel()
 ```
 
+A 3D tensor:
 
 ```{r}
-# get first element in the tensor
+ft3d <- torch$FloatTensor(4L, 3L, 2L)
+ft3d
+```
+
+```{r}
+# get first element in a tensor
 ft3d[1, 1, 1]
 ```
 
@@ -101,6 +100,7 @@ ft
 # [torch.FloatTensor of size 3x3]
 ```
 
+
 ```{r}
 # create a tensor with a value
 torch$full(list(2L, 3L), 3.141592)
@@ -113,7 +113,6 @@ torch$full(list(2L, 3L), 3.141592)
 
 ```{r}
 library(rTorch)
-
 
 # 3x5 matrix uniformly distributed between 0 and 1
 mat0 <- torch$FloatTensor(3L, 5L)$uniform_(0L, 1L)
@@ -158,12 +157,11 @@ print(x$add(y))
 print(x + y)
 ```
 
-## NumPy and PyTorch
-`numpy` has been made available as a module in R. We can call functions from `numpy` refrerring to it as `np$_a_function`.
 
+## NumPy and PyTorch
+`numpy` has been made available as a module in `rTorch`. We can call functions from `numpy` refrerring to it as `np$_a_function`. Examples:
 
 ```{r}
-
 # a 2D numpy array  
 syn0 <- np$random$rand(3L, 5L)
 syn0
@@ -171,7 +169,6 @@ syn0
 
 
 ```{r}
-
 # numpy arrays of zeros
 syn1 <- np$zeros(c(5L, 10L))
 syn1
@@ -249,6 +246,33 @@ print(a)
 print(a$size())
 ```
 
+**Binomial distribution**
+
+```{r}
+Binomial <- torch$distributions$binomial$Binomial
+
+m = Binomial(100, torch$tensor(list(0 , .2, .8, 1)))
+(x = m$sample())
+```
+
+```{r}
+m = Binomial(torch$tensor(list(list(5.), list(10.))), 
+             torch$tensor(list(0.5, 0.8)))
+(x = m$sample())
+```
+
+**Exponential distribution**
+
+```{r}
+Exponential <- torch$distributions$exponential$Exponential
+
+m = Exponential(torch$tensor(list(1.0)))
+m$sample()  # Exponential distributed with rate=1
+
+```
+
+## Tensor data types
+
 ```{r}
 # Default data type
 torch$tensor(list(1.2, 3))$dtype  # default for floating point is torch.float32
@@ -298,6 +322,7 @@ x <- torch$ones(5L, 5L)
 print(x)
 ```
 
+This is a very common operation in machine learning:
 
 ```{r}
 # convert tensor to a numpy array
