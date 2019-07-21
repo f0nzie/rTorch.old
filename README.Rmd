@@ -16,10 +16,9 @@ knitr::opts_chunk$set(
 
 # rTorch
 
-The goal of rTorch is providing an R wrapper to PyTorch.
-We have borrowed ideas and code used in R `tensorflow` to implement `rTorch`.
+The goal of rTorch is providing an R wrapper to [PyTorch](https://pytorch.org/. We have borrowed ideas and code used in R [tensorflow](https://github.com/rstudio/tensorflow) to implement `rTorch`.
 
-Besides the module `torch`, which provides methods, classes and function, we are also providing numpy as `np` and `torchvision` as well. The dollar sign after the module will provide access to their objects.
+Besides the module `torch`, which provides `PyTorch` methods, classes and functions, we are also providing numpy as a method `np`, and `torchvision` as well. The dollar sign after the module will provide you access to their objects.
 
 
 ## Installation
@@ -27,7 +26,7 @@ Besides the module `torch`, which provides methods, classes and function, we are
 
 Install rTorch with: `devtools::install_github("f0nzie/rTorch")`
 
-Before start running the `rTorch`, install a Python Anaconda first. Then:
+Before start running `rTorch`, install a Python Anaconda environment first. Then:
 
 1. Create a conda environment with `conda create -n myenv python=3.7`
 
