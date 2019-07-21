@@ -24,7 +24,7 @@ test_that("R objects are multiplied within Python and printed", {
 
 test_that("R objects are detected within Python",  {
   result <- py_run_string("ab")
-  print(names(result))
+  # print(names(result))
   expect_true(any(names(result) %in% c("sys", "R", "r", "ab")))
   expect_equal(py_eval("r.Ap"), 100)
   expect_equal(py_eval("r.Bp"), 250)
