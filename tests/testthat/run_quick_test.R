@@ -9,6 +9,6 @@ tensor_dim_(m1)
 tensor_dim(m1)
 # [1] 3 5
 
-library(magrittr)
-m1 %>%
-  as.array()
+# library(magrittr)
+# m1 %>%
+#   as.array()
