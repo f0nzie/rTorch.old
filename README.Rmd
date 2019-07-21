@@ -26,23 +26,24 @@ Besides the module `torch`, which provides `PyTorch` methods, classes and functi
 
 Install rTorch with: `devtools::install_github("f0nzie/rTorch")`
 
-Before start running `rTorch`, install a Python Anaconda environment first. Then:
+Before start running `rTorch`, install a Python Anaconda environment first. 
 
 1. Create a conda environment with `conda create -n myenv python=3.7`
 
 2. Activate the new environment with `conda activate myenv`
 
-3. Install PyTorch packages with:  
+3. Install PyTorch related packages with:  
+
 `conda install python=3.6.6 pytorch-cpu torchvision-cpu matplotlib pandas -c pytorch`
 
-Now, you can load `rTorch`.
+Now, you can load `rTorch` in R or RStudio.
 
-The automatic installation, like in Tensorflow, may be available later.
+The automatic installation, like in `rtensorflow`, may be available later.
 
 
 ## Matrices and Linear Algebra
 
-There are four major type of Tensors in PyTorch
+There are five major type of Tensors in PyTorch
 
 ```{r}
 library(rTorch)
