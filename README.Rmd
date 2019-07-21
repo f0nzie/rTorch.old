@@ -17,15 +17,12 @@ knitr::opts_chunk$set(
 The goal of rTorch is to ...
 
 
-
 ## Matrices and Linear Algebra
 
 There are four major type of Tensors in PyTorch
 
-
 ```{r}
 library(rTorch)
-
 
 bt <- torch$ByteTensor(3L, 3L)
 ft <- torch$FloatTensor(3L, 3L)
@@ -59,6 +56,11 @@ bt
 ```{r}
 ft
 # [torch.FloatTensor of size 3x3]
+```
+
+```{r}
+# create a tensor with a value
+torch$full(list(2L, 3L), 3.141592)
 ```
 
 
@@ -103,11 +105,22 @@ mat1[1, 1] + mat2
 mat1 + mat0
 ```
 
+
+```{r}
+# PyTorch add two tensors
+x = torch$rand(5L, 4L)
+y = torch$rand(5L, 4L)
+
+print(x$add(y))
+print(x + y)
+```
+
 ## NumPy and PyTorch
 `numpy` has been made available as a module in R. We can call functions from `numpy` refrerring to it as `np$_a_function`.
 
 
 ```{r}
+
 # a 2D numpy array  
 syn0 <- np$random$rand(3L, 5L)
 syn0
@@ -115,6 +128,7 @@ syn0
 
 
 ```{r}
+
 # numpy arrays of zeros
 syn1 <- np$zeros(c(5L, 10L))
 syn1
@@ -151,7 +165,19 @@ X
 np$transpose(X)
 ```
 
-## 
+```{r}
+# as_tensor. Modifying tensor modifies numpy object as well
+a = np$array(list(1, 2, 3))
+t = torch$as_tensor(a)
+print(t)
+
+torch$tensor(list( 1,  2,  3))
+t[1L]$fill_(-1)
+print(a)
+```
+
+
+## Create tensors
 
 ```{r}
 # a random 1D tensor
@@ -165,10 +191,6 @@ ft2 <- torch$as_tensor(np$random$rand(5L), dtype= torch$float64)
 ft2
 ```
 
-
-## Building a neural network using numpy
-
-`
 Create a tensor of size (5 x 7) with uninitialized memory:
 
 ```{r}
@@ -182,6 +204,17 @@ Initialize a tensor randomized with a normal distribution with mean=0, var=1:
 a  <- torch$randn(5L, 7L)
 print(a)
 print(a$size())
+```
+
+```{r}
+# Default data type
+torch$tensor(list(1.2, 3))$dtype  # default for floating point is torch.float32
+```
+
+```{r}
+# change default data type to float64
+torch$set_default_dtype(torch$float64)
+torch$tensor(list(1.2, 3))$dtype         # a new floating point tensor
 ```
 
 
@@ -248,7 +281,7 @@ print(y)
 print(z)
 ```
 
-## concatenate tensors
+### concatenate tensors
 
 ```{r}
 # concatenate tensors
@@ -270,6 +303,7 @@ torch$cat(list(x, x, x), 1L)
 v = torch$arange(9L)
 (v = v$view(3L, 3L))
 ```
+
 
 ### Reshape tensors
 
@@ -342,7 +376,6 @@ v
 (z = torch$zeros(10L))             # A tensor of size 10 containing all zeros
 ```
 
-
 ## Tensor fill
 
 ```{r}
@@ -408,5 +441,29 @@ src = torch$tensor(list(list(4, 3, 5),
                         list(6, 7, 8)) )
 print(src)
 print( torch$take(src, torch$tensor(list(0L, 2L, 5L))) )
+```
+
+## Tensor operations
+
+### cross product
+```{r}
+m1 = torch$ones(3L, 5L)
+m2 = torch$ones(3L, 5L)
+v1 = torch$ones(3L)
+# Cross product
+# Size 3x5
+(r = torch$cross(m1, m2))
+```
+
+### Dot product
+```{r}
+# Dot product of 2 tensors
+# Dot product of 2 tensors
+
+p <- torch$Tensor(list(4L, 2L))
+q <- torch$Tensor(list(3L, 1L))                   
+
+(r = torch$dot(p, q)) # 14
+(r <- p %.*% q)
 ```
 
