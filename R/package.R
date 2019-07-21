@@ -10,34 +10,11 @@ NULL
 
 
 
-# #' #' @keywords internal
-# #' "_PACKAGE"
-
-
-# ' #' Torch for R
-# ' #'
-# ' #' @import reticulate
-# ' #' @docType package
-# ' #' @name rTorch
-# ' NULL
-
 
 .globals <- new.env(parent = emptyenv())
 .globals$torchboard <- NULL
 
 
-# .onLoad <- function(libname, pkgname) {
-#     torch <<- reticulate::import("torch", delay_load = list(
-#         priority = 5,
-#         environment = "r-torch"
-#
-#         # on_load = function() {
-#         #     python_path <- system.file("python", package = "rTorch")
-#         #     tools <- import_from_path("torchtools", path = python_path)
-#         # }
-#
-#     ))
-# }
 
 packageStartupMessage("loading PyTorch")
 
@@ -46,11 +23,16 @@ packageStartupMessage("loading PyTorch")
     # delay load PyTorch
     torch <<- import("torch", delay_load = list(
         priority = 5,
-        environment = "r-torch"          # this is a user generated environment
+        environment = "r-torch"       # this is a user generated environment
+    ))
+
+    torchvision <<- import("torchvision", delay_load = list(
+      priority = 4,                    # decrease priority so we don't get collision with torch
+      environment = "r-torchvision"    # this is a user generated environment
     ))
 
     np <<- import("numpy", delay_load = list(
-      priority = 4,                 # decrease priority so we don't get collision with torch
+      priority = 3,                 # decrease priority so we don't get collision with torch
       environment = "r-np"          # this is a user generated environment
     ))
 
