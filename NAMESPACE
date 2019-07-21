@@ -79,3 +79,8 @@ importFrom(reticulate,r_to_py)
 importFrom(reticulate,tuple)
 importFrom(utils,.DollarNames)
 importFrom(utils,str)
+
+import(config)
+import(yaml)
+import(rstudioapi)
+import(data.table)
