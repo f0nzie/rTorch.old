@@ -1,3 +1,9 @@
+# rTorch 0.0.9002
+* July 21 2019
+* Add two more vignettes.
+* Get rid of a warning on roxygen documentation
+* Remove old code from generics.R
+
 # rTorch 0.0.9001
 * July 21 2019
 * Adding first example as a vignette.
