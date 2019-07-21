@@ -9,3 +9,5 @@ vignettes/datasets
 *.Rd
 
 *.pyc
+
+*.html
