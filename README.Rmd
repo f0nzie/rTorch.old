@@ -66,6 +66,25 @@ ft3d <- torch$FloatTensor(4L, 3L, 2L)
 ft3d
 ```
 
+A 4D tensor like in MNIST hand-written digits recognition dataset:
+
+```{r}
+mnist_4d <- torch$FloatTensor(60000L, 3L, 28L, 28L)
+
+# size
+mnist_4d$size()
+
+# length
+length(mnist_4d)
+
+# shape, like in numpy
+mnist_4d$shape
+
+# number of elements
+mnist_4d$numel()
+```
+
+
 ```{r}
 # get first element in the tensor
 ft3d[1, 1, 1]
