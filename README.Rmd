@@ -12,9 +12,33 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
+
+
 # rTorch
 
-The goal of rTorch is to ...
+The goal of rTorch is providing an R wrapper to PyTorch.
+We have borrowed ideas and code used in R `tensorflow` to implement `rTorch`.
+
+Besides the module `torch`, which provides methods, classes and function, we are also providing numpy as `np` and `torchvision` as well. The dollar sign after the module will provide access to their objects.
+
+
+## Installation
+`rTorch` is available in GitHub only at this moment.
+
+Install rTorch with: `devtools::install_github("f0nzie/rTorch")`
+
+Before start running the `rTorch`, install a Python Anaconda first. Then:
+
+1. Create a conda environment with `conda create -n myenv python=3.7`
+
+2. Activate the new environment with `conda activate myenv`
+
+3. Install PyTorch packages with:  
+`conda install python=3.6.6 pytorch-cpu torchvision-cpu matplotlib pandas -c pytorch`
+
+Now, you can load `rTorch`.
+
+The automatic installation, like in Tensorflow, may be available later.
 
 
 ## Matrices and Linear Algebra
