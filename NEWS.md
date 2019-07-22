@@ -1,3 +1,7 @@
+# rTorch 0.0.9004
+* July 22 2019
+* Add vignette `idx_images_minist_digits.Rmd`
+
 # rTorch 0.0.9003
 * July 21 2019
 * New vignette `two_layer_neural_network.Rmd`. Had some problem with the tensor types. Fixed by using shorter generic version of the tensor gradient operation.

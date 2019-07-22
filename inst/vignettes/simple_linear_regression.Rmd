@@ -36,7 +36,7 @@ This would be the equivalent code in R:
 ```{r}
 library(rTorch)
 
-nn    <- torch$nn
+nn       <- torch$nn
 Variable <- torch$autograd$Variable
 
 torch$manual_seed(123)
@@ -75,7 +75,7 @@ This is the code in R:
 np$random$seed(123L)
 
 x = np$random$rand(100L)
-y = np$sin(x) * np$power(x, 3L) + 3*x + np$random$rand(100L)*0.8
+y = np$sin(x) * np$power(x, 3L) + 3L * x + np$random$rand(100L) * 0.8
 
 plot(x, y)
 ```
@@ -90,8 +90,8 @@ Notice that before converting to a Torch tensor, we need first to convert the R 
 # convert numpy array to tensor in shape of input size
 x <- r_to_py(x)
 y <- r_to_py(y)
-x = torch$from_numpy(x$reshape(-1L, 1L)) #$float()
-y = torch$from_numpy(y$reshape(-1L, 1L)) #$float()
+x = torch$from_numpy(x$reshape(-1L, 1L))$float()
+y = torch$from_numpy(y$reshape(-1L, 1L))$float()
 print(x, y)
 ```
 
@@ -115,11 +115,16 @@ Now let's start our training process. With an epoch of 250, you will iterate our
 ### Code in R
 
 ```{r fig.width=5.5, fig.height=5.5}
-x = x$type(torch$FloatTensor)   # make it a a FloatTensor
-y = y$type(torch$FloatTensor)
+# x = x$type(torch$float)   # make it a a FloatTensor
+# y = y$type(torch$float)
 
-inputs = Variable(x)
+# x <- torch$as_tensor(x, dtype = torch$float)
+# y <- torch$as_tensor(y, dtype = torch$float)
+
+inputs  = Variable(x)
 outputs = Variable(y)
+
+# base plot
 plot(x$data$numpy(), y$data$numpy(), col = "blue")
 for (i in 1:250) {
    prediction = net(inputs)
@@ -127,6 +132,8 @@ for (i in 1:250) {
    optimizer$zero_grad()
    loss$backward()
    optimizer$step()
+   
+   if (i > 1) break
 
    if (i %% 10 == 0) {
        # plot and show learning process

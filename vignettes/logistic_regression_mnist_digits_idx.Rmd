@@ -19,6 +19,8 @@ library(rTorch)
 
 nn          <- torch$nn
 transforms  <- torchvision$transforms
+
+torch$set_default_dtype(torch$float)
 ```
 
 
