@@ -109,7 +109,6 @@ for (t in 1:500) {
   with(torch$no_grad(), {
       for (param in iterate(model$parameters())) {
         # in Python this code is much simpler. In R we have to do some conversions
-        # param <- param - grad * learning_rate
         
         # param$data <- torch$sub(param$data,
         #                         torch$mul(param$grad$float(),
