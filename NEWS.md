@@ -1,3 +1,7 @@
+# rTorch 0.0.9007
+* July 22 2019
+* Export html files for pkgdown. Modify .gitignore.
+
 # rTorch 0.0.9006
 * July 22 2019
 * Add pkgdown website
