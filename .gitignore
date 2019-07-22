@@ -15,3 +15,7 @@ vignettes/datasets
 inst/raw_data/MNIST/
 
 *.pkl
+doc
+Meta
+
+*.ckpt
