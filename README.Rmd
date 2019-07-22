@@ -576,6 +576,7 @@ v1 = torch$ones(3L)
 ```
 
 ### Dot product
+
 ```{r}
 # Dot product of 2 tensors
 # Dot product of 2 tensors
@@ -585,5 +586,40 @@ q <- torch$Tensor(list(3L, 1L))
 
 (r = torch$dot(p, q)) # 14
 (r <- p %.*% q)
+```
+
+
+## Logical operations
+
+```{r}
+m0 = torch$zeros(3L, 5L)
+m1 = torch$ones(3L, 5L)
+m2 = torch$eye(3L, 5L)
+
+print(m1 == m0)
+```
+
+```{r}
+print(m1 != m1)
+```
+
+```{r}
+print(m2 == m2)
+```
+
+
+```{r}
+# AND
+m1 & m1
+```
+
+```{r}
+# OR
+m0 | m2
+```
+
+```{r}
+# OR
+m1 | m2
 ```
 
