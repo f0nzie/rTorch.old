@@ -112,9 +112,12 @@ for (t in 1:50) {
       for (param in iterate(model$parameters())) {
         # in Python this code is much simpler. In R we have to do some conversions
         # param <- param - grad * learning_rate
-        param$data <- torch$sub(param$data, 
-                                torch$mul(param$grad$float(), 
-                                  torch$scalar_tensor(learning_rate)))
+        
+        # param$data <- torch$sub(param$data,
+        #                         torch$mul(param$grad$float(),
+        #                           torch$scalar_tensor(learning_rate)))
+        
+        param$data <- param$data - param$grad * learning_rate
       }
    })
 }  
