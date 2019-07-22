@@ -5,3 +5,5 @@
 vignettes/data
 vignettes/datasets
 notebooks
+^doc$
+^Meta$
