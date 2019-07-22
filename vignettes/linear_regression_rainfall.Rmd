@@ -22,6 +22,7 @@ library(rTorch)
 torch$manual_seed(0)
 
 device = torch$device('cpu')
+
 # Input (temp, rainfall, humidity)
 inputs = np$array(list(list(73, 67, 43),
                    list(91, 88, 64),
@@ -45,10 +46,10 @@ print(inputs)
 print(targets)
 
 # random numbers for weights and biases. Then convert to double()
-torch$set_default_dtype(torch$float64)
+torch$set_default_dtype(torch$double)
 
-w = torch$randn(2L, 3L, requires_grad=TRUE) #$double()
-b = torch$randn(2L, requires_grad=TRUE) #$double()
+w = torch$randn(2L, 3L, requires_grad=TRUE)  #$double()
+b = torch$randn(2L, requires_grad=TRUE)      #$double()
 
 print(w)
 print(b)
@@ -123,6 +124,11 @@ loss = mse(preds, targets)
 print(loss)
 
 
+
+```
+
+
+```{r}
 # Running all together
 # Adjust weights and reset gradients
 for (i in 1:100) {
@@ -149,3 +155,4 @@ preds
 # Targets
 targets
 ```
+
