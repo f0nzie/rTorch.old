@@ -1,5 +1,6 @@
-# rTorch 0.0.9007
+# rTorch 0.0.9008
 * July 22 2019
+* Refresh pkgdown
 * Export html files for pkgdown. Modify .gitignore.
 
 # rTorch 0.0.9006
