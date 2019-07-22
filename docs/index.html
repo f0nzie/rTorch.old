@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9005</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9007</span>
       </span>
     </div>
 
@@ -131,19 +131,19 @@
 <a class="sourceLine" id="cb1-7" data-line-number="7">Bt &lt;-<span class="st"> </span>torch<span class="op">$</span><span class="kw">BoolTensor</span>(5L, 5L)</a>
 <a class="sourceLine" id="cb1-8" data-line-number="8"></a>
 <a class="sourceLine" id="cb1-9" data-line-number="9">ft</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="co">#&gt; tensor([[1.3178e+25, 7.3017e+31, 1.4609e-19],</span></a>
-<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co">#&gt;         [4.9571e+28, 1.8390e+25, 5.5761e-02],</span></a>
-<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="co">#&gt;         [7.2443e+22, 1.8370e+25, 1.0901e+27]])</span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="co">#&gt; tensor([[1.6412e-07, 1.3567e-19, 6.4094e-10],</span></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co">#&gt;         [1.4585e-19, 2.5348e-09, 8.0254e+17],</span></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="co">#&gt;         [6.6522e-33, 1.3563e-19, 1.6114e-19]])</span></a>
 <a class="sourceLine" id="cb1-13" data-line-number="13">dt</a>
-<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="co">#&gt; tensor([[ 3.7616e+199, -3.8423e+127,  2.1823e+243],</span></a>
-<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="co">#&gt;         [ 1.4554e+169,  2.0706e+161,  1.4528e-308],</span></a>
-<a class="sourceLine" id="cb1-16" data-line-number="16"><span class="co">#&gt;         [ 3.0683e+257,  1.5682e-253,  5.8239e-313]], dtype=torch.float64)</span></a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="co">#&gt; tensor([[4.6680e-310,  0.0000e+00, 4.2440e-314],</span></a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="co">#&gt;         [4.6680e-310, 4.6680e-310, 1.4822e-323],</span></a>
+<a class="sourceLine" id="cb1-16" data-line-number="16"><span class="co">#&gt;         [4.2440e-314, 4.9407e-324,  0.0000e+00]], dtype=torch.float64)</span></a>
 <a class="sourceLine" id="cb1-17" data-line-number="17">Bt</a>
-<a class="sourceLine" id="cb1-18" data-line-number="18"><span class="co">#&gt; tensor([[ True, False, False, False, False],</span></a>
-<a class="sourceLine" id="cb1-19" data-line-number="19"><span class="co">#&gt;         [False, False, False,  True,  True],</span></a>
+<a class="sourceLine" id="cb1-18" data-line-number="18"><span class="co">#&gt; tensor([[ True,  True,  True,  True,  True],</span></a>
+<a class="sourceLine" id="cb1-19" data-line-number="19"><span class="co">#&gt;         [ True, False, False,  True,  True],</span></a>
 <a class="sourceLine" id="cb1-20" data-line-number="20"><span class="co">#&gt;         [ True,  True,  True,  True, False],</span></a>
-<a class="sourceLine" id="cb1-21" data-line-number="21"><span class="co">#&gt;         [False, False, False, False, False],</span></a>
-<a class="sourceLine" id="cb1-22" data-line-number="22"><span class="co">#&gt;         [False, False, False, False, False]], dtype=torch.bool)</span></a></code></pre></div>
+<a class="sourceLine" id="cb1-21" data-line-number="21"><span class="co">#&gt;         [False,  True, False, False, False],</span></a>
+<a class="sourceLine" id="cb1-22" data-line-number="22"><span class="co">#&gt;         [False, False, False, False,  True]], dtype=torch.bool)</span></a></code></pre></div>
 <p>A 4D tensor like in MNIST hand-written digits recognition dataset:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">mnist_4d &lt;-<span class="st"> </span>torch<span class="op">$</span><span class="kw">FloatTensor</span>(60000L, 3L, 28L, 28L)</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"></a>
@@ -165,33 +165,33 @@
 <p>A 3D tensor:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">ft3d &lt;-<span class="st"> </span>torch<span class="op">$</span><span class="kw">FloatTensor</span>(4L, 3L, 2L)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">ft3d</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; tensor([[[-7.3366e-28,  4.5883e-41],</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt;          [-7.3366e-28,  4.5883e-41],</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt;          [ 2.4465e+26,  3.0808e-41]],</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; tensor([[[-4.6912e+02,  4.5811e-41],</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt;          [-4.6912e+02,  4.5811e-41],</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt;          [ 0.0000e+00,  0.0000e+00]],</span></a>
 <a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt;         [[ 2.4465e+26,  3.0808e-41],</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt;          [ 0.0000e+00,  0.0000e+00],</span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt;          [ 0.0000e+00,  0.0000e+00]],</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt;         [[ 0.0000e+00,  0.0000e+00],</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt;          [ 4.4842e-44,  4.4842e-44],</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt;          [ 6.5747e-24,  3.0826e-41]],</span></a>
 <a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt;         [[ 0.0000e+00,  0.0000e+00],</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt;         [[ 1.4013e-45,  0.0000e+00],</span></a>
 <a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt;          [ 0.0000e+00,  0.0000e+00],</span></a>
 <a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt;          [ 0.0000e+00,  0.0000e+00]],</span></a>
 <a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt;         [[ 0.0000e+00,  0.0000e+00],</span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt;         [[ 2.8026e-45,  0.0000e+00],</span></a>
 <a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#&gt;          [ 0.0000e+00,  0.0000e+00],</span></a>
 <a class="sourceLine" id="cb3-17" data-line-number="17"><span class="co">#&gt;          [ 0.0000e+00,  0.0000e+00]]])</span></a></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># get first element in a tensor</span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">ft3d[<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt; tensor(-7.3366e-28)</span></a></code></pre></div>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt; tensor(-469.1152)</span></a></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">bt</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt; tensor([[ 99, 111, 110],</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt;         [116,  97, 105],</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt;         [110, 105, 110]], dtype=torch.uint8)</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt; tensor([[115, 116, 101],</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt;         [ 97, 100,  32],</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt;         [119,  97, 110]], dtype=torch.uint8)</span></a>
 <a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co"># [torch.ByteTensor of size 3x3]</span></a></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">ft</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt; tensor([[1.3178e+25, 7.3017e+31, 1.4609e-19],</span></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt;         [4.9571e+28, 1.8390e+25, 5.5761e-02],</span></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt;         [7.2443e+22, 1.8370e+25, 1.0901e+27]])</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt; tensor([[1.6412e-07, 1.3567e-19, 6.4094e-10],</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt;         [1.4585e-19, 2.5348e-09, 8.0254e+17],</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt;         [6.6522e-33, 1.3563e-19, 1.6114e-19]])</span></a>
 <a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co"># [torch.FloatTensor of size 3x3]</span></a></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co"># create a tensor with a value</span></a>
 <a class="sourceLine" id="cb7-2" data-line-number="2">torch<span class="op">$</span><span class="kw">full</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(2L, 3L), <span class="fl">3.141592</span>)</a>
@@ -208,9 +208,9 @@
 <a class="sourceLine" id="cb8-2" data-line-number="2"><span class="co"># 3x5 matrix uniformly distributed between 0 and 1</span></a>
 <a class="sourceLine" id="cb8-3" data-line-number="3">mat0 &lt;-<span class="st"> </span>torch<span class="op">$</span><span class="kw">FloatTensor</span>(3L, 5L)<span class="op">$</span><span class="kw">uniform_</span>(0L, 1L)</a>
 <a class="sourceLine" id="cb8-4" data-line-number="4">mat0 <span class="op">+</span><span class="st"> </span><span class="fl">0.1</span></a>
-<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="co">#&gt; tensor([[1.0859, 0.7532, 0.2410, 0.5270, 0.7303],</span></a>
-<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="co">#&gt;         [0.8574, 0.7417, 0.3006, 0.9250, 0.4288],</span></a>
-<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="co">#&gt;         [0.9100, 0.9638, 0.4256, 0.4729, 1.0762]])</span></a></code></pre></div>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="co">#&gt; tensor([[1.0634, 0.9386, 0.6901, 0.4807, 0.6113],</span></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="co">#&gt;         [0.9645, 0.2586, 0.8331, 0.5731, 0.2251],</span></a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="co">#&gt;         [0.6164, 0.8367, 0.9873, 0.1350, 1.0483]])</span></a></code></pre></div>
 <blockquote>
 <p>The expression <code>tensor.index(m)</code> is equivalent to <code>tensor[m]</code>.</p>
 </blockquote>
@@ -223,25 +223,25 @@
 <a class="sourceLine" id="cb9-7" data-line-number="7"><span class="co">#&gt; tensor([1.1000, 1.1000, 1.1000, 1.1000, 1.1000])</span></a></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co"># add two tensors</span></a>
 <a class="sourceLine" id="cb10-2" data-line-number="2">mat1 <span class="op">+</span><span class="st"> </span>mat0</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co">#&gt; tensor([[1.0859, 0.7532, 0.2410, 0.5270, 0.7303],</span></a>
-<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="co">#&gt;         [0.8574, 0.7417, 0.3006, 0.9250, 0.4288],</span></a>
-<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="co">#&gt;         [0.9100, 0.9638, 0.4256, 0.4729, 1.0762]])</span></a></code></pre></div>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co">#&gt; tensor([[1.0634, 0.9386, 0.6901, 0.4807, 0.6113],</span></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="co">#&gt;         [0.9645, 0.2586, 0.8331, 0.5731, 0.2251],</span></a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="co">#&gt;         [0.6164, 0.8367, 0.9873, 0.1350, 1.0483]])</span></a></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># PyTorch add two tensors</span></a>
 <a class="sourceLine" id="cb11-2" data-line-number="2">x =<span class="st"> </span>torch<span class="op">$</span><span class="kw">rand</span>(5L, 4L)</a>
 <a class="sourceLine" id="cb11-3" data-line-number="3">y =<span class="st"> </span>torch<span class="op">$</span><span class="kw">rand</span>(5L, 4L)</a>
 <a class="sourceLine" id="cb11-4" data-line-number="4"></a>
 <a class="sourceLine" id="cb11-5" data-line-number="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(x<span class="op">$</span><span class="kw">add</span>(y))</a>
-<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co">#&gt; tensor([[0.5667, 1.4476, 1.1716, 1.0737],</span></a>
-<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co">#&gt;         [0.9612, 1.3666, 1.3393, 1.6992],</span></a>
-<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">#&gt;         [0.2940, 0.8757, 0.5117, 1.0678],</span></a>
-<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="co">#&gt;         [1.1116, 0.9386, 1.4507, 1.3456],</span></a>
-<a class="sourceLine" id="cb11-10" data-line-number="10"><span class="co">#&gt;         [1.3486, 1.4811, 0.8963, 0.8052]])</span></a>
+<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co">#&gt; tensor([[1.2735, 0.2817, 1.2526, 1.4063],</span></a>
+<a class="sourceLine" id="cb11-7" data-line-number="7"><span class="co">#&gt;         [1.7847, 0.1968, 0.3681, 0.9205],</span></a>
+<a class="sourceLine" id="cb11-8" data-line-number="8"><span class="co">#&gt;         [0.9162, 1.7628, 1.3697, 1.0412],</span></a>
+<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="co">#&gt;         [0.9812, 1.2743, 1.4245, 1.5280],</span></a>
+<a class="sourceLine" id="cb11-10" data-line-number="10"><span class="co">#&gt;         [1.3250, 0.8141, 1.6553, 1.3818]])</span></a>
 <a class="sourceLine" id="cb11-11" data-line-number="11"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(x <span class="op">+</span><span class="st"> </span>y)</a>
-<a class="sourceLine" id="cb11-12" data-line-number="12"><span class="co">#&gt; tensor([[0.5667, 1.4476, 1.1716, 1.0737],</span></a>
-<a class="sourceLine" id="cb11-13" data-line-number="13"><span class="co">#&gt;         [0.9612, 1.3666, 1.3393, 1.6992],</span></a>
-<a class="sourceLine" id="cb11-14" data-line-number="14"><span class="co">#&gt;         [0.2940, 0.8757, 0.5117, 1.0678],</span></a>
-<a class="sourceLine" id="cb11-15" data-line-number="15"><span class="co">#&gt;         [1.1116, 0.9386, 1.4507, 1.3456],</span></a>
-<a class="sourceLine" id="cb11-16" data-line-number="16"><span class="co">#&gt;         [1.3486, 1.4811, 0.8963, 0.8052]])</span></a></code></pre></div>
+<a class="sourceLine" id="cb11-12" data-line-number="12"><span class="co">#&gt; tensor([[1.2735, 0.2817, 1.2526, 1.4063],</span></a>
+<a class="sourceLine" id="cb11-13" data-line-number="13"><span class="co">#&gt;         [1.7847, 0.1968, 0.3681, 0.9205],</span></a>
+<a class="sourceLine" id="cb11-14" data-line-number="14"><span class="co">#&gt;         [0.9162, 1.7628, 1.3697, 1.0412],</span></a>
+<a class="sourceLine" id="cb11-15" data-line-number="15"><span class="co">#&gt;         [0.9812, 1.2743, 1.4245, 1.5280],</span></a>
+<a class="sourceLine" id="cb11-16" data-line-number="16"><span class="co">#&gt;         [1.3250, 0.8141, 1.6553, 1.3818]])</span></a></code></pre></div>
 </div>
 <div id="multiply-tensor-by-scalar" class="section level3">
 <h3 class="hasAnchor">
@@ -267,10 +267,10 @@
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="co"># a 2D numpy array  </span></a>
 <a class="sourceLine" id="cb14-2" data-line-number="2">syn0 &lt;-<span class="st"> </span>np<span class="op">$</span>random<span class="op">$</span><span class="kw">rand</span>(3L, 5L)</a>
 <a class="sourceLine" id="cb14-3" data-line-number="3">syn0</a>
-<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co">#&gt;           [,1]       [,2]      [,3]      [,4]      [,5]</span></a>
-<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="co">#&gt; [1,] 0.4260546 0.36958700 0.3147500 0.2877525 0.4570389</span></a>
-<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="co">#&gt; [2,] 0.3110088 0.05899394 0.3421425 0.6757902 0.1213580</span></a>
-<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="co">#&gt; [3,] 0.6027117 0.49150987 0.9820186 0.1347166 0.3358223</span></a></code></pre></div>
+<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co">#&gt;            [,1]      [,2]      [,3]      [,4]       [,5]</span></a>
+<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="co">#&gt; [1,] 0.09534846 0.5403942 0.5007356 0.4150588 0.18591582</span></a>
+<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="co">#&gt; [2,] 0.63646788 0.8436722 0.9128957 0.6608402 0.10365835</span></a>
+<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="co">#&gt; [3,] 0.38938787 0.6119983 0.9326660 0.9053132 0.03148889</span></a></code></pre></div>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="co"># numpy arrays of zeros</span></a>
 <a class="sourceLine" id="cb15-2" data-line-number="2">syn1 &lt;-<span class="st"> </span>np<span class="op">$</span><span class="kw">zeros</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(5L, 10L))</a>
 <a class="sourceLine" id="cb15-3" data-line-number="3">syn1</a>
@@ -302,13 +302,13 @@
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="co"># vector-matrix multiplication</span></a>
 <a class="sourceLine" id="cb18-2" data-line-number="2">np<span class="op">$</span><span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/plotmath">dot</a></span>(syn0, syn1)</a>
 <a class="sourceLine" id="cb18-3" data-line-number="3"><span class="co">#&gt;           [,1]      [,2]      [,3]      [,4]      [,5]      [,6]      [,7]</span></a>
-<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="co">#&gt; [1,] 0.1855183 0.1855183 0.1855183 0.1855183 0.1855183 0.1855183 0.1855183</span></a>
-<a class="sourceLine" id="cb18-5" data-line-number="5"><span class="co">#&gt; [2,] 0.1509293 0.1509293 0.1509293 0.1509293 0.1509293 0.1509293 0.1509293</span></a>
-<a class="sourceLine" id="cb18-6" data-line-number="6"><span class="co">#&gt; [3,] 0.2546779 0.2546779 0.2546779 0.2546779 0.2546779 0.2546779 0.2546779</span></a>
+<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="co">#&gt; [1,] 0.1737453 0.1737453 0.1737453 0.1737453 0.1737453 0.1737453 0.1737453</span></a>
+<a class="sourceLine" id="cb18-5" data-line-number="5"><span class="co">#&gt; [2,] 0.3157534 0.3157534 0.3157534 0.3157534 0.3157534 0.3157534 0.3157534</span></a>
+<a class="sourceLine" id="cb18-6" data-line-number="6"><span class="co">#&gt; [3,] 0.2870854 0.2870854 0.2870854 0.2870854 0.2870854 0.2870854 0.2870854</span></a>
 <a class="sourceLine" id="cb18-7" data-line-number="7"><span class="co">#&gt;           [,8]      [,9]     [,10]</span></a>
-<a class="sourceLine" id="cb18-8" data-line-number="8"><span class="co">#&gt; [1,] 0.1855183 0.1855183 0.1855183</span></a>
-<a class="sourceLine" id="cb18-9" data-line-number="9"><span class="co">#&gt; [2,] 0.1509293 0.1509293 0.1509293</span></a>
-<a class="sourceLine" id="cb18-10" data-line-number="10"><span class="co">#&gt; [3,] 0.2546779 0.2546779 0.2546779</span></a></code></pre></div>
+<a class="sourceLine" id="cb18-8" data-line-number="8"><span class="co">#&gt; [1,] 0.1737453 0.1737453 0.1737453</span></a>
+<a class="sourceLine" id="cb18-9" data-line-number="9"><span class="co">#&gt; [2,] 0.3157534 0.3157534 0.3157534</span></a>
+<a class="sourceLine" id="cb18-10" data-line-number="10"><span class="co">#&gt; [3,] 0.2870854 0.2870854 0.2870854</span></a></code></pre></div>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co"># build a numpy array from three R vectors</span></a>
 <a class="sourceLine" id="cb19-2" data-line-number="2">X &lt;-<span class="st"> </span>np<span class="op">$</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/array">array</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cbind">rbind</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>)))</a>
 <a class="sourceLine" id="cb19-3" data-line-number="3">X</a>
@@ -341,28 +341,28 @@
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="co"># a random 1D tensor</span></a>
 <a class="sourceLine" id="cb22-2" data-line-number="2">ft1 &lt;-<span class="st"> </span>torch<span class="op">$</span><span class="kw">FloatTensor</span>(np<span class="op">$</span>random<span class="op">$</span><span class="kw">rand</span>(5L))</a>
 <a class="sourceLine" id="cb22-3" data-line-number="3">ft1</a>
-<a class="sourceLine" id="cb22-4" data-line-number="4"><span class="co">#&gt; tensor([0.2922, 0.3840, 0.6662, 0.6680, 0.5065])</span></a></code></pre></div>
+<a class="sourceLine" id="cb22-4" data-line-number="4"><span class="co">#&gt; tensor([0.2966, 0.7566, 0.3189, 0.1652, 0.5566])</span></a></code></pre></div>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="co"># tensor as a float of 64-bits</span></a>
 <a class="sourceLine" id="cb23-2" data-line-number="2">ft2 &lt;-<span class="st"> </span>torch<span class="op">$</span><span class="kw">as_tensor</span>(np<span class="op">$</span>random<span class="op">$</span><span class="kw">rand</span>(5L), <span class="dt">dtype=</span> torch<span class="op">$</span>float64)</a>
 <a class="sourceLine" id="cb23-3" data-line-number="3">ft2</a>
-<a class="sourceLine" id="cb23-4" data-line-number="4"><span class="co">#&gt; tensor([0.1484, 0.6189, 0.3505, 0.6975, 0.1996], dtype=torch.float64)</span></a></code></pre></div>
+<a class="sourceLine" id="cb23-4" data-line-number="4"><span class="co">#&gt; tensor([0.0146, 0.7413, 0.2104, 0.4391, 0.9479], dtype=torch.float64)</span></a></code></pre></div>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="co"># convert tensor to float 16-bits</span></a>
 <a class="sourceLine" id="cb24-2" data-line-number="2">ft2_dbl &lt;-<span class="st"> </span>torch<span class="op">$</span><span class="kw">as_tensor</span>(ft2, <span class="dt">dtype =</span> torch<span class="op">$</span>float16)</a>
 <a class="sourceLine" id="cb24-3" data-line-number="3">ft2_dbl</a>
-<a class="sourceLine" id="cb24-4" data-line-number="4"><span class="co">#&gt; tensor([0.1484, 0.6191, 0.3506, 0.6973, 0.1996], dtype=torch.float16)</span></a></code></pre></div>
+<a class="sourceLine" id="cb24-4" data-line-number="4"><span class="co">#&gt; tensor([0.0146, 0.7412, 0.2103, 0.4392, 0.9478], dtype=torch.float16)</span></a></code></pre></div>
 <p>Create a tensor of size (5 x 7) with uninitialized memory:</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">a &lt;-<span class="st"> </span>torch<span class="op">$</span><span class="kw">FloatTensor</span>(5L, 7L)</a>
 <a class="sourceLine" id="cb25-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(a)</a>
-<a class="sourceLine" id="cb25-3" data-line-number="3"><span class="co">#&gt; tensor([[0.0000e+00, 0.0000e+00, 4.2039e-45, 0.0000e+00, 0.0000e+00, 0.0000e+00,</span></a>
-<a class="sourceLine" id="cb25-4" data-line-number="4"><span class="co">#&gt;          0.0000e+00],</span></a>
-<a class="sourceLine" id="cb25-5" data-line-number="5"><span class="co">#&gt;         [0.0000e+00, 0.0000e+00, 0.0000e+00, 3.1123e+26, 3.0808e-41, 0.0000e+00,</span></a>
-<a class="sourceLine" id="cb25-6" data-line-number="6"><span class="co">#&gt;          0.0000e+00],</span></a>
-<a class="sourceLine" id="cb25-7" data-line-number="7"><span class="co">#&gt;         [4.2031e+23, 3.0808e-41, 0.0000e+00, 0.0000e+00, 1.4013e-45, 0.0000e+00,</span></a>
-<a class="sourceLine" id="cb25-8" data-line-number="8"><span class="co">#&gt;          0.0000e+00],</span></a>
-<a class="sourceLine" id="cb25-9" data-line-number="9"><span class="co">#&gt;         [0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 3.1123e+26,</span></a>
-<a class="sourceLine" id="cb25-10" data-line-number="10"><span class="co">#&gt;          3.0808e-41],</span></a>
-<a class="sourceLine" id="cb25-11" data-line-number="11"><span class="co">#&gt;         [0.0000e+00, 0.0000e+00, 2.1731e+26, 3.0808e-41, 0.0000e+00, 0.0000e+00,</span></a>
-<a class="sourceLine" id="cb25-12" data-line-number="12"><span class="co">#&gt;          1.4013e-45]])</span></a></code></pre></div>
+<a class="sourceLine" id="cb25-3" data-line-number="3"><span class="co">#&gt; tensor([[-5.9026e-36,  9.6016e+08, -2.6927e+11, -2.5130e-29,  1.2257e-23,</span></a>
+<a class="sourceLine" id="cb25-4" data-line-number="4"><span class="co">#&gt;          -1.3123e+36,  4.2867e+31],</span></a>
+<a class="sourceLine" id="cb25-5" data-line-number="5"><span class="co">#&gt;         [-7.6240e-32, -6.7660e+24, -4.4867e-34,  1.2696e-17, -6.6959e+32,</span></a>
+<a class="sourceLine" id="cb25-6" data-line-number="6"><span class="co">#&gt;           3.0493e+02,  9.8230e+13],</span></a>
+<a class="sourceLine" id="cb25-7" data-line-number="7"><span class="co">#&gt;         [ 1.7888e-11, -8.6814e+17,  1.4977e-03,  2.0191e+13, -1.5065e+22,</span></a>
+<a class="sourceLine" id="cb25-8" data-line-number="8"><span class="co">#&gt;          -2.7156e+15, -1.3156e-30],</span></a>
+<a class="sourceLine" id="cb25-9" data-line-number="9"><span class="co">#&gt;         [-1.1212e+22, -5.5806e+10, -5.7545e-29,  6.0135e-28,  5.5108e+17,</span></a>
+<a class="sourceLine" id="cb25-10" data-line-number="10"><span class="co">#&gt;          -1.5220e-24,  8.1941e-18],</span></a>
+<a class="sourceLine" id="cb25-11" data-line-number="11"><span class="co">#&gt;         [ 8.7420e+27,  7.5721e+29, -1.5608e+00, -7.7775e-39, -1.4861e+01,</span></a>
+<a class="sourceLine" id="cb25-12" data-line-number="12"><span class="co">#&gt;           8.6304e-01,  1.0339e+23]])</span></a></code></pre></div>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="co"># using arange to create tensor. starts from 0</span></a>
 <a class="sourceLine" id="cb26-2" data-line-number="2">v =<span class="st"> </span>torch<span class="op">$</span><span class="kw">arange</span>(9L)</a>
 <a class="sourceLine" id="cb26-3" data-line-number="3">(<span class="dt">v =</span> v<span class="op">$</span><span class="kw">view</span>(3L, 3L))</a>
@@ -376,11 +376,11 @@
 <p>Initialize a tensor randomized with a normal distribution with mean=0, var=1:</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">a  &lt;-<span class="st"> </span>torch<span class="op">$</span><span class="kw">randn</span>(5L, 7L)</a>
 <a class="sourceLine" id="cb27-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(a)</a>
-<a class="sourceLine" id="cb27-3" data-line-number="3"><span class="co">#&gt; tensor([[-0.0174,  0.3604, -1.2071,  2.4245, -0.3003,  0.1319, -0.9897],</span></a>
-<a class="sourceLine" id="cb27-4" data-line-number="4"><span class="co">#&gt;         [ 0.9409, -0.1841, -0.8738, -0.5233,  1.2851,  1.4350,  1.2925],</span></a>
-<a class="sourceLine" id="cb27-5" data-line-number="5"><span class="co">#&gt;         [ 0.6577, -0.3219, -0.3160, -0.5250, -0.4836,  0.6376, -0.2305],</span></a>
-<a class="sourceLine" id="cb27-6" data-line-number="6"><span class="co">#&gt;         [ 0.6781, -1.2074, -0.7918, -0.1311, -0.2973, -0.2441,  2.0059],</span></a>
-<a class="sourceLine" id="cb27-7" data-line-number="7"><span class="co">#&gt;         [-1.6832,  0.0364,  1.0415,  0.1106,  0.5976,  1.0412,  0.2119]])</span></a>
+<a class="sourceLine" id="cb27-3" data-line-number="3"><span class="co">#&gt; tensor([[ 0.3147, -1.3149, -0.3544,  1.1229,  1.0792,  0.4323,  0.1683],</span></a>
+<a class="sourceLine" id="cb27-4" data-line-number="4"><span class="co">#&gt;         [-1.1097, -0.4834,  0.3336, -0.2858,  1.3530, -0.3167, -0.1009],</span></a>
+<a class="sourceLine" id="cb27-5" data-line-number="5"><span class="co">#&gt;         [-1.5574, -0.9466, -0.7483,  1.6461, -0.3892,  1.1385, -0.8821],</span></a>
+<a class="sourceLine" id="cb27-6" data-line-number="6"><span class="co">#&gt;         [-0.7323,  0.9862,  0.9819, -0.6861, -0.1216,  1.1620, -0.4600],</span></a>
+<a class="sourceLine" id="cb27-7" data-line-number="7"><span class="co">#&gt;         [ 2.4329, -2.8121, -0.0629,  0.0457, -0.3213,  0.4058, -0.6198]])</span></a>
 <a class="sourceLine" id="cb27-8" data-line-number="8"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(a<span class="op">$</span><span class="kw">size</span>())</a>
 <a class="sourceLine" id="cb27-9" data-line-number="9"><span class="co">#&gt; torch.Size([5, 7])</span></a></code></pre></div>
 <div id="uniform-matrix" class="section level3">
@@ -398,9 +398,9 @@
 <a class="sourceLine" id="cb28-10" data-line-number="10">mat2 &lt;-<span class="st"> </span>torch<span class="op">$</span><span class="kw">FloatTensor</span>(5L)<span class="op">$</span><span class="kw">uniform_</span>(<span class="dv">1</span>, <span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb28-11" data-line-number="11"></a>
 <a class="sourceLine" id="cb28-12" data-line-number="12">mat0</a>
-<a class="sourceLine" id="cb28-13" data-line-number="13"><span class="co">#&gt; tensor([[0.0258, 0.0618, 0.5166, 0.0362, 0.0069],</span></a>
-<a class="sourceLine" id="cb28-14" data-line-number="14"><span class="co">#&gt;         [0.2452, 0.5106, 0.1419, 0.0925, 0.8737],</span></a>
-<a class="sourceLine" id="cb28-15" data-line-number="15"><span class="co">#&gt;         [0.4518, 0.7544, 0.4069, 0.8743, 0.1045]])</span></a>
+<a class="sourceLine" id="cb28-13" data-line-number="13"><span class="co">#&gt; tensor([[0.0185, 0.0246, 0.3868, 0.3787, 0.4822],</span></a>
+<a class="sourceLine" id="cb28-14" data-line-number="14"><span class="co">#&gt;         [0.5699, 0.5121, 0.1089, 0.4424, 0.0868],</span></a>
+<a class="sourceLine" id="cb28-15" data-line-number="15"><span class="co">#&gt;         [0.4511, 0.5650, 0.1214, 0.8750, 0.2642]])</span></a>
 <a class="sourceLine" id="cb28-16" data-line-number="16">mat1</a>
 <a class="sourceLine" id="cb28-17" data-line-number="17"><span class="co">#&gt; tensor([[0.1000, 0.1000, 0.1000, 0.1000, 0.1000],</span></a>
 <a class="sourceLine" id="cb28-18" data-line-number="18"><span class="co">#&gt;         [0.1000, 0.1000, 0.1000, 0.1000, 0.1000],</span></a>
@@ -413,12 +413,12 @@
 <a class="sourceLine" id="cb29-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb29-3" data-line-number="3">m =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Binomial">Binomial</a></span>(<span class="dv">100</span>, torch<span class="op">$</span><span class="kw">tensor</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dv">0</span> , <span class="fl">.2</span>, <span class="fl">.8</span>, <span class="dv">1</span>)))</a>
 <a class="sourceLine" id="cb29-4" data-line-number="4">(<span class="dt">x =</span> m<span class="op">$</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>())</a>
-<a class="sourceLine" id="cb29-5" data-line-number="5"><span class="co">#&gt; tensor([  0.,  17.,  86., 100.])</span></a></code></pre></div>
+<a class="sourceLine" id="cb29-5" data-line-number="5"><span class="co">#&gt; tensor([  0.,  21.,  79., 100.])</span></a></code></pre></div>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">m =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Binomial">Binomial</a></span>(torch<span class="op">$</span><span class="kw">tensor</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="fl">5.</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="fl">10.</span>))), </a>
 <a class="sourceLine" id="cb30-2" data-line-number="2">             torch<span class="op">$</span><span class="kw">tensor</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="fl">0.5</span>, <span class="fl">0.8</span>)))</a>
 <a class="sourceLine" id="cb30-3" data-line-number="3">(<span class="dt">x =</span> m<span class="op">$</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>())</a>
-<a class="sourceLine" id="cb30-4" data-line-number="4"><span class="co">#&gt; tensor([[ 3.,  4.],</span></a>
-<a class="sourceLine" id="cb30-5" data-line-number="5"><span class="co">#&gt;         [ 4., 10.]])</span></a></code></pre></div>
+<a class="sourceLine" id="cb30-4" data-line-number="4"><span class="co">#&gt; tensor([[3., 4.],</span></a>
+<a class="sourceLine" id="cb30-5" data-line-number="5"><span class="co">#&gt;         [5., 7.]])</span></a></code></pre></div>
 </div>
 <div id="exponential-distribution" class="section level3">
 <h3 class="hasAnchor">
@@ -427,7 +427,7 @@
 <a class="sourceLine" id="cb31-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb31-3" data-line-number="3">m =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Exponential">Exponential</a></span>(torch<span class="op">$</span><span class="kw">tensor</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="fl">1.0</span>)))</a>
 <a class="sourceLine" id="cb31-4" data-line-number="4">m<span class="op">$</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>()  <span class="co"># Exponential distributed with rate=1</span></a>
-<a class="sourceLine" id="cb31-5" data-line-number="5"><span class="co">#&gt; tensor([1.5794])</span></a></code></pre></div>
+<a class="sourceLine" id="cb31-5" data-line-number="5"><span class="co">#&gt; tensor([3.3341])</span></a></code></pre></div>
 </div>
 <div id="weibull-distribution" class="section level3">
 <h3 class="hasAnchor">
@@ -436,7 +436,7 @@
 <a class="sourceLine" id="cb32-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb32-3" data-line-number="3">m =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Weibull">Weibull</a></span>(torch<span class="op">$</span><span class="kw">tensor</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="fl">1.0</span>)), torch<span class="op">$</span><span class="kw">tensor</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="fl">1.0</span>)))</a>
 <a class="sourceLine" id="cb32-4" data-line-number="4">m<span class="op">$</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>()  <span class="co"># sample from a Weibull distribution with scale=1, concentration=1</span></a>
-<a class="sourceLine" id="cb32-5" data-line-number="5"><span class="co">#&gt; tensor([0.9372])</span></a></code></pre></div>
+<a class="sourceLine" id="cb32-5" data-line-number="5"><span class="co">#&gt; tensor([4.6011])</span></a></code></pre></div>
 </div>
 </div>
 <div id="tensor-data-types" class="section level2">
@@ -454,12 +454,12 @@
 <a class="sourceLine" id="cb35-2" data-line-number="2">a =<span class="st"> </span>torch<span class="op">$</span><span class="kw">rand</span>(5L, 4L)</a>
 <a class="sourceLine" id="cb35-3" data-line-number="3">b =<span class="st"> </span>a<span class="op">$</span><span class="kw">numpy</span>()</a>
 <a class="sourceLine" id="cb35-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(b)</a>
-<a class="sourceLine" id="cb35-5" data-line-number="5"><span class="co">#&gt;            [,1]       [,2]      [,3]      [,4]</span></a>
-<a class="sourceLine" id="cb35-6" data-line-number="6"><span class="co">#&gt; [1,] 0.03650087 0.83150781 0.1236314 0.6424787</span></a>
-<a class="sourceLine" id="cb35-7" data-line-number="7"><span class="co">#&gt; [2,] 0.27046416 0.06568969 0.4977592 0.7441915</span></a>
-<a class="sourceLine" id="cb35-8" data-line-number="8"><span class="co">#&gt; [3,] 0.26935139 0.53160440 0.4566186 0.3631576</span></a>
-<a class="sourceLine" id="cb35-9" data-line-number="9"><span class="co">#&gt; [4,] 0.59673857 0.44423861 0.7183709 0.8163585</span></a>
-<a class="sourceLine" id="cb35-10" data-line-number="10"><span class="co">#&gt; [5,] 0.29425244 0.20029930 0.4829674 0.8497773</span></a></code></pre></div>
+<a class="sourceLine" id="cb35-5" data-line-number="5"><span class="co">#&gt;           [,1]       [,2]      [,3]      [,4]</span></a>
+<a class="sourceLine" id="cb35-6" data-line-number="6"><span class="co">#&gt; [1,] 0.1709537 0.09394172 0.9180756 0.9165314</span></a>
+<a class="sourceLine" id="cb35-7" data-line-number="7"><span class="co">#&gt; [2,] 0.8886190 0.87974123 0.1806518 0.7104525</span></a>
+<a class="sourceLine" id="cb35-8" data-line-number="8"><span class="co">#&gt; [3,] 0.7988782 0.36768311 0.6868469 0.4498280</span></a>
+<a class="sourceLine" id="cb35-9" data-line-number="9"><span class="co">#&gt; [4,] 0.9743210 0.11586359 0.6570636 0.9626898</span></a>
+<a class="sourceLine" id="cb35-10" data-line-number="10"><span class="co">#&gt; [5,] 0.4239234 0.54026973 0.6223463 0.7154403</span></a></code></pre></div>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="co"># convert a numpy array to a tensor</span></a>
 <a class="sourceLine" id="cb36-2" data-line-number="2">np_a =<span class="st"> </span>np<span class="op">$</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/array">array</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">3</span>, <span class="dv">4</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">3</span>, <span class="dv">6</span>)))</a>
 <a class="sourceLine" id="cb36-3" data-line-number="3">t_a =<span class="st"> </span>torch<span class="op">$</span><span class="kw">from_numpy</span>(np_a)</a>
@@ -473,35 +473,35 @@
 <a class="sourceLine" id="cb37-2" data-line-number="2">y =<span class="st"> </span>x<span class="op">$</span><span class="kw">view</span>(6L)                    <span class="co"># Resize x to size 6</span></a>
 <a class="sourceLine" id="cb37-3" data-line-number="3">z =<span class="st"> </span>x<span class="op">$</span><span class="kw">view</span>(<span class="op">-</span>1L, 2L)                <span class="co"># Size 3x2</span></a>
 <a class="sourceLine" id="cb37-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(y)</a>
-<a class="sourceLine" id="cb37-5" data-line-number="5"><span class="co">#&gt; tensor([ 0.8069, -0.3350, -0.6360,  0.1991, -1.3648,  1.8486])</span></a>
+<a class="sourceLine" id="cb37-5" data-line-number="5"><span class="co">#&gt; tensor([ 1.3487, -0.1729,  0.0174, -1.5229, -0.3262,  0.1411])</span></a>
 <a class="sourceLine" id="cb37-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(z)</a>
-<a class="sourceLine" id="cb37-7" data-line-number="7"><span class="co">#&gt; tensor([[ 0.8069, -0.3350],</span></a>
-<a class="sourceLine" id="cb37-8" data-line-number="8"><span class="co">#&gt;         [-0.6360,  0.1991],</span></a>
-<a class="sourceLine" id="cb37-9" data-line-number="9"><span class="co">#&gt;         [-1.3648,  1.8486]])</span></a></code></pre></div>
+<a class="sourceLine" id="cb37-7" data-line-number="7"><span class="co">#&gt; tensor([[ 1.3487, -0.1729],</span></a>
+<a class="sourceLine" id="cb37-8" data-line-number="8"><span class="co">#&gt;         [ 0.0174, -1.5229],</span></a>
+<a class="sourceLine" id="cb37-9" data-line-number="9"><span class="co">#&gt;         [-0.3262,  0.1411]])</span></a></code></pre></div>
 <div id="concatenate-tensors" class="section level3">
 <h3 class="hasAnchor">
 <a href="#concatenate-tensors" class="anchor"></a>concatenate tensors</h3>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="co"># concatenate tensors</span></a>
 <a class="sourceLine" id="cb38-2" data-line-number="2">x =<span class="st"> </span>torch<span class="op">$</span><span class="kw">randn</span>(2L, 3L)</a>
 <a class="sourceLine" id="cb38-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(x)</a>
-<a class="sourceLine" id="cb38-4" data-line-number="4"><span class="co">#&gt; tensor([[ 0.1065,  1.1364, -1.4284],</span></a>
-<a class="sourceLine" id="cb38-5" data-line-number="5"><span class="co">#&gt;         [-1.1268, -0.6652, -0.2923]])</span></a>
+<a class="sourceLine" id="cb38-4" data-line-number="4"><span class="co">#&gt; tensor([[-0.4575, -0.1637, -0.0206],</span></a>
+<a class="sourceLine" id="cb38-5" data-line-number="5"><span class="co">#&gt;         [ 1.2016, -0.9316, -0.3941]])</span></a>
 <a class="sourceLine" id="cb38-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb38-7" data-line-number="7"><span class="co"># concatenate tensors by dim=0"</span></a>
 <a class="sourceLine" id="cb38-8" data-line-number="8">torch<span class="op">$</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(x, x, x), 0L)</a>
-<a class="sourceLine" id="cb38-9" data-line-number="9"><span class="co">#&gt; tensor([[ 0.1065,  1.1364, -1.4284],</span></a>
-<a class="sourceLine" id="cb38-10" data-line-number="10"><span class="co">#&gt;         [-1.1268, -0.6652, -0.2923],</span></a>
-<a class="sourceLine" id="cb38-11" data-line-number="11"><span class="co">#&gt;         [ 0.1065,  1.1364, -1.4284],</span></a>
-<a class="sourceLine" id="cb38-12" data-line-number="12"><span class="co">#&gt;         [-1.1268, -0.6652, -0.2923],</span></a>
-<a class="sourceLine" id="cb38-13" data-line-number="13"><span class="co">#&gt;         [ 0.1065,  1.1364, -1.4284],</span></a>
-<a class="sourceLine" id="cb38-14" data-line-number="14"><span class="co">#&gt;         [-1.1268, -0.6652, -0.2923]])</span></a>
+<a class="sourceLine" id="cb38-9" data-line-number="9"><span class="co">#&gt; tensor([[-0.4575, -0.1637, -0.0206],</span></a>
+<a class="sourceLine" id="cb38-10" data-line-number="10"><span class="co">#&gt;         [ 1.2016, -0.9316, -0.3941],</span></a>
+<a class="sourceLine" id="cb38-11" data-line-number="11"><span class="co">#&gt;         [-0.4575, -0.1637, -0.0206],</span></a>
+<a class="sourceLine" id="cb38-12" data-line-number="12"><span class="co">#&gt;         [ 1.2016, -0.9316, -0.3941],</span></a>
+<a class="sourceLine" id="cb38-13" data-line-number="13"><span class="co">#&gt;         [-0.4575, -0.1637, -0.0206],</span></a>
+<a class="sourceLine" id="cb38-14" data-line-number="14"><span class="co">#&gt;         [ 1.2016, -0.9316, -0.3941]])</span></a>
 <a class="sourceLine" id="cb38-15" data-line-number="15"></a>
 <a class="sourceLine" id="cb38-16" data-line-number="16"><span class="co"># concatenate tensors by dim=1</span></a>
 <a class="sourceLine" id="cb38-17" data-line-number="17">torch<span class="op">$</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(x, x, x), 1L)</a>
-<a class="sourceLine" id="cb38-18" data-line-number="18"><span class="co">#&gt; tensor([[ 0.1065,  1.1364, -1.4284,  0.1065,  1.1364, -1.4284,  0.1065,  1.1364,</span></a>
-<a class="sourceLine" id="cb38-19" data-line-number="19"><span class="co">#&gt;          -1.4284],</span></a>
-<a class="sourceLine" id="cb38-20" data-line-number="20"><span class="co">#&gt;         [-1.1268, -0.6652, -0.2923, -1.1268, -0.6652, -0.2923, -1.1268, -0.6652,</span></a>
-<a class="sourceLine" id="cb38-21" data-line-number="21"><span class="co">#&gt;          -0.2923]])</span></a></code></pre></div>
+<a class="sourceLine" id="cb38-18" data-line-number="18"><span class="co">#&gt; tensor([[-0.4575, -0.1637, -0.0206, -0.4575, -0.1637, -0.0206, -0.4575, -0.1637,</span></a>
+<a class="sourceLine" id="cb38-19" data-line-number="19"><span class="co">#&gt;          -0.0206],</span></a>
+<a class="sourceLine" id="cb38-20" data-line-number="20"><span class="co">#&gt;         [ 1.2016, -0.9316, -0.3941,  1.2016, -0.9316, -0.3941,  1.2016, -0.9316,</span></a>
+<a class="sourceLine" id="cb38-21" data-line-number="21"><span class="co">#&gt;          -0.3941]])</span></a></code></pre></div>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="co"># 0 1 2</span></a>
 <a class="sourceLine" id="cb39-2" data-line-number="2"><span class="co"># 3 4 5</span></a>
 <a class="sourceLine" id="cb39-3" data-line-number="3"><span class="co"># 6 7 8</span></a>
@@ -695,21 +695,21 @@
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="co"># Select indices</span></a>
 <a class="sourceLine" id="cb53-2" data-line-number="2">x =<span class="st"> </span>torch<span class="op">$</span><span class="kw">randn</span>(3L, 4L)</a>
 <a class="sourceLine" id="cb53-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(x)</a>
-<a class="sourceLine" id="cb53-4" data-line-number="4"><span class="co">#&gt; tensor([[-0.5980,  0.3171, -1.5091,  0.3087],</span></a>
-<a class="sourceLine" id="cb53-5" data-line-number="5"><span class="co">#&gt;         [ 0.4611,  0.4379,  0.3128,  0.5277],</span></a>
-<a class="sourceLine" id="cb53-6" data-line-number="6"><span class="co">#&gt;         [ 0.9925, -1.4167,  2.0357,  0.7876]])</span></a>
+<a class="sourceLine" id="cb53-4" data-line-number="4"><span class="co">#&gt; tensor([[-0.3211,  0.2007,  0.5619, -1.1439],</span></a>
+<a class="sourceLine" id="cb53-5" data-line-number="5"><span class="co">#&gt;         [ 0.0291, -0.3121,  1.2828,  0.5322],</span></a>
+<a class="sourceLine" id="cb53-6" data-line-number="6"><span class="co">#&gt;         [-0.7774, -1.7233, -1.8665,  0.1213]])</span></a>
 <a class="sourceLine" id="cb53-7" data-line-number="7"></a>
 <a class="sourceLine" id="cb53-8" data-line-number="8"><span class="co"># Select indices, dim=0</span></a>
 <a class="sourceLine" id="cb53-9" data-line-number="9">indices =<span class="st"> </span>torch<span class="op">$</span><span class="kw">tensor</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(0L, 2L))</a>
 <a class="sourceLine" id="cb53-10" data-line-number="10">torch<span class="op">$</span><span class="kw">index_select</span>(x, 0L, indices)</a>
-<a class="sourceLine" id="cb53-11" data-line-number="11"><span class="co">#&gt; tensor([[-0.5980,  0.3171, -1.5091,  0.3087],</span></a>
-<a class="sourceLine" id="cb53-12" data-line-number="12"><span class="co">#&gt;         [ 0.9925, -1.4167,  2.0357,  0.7876]])</span></a>
+<a class="sourceLine" id="cb53-11" data-line-number="11"><span class="co">#&gt; tensor([[-0.3211,  0.2007,  0.5619, -1.1439],</span></a>
+<a class="sourceLine" id="cb53-12" data-line-number="12"><span class="co">#&gt;         [-0.7774, -1.7233, -1.8665,  0.1213]])</span></a>
 <a class="sourceLine" id="cb53-13" data-line-number="13"></a>
 <a class="sourceLine" id="cb53-14" data-line-number="14"><span class="co"># "Select indices, dim=1</span></a>
 <a class="sourceLine" id="cb53-15" data-line-number="15">torch<span class="op">$</span><span class="kw">index_select</span>(x, 1L, indices)</a>
-<a class="sourceLine" id="cb53-16" data-line-number="16"><span class="co">#&gt; tensor([[-0.5980, -1.5091],</span></a>
-<a class="sourceLine" id="cb53-17" data-line-number="17"><span class="co">#&gt;         [ 0.4611,  0.3128],</span></a>
-<a class="sourceLine" id="cb53-18" data-line-number="18"><span class="co">#&gt;         [ 0.9925,  2.0357]])</span></a></code></pre></div>
+<a class="sourceLine" id="cb53-16" data-line-number="16"><span class="co">#&gt; tensor([[-0.3211,  0.5619],</span></a>
+<a class="sourceLine" id="cb53-17" data-line-number="17"><span class="co">#&gt;         [ 0.0291,  1.2828],</span></a>
+<a class="sourceLine" id="cb53-18" data-line-number="18"><span class="co">#&gt;         [-0.7774, -1.8665]])</span></a></code></pre></div>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="co"># Take by indices</span></a>
 <a class="sourceLine" id="cb54-2" data-line-number="2">src =<span class="st"> </span>torch<span class="op">$</span><span class="kw">tensor</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">5</span>),</a>
 <a class="sourceLine" id="cb54-3" data-line-number="3">                        <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>)) )</a>
