@@ -49,8 +49,6 @@ N <- 64L; D_in <- 1000L; H <- 100L; D_out <- 10L
 x = torch$randn(N, D_in, device=device)
 y = torch$randn(N, D_out, device=device)
 
-print(x$shape)
-print(y$shape)
 ```
 
 
