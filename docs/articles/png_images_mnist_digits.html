@@ -53,6 +53,9 @@
       <a href="../articles/linear_regression_rainfall.html">Linear Regregression, rainfall</a>
     </li>
     <li>
+      <a href="../articles/linear_regression_rainfall_builtins.html">Linear Regregression, rainfall. PyTorch builtins</a>
+    </li>
+    <li>
       <a href="../articles/two_layer_neural_network.html">Two Layer Neural Network</a>
     </li>
     <li>
@@ -179,7 +182,7 @@
 <a class="sourceLine" id="cb5-2" data-line-number="2">random &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/reticulate/topics/import">import</a></span>(<span class="st">"random"</span>)</a>
 <a class="sourceLine" id="cb5-3" data-line-number="3">i_rand =<span class="st"> </span>random<span class="op">$</span><span class="kw">randrange</span>(<span class="dv">0</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/reticulate/topics/py_len">py_len</a></span>(train_dataset)<span class="op">-</span><span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb5-4" data-line-number="4">i_rand</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; [1] 11465</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; [1] 43817</span></a>
 <a class="sourceLine" id="cb5-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co"># the Python object is a tuple with two elements</span></a>
 <a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co"># But in R returns as a list of two elements</span></a>
@@ -211,7 +214,7 @@
 <a class="sourceLine" id="cb5-34" data-line-number="34"><span class="co">#&gt;          [0., 0., 0.,  ..., 0., 0., 0.]]])</span></a>
 <a class="sourceLine" id="cb5-35" data-line-number="35"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb5-36" data-line-number="36"><span class="co">#&gt; [[2]]</span></a>
-<a class="sourceLine" id="cb5-37" data-line-number="37"><span class="co">#&gt; [1] 1</span></a>
+<a class="sourceLine" id="cb5-37" data-line-number="37"><span class="co">#&gt; [1] 7</span></a>
 <a class="sourceLine" id="cb5-38" data-line-number="38"></a>
 <a class="sourceLine" id="cb5-39" data-line-number="39"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/class">class</a></span>(dataset_object)</a>
 <a class="sourceLine" id="cb5-40" data-line-number="40"><span class="co">#&gt; [1] "list"</span></a>
@@ -276,7 +279,7 @@
 <a class="sourceLine" id="cb12-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb12-3" data-line-number="3"><span class="co"># the label for the corresponding tensor</span></a>
 <a class="sourceLine" id="cb12-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(label)</a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co">#&gt; [1] 1</span></a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co">#&gt; [1] 7</span></a>
 <a class="sourceLine" id="cb12-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb12-7" data-line-number="7"><span class="co"># convert to numpy array and reshape</span></a>
 <a class="sourceLine" id="cb12-8" data-line-number="8">img_np_rs =<span class="st"> </span>np<span class="op">$</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/reshape">reshape</a></span>(image[<span class="dv">1</span>,,]<span class="op">$</span><span class="kw">numpy</span>(), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(28L, 28L))</a>
@@ -295,7 +298,7 @@
 <a class="sourceLine" id="cb13-7" data-line-number="7"></a>
 <a class="sourceLine" id="cb13-8" data-line-number="8"><span class="co"># the label for the corresponding tensor</span></a>
 <a class="sourceLine" id="cb13-9" data-line-number="9"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(label)</a>
-<a class="sourceLine" id="cb13-10" data-line-number="10"><span class="co">#&gt; [1] 6</span></a>
+<a class="sourceLine" id="cb13-10" data-line-number="10"><span class="co">#&gt; [1] 3</span></a>
 <a class="sourceLine" id="cb13-11" data-line-number="11"></a>
 <a class="sourceLine" id="cb13-12" data-line-number="12"><span class="co"># convert to numpy array and reshape</span></a>
 <a class="sourceLine" id="cb13-13" data-line-number="13">img_np_rs =<span class="st"> </span>np<span class="op">$</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/reshape">reshape</a></span>(image[<span class="dv">1</span>,,]<span class="op">$</span><span class="kw">numpy</span>(), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(28L, 28L))</a>
@@ -460,7 +463,7 @@ Load the data in parallel using multiprocessing workers.</code></pre>
 <a class="sourceLine" id="cb22-18" data-line-number="18"><span class="co">#&gt; )</span></a></code></pre></div>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="co"># Type of parameter object</span></a>
 <a class="sourceLine" id="cb23-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(model<span class="op">$</span><span class="kw">parameters</span>())</a>
-<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="co">#&gt; &lt;generator object Module.parameters at 0x7f225ddc27c8&gt;</span></a>
+<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="co">#&gt; &lt;generator object Module.parameters at 0x7f93293527c8&gt;</span></a>
 <a class="sourceLine" id="cb23-4" data-line-number="4">model_parameters &lt;-<span class="st"> </span>builtins<span class="op">$</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(model<span class="op">$</span><span class="kw">parameters</span>())</a>
 <a class="sourceLine" id="cb23-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb23-6" data-line-number="6"><span class="co"># Length of parameters</span></a>
@@ -537,12 +540,12 @@ Load the data in parallel using multiprocessing workers.</code></pre>
 <a class="sourceLine" id="cb26-50" data-line-number="50">        }</a>
 <a class="sourceLine" id="cb26-51" data-line-number="51">    }</a>
 <a class="sourceLine" id="cb26-52" data-line-number="52">}</a>
-<a class="sourceLine" id="cb26-53" data-line-number="53"><span class="co">#&gt; Iteration:   500. Loss: 1.841544. Accuracy:    68.38 </span></a>
-<a class="sourceLine" id="cb26-54" data-line-number="54"><span class="co">#&gt; Iteration:  1000. Loss: 1.512986. Accuracy:    76.25 </span></a>
-<a class="sourceLine" id="cb26-55" data-line-number="55"><span class="co">#&gt; Iteration:  1500. Loss: 1.381428. Accuracy:    79.45 </span></a>
-<a class="sourceLine" id="cb26-56" data-line-number="56"><span class="co">#&gt; Iteration:  2000. Loss: 1.258177. Accuracy:    81.38 </span></a>
-<a class="sourceLine" id="cb26-57" data-line-number="57"><span class="co">#&gt; Iteration:  2500. Loss: 1.139988. Accuracy:    82.43 </span></a>
-<a class="sourceLine" id="cb26-58" data-line-number="58"><span class="co">#&gt; Iteration:  3000. Loss: 0.983236. Accuracy:    83.28</span></a></code></pre></div>
+<a class="sourceLine" id="cb26-53" data-line-number="53"><span class="co">#&gt; Iteration:   500. Loss: 1.923119. Accuracy:    67.78 </span></a>
+<a class="sourceLine" id="cb26-54" data-line-number="54"><span class="co">#&gt; Iteration:  1000. Loss: 1.588317. Accuracy:    76.69 </span></a>
+<a class="sourceLine" id="cb26-55" data-line-number="55"><span class="co">#&gt; Iteration:  1500. Loss: 1.430016. Accuracy:    79.61 </span></a>
+<a class="sourceLine" id="cb26-56" data-line-number="56"><span class="co">#&gt; Iteration:  2000. Loss: 1.224154. Accuracy:    80.99 </span></a>
+<a class="sourceLine" id="cb26-57" data-line-number="57"><span class="co">#&gt; Iteration:  2500. Loss: 1.108224. Accuracy:    82.25 </span></a>
+<a class="sourceLine" id="cb26-58" data-line-number="58"><span class="co">#&gt; Iteration:  3000. Loss: 1.009748. Accuracy:    82.88</span></a></code></pre></div>
 <blockquote>
 <p>This is a modified version of the original article.</p>
 </blockquote>

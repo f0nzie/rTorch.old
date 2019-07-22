@@ -15,6 +15,8 @@ navbar:
       menu:
         - text: Linear Regregression, rainfall
           href: articles/linear_regression_rainfall.html
+        - text: Linear Regregression, rainfall. PyTorch builtins
+          href: articles/linear_regression_rainfall_builtins.html
         - text: Two Layer Neural Network
           href: articles/two_layer_neural_network.html
         - text: Logistic Regression, MNIST digits
