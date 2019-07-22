@@ -1,3 +1,8 @@
+# rTorch 0.0.1.9010
+* July 22 2019
+* New vignette using PyTorch builtin functions and classes. Rainfall dataset: `linear_regression_rainfall_builtins.Rmd`
+* Add comments to `linear_regression_rainfall.Rmd`
+
 # rTorch 0.0.1.9009
 * July 22 2019
 * Fix version numbers. Missing the number one.

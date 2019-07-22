@@ -4,7 +4,11 @@ pkgdown_sha: ~
 articles:
   idx_images_minist_digits: idx_images_minist_digits.html
   linear_regression_rainfall: linear_regression_rainfall.html
+  linear_regression_rainfall_builtins: linear_regression_rainfall_builtins.html
   logistic_regression_mnist_digits_idx: logistic_regression_mnist_digits_idx.html
   png_images_mnist_digits: png_images_mnist_digits.html
   two_layer_neural_network: two_layer_neural_network.html
+urls:
+  reference: https://github.com/f0nzie/rTorch/reference
+  article: https://github.com/f0nzie/rTorch/articles
 

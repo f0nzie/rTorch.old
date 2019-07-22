@@ -1,0 +1,29 @@
+title: rTorch
+url: https://github.com/f0nzie/rTorch
+
+template:
+  params:
+    bootswatch: cosmo
+
+
+navbar:
+  type: inverse
+  left:
+    - icon: fa-home
+      href: index.html
+    - text: "Vignettes"
+      menu:
+        - text: Linear Regregression, rainfall
+          href: articles/linear_regression_rainfall.html
+        - text: Linear Regregression, rainfall. PyTorch builtins
+          href: articles/linear_regression_rainfall_builtins.html
+        - text: Two Layer Neural Network
+          href: articles/two_layer_neural_network.html
+        - text: Logistic Regression, MNIST digits
+          href: articles/logistic_regression_mnist_digits_idx.html
+        - text: MNIST digits recognition, IDX format
+          href: articles/idx_images_minist_digits.html
+        - text: MNIST digits recognition, PNG images
+          href: articles/png_images_mnist_digits.html
+
+

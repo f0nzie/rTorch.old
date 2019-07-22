@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>png_images_mnist_digits • rTorch</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="png_images_mnist_digits">
@@ -19,7 +19,7 @@
 </head>
 <body>
     <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <header><div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9009</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9010</span>
       </span>
     </div>
 
@@ -38,39 +38,36 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fa fa-home"></span>
      
   </a>
 </li>
-<li>
-  <a href="../reference/index.html">Reference</a>
-</li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
+    Vignettes
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/idx_images_minist_digits.html">idx_images_minist_digits</a>
+      <a href="../articles/linear_regression_rainfall.html">Linear Regregression, rainfall</a>
     </li>
     <li>
-      <a href="../articles/linear_regression_rainfall.html">linear_regression_rainfall</a>
+      <a href="../articles/linear_regression_rainfall_builtins.html">Linear Regregression, rainfall. PyTorch builtins</a>
     </li>
     <li>
-      <a href="../articles/logistic_regression_mnist_digits_idx.html">logistic_regression_mnist_digits_idx</a>
+      <a href="../articles/two_layer_neural_network.html">Two Layer Neural Network</a>
     </li>
     <li>
-      <a href="../articles/png_images_mnist_digits.html">png_images_mnist_digits</a>
+      <a href="../articles/logistic_regression_mnist_digits_idx.html">Logistic Regression, MNIST digits</a>
     </li>
     <li>
-      <a href="../articles/two_layer_neural_network.html">two_layer_neural_network</a>
+      <a href="../articles/idx_images_minist_digits.html">MNIST digits recognition, IDX format</a>
+    </li>
+    <li>
+      <a href="../articles/png_images_mnist_digits.html">MNIST digits recognition, PNG images</a>
     </li>
   </ul>
-</li>
-<li>
-  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -185,7 +182,7 @@
 <a class="sourceLine" id="cb5-2" data-line-number="2">random &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/reticulate/topics/import">import</a></span>(<span class="st">"random"</span>)</a>
 <a class="sourceLine" id="cb5-3" data-line-number="3">i_rand =<span class="st"> </span>random<span class="op">$</span><span class="kw">randrange</span>(<span class="dv">0</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/reticulate/topics/py_len">py_len</a></span>(train_dataset)<span class="op">-</span><span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb5-4" data-line-number="4">i_rand</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; [1] 48597</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; [1] 16940</span></a>
 <a class="sourceLine" id="cb5-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co"># the Python object is a tuple with two elements</span></a>
 <a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co"># But in R returns as a list of two elements</span></a>
@@ -217,7 +214,7 @@
 <a class="sourceLine" id="cb5-34" data-line-number="34"><span class="co">#&gt;          [0., 0., 0.,  ..., 0., 0., 0.]]])</span></a>
 <a class="sourceLine" id="cb5-35" data-line-number="35"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb5-36" data-line-number="36"><span class="co">#&gt; [[2]]</span></a>
-<a class="sourceLine" id="cb5-37" data-line-number="37"><span class="co">#&gt; [1] 8</span></a>
+<a class="sourceLine" id="cb5-37" data-line-number="37"><span class="co">#&gt; [1] 2</span></a>
 <a class="sourceLine" id="cb5-38" data-line-number="38"></a>
 <a class="sourceLine" id="cb5-39" data-line-number="39"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/class">class</a></span>(dataset_object)</a>
 <a class="sourceLine" id="cb5-40" data-line-number="40"><span class="co">#&gt; [1] "list"</span></a>
@@ -282,7 +279,7 @@
 <a class="sourceLine" id="cb12-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb12-3" data-line-number="3"><span class="co"># the label for the corresponding tensor</span></a>
 <a class="sourceLine" id="cb12-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(label)</a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co">#&gt; [1] 8</span></a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co">#&gt; [1] 2</span></a>
 <a class="sourceLine" id="cb12-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb12-7" data-line-number="7"><span class="co"># convert to numpy array and reshape</span></a>
 <a class="sourceLine" id="cb12-8" data-line-number="8">img_np_rs =<span class="st"> </span>np<span class="op">$</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/reshape">reshape</a></span>(image[<span class="dv">1</span>,,]<span class="op">$</span><span class="kw">numpy</span>(), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(28L, 28L))</a>
@@ -301,7 +298,7 @@
 <a class="sourceLine" id="cb13-7" data-line-number="7"></a>
 <a class="sourceLine" id="cb13-8" data-line-number="8"><span class="co"># the label for the corresponding tensor</span></a>
 <a class="sourceLine" id="cb13-9" data-line-number="9"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(label)</a>
-<a class="sourceLine" id="cb13-10" data-line-number="10"><span class="co">#&gt; [1] 3</span></a>
+<a class="sourceLine" id="cb13-10" data-line-number="10"><span class="co">#&gt; [1] 0</span></a>
 <a class="sourceLine" id="cb13-11" data-line-number="11"></a>
 <a class="sourceLine" id="cb13-12" data-line-number="12"><span class="co"># convert to numpy array and reshape</span></a>
 <a class="sourceLine" id="cb13-13" data-line-number="13">img_np_rs =<span class="st"> </span>np<span class="op">$</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/reshape">reshape</a></span>(image[<span class="dv">1</span>,,]<span class="op">$</span><span class="kw">numpy</span>(), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(28L, 28L))</a>
@@ -372,7 +369,7 @@
 <a class="sourceLine" id="cb16-12" data-line-number="12"></a>
 <a class="sourceLine" id="cb16-13" data-line-number="13"><span class="co"># the label for the corresponding tensor</span></a>
 <a class="sourceLine" id="cb16-14" data-line-number="14"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(label)</a>
-<a class="sourceLine" id="cb16-15" data-line-number="15"><span class="co">#&gt; [1] 7</span></a>
+<a class="sourceLine" id="cb16-15" data-line-number="15"><span class="co">#&gt; [1] 4</span></a>
 <a class="sourceLine" id="cb16-16" data-line-number="16"></a>
 <a class="sourceLine" id="cb16-17" data-line-number="17"><span class="co"># convert to numpy array and reshape</span></a>
 <a class="sourceLine" id="cb16-18" data-line-number="18"><span class="co"># we don't need to specify the layer index anymore</span></a>
@@ -466,7 +463,7 @@ Load the data in parallel using multiprocessing workers.</code></pre>
 <a class="sourceLine" id="cb22-18" data-line-number="18"><span class="co">#&gt; )</span></a></code></pre></div>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="co"># Type of parameter object</span></a>
 <a class="sourceLine" id="cb23-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(model<span class="op">$</span><span class="kw">parameters</span>())</a>
-<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="co">#&gt; &lt;generator object Module.parameters at 0x7fa0f60327c8&gt;</span></a>
+<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="co">#&gt; &lt;generator object Module.parameters at 0x7fc56353d7c8&gt;</span></a>
 <a class="sourceLine" id="cb23-4" data-line-number="4">model_parameters &lt;-<span class="st"> </span>builtins<span class="op">$</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(model<span class="op">$</span><span class="kw">parameters</span>())</a>
 <a class="sourceLine" id="cb23-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb23-6" data-line-number="6"><span class="co"># Length of parameters</span></a>
@@ -543,12 +540,12 @@ Load the data in parallel using multiprocessing workers.</code></pre>
 <a class="sourceLine" id="cb26-50" data-line-number="50">        }</a>
 <a class="sourceLine" id="cb26-51" data-line-number="51">    }</a>
 <a class="sourceLine" id="cb26-52" data-line-number="52">}</a>
-<a class="sourceLine" id="cb26-53" data-line-number="53"><span class="co">#&gt; Iteration:   500. Loss: 1.854970. Accuracy:    65.22 </span></a>
-<a class="sourceLine" id="cb26-54" data-line-number="54"><span class="co">#&gt; Iteration:  1000. Loss: 1.578890. Accuracy:    75.24 </span></a>
-<a class="sourceLine" id="cb26-55" data-line-number="55"><span class="co">#&gt; Iteration:  1500. Loss: 1.296880. Accuracy:    78.85 </span></a>
-<a class="sourceLine" id="cb26-56" data-line-number="56"><span class="co">#&gt; Iteration:  2000. Loss: 1.209047. Accuracy:    80.61 </span></a>
-<a class="sourceLine" id="cb26-57" data-line-number="57"><span class="co">#&gt; Iteration:  2500. Loss: 1.104562. Accuracy:    81.77 </span></a>
-<a class="sourceLine" id="cb26-58" data-line-number="58"><span class="co">#&gt; Iteration:  3000. Loss: 0.967193. Accuracy:    82.66</span></a></code></pre></div>
+<a class="sourceLine" id="cb26-53" data-line-number="53"><span class="co">#&gt; Iteration:   500. Loss: 1.930247. Accuracy:    66.24 </span></a>
+<a class="sourceLine" id="cb26-54" data-line-number="54"><span class="co">#&gt; Iteration:  1000. Loss: 1.567799. Accuracy:    76.41 </span></a>
+<a class="sourceLine" id="cb26-55" data-line-number="55"><span class="co">#&gt; Iteration:  1500. Loss: 1.439918. Accuracy:    79.78 </span></a>
+<a class="sourceLine" id="cb26-56" data-line-number="56"><span class="co">#&gt; Iteration:  2000. Loss: 1.110401. Accuracy:    81.37 </span></a>
+<a class="sourceLine" id="cb26-57" data-line-number="57"><span class="co">#&gt; Iteration:  2500. Loss: 1.110528. Accuracy:    82.27 </span></a>
+<a class="sourceLine" id="cb26-58" data-line-number="58"><span class="co">#&gt; Iteration:  3000. Loss: 1.015794. Accuracy:    82.96</span></a></code></pre></div>
 <blockquote>
 <p>This is a modified version of the original article.</p>
 </blockquote>

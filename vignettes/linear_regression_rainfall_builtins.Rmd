@@ -1,8 +1,8 @@
 ---
-title: "linear_regression_rainfall"
+title: "linear_regression_rainfall_builtins"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{linear_regression_rainfall}
+  %\VignetteIndexEntry{linear_regression_rainfall_builtins}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -31,37 +31,217 @@ torch$manual_seed(0)
 device = torch$device('cpu')
 ```
 
-## Training data
-The training data can be represented using 2 matrices (inputs and targets), each with one row per observation, and one column per variable.
+
+## Linear Regression Model using PyTorch built-ins
+
+Let's re-implement the same model using some built-in functions and classes from PyTorch.
+
+```{r}
+nn    <- torch$nn
+```
+
 
 ```{r}
 # Input (temp, rainfall, humidity)
-inputs = np$array(list(list(73, 67, 43),
-                   list(91, 88, 64),
-                   list(87, 134, 58),
-                   list(102, 43, 37),
-                   list(69, 96, 70)), dtype='float32')
+inputs = np$array(list(
+                     list(73, 67, 43),
+                     list(91, 88, 64),
+                     list(87, 134, 58),
+                     list(102, 43, 37),
+                     list(69, 96, 70),
+                     list(73, 67, 43), 
+                     list(91, 88, 64), 
+                     list(87, 134, 58), 
+                     list(102, 43, 37), 
+                     list(69, 96, 70), 
+                     list(73, 67, 43), 
+                     list(91, 88, 64), 
+                     list(87, 134, 58), 
+                     list(102, 43, 37), 
+                     list(69, 96, 70)
+                   ), dtype='float32')
 
 # Targets (apples, oranges)
-targets = np$array(list(list(56, 70), 
+targets = np$array(list(
+                    list(56, 70), 
                     list(81, 101),
                     list(119, 133),
                     list(22, 37), 
-                    list(103, 119)), dtype='float32')
+                    list(103, 119),
+                    list(56, 70), 
+                    list(81, 101), 
+                    list(119, 133), 
+                    list(22, 37), 
+                    list(103, 119), 
+                    list(56, 70), 
+                    list(81, 101), 
+                    list(119, 133), 
+                    list(22, 37), 
+                    list(103, 119)
+                    ), dtype='float32')
 ```
 
+```{r}
+torch$set_default_dtype(torch$double)
+```
 
-## Convert to tensors
-Before we build a model, we need to convert inputs and targets to PyTorch tensors.
 
 ```{r}
 # Convert inputs and targets to tensors
-inputs = torch$from_numpy(inputs)
-targets = torch$from_numpy(targets)
-
-print(inputs)
-print(targets)
+inputs  <- torch$from_numpy(inputs)
+targets <- torch$from_numpy(targets)
 ```
+
+## Dataset and DataLoader
+
+We'll create a `TensorDataset`, which allows access to rows from inputs and targets as tuples. We'll also create a DataLoader, to split the data into batches while training. It also provides other utilities like shuffling and sampling.
+
+```{r}
+TensorDataset <- torch$utils$data$TensorDataset
+DataLoader    <- torch$utils$data$DataLoader
+```
+
+```{r}
+# Define dataset
+train_ds = TensorDataset(inputs, targets)
+train_ds$tensors[1:2]
+```
+
+
+```{r}
+# Define data loader
+batch_size = 5L
+train_dl = DataLoader(train_ds, batch_size, shuffle = TRUE)
+iter_next(import_builtins()$iter(train_dl))
+```
+
+
+## `nn.Linear`
+Instead of initializing the weights and biases manually, we can define the model using `nn.Linear`.
+
+```{r}
+# Define model
+model = nn$Linear(3L, 2L)
+print(model$weight)
+print(model$bias)
+```
+
+
+## Optimizer
+
+Instead of manually manipulating the weights & biases using gradients, we can use the optimizer `optim.SGD`.
+
+```{r}
+# Define optimizer
+opt = torch$optim$SGD(model$parameters(), lr=1e-5)
+```
+
+
+## Loss Function
+
+Instead of defining a loss function manually, we can use the built-in loss function `mse_loss`.
+
+```{r}
+# Import nn.functional
+# in Python: import torch.nn.functional as F
+F <- torch$nn$functional
+```
+
+```{r}
+# Define loss function
+loss_fn = F$mse_loss
+```
+
+
+```{r}
+loss = loss_fn(model(inputs), targets)
+print(loss)
+```
+
+
+## Train the model
+We are ready to train the model now. We can define a utility function fit which trains the model for a given number of epochs.
+
+```{r}
+fit <- function(num_epochs, model, loss_fn, opt) {
+  for (epoch in 1:num_epochs) {
+    for (xy in iterate(train_dl)) {
+      # Generate predictions
+      xb <- xy[[1]]; yb <- xy[[2]]
+      # print(yb)
+      pred <- model(xb)
+      loss <- loss_fn(pred, yb)
+      # Perform gradient descent
+      loss$backward()
+      opt$step()
+      opt$zero_grad()
+    }
+  
+  }
+  cat('Training loss: ')
+  print(loss_fn(model(inputs), targets))
+}
+```
+
+
+```{python, eval=FALSE}
+# Define a utility function to train the model
+def fit(num_epochs, model, loss_fn, opt):
+    for epoch in range(num_epochs):
+        for xb,yb in train_dl:
+            # Generate predictions
+            pred = model(xb)
+            loss = loss_fn(pred, yb)
+            # Perform gradient descent
+            loss.backward()
+            opt.step()
+            opt.zero_grad()
+    print('Training loss: ', loss_fn(model(inputs), targets))
+```
+
+
+```{r}
+# Train the model for 100 epochs
+fit(100, model, loss_fn, opt)
+```
+
+```{r}
+# Generate predictions
+preds = model(inputs)
+preds
+```
+
+```{r}
+# Compare with targets
+targets
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 The weights and biases can also be represented as matrices, initialized with random values. The first row of $w$ and the first element of $b$ are used to predict the first target variable, i.e. yield for apples, and, similarly, the second for oranges.
