@@ -49,8 +49,6 @@ N <- 64L; D_in <- 1000L; H <- 100L; D_out <- 10L
 x = torch$randn(N, D_in, device=device)
 y = torch$randn(N, D_out, device=device)
 
-print(x$shape)
-print(y$shape)
 ```
 
 
@@ -83,7 +81,7 @@ loss_fn = torch$nn$MSELoss(reduction = 'sum')
 ```{r}
 learning_rate = 1e-4
 
-for (t in 1:50) {
+for (t in 1:500) {
   # Forward pass: compute predicted y by passing x to the model. Module objects
   # override the __call__ operator so you can call them like functions. When
   # doing so you pass a Tensor of input data to the Module and it produces
@@ -111,11 +109,26 @@ for (t in 1:50) {
   with(torch$no_grad(), {
       for (param in iterate(model$parameters())) {
         # in Python this code is much simpler. In R we have to do some conversions
-        # param <- param - grad * learning_rate
-        param$data <- torch$sub(param$data, 
-                                torch$mul(param$grad$float(), 
-                                  torch$scalar_tensor(learning_rate)))
+        
+        # param$data <- torch$sub(param$data,
+        #                         torch$mul(param$grad$float(),
+        #                           torch$scalar_tensor(learning_rate)))
+        
+        param$data <- param$data - param$grad * learning_rate
       }
    })
 }  
+```
+
+These two expression are equivalent, with the first being the long version natural way of doing it in PyTorch. The second is using the generics in R for subtraction, multiplication and scalar conversion.
+
+```
+param$data <- torch$sub(param$data,
+                        torch$mul(param$grad$float(),
+                          torch$scalar_tensor(learning_rate)))
+}
+```
+
+```
+param$data <- param$data - param$grad * learning_rate
 ```

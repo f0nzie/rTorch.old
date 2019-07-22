@@ -115,28 +115,12 @@ torch$full(list(2L, 3L), 3.141592)
 
 ## Basic Tensor Operations
 
-### Uniform matrix
-
-```{r}
-library(rTorch)
-
-# 3x5 matrix uniformly distributed between 0 and 1
-mat0 <- torch$FloatTensor(3L, 5L)$uniform_(0L, 1L)
-
-# fill a 3x5 matrix with 0.1
-mat1 <- torch$FloatTensor(3L, 5L)$uniform_(0.1, 0.1)
-
-# a vector with all ones
-mat2 <- torch$FloatTensor(5L)$uniform_(1, 1)
-
-mat0
-mat1
-```
-
-
+### Add tensors
 
 ```{r}
 # add a scalar to a tensor
+# 3x5 matrix uniformly distributed between 0 and 1
+mat0 <- torch$FloatTensor(3L, 5L)$uniform_(0L, 1L)
 mat0 + 0.1
 ```
 
@@ -144,8 +128,11 @@ mat0 + 0.1
 
 ```{r}
 # add an element of tensor to a tensor
+# fill a 3x5 matrix with 0.1
+mat1 <- torch$FloatTensor(3L, 5L)$uniform_(0.1, 0.1)
+# a vector with all ones
+mat2 <- torch$FloatTensor(5L)$uniform_(1, 1)
 mat1[1, 1] + mat2
-
 ```
 
 ```{r}
@@ -162,6 +149,23 @@ y = torch$rand(5L, 4L)
 print(x$add(y))
 print(x + y)
 ```
+
+### Multiply tensor by scalar
+
+```{r}
+# Multiply tensor by scalar
+tensor = torch$ones(4L, dtype=torch$float64)
+scalar = np$float64(4.321)
+print(scalar)
+print(torch$scalar_tensor(scalar))
+(prod = torch$mul(tensor, torch$scalar_tensor(scalar)))
+```
+
+```{r}
+# short version using generics
+(prod = tensor * scalar)
+```
+
 
 
 ## NumPy and PyTorch
@@ -252,6 +256,14 @@ a <- torch$FloatTensor(5L, 7L)
 print(a)
 ```
 
+```{r}
+# using arange to create tensor. starts from 0
+v = torch$arange(9L)
+(v = v$view(3L, 3L))
+```
+
+
+## Distributions
 
 Initialize a tensor randomized with a normal distribution with mean=0, var=1:
 
@@ -261,7 +273,25 @@ print(a)
 print(a$size())
 ```
 
-**Binomial distribution**
+### Uniform matrix
+
+```{r}
+library(rTorch)
+
+# 3x5 matrix uniformly distributed between 0 and 1
+mat0 <- torch$FloatTensor(3L, 5L)$uniform_(0L, 1L)
+
+# fill a 3x5 matrix with 0.1
+mat1 <- torch$FloatTensor(3L, 5L)$uniform_(0.1, 0.1)
+
+# a vector with all ones
+mat2 <- torch$FloatTensor(5L)$uniform_(1, 1)
+
+mat0
+mat1
+```
+
+### Binomial distribution
 
 ```{r}
 Binomial <- torch$distributions$binomial$Binomial
@@ -276,7 +306,7 @@ m = Binomial(torch$tensor(list(list(5.), list(10.))),
 (x = m$sample())
 ```
 
-**Exponential distribution**
+### Exponential distribution
 
 ```{r}
 Exponential <- torch$distributions$exponential$Exponential
@@ -285,7 +315,7 @@ m = Exponential(torch$tensor(list(1.0)))
 m$sample()  # Exponential distributed with rate=1
 ```
 
-**Weibull distribution**
+### Weibull distribution
 
 ```{r}
 Weibull <- torch$distributions$weibull$Weibull
@@ -310,42 +340,6 @@ torch$tensor(list(1.2, 3))$dtype         # a new floating point tensor
 ```
 
 
-## Inplace / Out-of-place
-
-```{r}
-a$fill_(3.5)
-# a has now been filled with the value 3.5
-
-# add a scalar to a tensor
-b <- a$add(4.0)
-
-# a is still filled with 3.5
-# new tensor b is returned with values 3.5 + 4.0 = 7.5
-
-print(a)
-print(b)
-```
-
-```{r, eval=FALSE}
-# this will throw an error because we don't still have a function for assignment
-a[1, 1] <- 7.7
-print(a)
-# Error in a[1, 1] <- 7.7 : object of type 'environment' is not subsettable
-```
-
-
-Some operations like`narrow` do not have in-place versions, and hence, `.narrow_` does not exist. Similarly, some operations like `fill_` do not have an out-of-place version, so `.fill` does not exist.
-
-```{r}
-# a[[0L, 3L]]
-a[1, 4]
-```
-
-
-```{r}
-x <- torch$ones(5L, 5L)
-print(x)
-```
 
 This is a very common operation in machine learning:
 
@@ -459,7 +453,7 @@ print(eye)
 ```
 
 ```{r}
-v = torch$ones_like(eye)        # A tensor with same shape as eye. Fill it with 1.
+v = torch$ones_like(eye)     # A tensor with same shape as eye. Fill it with 1.
 v
 ```
 
@@ -468,6 +462,7 @@ v
 ```{r}
 (z = torch$zeros(10L))             # A tensor of size 10 containing all zeros
 ```
+
 
 ## Tensor fill
 
@@ -484,6 +479,7 @@ v = torch$arange(10L)             # similar to range(5) but creating a Tensor
 (v = torch$arange(0L, 10L, step = 1L))  # Size 5. Similar to range(0, 5, 1)
 ```
 
+
 ### Initialize a linear or log scale Tensor
 
 ```{r}
@@ -496,6 +492,37 @@ v = torch$arange(10L)             # similar to range(5) but creating a Tensor
 (v = torch$logspace(start=-10L, end = 10L, steps = 5L)) 
 ```
 
+
+### Inplace / Out-of-place
+
+```{r}
+a$fill_(3.5)
+# a has now been filled with the value 3.5
+
+# add a scalar to a tensor
+b <- a$add(4.0)
+
+# a is still filled with 3.5
+# new tensor b is returned with values 3.5 + 4.0 = 7.5
+
+print(a)
+print(b)
+```
+
+```{r, eval=FALSE}
+# this will throw an error because we don't still have a function for assignment
+a[1, 1] <- 7.7
+print(a)
+# Error in a[1, 1] <- 7.7 : object of type 'environment' is not subsettable
+```
+
+
+Some operations like`narrow` do not have in-place versions, and hence, `.narrow_` does not exist. Similarly, some operations like `fill_` do not have an out-of-place version, so `.fill` does not exist.
+
+```{r}
+# a[[0L, 3L]]
+a[1, 4]
+```
 
 ## Access to tensor elements
 
