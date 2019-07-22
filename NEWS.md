@@ -1,3 +1,7 @@
+# rTorch 0.0.9006
+* July 22 2019
+* Add pkgdown website
+
 # rTorch 0.0.9005
 * July 22 2019
 * Add vignette `png_images_minist_digits.Rmd`. It uses PBG images in a local folder instead of downloading MNIST idx format images.
