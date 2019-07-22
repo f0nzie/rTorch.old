@@ -24,6 +24,9 @@ reticulate::array_reshape
 reticulate::iterate
 
 #' @export
+reticulate::py_len
+
+#' @export
 reticulate::`%as%`
 
 #' @export

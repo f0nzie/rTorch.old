@@ -53,8 +53,8 @@ packageStartupMessage("loading PyTorch")
 
 #' Torch configuration information
 #'
-#' @return List with information on the current configuration of TensorFlow.
-#'   You can determine whether TensorFlow was found using the `available`
+#' @return List with information on the current configuration of PyTorch.
+#'   You can determine whether PyTorch was found using the `available`
 #'   member (other members vary depending on whether `available` is `TRUE`
 #'   or `FALSE`)
 #'

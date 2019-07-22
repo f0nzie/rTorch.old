@@ -1,3 +1,8 @@
+# rTorch 0.0.9005
+* July 22 2019
+* Add vignette `png_images_minist_digits.Rmd`. It uses PBG images in a local folder instead of downloading MNIST idx format images.
+* Add logical operators to README.
+
 # rTorch 0.0.9004
 * July 22 2019
 * Add vignette `idx_images_minist_digits.Rmd`
