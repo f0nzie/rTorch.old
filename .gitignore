@@ -11,3 +11,5 @@ vignettes/datasets
 *.pyc
 
 *.html
+
+inst/raw_data/MNIST/
