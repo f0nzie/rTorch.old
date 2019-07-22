@@ -1,0 +1,10 @@
+pandoc: 2.3.1
+pkgdown: 1.3.0
+pkgdown_sha: ~
+articles:
+  idx_images_minist_digits: idx_images_minist_digits.html
+  linear_regression_rainfall: linear_regression_rainfall.html
+  logistic_regression_mnist_digits_idx: logistic_regression_mnist_digits_idx.html
+  png_images_mnist_digits: png_images_mnist_digits.html
+  two_layer_neural_network: two_layer_neural_network.html
+
