@@ -7,3 +7,5 @@ vignettes/datasets
 notebooks
 ^doc$
 ^Meta$
+_pkgdown.yaml
+
