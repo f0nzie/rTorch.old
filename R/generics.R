@@ -129,14 +129,14 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
 
 #' @export
 "==.torch.Tensor" <- function(a, b) {
-    torch$equal(a, b)
+    torch$eq(a, b)
 }
 
 
 #' @export
 "!=.torch.Tensor" <- function(a, b) {
     # there is not not_equal function in PyTorch
-    !torch$equal(a, b)
+    !torch$eq(a, b)
 }
 
 
