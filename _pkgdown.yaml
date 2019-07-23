@@ -13,6 +13,8 @@ navbar:
       href: index.html
     - text: "Vignettes"
       menu:
+        - text: Simple Linear Regression
+          href: articles/simple_linear_regression.html
         - text: Linear Regregression, rainfall
           href: articles/linear_regression_rainfall.html
         - text: Linear Regregression, rainfall. PyTorch builtins
