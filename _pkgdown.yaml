@@ -27,5 +27,7 @@ navbar:
           href: articles/idx_images_minist_digits.html
         - text: MNIST digits recognition, PNG images
           href: articles/png_images_mnist_digits.html
+        - text: MNIST Fashion images. Inference and Validation
+          href: articles/mnist_fashion_inference.html
 
 
