@@ -62,6 +62,32 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
 }
 
 
+# all <- function(x, ...) UseMethod("all")
+# any <- function(x, ...) UseMethod("any")
+
+
+#' @export
+"all.torch.Tensor" <- function(x, ...) {
+    # quick version of torch$all
+    # TODO: modify to use all arguments
+    # all(dim, keepdim=False, out=None) → Tensor
+    # DO NOT USE torch$tensor() to prevent warning:
+    #            ... it is recommended to use sourceTensor.clone().detach()
+    x <- torch$as_tensor(x, dtype = torch$uint8)
+    as.logical(torch$all(x)$numpy())
+}
+
+#' @export
+"any.torch.Tensor" <- function(x, ...) {
+    # quick version of torch$any
+    # TODO: modify to use all arguments
+    # all(dim, keepdim=False, out=None) → Tensor
+    # DO NOT USE torch$tensor() to prevent warning:
+    #            ... it is recommended to use sourceTensor.clone().detach()
+    x <- torch$as_tensor(x, dtype = torch$uint8)
+    as.logical(torch$any(x)$numpy())
+}
+
 
 
 #' @export
@@ -129,14 +155,30 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
 
 #' @export
 "==.torch.Tensor" <- function(a, b) {
-    torch$eq(a, b)
+    torch$as_tensor(torch$eq(a, b), dtype = torch$bool)
+    # torch$BoolTensor(torch$eq(a, b))
 }
 
+
+tensor_not_equal <- function(x, y) {
+    # there is not not_equal function in PyTorch
+    x <- r_to_py(x$numpy())
+    y <- r_to_py(y$numpy())
+    torch$BoolTensor(np$not_equal(x, y))
+}
 
 #' @export
 "!=.torch.Tensor" <- function(a, b) {
     # there is not not_equal function in PyTorch
-    !torch$eq(a, b)
+    # tensor_not_equal(a, b)
+    torch$ne(a, b)
+}
+
+#' @export
+"!.torch.Tensor" <- function(a) {
+    # there is not logical not in torch
+    # torch$BoolTensor(np$logical_not(a))
+    torch$as_tensor(np$logical_not(a), dtype = torch$bool)
 }
 
 
