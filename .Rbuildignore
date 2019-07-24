@@ -8,4 +8,4 @@ notebooks
 ^doc$
 ^Meta$
 _pkgdown.yaml
-
+^docs$
