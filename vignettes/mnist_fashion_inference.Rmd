@@ -246,5 +246,41 @@ The network learns the training set better and better, resulting in lower traini
 
 The most common method to reduce overfitting (outside of early-stopping) is **dropout**, where we randomly drop input units. This forces the network to share information between weights, increasing it's ability to generalize to new data. Adding dropout in PyTorch is straightforward using the `nn.Dropout` module.
 
+```{r nn_with_dropout}
+
+main <- py_run_string("
+from torch import nn, optim      
+import torch.nn.functional as F
+
+class ClassifierDO(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.fc1 = nn.Linear(784, 256)
+        self.fc2 = nn.Linear(256, 128)
+        self.fc3 = nn.Linear(128, 64)
+        self.fc4 = nn.Linear(64, 10)
+
+        # Dropout module with 0.2 drop probability
+        self.dropout = nn.Dropout(p=0.2)
+
+    def forward(self, x):
+        # make sure input tensor is flattened
+        x = x.view(x.shape[0], -1)
+
+        # Now with dropout
+        x = self.dropout(F.relu(self.fc1(x)))
+        x = self.dropout(F.relu(self.fc2(x)))
+        x = self.dropout(F.relu(self.fc3(x)))
+
+        # output so no dropout here
+        x = F.log_softmax(self.fc4(x), dim=1)
+
+        return x
+")
+
+ClassifierDO <- main$ClassifierDO()
+ClassifierDO
+```
+
 
 
