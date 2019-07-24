@@ -13,6 +13,8 @@ navbar:
       href: index.html
     - text: "Vignettes"
       menu:
+        - text: Simple Linear Regression
+          href: articles/simple_linear_regression.html
         - text: Linear Regregression, rainfall
           href: articles/linear_regression_rainfall.html
         - text: Linear Regregression, rainfall. PyTorch builtins
@@ -25,5 +27,7 @@ navbar:
           href: articles/idx_images_minist_digits.html
         - text: MNIST digits recognition, PNG images
           href: articles/png_images_mnist_digits.html
+        - text: MNIST Fashion images. Inference and Validation
+          href: articles/mnist_fashion_inference.html
 
 

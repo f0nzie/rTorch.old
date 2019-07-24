@@ -664,4 +664,21 @@ all_boolean(A1 >= A0)
 all_boolean(A1 <= A0)
 ```
 
+### Logical NOT
+
+```{r}
+lo <- torch$BoolTensor(list(TRUE, TRUE, TRUE, TRUE))
+lo
+
+# logical NOT
+!lo
+```
+
+```{r}
+d <- torch$eye(5L)
+d
+
+# logical NOT
+!d
+```
 

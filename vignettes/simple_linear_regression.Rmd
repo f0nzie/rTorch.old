@@ -30,8 +30,6 @@ Net(
 )
 ```
 
-### Code in R
-This would be the equivalent code in R:
 
 ```{r}
 library(rTorch)
@@ -67,10 +65,8 @@ print(net)
 
 Before you start the training process, you need to know our data. You make a random function to test our model. $Y = x3 sin(x)+ 3x+0.8 rand(100)$
 
-This is the code in R:
 
 ```{r, fig.width=5.5, fig.height=5.5}
-# np    <- import("numpy")
 
 np$random$seed(123L)
 
@@ -83,7 +79,7 @@ plot(x, y)
 
 Before you start the training process, you need to convert the numpy array to Variables that supported by Torch and autograd.
 
-### Code in R
+### Converting from numpy to tensor
 Notice that before converting to a Torch tensor, we need first to convert the R numeric vector to a `numpy` array:
 
 ```{r}
@@ -98,7 +94,6 @@ print(x, y)
 ## Optimizer and Loss
 Next, you should define the Optimizer and the Loss Function for our training process.
 
-### Equivalent code in R
 
 ```{r}
 # Define Optimizer and Loss Function
@@ -111,8 +106,6 @@ print(loss_func)
 ## Training
 
 Now let's start our training process. With an epoch of 250, you will iterate our data to find the best value for our hyperparameters.
-
-### Code in R
 
 ```{r fig.width=5.5, fig.height=5.5}
 # x = x$type(torch$float)   # make it a a FloatTensor

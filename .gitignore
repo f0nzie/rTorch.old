@@ -16,3 +16,7 @@ doc
 Meta
 
 *.ckpt
+
+vignettes/mnist_fashion/FashionMNIST/raw/
+
+*.pt
