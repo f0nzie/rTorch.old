@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9010</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9011</span>
       </span>
     </div>
 
@@ -50,7 +50,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../simple_linear_regression.html">Simple Linear Regression</a>
+      <a href="../articles/simple_linear_regression.html">Simple Linear Regression</a>
     </li>
     <li>
       <a href="../articles/linear_regression_rainfall.html">Linear Regregression, rainfall</a>
@@ -69,6 +69,9 @@
     </li>
     <li>
       <a href="../articles/png_images_mnist_digits.html">MNIST digits recognition, PNG images</a>
+    </li>
+    <li>
+      <a href="../articles/mnist_fashion_inference.html">MNIST Fashion images. Inference and Validation</a>
     </li>
   </ul>
 </li>
@@ -193,36 +196,36 @@
 <a class="sourceLine" id="cb7-26" data-line-number="26">        i &lt;-<span class="st">  </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
 <a class="sourceLine" id="cb7-27" data-line-number="27">    }</a>
 <a class="sourceLine" id="cb7-28" data-line-number="28">}  </a>
-<a class="sourceLine" id="cb7-29" data-line-number="29"><span class="co">#&gt; Epoch [2/5], Step [100/600], Loss: 2.207743 </span></a>
-<a class="sourceLine" id="cb7-30" data-line-number="30"><span class="co">#&gt; Epoch [2/5], Step [200/600], Loss: 2.103856 </span></a>
-<a class="sourceLine" id="cb7-31" data-line-number="31"><span class="co">#&gt; Epoch [2/5], Step [300/600], Loss: 1.946557 </span></a>
-<a class="sourceLine" id="cb7-32" data-line-number="32"><span class="co">#&gt; Epoch [2/5], Step [400/600], Loss: 1.958760 </span></a>
-<a class="sourceLine" id="cb7-33" data-line-number="33"><span class="co">#&gt; Epoch [2/5], Step [500/600], Loss: 1.884718 </span></a>
-<a class="sourceLine" id="cb7-34" data-line-number="34"><span class="co">#&gt; Epoch [2/5], Step [600/600], Loss: 1.844963 </span></a>
-<a class="sourceLine" id="cb7-35" data-line-number="35"><span class="co">#&gt; Epoch [3/5], Step [100/600], Loss: 1.715766 </span></a>
-<a class="sourceLine" id="cb7-36" data-line-number="36"><span class="co">#&gt; Epoch [3/5], Step [200/600], Loss: 1.657935 </span></a>
-<a class="sourceLine" id="cb7-37" data-line-number="37"><span class="co">#&gt; Epoch [3/5], Step [300/600], Loss: 1.508170 </span></a>
-<a class="sourceLine" id="cb7-38" data-line-number="38"><span class="co">#&gt; Epoch [3/5], Step [400/600], Loss: 1.583048 </span></a>
-<a class="sourceLine" id="cb7-39" data-line-number="39"><span class="co">#&gt; Epoch [3/5], Step [500/600], Loss: 1.532820 </span></a>
-<a class="sourceLine" id="cb7-40" data-line-number="40"><span class="co">#&gt; Epoch [3/5], Step [600/600], Loss: 1.525573 </span></a>
-<a class="sourceLine" id="cb7-41" data-line-number="41"><span class="co">#&gt; Epoch [4/5], Step [100/600], Loss: 1.402242 </span></a>
-<a class="sourceLine" id="cb7-42" data-line-number="42"><span class="co">#&gt; Epoch [4/5], Step [200/600], Loss: 1.375803 </span></a>
-<a class="sourceLine" id="cb7-43" data-line-number="43"><span class="co">#&gt; Epoch [4/5], Step [300/600], Loss: 1.238896 </span></a>
-<a class="sourceLine" id="cb7-44" data-line-number="44"><span class="co">#&gt; Epoch [4/5], Step [400/600], Loss: 1.344663 </span></a>
-<a class="sourceLine" id="cb7-45" data-line-number="45"><span class="co">#&gt; Epoch [4/5], Step [500/600], Loss: 1.305469 </span></a>
-<a class="sourceLine" id="cb7-46" data-line-number="46"><span class="co">#&gt; Epoch [4/5], Step [600/600], Loss: 1.308397 </span></a>
-<a class="sourceLine" id="cb7-47" data-line-number="47"><span class="co">#&gt; Epoch [5/5], Step [100/600], Loss: 1.200635 </span></a>
-<a class="sourceLine" id="cb7-48" data-line-number="48"><span class="co">#&gt; Epoch [5/5], Step [200/600], Loss: 1.189445 </span></a>
-<a class="sourceLine" id="cb7-49" data-line-number="49"><span class="co">#&gt; Epoch [5/5], Step [300/600], Loss: 1.064287 </span></a>
-<a class="sourceLine" id="cb7-50" data-line-number="50"><span class="co">#&gt; Epoch [5/5], Step [400/600], Loss: 1.186362 </span></a>
-<a class="sourceLine" id="cb7-51" data-line-number="51"><span class="co">#&gt; Epoch [5/5], Step [500/600], Loss: 1.153736 </span></a>
-<a class="sourceLine" id="cb7-52" data-line-number="52"><span class="co">#&gt; Epoch [5/5], Step [600/600], Loss: 1.156419 </span></a>
-<a class="sourceLine" id="cb7-53" data-line-number="53"><span class="co">#&gt; Epoch [6/5], Step [100/600], Loss: 1.064712 </span></a>
-<a class="sourceLine" id="cb7-54" data-line-number="54"><span class="co">#&gt; Epoch [6/5], Step [200/600], Loss: 1.060557 </span></a>
-<a class="sourceLine" id="cb7-55" data-line-number="55"><span class="co">#&gt; Epoch [6/5], Step [300/600], Loss: 0.943925 </span></a>
-<a class="sourceLine" id="cb7-56" data-line-number="56"><span class="co">#&gt; Epoch [6/5], Step [400/600], Loss: 1.075119 </span></a>
-<a class="sourceLine" id="cb7-57" data-line-number="57"><span class="co">#&gt; Epoch [6/5], Step [500/600], Loss: 1.047224 </span></a>
-<a class="sourceLine" id="cb7-58" data-line-number="58"><span class="co">#&gt; Epoch [6/5], Step [600/600], Loss: 1.045657</span></a></code></pre></div>
+<a class="sourceLine" id="cb7-29" data-line-number="29"><span class="co">#&gt; Epoch [2/5], Step [100/600], Loss: 2.162614 </span></a>
+<a class="sourceLine" id="cb7-30" data-line-number="30"><span class="co">#&gt; Epoch [2/5], Step [200/600], Loss: 2.125274 </span></a>
+<a class="sourceLine" id="cb7-31" data-line-number="31"><span class="co">#&gt; Epoch [2/5], Step [300/600], Loss: 1.996120 </span></a>
+<a class="sourceLine" id="cb7-32" data-line-number="32"><span class="co">#&gt; Epoch [2/5], Step [400/600], Loss: 1.924848 </span></a>
+<a class="sourceLine" id="cb7-33" data-line-number="33"><span class="co">#&gt; Epoch [2/5], Step [500/600], Loss: 1.852338 </span></a>
+<a class="sourceLine" id="cb7-34" data-line-number="34"><span class="co">#&gt; Epoch [2/5], Step [600/600], Loss: 1.805134 </span></a>
+<a class="sourceLine" id="cb7-35" data-line-number="35"><span class="co">#&gt; Epoch [3/5], Step [100/600], Loss: 1.687427 </span></a>
+<a class="sourceLine" id="cb7-36" data-line-number="36"><span class="co">#&gt; Epoch [3/5], Step [200/600], Loss: 1.703995 </span></a>
+<a class="sourceLine" id="cb7-37" data-line-number="37"><span class="co">#&gt; Epoch [3/5], Step [300/600], Loss: 1.581399 </span></a>
+<a class="sourceLine" id="cb7-38" data-line-number="38"><span class="co">#&gt; Epoch [3/5], Step [400/600], Loss: 1.555338 </span></a>
+<a class="sourceLine" id="cb7-39" data-line-number="39"><span class="co">#&gt; Epoch [3/5], Step [500/600], Loss: 1.502312 </span></a>
+<a class="sourceLine" id="cb7-40" data-line-number="40"><span class="co">#&gt; Epoch [3/5], Step [600/600], Loss: 1.486188 </span></a>
+<a class="sourceLine" id="cb7-41" data-line-number="41"><span class="co">#&gt; Epoch [4/5], Step [100/600], Loss: 1.383818 </span></a>
+<a class="sourceLine" id="cb7-42" data-line-number="42"><span class="co">#&gt; Epoch [4/5], Step [200/600], Loss: 1.430040 </span></a>
+<a class="sourceLine" id="cb7-43" data-line-number="43"><span class="co">#&gt; Epoch [4/5], Step [300/600], Loss: 1.317927 </span></a>
+<a class="sourceLine" id="cb7-44" data-line-number="44"><span class="co">#&gt; Epoch [4/5], Step [400/600], Loss: 1.322499 </span></a>
+<a class="sourceLine" id="cb7-45" data-line-number="45"><span class="co">#&gt; Epoch [4/5], Step [500/600], Loss: 1.274060 </span></a>
+<a class="sourceLine" id="cb7-46" data-line-number="46"><span class="co">#&gt; Epoch [4/5], Step [600/600], Loss: 1.273855 </span></a>
+<a class="sourceLine" id="cb7-47" data-line-number="47"><span class="co">#&gt; Epoch [5/5], Step [100/600], Loss: 1.183927 </span></a>
+<a class="sourceLine" id="cb7-48" data-line-number="48"><span class="co">#&gt; Epoch [5/5], Step [200/600], Loss: 1.246237 </span></a>
+<a class="sourceLine" id="cb7-49" data-line-number="49"><span class="co">#&gt; Epoch [5/5], Step [300/600], Loss: 1.141830 </span></a>
+<a class="sourceLine" id="cb7-50" data-line-number="50"><span class="co">#&gt; Epoch [5/5], Step [400/600], Loss: 1.170041 </span></a>
+<a class="sourceLine" id="cb7-51" data-line-number="51"><span class="co">#&gt; Epoch [5/5], Step [500/600], Loss: 1.120105 </span></a>
+<a class="sourceLine" id="cb7-52" data-line-number="52"><span class="co">#&gt; Epoch [5/5], Step [600/600], Loss: 1.126775 </span></a>
+<a class="sourceLine" id="cb7-53" data-line-number="53"><span class="co">#&gt; Epoch [6/5], Step [100/600], Loss: 1.046133 </span></a>
+<a class="sourceLine" id="cb7-54" data-line-number="54"><span class="co">#&gt; Epoch [6/5], Step [200/600], Loss: 1.117209 </span></a>
+<a class="sourceLine" id="cb7-55" data-line-number="55"><span class="co">#&gt; Epoch [6/5], Step [300/600], Loss: 1.018093 </span></a>
+<a class="sourceLine" id="cb7-56" data-line-number="56"><span class="co">#&gt; Epoch [6/5], Step [400/600], Loss: 1.064538 </span></a>
+<a class="sourceLine" id="cb7-57" data-line-number="57"><span class="co">#&gt; Epoch [6/5], Step [500/600], Loss: 1.011578 </span></a>
+<a class="sourceLine" id="cb7-58" data-line-number="58"><span class="co">#&gt; Epoch [6/5], Step [600/600], Loss: 1.020150</span></a></code></pre></div>
 </div>
 <div id="prediction" class="section level3">
 <h3 class="hasAnchor">
@@ -247,7 +250,7 @@
 <a class="sourceLine" id="cb8-18" data-line-number="18">    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sprintf">sprintf</a></span>(<span class="st">'Accuracy of the model on the 10000 test images: %f %%'</span>, (<span class="dv">100</span> <span class="op">*</span><span class="st"> </span>correct <span class="op">/</span><span class="st"> </span>total)))</a>
 <a class="sourceLine" id="cb8-19" data-line-number="19">  </a>
 <a class="sourceLine" id="cb8-20" data-line-number="20">})</a>
-<a class="sourceLine" id="cb8-21" data-line-number="21"><span class="co">#&gt; Accuracy of the model on the 10000 test images: 82.870000 %</span></a></code></pre></div>
+<a class="sourceLine" id="cb8-21" data-line-number="21"><span class="co">#&gt; Accuracy of the model on the 10000 test images: 83.110000 %</span></a></code></pre></div>
 </div>
 <div id="save-the-model" class="section level3">
 <h3 class="hasAnchor">
