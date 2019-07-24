@@ -1,6 +1,9 @@
 # rTorch 0.0.1.9011
 * July 22 2019
+* Added vignette `mnist_fashion_inference.Rmd`.
 * Added vignette `simple_linear_regression.Rmd`.
+* Add generic ! (logical not) 
+* Fix generics any, all using as_tensor() instead of tensor()
 
 
 # rTorch 0.0.1.9010

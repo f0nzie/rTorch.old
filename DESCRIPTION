@@ -1,6 +1,6 @@
 Package: rTorch
 Title: R bindings to PyTorch
-Version: 0.0.1.9010
+Version: 0.0.1.9011
 Authors@R: person("Alfonso R.", "Reyes", role = c("aut", "cre"), email = "alfonso.reyes@oilgainsanalytics.com")
 Description: R implementation of Machine Learning platform PyTorch developed in Python. 
 License: MIT + file LICENSE
