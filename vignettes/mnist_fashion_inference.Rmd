@@ -345,7 +345,7 @@ for (e in 1:epochs) {
 ### Inference on dropout model
 Now that the model is trained, we can use it for inference. We've done this before, but now we need to remember to set the model in inference mode with `model.eval()`. You'll also want to turn off autograd with the `torch.no_grad()` context.
 
-```{r}
+```{r, fig.width=3, fig.height=3}
 # Test out your network!
 
 # Switch to evaluation mode
@@ -375,6 +375,16 @@ with(torch$no_grad(), {
 
 ps = torch$exp(output)
 ps$shape
-```
 
+
+# Plot the image and probabilities
+  # view_classify(img_pick.view(1, 28, 28), ps, version='Fashion')
+
+# show image
+rotate <- function(x) t(apply(x, 2, rev))   # function to rotate the matrix
+img_np_rs = np$reshape(img_pick$numpy(), c(28L, 28L))
+image(rotate(img_np_rs))
+# show barplot with class probability
+
+```
 
