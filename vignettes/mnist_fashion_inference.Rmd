@@ -370,9 +370,9 @@ img_pick$shape
 
 # Calculate the class probabilities (softmax) for img
 with(torch$no_grad(), {
-  
     output = modelDO$forward(img_pick)
 })
+
 ps = torch$exp(output)
 ps$shape
 ```
