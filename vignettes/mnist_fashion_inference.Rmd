@@ -180,7 +180,7 @@ The network is untrained so it's making random guesses and we should see an accu
 Now let's train our network and include our validation pass so we can measure how well the network is performing on the test set. Since we're not updating our parameters in the validation pass, we can speed up our code by turning off gradients using `torch.no_grad()`:
 
 
-```{r}
+```{r train_model_nn}
 model     <- main$Classifier()
 criterion <- nn$NLLLoss()
 optimizer <- optim$Adam(model$parameters(), lr = 0.003)
@@ -242,9 +242,151 @@ If we look at the training and validation losses as we train the network, we can
 
 The network learns the training set better and better, resulting in lower training losses. However, it starts having problems generalizing to data outside the training set leading to the validation loss increasing. The ultimate goal of any deep learning model is to make predictions on new data, so we should strive to get the lowest validation loss possible. One option is to use the version of the model with the lowest validation loss, here the one around 8-10 training epochs. This strategy is called early-stopping. In practice, you'd save the model frequently as you're training then later choose the model with the lowest validation loss.
 
-### Model with dropout
+## Model with dropout
 
 The most common method to reduce overfitting (outside of early-stopping) is **dropout**, where we randomly drop input units. This forces the network to share information between weights, increasing it's ability to generalize to new data. Adding dropout in PyTorch is straightforward using the `nn.Dropout` module.
+
+```{r nn_with_dropout}
+
+main <- py_run_string("
+from torch import nn, optim      
+import torch.nn.functional as F
+
+class ClassifierDO(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.fc1 = nn.Linear(784, 256)
+        self.fc2 = nn.Linear(256, 128)
+        self.fc3 = nn.Linear(128, 64)
+        self.fc4 = nn.Linear(64, 10)
+
+        # Dropout module with 0.2 drop probability
+        self.dropout = nn.Dropout(p=0.2)
+
+    def forward(self, x):
+        # make sure input tensor is flattened
+        x = x.view(x.shape[0], -1)
+
+        # Now with dropout
+        x = self.dropout(F.relu(self.fc1(x)))
+        x = self.dropout(F.relu(self.fc2(x)))
+        x = self.dropout(F.relu(self.fc3(x)))
+
+        # output so no dropout here
+        x = F.log_softmax(self.fc4(x), dim=1)
+
+        return x
+")
+
+ClassifierDO <- main$ClassifierDO()
+ClassifierDO
+```
+
+### Train the model with dropout
+During training we want to use dropout to prevent overfitting, but during inference we want to use the entire network. So, we need to turn off dropout during validation, testing, and whenever we're using the network to make predictions. To do this, you use `model.eval()`. This sets the model to **evaluation mode** where the dropout probability is 0. You can turn dropout back on by setting the model to train mode with `model.train()`. In general, the pattern for the validation loop will look like this, where you turn off gradients, set the model to evaluation mode, calculate the validation loss and metric, then set the model back to train mode.
+
+
+```{r}
+modelDO     <- main$ClassifierDO()
+criterion   <- nn$NLLLoss()
+optimizerDO <- optim$Adam(modelDO$parameters(), lr = 0.003)
+
+epochs <- 5
+steps  <- 0
+
+train_losses <- vector("list"); test_losses  <- vector("list")
+for (e in 1:epochs) {
+  i <- 1    # counter for training loop
+  running_loss <- 0
+  iter_train_dataset <- builtins$enumerate(train_loader) # reset iterator
+  for (train_obj in iterate(iter_train_dataset)) {
+      images <- train_obj[[2]][[1]] # extract images
+      labels <- train_obj[[2]][[2]] # extract labels
+    
+      optimizerDO$zero_grad()
+      
+      log_ps <- modelDO(images)
+      loss <- criterion(log_ps, labels)
+      loss$backward()
+      optimizerDO$step()
+      
+      running_loss <- running_loss + loss$item()  
+  }
+  test_loss <- 0
+  accuracy  <- 0
+  
+  with(torch$no_grad(), {
+    iter_test_dataset <- builtins$enumerate(test_loader)    # reset iterator
+    for (test_obj in iterate(iter_test_dataset)) {
+      images <- test_obj[[2]][[1]]  # extract images
+      labels <- test_obj[[2]][[2]]  # extract labels
+      output <- modelDO(images)
+      test_loss <- test_loss + criterion(output, labels)
+      
+      ps       <- torch$exp(modelDO(images))
+      top_     <- ps$topk(1L, dim=1L)
+      top_p    <- top_[0]; top_class <- top_[1]
+      equals   <- top_class == labels$view(top_class$shape)
+      accuracy <- accuracy + torch$mean(equals$type(torch$FloatTensor))
+      # Look at the most likely classes for the first 10 examples
+    }
+  })
+  train_losses[[i]] <- running_loss / py_len(train_loader)
+  test_losses[[i]]  <- test_loss / py_len(test_loader)
+  cat(sprintf("\n Epoch: %3d Training Loss: %8.3f Test Loss: %8.3f Test Accuracy: %8.3f", 
+              e,
+              running_loss / py_len(train_loader), 
+              test_loss$item() / py_len(test_loader),
+              accuracy$item() / py_len(test_loader)       
+  ))
+}
+```
+
+### Inference on dropout model
+Now that the model is trained, we can use it for inference. We've done this before, but now we need to remember to set the model in inference mode with `model.eval()`. You'll also want to turn off autograd with the `torch.no_grad()` context.
+
+```{r, fig.width=3, fig.height=3}
+# Test out your network!
+
+# Switch to evaluation mode
+modelDO$eval()
+
+# load test dataset and get one image
+# using an iterator
+dataiter = builtins$iter(test_loader)      # len(test_loader): 157
+data_obj = iter_next(dataiter)  
+
+images <- data_obj[[1]]       # images.shape: torch.Size([64, 1, 28, 28])
+labels <- data_obj[[2]]       # labels.shape: torch.Size([64])
+images$shape
+labels$shape
+
+# take first image
+img = images[1L,,,]  # shape:  torch.Size([1, 28, 28])
+
+# Convert 2D image to 1D vector
+img_pick = img$view(1L, 784L)   # shape: torch.Size([1, 784])
+img_pick$shape
+
+# Calculate the class probabilities (softmax) for img
+with(torch$no_grad(), {
+    output = modelDO$forward(img_pick)
+})
+
+ps = torch$exp(output)
+ps$shape
+
+
+# Plot the image and probabilities
+  # view_classify(img_pick.view(1, 28, 28), ps, version='Fashion')
+
+# show image
+rotate <- function(x) t(apply(x, 2, rev))   # function to rotate the matrix
+img_np_rs = np$reshape(img_pick$numpy(), c(28L, 28L))
+image(rotate(img_np_rs))
+# show barplot with class probability
+
+```
 
 
 
