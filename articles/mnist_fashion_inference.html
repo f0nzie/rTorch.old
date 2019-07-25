@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9011</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9012</span>
       </span>
     </div>
 
@@ -189,7 +189,7 @@
 <a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co"># get random object from the test_loader</span></a>
 <a class="sourceLine" id="cb5-8" data-line-number="8">i_rand =<span class="st"> </span>random<span class="op">$</span><span class="kw">randrange</span>(<span class="dv">0</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/reticulate/topics/py_len">py_len</a></span>(test_loader)<span class="op">-</span><span class="dv">1</span>)   <span class="co"># get a random data point</span></a>
 <a class="sourceLine" id="cb5-9" data-line-number="9">i_rand</a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; [1] 5</span></a></code></pre></div>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; [1] 55</span></a></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">enum_test_examples =<span class="st"> </span>builtins<span class="op">$</span><span class="kw">enumerate</span>(test_loader)</a>
 <a class="sourceLine" id="cb6-2" data-line-number="2">enum_test_examples</a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt; &lt;enumerate&gt;</span></a>
@@ -199,7 +199,7 @@
 <a class="sourceLine" id="cb6-7" data-line-number="7"></a>
 <a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co"># iter_test_examples[[3]]</span></a>
 <a class="sourceLine" id="cb6-9" data-line-number="9">iter_test_examples[[i_rand]][[<span class="dv">1</span>]]   <span class="co"># index number</span></a>
-<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt; [1] 4</span></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt; [1] 54</span></a>
 <a class="sourceLine" id="cb6-11" data-line-number="11">iter_test_examples[[i_rand]][[<span class="dv">2</span>]][[<span class="dv">1</span>]]<span class="op">$</span><span class="kw">size</span>()  <span class="co"># image tensor .Size([64,1,28,28])</span></a>
 <a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co">#&gt; torch.Size([64, 1, 28, 28])</span></a>
 <a class="sourceLine" id="cb6-13" data-line-number="13">iter_test_examples[[i_rand]][[<span class="dv">2</span>]][[<span class="dv">2</span>]]<span class="op">$</span>shape    <span class="co"># labels torch.Size([64])</span></a>
@@ -235,12 +235,12 @@
 <a class="sourceLine" id="cb7-12" data-line-number="12"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(top_class[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,])</a>
 <a class="sourceLine" id="cb7-13" data-line-number="13"><span class="co">#&gt; tensor([[9],</span></a>
 <a class="sourceLine" id="cb7-14" data-line-number="14"><span class="co">#&gt;         [9],</span></a>
-<a class="sourceLine" id="cb7-15" data-line-number="15"><span class="co">#&gt;         [4],</span></a>
-<a class="sourceLine" id="cb7-16" data-line-number="16"><span class="co">#&gt;         [9],</span></a>
+<a class="sourceLine" id="cb7-15" data-line-number="15"><span class="co">#&gt;         [9],</span></a>
+<a class="sourceLine" id="cb7-16" data-line-number="16"><span class="co">#&gt;         [4],</span></a>
 <a class="sourceLine" id="cb7-17" data-line-number="17"><span class="co">#&gt;         [9],</span></a>
-<a class="sourceLine" id="cb7-18" data-line-number="18"><span class="co">#&gt;         [5],</span></a>
-<a class="sourceLine" id="cb7-19" data-line-number="19"><span class="co">#&gt;         [4],</span></a>
-<a class="sourceLine" id="cb7-20" data-line-number="20"><span class="co">#&gt;         [9],</span></a>
+<a class="sourceLine" id="cb7-18" data-line-number="18"><span class="co">#&gt;         [4],</span></a>
+<a class="sourceLine" id="cb7-19" data-line-number="19"><span class="co">#&gt;         [9],</span></a>
+<a class="sourceLine" id="cb7-20" data-line-number="20"><span class="co">#&gt;         [5],</span></a>
 <a class="sourceLine" id="cb7-21" data-line-number="21"><span class="co">#&gt;         [9],</span></a>
 <a class="sourceLine" id="cb7-22" data-line-number="22"><span class="co">#&gt;         [9]])</span></a></code></pre></div>
 </div>
@@ -255,38 +255,38 @@
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">equals =<span class="st"> </span>top_class <span class="op">==</span><span class="st"> </span>labels<span class="op">$</span><span class="kw">view</span>(top_class<span class="op">$</span>shape)</a>
 <a class="sourceLine" id="cb9-2" data-line-number="2">equals</a>
 <a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co">#&gt; tensor([[False],</span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co">#&gt;         [ True],</span></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co">#&gt;         [False],</span></a>
-<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="co">#&gt;         [ True],</span></a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-7" data-line-number="7"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-8" data-line-number="8"><span class="co">#&gt;         [False],</span></a>
-<a class="sourceLine" id="cb9-9" data-line-number="9"><span class="co">#&gt;         [False],</span></a>
+<a class="sourceLine" id="cb9-9" data-line-number="9"><span class="co">#&gt;         [ True],</span></a>
 <a class="sourceLine" id="cb9-10" data-line-number="10"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-11" data-line-number="11"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-12" data-line-number="12"><span class="co">#&gt;         [False],</span></a>
-<a class="sourceLine" id="cb9-13" data-line-number="13"><span class="co">#&gt;         [False],</span></a>
+<a class="sourceLine" id="cb9-13" data-line-number="13"><span class="co">#&gt;         [ True],</span></a>
 <a class="sourceLine" id="cb9-14" data-line-number="14"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-15" data-line-number="15"><span class="co">#&gt;         [False],</span></a>
-<a class="sourceLine" id="cb9-16" data-line-number="16"><span class="co">#&gt;         [ True],</span></a>
+<a class="sourceLine" id="cb9-16" data-line-number="16"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-17" data-line-number="17"><span class="co">#&gt;         [False],</span></a>
-<a class="sourceLine" id="cb9-18" data-line-number="18"><span class="co">#&gt;         [False],</span></a>
+<a class="sourceLine" id="cb9-18" data-line-number="18"><span class="co">#&gt;         [ True],</span></a>
 <a class="sourceLine" id="cb9-19" data-line-number="19"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-20" data-line-number="20"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-21" data-line-number="21"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-22" data-line-number="22"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-23" data-line-number="23"><span class="co">#&gt;         [False],</span></a>
-<a class="sourceLine" id="cb9-24" data-line-number="24"><span class="co">#&gt;         [ True],</span></a>
+<a class="sourceLine" id="cb9-24" data-line-number="24"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-25" data-line-number="25"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-26" data-line-number="26"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-27" data-line-number="27"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-28" data-line-number="28"><span class="co">#&gt;         [False],</span></a>
-<a class="sourceLine" id="cb9-29" data-line-number="29"><span class="co">#&gt;         [ True],</span></a>
+<a class="sourceLine" id="cb9-29" data-line-number="29"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-30" data-line-number="30"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-31" data-line-number="31"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-32" data-line-number="32"><span class="co">#&gt;         [False],</span></a>
-<a class="sourceLine" id="cb9-33" data-line-number="33"><span class="co">#&gt;         [ True],</span></a>
+<a class="sourceLine" id="cb9-33" data-line-number="33"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-34" data-line-number="34"><span class="co">#&gt;         [False],</span></a>
-<a class="sourceLine" id="cb9-35" data-line-number="35"><span class="co">#&gt;         [False],</span></a>
+<a class="sourceLine" id="cb9-35" data-line-number="35"><span class="co">#&gt;         [ True],</span></a>
 <a class="sourceLine" id="cb9-36" data-line-number="36"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-37" data-line-number="37"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-38" data-line-number="38"><span class="co">#&gt;         [False],</span></a>
@@ -296,28 +296,28 @@
 <a class="sourceLine" id="cb9-42" data-line-number="42"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-43" data-line-number="43"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-44" data-line-number="44"><span class="co">#&gt;         [False],</span></a>
-<a class="sourceLine" id="cb9-45" data-line-number="45"><span class="co">#&gt;         [ True],</span></a>
+<a class="sourceLine" id="cb9-45" data-line-number="45"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-46" data-line-number="46"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-47" data-line-number="47"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-48" data-line-number="48"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-49" data-line-number="49"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-50" data-line-number="50"><span class="co">#&gt;         [False],</span></a>
-<a class="sourceLine" id="cb9-51" data-line-number="51"><span class="co">#&gt;         [False],</span></a>
+<a class="sourceLine" id="cb9-51" data-line-number="51"><span class="co">#&gt;         [ True],</span></a>
 <a class="sourceLine" id="cb9-52" data-line-number="52"><span class="co">#&gt;         [False],</span></a>
-<a class="sourceLine" id="cb9-53" data-line-number="53"><span class="co">#&gt;         [ True],</span></a>
+<a class="sourceLine" id="cb9-53" data-line-number="53"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-54" data-line-number="54"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-55" data-line-number="55"><span class="co">#&gt;         [False],</span></a>
-<a class="sourceLine" id="cb9-56" data-line-number="56"><span class="co">#&gt;         [ True],</span></a>
+<a class="sourceLine" id="cb9-56" data-line-number="56"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-57" data-line-number="57"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-58" data-line-number="58"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-59" data-line-number="59"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-60" data-line-number="60"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-61" data-line-number="61"><span class="co">#&gt;         [False],</span></a>
-<a class="sourceLine" id="cb9-62" data-line-number="62"><span class="co">#&gt;         [ True],</span></a>
-<a class="sourceLine" id="cb9-63" data-line-number="63"><span class="co">#&gt;         [ True],</span></a>
+<a class="sourceLine" id="cb9-62" data-line-number="62"><span class="co">#&gt;         [False],</span></a>
+<a class="sourceLine" id="cb9-63" data-line-number="63"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-64" data-line-number="64"><span class="co">#&gt;         [False],</span></a>
 <a class="sourceLine" id="cb9-65" data-line-number="65"><span class="co">#&gt;         [False],</span></a>
-<a class="sourceLine" id="cb9-66" data-line-number="66"><span class="co">#&gt;         [False]], dtype=torch.bool)</span></a></code></pre></div>
+<a class="sourceLine" id="cb9-66" data-line-number="66"><span class="co">#&gt;         [ True]], dtype=torch.bool)</span></a></code></pre></div>
 </div>
 <div id="untrained-model" class="section level3">
 <h3 class="hasAnchor">
@@ -326,7 +326,7 @@
 <p>we’ll need to convert equals to a float tensor. Note that when we take torch.mean it returns a scalar tensor, to get the actual value as a float we’ll need to do <code>accuracy.item()</code>.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">accuracy =<span class="st"> </span>torch<span class="op">$</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/mean">mean</a></span>(equals<span class="op">$</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/typeof">type</a></span>(torch<span class="op">$</span>FloatTensor))</a>
 <a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sprintf">sprintf</a></span>(<span class="st">"Accuracy: %f %%"</span>, accuracy<span class="op">$</span><span class="kw">item</span>()<span class="op">*</span><span class="dv">100</span>))</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co">#&gt; Accuracy: 17.187500 %</span></a></code></pre></div>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co">#&gt; Accuracy: 9.375000 %</span></a></code></pre></div>
 <p>The network is untrained so it’s making random guesses and we should see an accuracy around 10%.</p>
 </div>
 <div id="train-the-model" class="section level3">
@@ -399,10 +399,170 @@
 <a href="#overfitting" class="anchor"></a>Overfitting</h2>
 <p>If we look at the training and validation losses as we train the network, we can see a phenomenon known as overfitting.</p>
 <p>The network learns the training set better and better, resulting in lower training losses. However, it starts having problems generalizing to data outside the training set leading to the validation loss increasing. The ultimate goal of any deep learning model is to make predictions on new data, so we should strive to get the lowest validation loss possible. One option is to use the version of the model with the lowest validation loss, here the one around 8-10 training epochs. This strategy is called early-stopping. In practice, you’d save the model frequently as you’re training then later choose the model with the lowest validation loss.</p>
-<div id="model-with-dropout" class="section level3">
-<h3 class="hasAnchor">
-<a href="#model-with-dropout" class="anchor"></a>Model with dropout</h3>
+</div>
+<div id="model-with-dropout" class="section level2">
+<h2 class="hasAnchor">
+<a href="#model-with-dropout" class="anchor"></a>Model with dropout</h2>
 <p>The most common method to reduce overfitting (outside of early-stopping) is <strong>dropout</strong>, where we randomly drop input units. This forces the network to share information between weights, increasing it’s ability to generalize to new data. Adding dropout in PyTorch is straightforward using the <code>nn.Dropout</code> module.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">main &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/reticulate/topics/py_run">py_run_string</a></span>(<span class="st">"</span></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="st">from torch import nn, optim      </span></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="st">import torch.nn.functional as F</span></a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="st">class ClassifierDO(nn.Module):</span></a>
+<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="st">    def __init__(self):</span></a>
+<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="st">        super().__init__()</span></a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="st">        self.fc1 = nn.Linear(784, 256)</span></a>
+<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="st">        self.fc2 = nn.Linear(256, 128)</span></a>
+<a class="sourceLine" id="cb12-11" data-line-number="11"><span class="st">        self.fc3 = nn.Linear(128, 64)</span></a>
+<a class="sourceLine" id="cb12-12" data-line-number="12"><span class="st">        self.fc4 = nn.Linear(64, 10)</span></a>
+<a class="sourceLine" id="cb12-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb12-14" data-line-number="14"><span class="st">        # Dropout module with 0.2 drop probability</span></a>
+<a class="sourceLine" id="cb12-15" data-line-number="15"><span class="st">        self.dropout = nn.Dropout(p=0.2)</span></a>
+<a class="sourceLine" id="cb12-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb12-17" data-line-number="17"><span class="st">    def forward(self, x):</span></a>
+<a class="sourceLine" id="cb12-18" data-line-number="18"><span class="st">        # make sure input tensor is flattened</span></a>
+<a class="sourceLine" id="cb12-19" data-line-number="19"><span class="st">        x = x.view(x.shape[0], -1)</span></a>
+<a class="sourceLine" id="cb12-20" data-line-number="20"></a>
+<a class="sourceLine" id="cb12-21" data-line-number="21"><span class="st">        # Now with dropout</span></a>
+<a class="sourceLine" id="cb12-22" data-line-number="22"><span class="st">        x = self.dropout(F.relu(self.fc1(x)))</span></a>
+<a class="sourceLine" id="cb12-23" data-line-number="23"><span class="st">        x = self.dropout(F.relu(self.fc2(x)))</span></a>
+<a class="sourceLine" id="cb12-24" data-line-number="24"><span class="st">        x = self.dropout(F.relu(self.fc3(x)))</span></a>
+<a class="sourceLine" id="cb12-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb12-26" data-line-number="26"><span class="st">        # output so no dropout here</span></a>
+<a class="sourceLine" id="cb12-27" data-line-number="27"><span class="st">        x = F.log_softmax(self.fc4(x), dim=1)</span></a>
+<a class="sourceLine" id="cb12-28" data-line-number="28"></a>
+<a class="sourceLine" id="cb12-29" data-line-number="29"><span class="st">        return x</span></a>
+<a class="sourceLine" id="cb12-30" data-line-number="30"><span class="st">"</span>)</a>
+<a class="sourceLine" id="cb12-31" data-line-number="31"></a>
+<a class="sourceLine" id="cb12-32" data-line-number="32">ClassifierDO &lt;-<span class="st"> </span>main<span class="op">$</span><span class="kw">ClassifierDO</span>()</a>
+<a class="sourceLine" id="cb12-33" data-line-number="33">ClassifierDO</a>
+<a class="sourceLine" id="cb12-34" data-line-number="34"><span class="co">#&gt; ClassifierDO(</span></a>
+<a class="sourceLine" id="cb12-35" data-line-number="35"><span class="co">#&gt;   (fc1): Linear(in_features=784, out_features=256, bias=True)</span></a>
+<a class="sourceLine" id="cb12-36" data-line-number="36"><span class="co">#&gt;   (fc2): Linear(in_features=256, out_features=128, bias=True)</span></a>
+<a class="sourceLine" id="cb12-37" data-line-number="37"><span class="co">#&gt;   (fc3): Linear(in_features=128, out_features=64, bias=True)</span></a>
+<a class="sourceLine" id="cb12-38" data-line-number="38"><span class="co">#&gt;   (fc4): Linear(in_features=64, out_features=10, bias=True)</span></a>
+<a class="sourceLine" id="cb12-39" data-line-number="39"><span class="co">#&gt;   (dropout): Dropout(p=0.2)</span></a>
+<a class="sourceLine" id="cb12-40" data-line-number="40"><span class="co">#&gt; )</span></a></code></pre></div>
+<div id="train-the-model-with-dropout" class="section level3">
+<h3 class="hasAnchor">
+<a href="#train-the-model-with-dropout" class="anchor"></a>Train the model with dropout</h3>
+<p>During training we want to use dropout to prevent overfitting, but during inference we want to use the entire network. So, we need to turn off dropout during validation, testing, and whenever we’re using the network to make predictions. To do this, you use <code>model.eval()</code>. This sets the model to <strong>evaluation mode</strong> where the dropout probability is 0. You can turn dropout back on by setting the model to train mode with <code>model.train()</code>. In general, the pattern for the validation loop will look like this, where you turn off gradients, set the model to evaluation mode, calculate the validation loss and metric, then set the model back to train mode.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">modelDO     &lt;-<span class="st"> </span>main<span class="op">$</span><span class="kw">ClassifierDO</span>()</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">criterion   &lt;-<span class="st"> </span>nn<span class="op">$</span><span class="kw">NLLLoss</span>()</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3">optimizerDO &lt;-<span class="st"> </span>optim<span class="op">$</span><span class="kw">Adam</span>(modelDO<span class="op">$</span><span class="kw">parameters</span>(), <span class="dt">lr =</span> <span class="fl">0.003</span>)</a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb13-5" data-line-number="5">epochs &lt;-<span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb13-6" data-line-number="6">steps  &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb13-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb13-8" data-line-number="8">train_losses &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/vector">vector</a></span>(<span class="st">"list"</span>); test_losses  &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/vector">vector</a></span>(<span class="st">"list"</span>)</a>
+<a class="sourceLine" id="cb13-9" data-line-number="9"><span class="cf">for</span> (e <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>epochs) {</a>
+<a class="sourceLine" id="cb13-10" data-line-number="10">  i &lt;-<span class="st"> </span><span class="dv">1</span>    <span class="co"># counter for training loop</span></a>
+<a class="sourceLine" id="cb13-11" data-line-number="11">  running_loss &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb13-12" data-line-number="12">  iter_train_dataset &lt;-<span class="st"> </span>builtins<span class="op">$</span><span class="kw">enumerate</span>(train_loader) <span class="co"># reset iterator</span></a>
+<a class="sourceLine" id="cb13-13" data-line-number="13">  <span class="cf">for</span> (train_obj <span class="cf">in</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/reticulate/topics/iterate">iterate</a></span>(iter_train_dataset)) {</a>
+<a class="sourceLine" id="cb13-14" data-line-number="14">      images &lt;-<span class="st"> </span>train_obj[[<span class="dv">2</span>]][[<span class="dv">1</span>]] <span class="co"># extract images</span></a>
+<a class="sourceLine" id="cb13-15" data-line-number="15">      labels &lt;-<span class="st"> </span>train_obj[[<span class="dv">2</span>]][[<span class="dv">2</span>]] <span class="co"># extract labels</span></a>
+<a class="sourceLine" id="cb13-16" data-line-number="16">    </a>
+<a class="sourceLine" id="cb13-17" data-line-number="17">      optimizerDO<span class="op">$</span><span class="kw">zero_grad</span>()</a>
+<a class="sourceLine" id="cb13-18" data-line-number="18">      </a>
+<a class="sourceLine" id="cb13-19" data-line-number="19">      log_ps &lt;-<span class="st"> </span><span class="kw">modelDO</span>(images)</a>
+<a class="sourceLine" id="cb13-20" data-line-number="20">      loss &lt;-<span class="st"> </span><span class="kw">criterion</span>(log_ps, labels)</a>
+<a class="sourceLine" id="cb13-21" data-line-number="21">      loss<span class="op">$</span><span class="kw">backward</span>()</a>
+<a class="sourceLine" id="cb13-22" data-line-number="22">      optimizerDO<span class="op">$</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/step">step</a></span>()</a>
+<a class="sourceLine" id="cb13-23" data-line-number="23">      </a>
+<a class="sourceLine" id="cb13-24" data-line-number="24">      running_loss &lt;-<span class="st"> </span>running_loss <span class="op">+</span><span class="st"> </span>loss<span class="op">$</span><span class="kw">item</span>()  </a>
+<a class="sourceLine" id="cb13-25" data-line-number="25">  }</a>
+<a class="sourceLine" id="cb13-26" data-line-number="26">  test_loss &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb13-27" data-line-number="27">  accuracy  &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb13-28" data-line-number="28">  </a>
+<a class="sourceLine" id="cb13-29" data-line-number="29">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/with">with</a></span>(torch<span class="op">$</span><span class="kw">no_grad</span>(), {</a>
+<a class="sourceLine" id="cb13-30" data-line-number="30">    iter_test_dataset &lt;-<span class="st"> </span>builtins<span class="op">$</span><span class="kw">enumerate</span>(test_loader)    <span class="co"># reset iterator</span></a>
+<a class="sourceLine" id="cb13-31" data-line-number="31">    <span class="cf">for</span> (test_obj <span class="cf">in</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/reticulate/topics/iterate">iterate</a></span>(iter_test_dataset)) {</a>
+<a class="sourceLine" id="cb13-32" data-line-number="32">      images &lt;-<span class="st"> </span>test_obj[[<span class="dv">2</span>]][[<span class="dv">1</span>]]  <span class="co"># extract images</span></a>
+<a class="sourceLine" id="cb13-33" data-line-number="33">      labels &lt;-<span class="st"> </span>test_obj[[<span class="dv">2</span>]][[<span class="dv">2</span>]]  <span class="co"># extract labels</span></a>
+<a class="sourceLine" id="cb13-34" data-line-number="34">      output &lt;-<span class="st"> </span><span class="kw">modelDO</span>(images)</a>
+<a class="sourceLine" id="cb13-35" data-line-number="35">      test_loss &lt;-<span class="st"> </span>test_loss <span class="op">+</span><span class="st"> </span><span class="kw">criterion</span>(output, labels)</a>
+<a class="sourceLine" id="cb13-36" data-line-number="36">      </a>
+<a class="sourceLine" id="cb13-37" data-line-number="37">      ps       &lt;-<span class="st"> </span>torch<span class="op">$</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">exp</a></span>(<span class="kw">modelDO</span>(images))</a>
+<a class="sourceLine" id="cb13-38" data-line-number="38">      top_     &lt;-<span class="st"> </span>ps<span class="op">$</span><span class="kw">topk</span>(1L, <span class="dt">dim=</span>1L)</a>
+<a class="sourceLine" id="cb13-39" data-line-number="39">      top_p    &lt;-<span class="st"> </span>top_[<span class="dv">0</span>]; top_class &lt;-<span class="st"> </span>top_[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb13-40" data-line-number="40">      equals   &lt;-<span class="st"> </span>top_class <span class="op">==</span><span class="st"> </span>labels<span class="op">$</span><span class="kw">view</span>(top_class<span class="op">$</span>shape)</a>
+<a class="sourceLine" id="cb13-41" data-line-number="41">      accuracy &lt;-<span class="st"> </span>accuracy <span class="op">+</span><span class="st"> </span>torch<span class="op">$</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/mean">mean</a></span>(equals<span class="op">$</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/typeof">type</a></span>(torch<span class="op">$</span>FloatTensor))</a>
+<a class="sourceLine" id="cb13-42" data-line-number="42">      <span class="co"># Look at the most likely classes for the first 10 examples</span></a>
+<a class="sourceLine" id="cb13-43" data-line-number="43">    }</a>
+<a class="sourceLine" id="cb13-44" data-line-number="44">  })</a>
+<a class="sourceLine" id="cb13-45" data-line-number="45">  train_losses[[i]] &lt;-<span class="st"> </span>running_loss <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/reticulate/topics/py_len">py_len</a></span>(train_loader)</a>
+<a class="sourceLine" id="cb13-46" data-line-number="46">  test_losses[[i]]  &lt;-<span class="st"> </span>test_loss <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/reticulate/topics/py_len">py_len</a></span>(test_loader)</a>
+<a class="sourceLine" id="cb13-47" data-line-number="47">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sprintf">sprintf</a></span>(<span class="st">"</span><span class="ch">\n</span><span class="st"> Epoch: %3d Training Loss: %8.3f Test Loss: %8.3f Test Accuracy: %8.3f"</span>, </a>
+<a class="sourceLine" id="cb13-48" data-line-number="48">              e,</a>
+<a class="sourceLine" id="cb13-49" data-line-number="49">              running_loss <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/reticulate/topics/py_len">py_len</a></span>(train_loader), </a>
+<a class="sourceLine" id="cb13-50" data-line-number="50">              test_loss<span class="op">$</span><span class="kw">item</span>() <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/reticulate/topics/py_len">py_len</a></span>(test_loader),</a>
+<a class="sourceLine" id="cb13-51" data-line-number="51">              accuracy<span class="op">$</span><span class="kw">item</span>() <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/reticulate/topics/py_len">py_len</a></span>(test_loader)       </a>
+<a class="sourceLine" id="cb13-52" data-line-number="52">  ))</a>
+<a class="sourceLine" id="cb13-53" data-line-number="53">}</a>
+<a class="sourceLine" id="cb13-54" data-line-number="54"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb13-55" data-line-number="55"><span class="co">#&gt;  Epoch:   1 Training Loss:    0.607 Test Loss:    0.564 Test Accuracy:    0.810</span></a>
+<a class="sourceLine" id="cb13-56" data-line-number="56"><span class="co">#&gt;  Epoch:   2 Training Loss:    0.479 Test Loss:    0.497 Test Accuracy:    0.827</span></a>
+<a class="sourceLine" id="cb13-57" data-line-number="57"><span class="co">#&gt;  Epoch:   3 Training Loss:    0.449 Test Loss:    0.502 Test Accuracy:    0.830</span></a>
+<a class="sourceLine" id="cb13-58" data-line-number="58"><span class="co">#&gt;  Epoch:   4 Training Loss:    0.437 Test Loss:    0.462 Test Accuracy:    0.839</span></a>
+<a class="sourceLine" id="cb13-59" data-line-number="59"><span class="co">#&gt;  Epoch:   5 Training Loss:    0.419 Test Loss:    0.450 Test Accuracy:    0.843</span></a></code></pre></div>
+</div>
+<div id="inference-on-dropout-model" class="section level3">
+<h3 class="hasAnchor">
+<a href="#inference-on-dropout-model" class="anchor"></a>Inference on dropout model</h3>
+<p>Now that the model is trained, we can use it for inference. We’ve done this before, but now we need to remember to set the model in inference mode with <code>model.eval()</code>. You’ll also want to turn off autograd with the <code>torch.no_grad()</code> context.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="co"># Test out your network!</span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="co"># Switch to evaluation mode</span></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4">modelDO<span class="op">$</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/eval">eval</a></span>()</a>
+<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="co">#&gt; ClassifierDO(</span></a>
+<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="co">#&gt;   (fc1): Linear(in_features=784, out_features=256, bias=True)</span></a>
+<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="co">#&gt;   (fc2): Linear(in_features=256, out_features=128, bias=True)</span></a>
+<a class="sourceLine" id="cb14-8" data-line-number="8"><span class="co">#&gt;   (fc3): Linear(in_features=128, out_features=64, bias=True)</span></a>
+<a class="sourceLine" id="cb14-9" data-line-number="9"><span class="co">#&gt;   (fc4): Linear(in_features=64, out_features=10, bias=True)</span></a>
+<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="co">#&gt;   (dropout): Dropout(p=0.2)</span></a>
+<a class="sourceLine" id="cb14-11" data-line-number="11"><span class="co">#&gt; )</span></a>
+<a class="sourceLine" id="cb14-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb14-13" data-line-number="13"><span class="co"># load test dataset and get one image</span></a>
+<a class="sourceLine" id="cb14-14" data-line-number="14"><span class="co"># using an iterator</span></a>
+<a class="sourceLine" id="cb14-15" data-line-number="15">dataiter =<span class="st"> </span>builtins<span class="op">$</span><span class="kw">iter</span>(test_loader)      <span class="co"># len(test_loader): 157</span></a>
+<a class="sourceLine" id="cb14-16" data-line-number="16">data_obj =<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/reticulate/topics/iterate">iter_next</a></span>(dataiter)  </a>
+<a class="sourceLine" id="cb14-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb14-18" data-line-number="18">images &lt;-<span class="st"> </span>data_obj[[<span class="dv">1</span>]]       <span class="co"># images.shape: torch.Size([64, 1, 28, 28])</span></a>
+<a class="sourceLine" id="cb14-19" data-line-number="19">labels &lt;-<span class="st"> </span>data_obj[[<span class="dv">2</span>]]       <span class="co"># labels.shape: torch.Size([64])</span></a>
+<a class="sourceLine" id="cb14-20" data-line-number="20">images<span class="op">$</span>shape</a>
+<a class="sourceLine" id="cb14-21" data-line-number="21"><span class="co">#&gt; torch.Size([64, 1, 28, 28])</span></a>
+<a class="sourceLine" id="cb14-22" data-line-number="22">labels<span class="op">$</span>shape</a>
+<a class="sourceLine" id="cb14-23" data-line-number="23"><span class="co">#&gt; torch.Size([64])</span></a>
+<a class="sourceLine" id="cb14-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb14-25" data-line-number="25"><span class="co"># take first image</span></a>
+<a class="sourceLine" id="cb14-26" data-line-number="26">img =<span class="st"> </span>images[1L,,,]  <span class="co"># shape:  torch.Size([1, 28, 28])</span></a>
+<a class="sourceLine" id="cb14-27" data-line-number="27"></a>
+<a class="sourceLine" id="cb14-28" data-line-number="28"><span class="co"># Convert 2D image to 1D vector</span></a>
+<a class="sourceLine" id="cb14-29" data-line-number="29">img_pick =<span class="st"> </span>img<span class="op">$</span><span class="kw">view</span>(1L, 784L)   <span class="co"># shape: torch.Size([1, 784])</span></a>
+<a class="sourceLine" id="cb14-30" data-line-number="30">img_pick<span class="op">$</span>shape</a>
+<a class="sourceLine" id="cb14-31" data-line-number="31"><span class="co">#&gt; torch.Size([1, 784])</span></a>
+<a class="sourceLine" id="cb14-32" data-line-number="32"></a>
+<a class="sourceLine" id="cb14-33" data-line-number="33"><span class="co"># Calculate the class probabilities (softmax) for img</span></a>
+<a class="sourceLine" id="cb14-34" data-line-number="34"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/with">with</a></span>(torch<span class="op">$</span><span class="kw">no_grad</span>(), {</a>
+<a class="sourceLine" id="cb14-35" data-line-number="35">    output =<span class="st"> </span>modelDO<span class="op">$</span><span class="kw">forward</span>(img_pick)</a>
+<a class="sourceLine" id="cb14-36" data-line-number="36">})</a>
+<a class="sourceLine" id="cb14-37" data-line-number="37"></a>
+<a class="sourceLine" id="cb14-38" data-line-number="38">ps =<span class="st"> </span>torch<span class="op">$</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">exp</a></span>(output)</a>
+<a class="sourceLine" id="cb14-39" data-line-number="39">ps<span class="op">$</span>shape</a>
+<a class="sourceLine" id="cb14-40" data-line-number="40"><span class="co">#&gt; torch.Size([1, 10])</span></a>
+<a class="sourceLine" id="cb14-41" data-line-number="41"></a>
+<a class="sourceLine" id="cb14-42" data-line-number="42"></a>
+<a class="sourceLine" id="cb14-43" data-line-number="43"><span class="co"># Plot the image and probabilities</span></a>
+<a class="sourceLine" id="cb14-44" data-line-number="44">  <span class="co"># view_classify(img_pick.view(1, 28, 28), ps, version='Fashion')</span></a>
+<a class="sourceLine" id="cb14-45" data-line-number="45"></a>
+<a class="sourceLine" id="cb14-46" data-line-number="46"><span class="co"># show image</span></a>
+<a class="sourceLine" id="cb14-47" data-line-number="47">rotate &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/t">t</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/apply">apply</a></span>(x, <span class="dv">2</span>, rev))   <span class="co"># function to rotate the matrix</span></a>
+<a class="sourceLine" id="cb14-48" data-line-number="48">img_np_rs =<span class="st"> </span>np<span class="op">$</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/reshape">reshape</a></span>(img_pick<span class="op">$</span><span class="kw">numpy</span>(), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(28L, 28L))</a>
+<a class="sourceLine" id="cb14-49" data-line-number="49"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/image">image</a></span>(<span class="kw">rotate</span>(img_np_rs))</a></code></pre></div>
+<p><img src="mnist_fashion_inference_files/figure-html/unnamed-chunk-8-1.png" width="288"></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="co"># show barplot with class probability</span></a></code></pre></div>
 </div>
 </div>
   </div>
@@ -415,6 +575,7 @@
 <li><a href="#load-datasets">Load datasets</a></li>
       <li><a href="#model">Model</a></li>
       <li><a href="#overfitting">Overfitting</a></li>
+      <li><a href="#model-with-dropout">Model with dropout</a></li>
       </ul>
 </div>
       </div>
