@@ -1,0 +1,128 @@
+---
+title: "Vignette Title"
+author: "Vignette Author"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r}
+library(reticulate)
+
+torch      <- import("torch")
+Variable   <- import("torch.autograd")$Variable
+np         <- import("numpy")
+optim      <- import("torch.optim") 
+py         <- import_builtins()
+```
+
+
+```{r}
+x = torch$rand(20L, 50L, 100L)
+x_size <- x$size()
+x_size
+class(x_size)
+```
+
+```{r}
+it <- iterate(py$enumerate(x_size))  # [[3]][[2]]
+# for (i in it) print(i)
+sapply(it, identity)
+```
+
+
+## Creating a tensor of a size
+
+```{r}
+y <- torch$Size(c(1L, 2L, 3L, 4L))
+class(y)
+y$index
+it <- iterate(py$enumerate(y))
+sapply(it, identity)
+```
+
+# Creating a tensor of size
+
+```{r}
+p <- torch$Tensor(torch$Size(c(256L, 3L, 9L, 9L, 2L)))
+class(p)
+it <- iterate(py$enumerate(p$size()))
+class(sapply(it, `[`))
+# "matrix"
+m <- sapply(it, `[`)
+v <- m[2, ]
+class(unlist(v))
+unlist(v)
+p
+```
+
+## Get the maximum values of a tensor
+https://groups.google.com/forum/#!topic/torch7/a1EAEwLn15g
+
+```{r}
+torch$manual_seed(42L)
+a <- torch$randn(4L, 4L)
+a
+
+# expected to be in range of [-2, 1]
+val <- torch$max(a, 1L)[[1]]
+idx <- torch$max(a, 1L)[[2]]
+
+val
+idx
+```
+
+```{r}
+
+```
+
+## Test dimensions of a tensor
+
+https://github.com/pytorch/pytorch/issues/1310
+
+```{r}
+library(rTorch)
+
+dims <- as.integer(c(3, 4, 5, 6, 7, 8))
+a <-  torch$randn(torch$Size(dims))
+a$size()
+
+
+for (dim in seq(1, length(dims))) {
+    dim <- as.integer(dim - 1)
+    for (i in seq(a$size(dim))) {
+        i <- as.integer(i - 1)
+        a$select(dim, i)$fill_(i)  # slice and fill with the dim number
+    }
+    val    <- a$max(dim)[[1]]
+    argmax <- a$max(dim)[[2]]
+    cat(argmax$min(), "\t")    # min and max should be the same since
+    cat(argmax$max(), "\n")    # the tensor was filled with the same value
+}
+a$size()
+```
+
+
+```{python}
+import torch
+
+dims = (3, 4, 5, 6, 7, 8)
+a = torch.randn(*dims)
+for dim in range(len(dims)):
+    for i in range(a.size(dim)):
+        # print(dim, i)
+        a.select(dim,i).fill_(i)
+    val, argmax = a.max(dim)
+    print(argmax.max())
+```
+

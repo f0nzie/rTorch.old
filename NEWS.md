@@ -1,3 +1,11 @@
+# rTorch 0.0.1.9012
+* July 24 2019
+* Change MNIST download folder to ~/raw_data instead of inst/
+* On vignette `mnist_fashion_inference.Rmd`:
+* Add dropout class to reduce overfitting
+* Add a training loop for the dropout class
+* Added/remove experimental code to replicate the Python function to visualize the image along with the bar plot. Unsuccessful because R (image) and Python image (plt.imshow) functions use different array dimensions.
+
 # rTorch 0.0.1.9011
 * July 22 2019
 * Added vignette `mnist_fashion_inference.Rmd`.

@@ -39,12 +39,13 @@ learning_rate <- 0.001
 ```{r}
 # MNIST dataset (images and labels)
 # IDX format
-train_dataset = torchvision$datasets$MNIST(root='../inst/raw_data', 
+local_folder <- '~/raw_data'
+train_dataset = torchvision$datasets$MNIST(root=local_folder, 
                                            train=TRUE, 
                                            transform=transforms$ToTensor(),
                                            download=TRUE)
 
-test_dataset = torchvision$datasets$MNIST(root='../inst/raw_data', 
+test_dataset = torchvision$datasets$MNIST(root=local_folder, 
                                           train=FALSE, 
                                           transform=transforms$ToTensor())
 
