@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9011</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9012</span>
       </span>
     </div>
 
@@ -119,19 +119,20 @@
 <div id="load-training-dataset" class="section level3">
 <h3 class="hasAnchor">
 <a href="#load-training-dataset" class="anchor"></a>Load training dataset</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># this will save the datasets to the local drive</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">train_dataset =<span class="st"> </span>dsets<span class="op">$</span><span class="kw">MNIST</span>(<span class="dt">root=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/file.path">file.path</a></span>(<span class="st">'../inst/raw_data'</span>), </a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">                            <span class="dt">train=</span><span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">                            <span class="dt">transform=</span>transforms<span class="op">$</span><span class="kw">ToTensor</span>(),</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">                            <span class="dt">download=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">                            </a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">train_dataset</a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; Dataset MNIST</span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt;     Number of datapoints: 60000</span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt;     Root location: ../inst/raw_data</span></a>
-<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt;     Split: Train</span></a>
-<a class="sourceLine" id="cb3-12" data-line-number="12">builtins<span class="op">$</span><span class="kw">len</span>(train_dataset)</a>
-<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt; [1] 60000</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">local_folder &lt;-<span class="st"> '~/raw_data'</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co"># this will save the datasets to the local drive</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">train_dataset =<span class="st"> </span>dsets<span class="op">$</span><span class="kw">MNIST</span>(<span class="dt">root=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/file.path">file.path</a></span>(local_folder), </a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">                            <span class="dt">train=</span><span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">                            <span class="dt">transform=</span>transforms<span class="op">$</span><span class="kw">ToTensor</span>(),</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">                            <span class="dt">download=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">                            </a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">train_dataset</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; Dataset MNIST</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt;     Number of datapoints: 60000</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt;     Root location: /home/msfz751/raw_data</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt;     Split: Train</span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">builtins<span class="op">$</span><span class="kw">len</span>(train_dataset)</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt; [1] 60000</span></a></code></pre></div>
 </div>
 <div id="introspection" class="section level3">
 <h3 class="hasAnchor">
@@ -340,7 +341,7 @@
 <div id="loading-the-test-dataset" class="section level3">
 <h3 class="hasAnchor">
 <a href="#loading-the-test-dataset" class="anchor"></a>Loading the test dataset</h3>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">test_dataset =<span class="st"> </span>dsets<span class="op">$</span><span class="kw">MNIST</span>(<span class="dt">root =</span> <span class="st">'../inst/raw_data'</span>, </a>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">test_dataset =<span class="st"> </span>dsets<span class="op">$</span><span class="kw">MNIST</span>(<span class="dt">root =</span> local_folder, </a>
 <a class="sourceLine" id="cb20-2" data-line-number="2">                           <span class="dt">train=</span><span class="ot">FALSE</span>, </a>
 <a class="sourceLine" id="cb20-3" data-line-number="3">                           <span class="dt">transform=</span>transforms<span class="op">$</span><span class="kw">ToTensor</span>())</a>
 <a class="sourceLine" id="cb20-4" data-line-number="4"></a>
@@ -391,7 +392,7 @@
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/reticulate/topics/r-py-conversion">py_to_r</a></span>(test_dataset)</a>
 <a class="sourceLine" id="cb24-2" data-line-number="2"><span class="co">#&gt; Dataset MNIST</span></a>
 <a class="sourceLine" id="cb24-3" data-line-number="3"><span class="co">#&gt;     Number of datapoints: 10000</span></a>
-<a class="sourceLine" id="cb24-4" data-line-number="4"><span class="co">#&gt;     Root location: ../inst/raw_data</span></a>
+<a class="sourceLine" id="cb24-4" data-line-number="4"><span class="co">#&gt;     Root location: /home/msfz751/raw_data</span></a>
 <a class="sourceLine" id="cb24-5" data-line-number="5"><span class="co">#&gt;     Split: Test</span></a></code></pre></div>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="co"># the size of the first and last image tensor</span></a>
 <a class="sourceLine" id="cb25-2" data-line-number="2"><span class="co"># py_get_item(test_dataset, 0L)[[1]]$size()</span></a>
@@ -543,7 +544,7 @@
 <p>We’ll go into details subsequently how these parameters interact with our input to produce our 10x1 output.</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="co"># Type of parameter object</span></a>
 <a class="sourceLine" id="cb42-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(model<span class="op">$</span><span class="kw">parameters</span>())</a>
-<a class="sourceLine" id="cb42-3" data-line-number="3"><span class="co">#&gt; &lt;generator object Module.parameters at 0x7f3e3b0e65e8&gt;</span></a>
+<a class="sourceLine" id="cb42-3" data-line-number="3"><span class="co">#&gt; &lt;generator object Module.parameters at 0x7f9477d655e8&gt;</span></a>
 <a class="sourceLine" id="cb42-4" data-line-number="4">model_parameters &lt;-<span class="st"> </span>builtins<span class="op">$</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(model<span class="op">$</span><span class="kw">parameters</span>())</a>
 <a class="sourceLine" id="cb42-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb42-6" data-line-number="6"><span class="co"># Length of parameters</span></a>
@@ -627,12 +628,12 @@
 <a class="sourceLine" id="cb44-61" data-line-number="61">      }</a>
 <a class="sourceLine" id="cb44-62" data-line-number="62">  }</a>
 <a class="sourceLine" id="cb44-63" data-line-number="63">}  </a>
-<a class="sourceLine" id="cb44-64" data-line-number="64"><span class="co">#&gt; Iteration:   500. Loss: 1.863376. Accuracy:    66.22 </span></a>
-<a class="sourceLine" id="cb44-65" data-line-number="65"><span class="co">#&gt; Iteration:  1000. Loss: 1.566773. Accuracy:    74.99 </span></a>
-<a class="sourceLine" id="cb44-66" data-line-number="66"><span class="co">#&gt; Iteration:  1500. Loss: 1.345743. Accuracy:    78.14 </span></a>
-<a class="sourceLine" id="cb44-67" data-line-number="67"><span class="co">#&gt; Iteration:  2000. Loss: 1.196503. Accuracy:    80.31 </span></a>
-<a class="sourceLine" id="cb44-68" data-line-number="68"><span class="co">#&gt; Iteration:  2500. Loss: 0.997226. Accuracy:    81.75 </span></a>
-<a class="sourceLine" id="cb44-69" data-line-number="69"><span class="co">#&gt; Iteration:  3000. Loss: 0.971659. Accuracy:    82.60</span></a></code></pre></div>
+<a class="sourceLine" id="cb44-64" data-line-number="64"><span class="co">#&gt; Iteration:   500. Loss: 1.840515. Accuracy:    68.56 </span></a>
+<a class="sourceLine" id="cb44-65" data-line-number="65"><span class="co">#&gt; Iteration:  1000. Loss: 1.538463. Accuracy:    76.27 </span></a>
+<a class="sourceLine" id="cb44-66" data-line-number="66"><span class="co">#&gt; Iteration:  1500. Loss: 1.337989. Accuracy:    79.57 </span></a>
+<a class="sourceLine" id="cb44-67" data-line-number="67"><span class="co">#&gt; Iteration:  2000. Loss: 1.143398. Accuracy:    81.04 </span></a>
+<a class="sourceLine" id="cb44-68" data-line-number="68"><span class="co">#&gt; Iteration:  2500. Loss: 1.091558. Accuracy:    82.05 </span></a>
+<a class="sourceLine" id="cb44-69" data-line-number="69"><span class="co">#&gt; Iteration:  3000. Loss: 1.027075. Accuracy:    82.75</span></a></code></pre></div>
 </div>
 <div id="break-down-accuracy-calculation" class="section level2">
 <h2 class="hasAnchor">
@@ -661,212 +662,212 @@
 <a class="sourceLine" id="cb45-20" data-line-number="20">    predicted &lt;-<span class="st"> </span>.predicted[1L]</a>
 <a class="sourceLine" id="cb45-21" data-line-number="21">}</a>
 <a class="sourceLine" id="cb45-22" data-line-number="22"><span class="co">#&gt; [1] "OUTPUTS"</span></a>
-<a class="sourceLine" id="cb45-23" data-line-number="23"><span class="co">#&gt; tensor([[-3.2543e-01, -1.1548e+00, -5.3456e-01, -3.2821e-01,  4.0205e-02,</span></a>
-<a class="sourceLine" id="cb45-24" data-line-number="24"><span class="co">#&gt;          -4.2233e-01, -1.0254e+00,  2.8650e+00, -4.9702e-02,  7.3025e-01],</span></a>
-<a class="sourceLine" id="cb45-25" data-line-number="25"><span class="co">#&gt;         [ 2.1799e-01,  2.3813e-02,  1.4228e+00,  9.0676e-01, -1.7765e+00,</span></a>
-<a class="sourceLine" id="cb45-26" data-line-number="26"><span class="co">#&gt;           3.5160e-01,  1.2952e+00, -1.8419e+00,  3.2087e-01, -1.5218e+00],</span></a>
-<a class="sourceLine" id="cb45-27" data-line-number="27"><span class="co">#&gt;         [-9.7719e-01,  2.3729e+00,  2.6841e-01,  6.2211e-02, -6.5289e-01,</span></a>
-<a class="sourceLine" id="cb45-28" data-line-number="28"><span class="co">#&gt;          -3.2811e-01, -1.1516e-01, -1.8063e-01,  2.2975e-01, -3.8402e-01],</span></a>
-<a class="sourceLine" id="cb45-29" data-line-number="29"><span class="co">#&gt;         [ 3.0802e+00, -2.1593e+00, -2.2617e-01, -3.8664e-01, -9.4847e-01,</span></a>
-<a class="sourceLine" id="cb45-30" data-line-number="30"><span class="co">#&gt;           6.7189e-01,  1.4101e+00,  1.3792e-01, -6.4066e-01, -3.2918e-01],</span></a>
-<a class="sourceLine" id="cb45-31" data-line-number="31"><span class="co">#&gt;         [-9.9334e-02, -2.0025e+00,  2.5870e-01, -5.8824e-01,  1.9813e+00,</span></a>
-<a class="sourceLine" id="cb45-32" data-line-number="32"><span class="co">#&gt;          -4.1422e-01,  3.6730e-02,  4.4188e-01,  9.6655e-03,  7.0024e-01],</span></a>
-<a class="sourceLine" id="cb45-33" data-line-number="33"><span class="co">#&gt;         [-1.3526e+00,  2.8296e+00,  3.1024e-01,  2.9006e-01, -7.4836e-01,</span></a>
-<a class="sourceLine" id="cb45-34" data-line-number="34"><span class="co">#&gt;          -4.8131e-01, -7.0151e-01, -5.7870e-02,  4.5300e-01, -2.6289e-01],</span></a>
-<a class="sourceLine" id="cb45-35" data-line-number="35"><span class="co">#&gt;         [-1.2368e+00, -1.2150e+00, -6.1017e-01,  2.2694e-01,  1.6019e+00,</span></a>
-<a class="sourceLine" id="cb45-36" data-line-number="36"><span class="co">#&gt;           2.5926e-01, -7.1956e-01,  8.5575e-01,  5.4205e-01,  1.0020e+00],</span></a>
-<a class="sourceLine" id="cb45-37" data-line-number="37"><span class="co">#&gt;         [-1.4102e+00, -4.3622e-01, -6.4964e-01, -1.1487e-01,  9.1455e-01,</span></a>
-<a class="sourceLine" id="cb45-38" data-line-number="38"><span class="co">#&gt;           4.0109e-01,  2.5326e-01, -2.5736e-01,  2.8184e-01,  1.4175e+00],</span></a>
-<a class="sourceLine" id="cb45-39" data-line-number="39"><span class="co">#&gt;         [ 2.8591e-01, -3.4560e-01,  9.4459e-01, -1.3974e+00,  7.8739e-01,</span></a>
-<a class="sourceLine" id="cb45-40" data-line-number="40"><span class="co">#&gt;           3.1287e-02,  9.3780e-01, -7.0649e-01,  7.1221e-02,  1.4969e-01],</span></a>
-<a class="sourceLine" id="cb45-41" data-line-number="41"><span class="co">#&gt;         [-5.1611e-01, -8.5796e-01, -1.1770e+00, -1.3857e+00,  1.2268e+00,</span></a>
-<a class="sourceLine" id="cb45-42" data-line-number="42"><span class="co">#&gt;          -1.0590e-01, -3.7885e-01,  1.6192e+00,  1.2152e-01,  1.8234e+00],</span></a>
-<a class="sourceLine" id="cb45-43" data-line-number="43"><span class="co">#&gt;         [ 3.1834e+00, -1.9912e+00,  3.7475e-01,  1.1071e+00, -7.4592e-01,</span></a>
-<a class="sourceLine" id="cb45-44" data-line-number="44"><span class="co">#&gt;           1.0562e+00, -6.4783e-01, -1.6176e+00,  6.3191e-01, -1.5042e+00],</span></a>
-<a class="sourceLine" id="cb45-45" data-line-number="45"><span class="co">#&gt;         [ 8.8038e-01, -4.3089e-01,  4.8066e-01, -1.0941e-01,  2.3459e-01,</span></a>
-<a class="sourceLine" id="cb45-46" data-line-number="46"><span class="co">#&gt;          -2.8147e-01,  5.2928e-01, -1.0754e+00,  3.7655e-01, -4.4909e-01],</span></a>
-<a class="sourceLine" id="cb45-47" data-line-number="47"><span class="co">#&gt;         [-8.8145e-01, -1.4647e+00, -7.7982e-01, -1.0249e+00,  1.3954e+00,</span></a>
-<a class="sourceLine" id="cb45-48" data-line-number="48"><span class="co">#&gt;          -2.4233e-01, -4.1022e-01,  1.1008e+00,  1.3388e-01,  2.1609e+00],</span></a>
-<a class="sourceLine" id="cb45-49" data-line-number="49"><span class="co">#&gt;         [ 2.9850e+00, -2.4678e+00, -1.8437e-01, -2.2317e-01, -4.7551e-01,</span></a>
-<a class="sourceLine" id="cb45-50" data-line-number="50"><span class="co">#&gt;           6.6340e-01, -1.7816e-01, -6.2228e-01,  6.5298e-01,  1.9696e-01],</span></a>
-<a class="sourceLine" id="cb45-51" data-line-number="51"><span class="co">#&gt;         [-1.2415e+00,  2.7402e+00,  4.9567e-02,  4.6552e-01, -1.0212e+00,</span></a>
-<a class="sourceLine" id="cb45-52" data-line-number="52"><span class="co">#&gt;          -1.1681e-01,  5.0137e-02, -1.1901e-01,  3.3510e-01, -1.9267e-01],</span></a>
-<a class="sourceLine" id="cb45-53" data-line-number="53"><span class="co">#&gt;         [ 3.2133e-01, -7.7409e-01, -6.9597e-02,  1.2055e+00, -4.0162e-01,</span></a>
-<a class="sourceLine" id="cb45-54" data-line-number="54"><span class="co">#&gt;           1.0509e+00, -1.3735e-01, -6.9008e-01,  4.9005e-01, -7.7614e-01],</span></a>
-<a class="sourceLine" id="cb45-55" data-line-number="55"><span class="co">#&gt;         [-3.1734e-01, -1.9034e+00, -1.1680e-01, -4.4281e-01,  1.6540e+00,</span></a>
-<a class="sourceLine" id="cb45-56" data-line-number="56"><span class="co">#&gt;          -5.0509e-01, -1.6634e-01,  1.0152e+00,  1.5881e-01,  1.6084e+00],</span></a>
-<a class="sourceLine" id="cb45-57" data-line-number="57"><span class="co">#&gt;         [ 3.6908e-01, -1.3326e+00, -6.1974e-01,  2.5531e-01, -2.3013e-01,</span></a>
-<a class="sourceLine" id="cb45-58" data-line-number="58"><span class="co">#&gt;          -3.4757e-01, -7.0229e-01,  2.7045e+00, -4.3539e-01,  3.7451e-01],</span></a>
-<a class="sourceLine" id="cb45-59" data-line-number="59"><span class="co">#&gt;         [-7.5579e-01, -4.0108e-01,  3.0235e-01,  1.2283e+00, -8.1799e-02,</span></a>
-<a class="sourceLine" id="cb45-60" data-line-number="60"><span class="co">#&gt;           6.0815e-01,  1.0275e+00, -7.3160e-01,  3.7790e-01, -1.4722e-01],</span></a>
-<a class="sourceLine" id="cb45-61" data-line-number="61"><span class="co">#&gt;         [-7.5082e-01, -1.4277e+00, -6.7376e-01, -2.2215e-01,  1.8320e+00,</span></a>
-<a class="sourceLine" id="cb45-62" data-line-number="62"><span class="co">#&gt;           1.2094e-01, -1.0486e-01, -7.4938e-02,  3.8882e-02,  1.4880e+00],</span></a>
-<a class="sourceLine" id="cb45-63" data-line-number="63"><span class="co">#&gt;         [-1.0483e+00, -1.8993e-01, -1.2514e+00, -7.7120e-02,  5.4053e-01,</span></a>
-<a class="sourceLine" id="cb45-64" data-line-number="64"><span class="co">#&gt;           2.0940e-01, -1.2245e+00,  1.5783e+00,  2.3280e-01,  1.5037e+00],</span></a>
-<a class="sourceLine" id="cb45-65" data-line-number="65"><span class="co">#&gt;         [-5.4733e-01, -1.5466e+00, -4.2079e-02,  2.7901e-01,  3.5101e-01,</span></a>
-<a class="sourceLine" id="cb45-66" data-line-number="66"><span class="co">#&gt;           6.6349e-01,  2.0660e+00, -1.4363e+00, -6.8990e-02,  2.0748e-01],</span></a>
-<a class="sourceLine" id="cb45-67" data-line-number="67"><span class="co">#&gt;         [-2.0770e-01,  3.4465e-01,  5.3427e-01, -6.2546e-01,  9.8893e-01,</span></a>
-<a class="sourceLine" id="cb45-68" data-line-number="68"><span class="co">#&gt;          -1.1583e+00,  1.1520e+00, -1.2595e-01, -2.1184e-01, -1.8304e-01],</span></a>
-<a class="sourceLine" id="cb45-69" data-line-number="69"><span class="co">#&gt;         [-1.0927e-01, -1.1463e+00, -5.7731e-01,  2.9949e-01, -2.2956e-01,</span></a>
-<a class="sourceLine" id="cb45-70" data-line-number="70"><span class="co">#&gt;           1.2436e+00,  3.3047e-01, -9.1784e-01,  6.5968e-01, -5.3406e-03],</span></a>
-<a class="sourceLine" id="cb45-71" data-line-number="71"><span class="co">#&gt;         [-7.5681e-01, -9.5528e-01, -1.0085e-01,  3.7432e-02,  1.5997e+00,</span></a>
-<a class="sourceLine" id="cb45-72" data-line-number="72"><span class="co">#&gt;          -2.8477e-01, -2.9462e-01,  3.6306e-01, -4.0096e-02,  1.0109e+00],</span></a>
-<a class="sourceLine" id="cb45-73" data-line-number="73"><span class="co">#&gt;         [ 4.3721e+00, -2.7655e+00,  5.0924e-01, -1.1195e+00, -9.5687e-02,</span></a>
-<a class="sourceLine" id="cb45-74" data-line-number="74"><span class="co">#&gt;           1.0600e+00,  1.1161e+00, -9.7061e-01, -2.4285e-01, -1.4307e+00],</span></a>
-<a class="sourceLine" id="cb45-75" data-line-number="75"><span class="co">#&gt;         [-1.3110e-01, -9.6166e-01, -4.0932e-01, -1.0752e-01,  3.5503e-01,</span></a>
-<a class="sourceLine" id="cb45-76" data-line-number="76"><span class="co">#&gt;           2.6107e-03, -5.0582e-01,  1.9289e+00, -3.9378e-01,  1.0486e+00],</span></a>
-<a class="sourceLine" id="cb45-77" data-line-number="77"><span class="co">#&gt;         [-2.4518e-01, -2.1977e+00, -4.0236e-01, -8.0260e-01,  2.3371e+00,</span></a>
-<a class="sourceLine" id="cb45-78" data-line-number="78"><span class="co">#&gt;           2.4725e-01,  1.2200e-01, -1.7377e-01,  1.5266e-01,  1.5114e+00],</span></a>
-<a class="sourceLine" id="cb45-79" data-line-number="79"><span class="co">#&gt;         [ 2.8403e+00, -2.3139e+00,  2.6926e-01,  1.1061e+00, -1.3941e+00,</span></a>
-<a class="sourceLine" id="cb45-80" data-line-number="80"><span class="co">#&gt;           6.0435e-01, -3.0187e-01, -7.4381e-01,  4.6763e-01, -6.7392e-01],</span></a>
-<a class="sourceLine" id="cb45-81" data-line-number="81"><span class="co">#&gt;         [-1.1058e+00,  1.4134e+00, -1.6276e-01,  2.4452e-01, -4.3981e-01,</span></a>
-<a class="sourceLine" id="cb45-82" data-line-number="82"><span class="co">#&gt;           3.2546e-01,  1.5745e-01, -1.1594e-01,  4.3375e-01, -1.1183e-01],</span></a>
-<a class="sourceLine" id="cb45-83" data-line-number="83"><span class="co">#&gt;         [-8.9967e-01, -1.1046e-01, -9.9293e-01,  2.3842e+00, -9.6822e-01,</span></a>
-<a class="sourceLine" id="cb45-84" data-line-number="84"><span class="co">#&gt;           9.5037e-01, -2.8400e-01,  3.6985e-01,  1.7853e-01, -8.7874e-03],</span></a>
-<a class="sourceLine" id="cb45-85" data-line-number="85"><span class="co">#&gt;         [-1.0252e+00,  1.0382e+00, -3.2248e-01,  2.4608e-01, -3.0981e-01,</span></a>
-<a class="sourceLine" id="cb45-86" data-line-number="86"><span class="co">#&gt;           2.7706e-02, -5.1039e-02,  1.2573e-01,  4.0617e-01,  1.9974e-01],</span></a>
-<a class="sourceLine" id="cb45-87" data-line-number="87"><span class="co">#&gt;         [-9.8412e-01, -8.4627e-01, -6.0717e-01,  2.4839e+00, -7.0552e-02,</span></a>
-<a class="sourceLine" id="cb45-88" data-line-number="88"><span class="co">#&gt;           1.4385e+00, -3.3149e-01, -1.0741e+00,  6.6066e-01,  1.2383e-01],</span></a>
-<a class="sourceLine" id="cb45-89" data-line-number="89"><span class="co">#&gt;         [ 1.7312e+00, -1.6220e+00,  6.0700e-01, -1.6464e+00,  8.8408e-01,</span></a>
-<a class="sourceLine" id="cb45-90" data-line-number="90"><span class="co">#&gt;           3.7629e-01,  1.3083e+00, -1.0989e+00, -1.5901e-01, -5.1733e-01],</span></a>
-<a class="sourceLine" id="cb45-91" data-line-number="91"><span class="co">#&gt;         [-9.1885e-01, -3.8850e-01,  7.5362e-01, -5.3876e-01, -8.8571e-02,</span></a>
-<a class="sourceLine" id="cb45-92" data-line-number="92"><span class="co">#&gt;          -5.5312e-01, -1.6935e+00,  1.6238e+00,  6.3134e-01,  4.4334e-01],</span></a>
-<a class="sourceLine" id="cb45-93" data-line-number="93"><span class="co">#&gt;         [ 3.3196e-01, -1.1364e+00,  2.3156e+00,  2.3193e-01, -8.0147e-01,</span></a>
-<a class="sourceLine" id="cb45-94" data-line-number="94"><span class="co">#&gt;           1.3216e-01,  4.2561e-01, -5.0070e-01,  8.4184e-02, -1.6885e+00],</span></a>
-<a class="sourceLine" id="cb45-95" data-line-number="95"><span class="co">#&gt;         [-5.4490e-01, -1.5857e+00,  1.1397e-01, -2.0057e-01, -1.0729e-01,</span></a>
-<a class="sourceLine" id="cb45-96" data-line-number="96"><span class="co">#&gt;          -3.4186e-01, -4.5036e-01,  2.4548e+00, -1.1428e-01,  1.0169e+00],</span></a>
-<a class="sourceLine" id="cb45-97" data-line-number="97"><span class="co">#&gt;         [-1.3445e+00,  2.1021e+00, -2.2613e-01,  6.3069e-02, -6.1169e-01,</span></a>
-<a class="sourceLine" id="cb45-98" data-line-number="98"><span class="co">#&gt;           1.6634e-01,  6.9985e-03,  7.7513e-02,  4.7204e-01,  7.9749e-02],</span></a>
-<a class="sourceLine" id="cb45-99" data-line-number="99"><span class="co">#&gt;         [ 2.5196e-01,  5.4717e-01,  5.4631e-01,  1.4078e+00, -1.7896e+00,</span></a>
-<a class="sourceLine" id="cb45-100" data-line-number="100"><span class="co">#&gt;           4.0932e-01,  4.9733e-01, -1.2193e+00,  6.1886e-01, -1.3686e+00],</span></a>
-<a class="sourceLine" id="cb45-101" data-line-number="101"><span class="co">#&gt;         [-1.4655e+00,  3.1848e+00, -1.5506e-01,  3.7181e-01, -1.2210e+00,</span></a>
-<a class="sourceLine" id="cb45-102" data-line-number="102"><span class="co">#&gt;           2.3792e-02, -2.6237e-03, -5.0493e-01,  7.6223e-01, -2.1556e-01],</span></a>
-<a class="sourceLine" id="cb45-103" data-line-number="103"><span class="co">#&gt;         [-6.6985e-01,  1.5829e+00,  5.5794e-03,  4.3167e-02, -4.0293e-01,</span></a>
-<a class="sourceLine" id="cb45-104" data-line-number="104"><span class="co">#&gt;           8.0938e-02,  8.1163e-02, -2.9776e-02,  1.8383e-01, -1.5426e-01],</span></a>
-<a class="sourceLine" id="cb45-105" data-line-number="105"><span class="co">#&gt;         [-8.5181e-01, -7.7342e-01, -1.8613e-02, -3.3399e-01,  1.2249e-01,</span></a>
-<a class="sourceLine" id="cb45-106" data-line-number="106"><span class="co">#&gt;          -2.3842e-01, -6.2623e-01,  2.1541e+00, -1.3902e-01,  1.2239e+00],</span></a>
-<a class="sourceLine" id="cb45-107" data-line-number="107"><span class="co">#&gt;         [-2.0524e+00, -3.6615e-01, -9.7818e-02, -3.3293e-01,  2.1975e+00,</span></a>
-<a class="sourceLine" id="cb45-108" data-line-number="108"><span class="co">#&gt;          -7.6240e-01, -9.1753e-01,  5.8334e-01,  5.2038e-01,  1.7268e+00],</span></a>
-<a class="sourceLine" id="cb45-109" data-line-number="109"><span class="co">#&gt;         [-5.9721e-01,  9.6509e-01,  1.1423e+00, -4.9205e-02, -1.5570e-02,</span></a>
-<a class="sourceLine" id="cb45-110" data-line-number="110"><span class="co">#&gt;          -3.6067e-01,  4.3810e-01, -1.0114e+00,  3.4598e-01, -5.0140e-01],</span></a>
-<a class="sourceLine" id="cb45-111" data-line-number="111"><span class="co">#&gt;         [-1.1279e+00,  2.9692e-02,  1.0094e-01,  1.3182e+00, -5.6403e-01,</span></a>
-<a class="sourceLine" id="cb45-112" data-line-number="112"><span class="co">#&gt;           6.5500e-01,  7.0419e-01, -5.1105e-02,  1.8996e-01, -1.1616e-01],</span></a>
-<a class="sourceLine" id="cb45-113" data-line-number="113"><span class="co">#&gt;         [ 1.6062e-01, -1.2525e+00, -4.9913e-01,  1.6137e+00, -6.1173e-01,</span></a>
-<a class="sourceLine" id="cb45-114" data-line-number="114"><span class="co">#&gt;           1.3420e+00, -4.0324e-02, -1.2884e+00,  9.3576e-01, -4.9265e-01],</span></a>
-<a class="sourceLine" id="cb45-115" data-line-number="115"><span class="co">#&gt;         [-1.5836e+00,  4.0928e-02,  8.8057e-02,  7.2991e-01, -1.0701e-01,</span></a>
-<a class="sourceLine" id="cb45-116" data-line-number="116"><span class="co">#&gt;           3.5185e-01,  1.9550e-01, -1.6967e-02,  5.7025e-01,  2.2388e-01],</span></a>
-<a class="sourceLine" id="cb45-117" data-line-number="117"><span class="co">#&gt;         [-8.1781e-01, -3.8255e-01,  1.4389e+00, -5.7459e-01,  3.6351e-01,</span></a>
-<a class="sourceLine" id="cb45-118" data-line-number="118"><span class="co">#&gt;          -7.6387e-01,  6.8898e-01, -4.3216e-01, -8.3241e-02, -2.0662e-02],</span></a>
-<a class="sourceLine" id="cb45-119" data-line-number="119"><span class="co">#&gt;         [-1.0573e+00, -2.7017e+00, -1.1184e+00, -7.5109e-02,  2.8799e+00,</span></a>
-<a class="sourceLine" id="cb45-120" data-line-number="120"><span class="co">#&gt;           2.3524e-01, -8.3074e-01,  2.1588e-01,  6.8950e-01,  2.2203e+00],</span></a>
-<a class="sourceLine" id="cb45-121" data-line-number="121"><span class="co">#&gt;         [-2.6669e-01, -1.8708e+00,  6.6186e-01, -6.8080e-01,  2.3890e+00,</span></a>
-<a class="sourceLine" id="cb45-122" data-line-number="122"><span class="co">#&gt;          -7.8077e-01,  1.8084e-01,  2.8102e-01, -1.4128e-01,  1.1832e+00],</span></a>
-<a class="sourceLine" id="cb45-123" data-line-number="123"><span class="co">#&gt;         [-2.1480e-01, -9.4890e-01,  7.2969e-02,  5.4861e-01, -2.5170e-01,</span></a>
-<a class="sourceLine" id="cb45-124" data-line-number="124"><span class="co">#&gt;           5.4916e-01,  2.1305e+00, -9.7558e-01, -1.3899e-01, -3.3761e-01],</span></a>
-<a class="sourceLine" id="cb45-125" data-line-number="125"><span class="co">#&gt;         [ 2.1244e-01, -6.7503e-01, -4.1011e-02,  2.0697e+00, -1.2655e-01,</span></a>
-<a class="sourceLine" id="cb45-126" data-line-number="126"><span class="co">#&gt;           6.1567e-01,  1.1112e-01, -5.7907e-01,  1.0370e-01,  1.3746e-01],</span></a>
-<a class="sourceLine" id="cb45-127" data-line-number="127"><span class="co">#&gt;         [ 6.3799e-01, -1.2418e+00, -1.5739e+00, -8.4543e-02,  8.1410e-01,</span></a>
-<a class="sourceLine" id="cb45-128" data-line-number="128"><span class="co">#&gt;           1.4051e+00, -6.3450e-02, -4.5284e-01, -1.5856e-01,  6.1351e-01],</span></a>
-<a class="sourceLine" id="cb45-129" data-line-number="129"><span class="co">#&gt;         [ 3.7856e-01, -7.2779e-01, -1.7131e-01,  1.0712e+00,  1.7556e-01,</span></a>
-<a class="sourceLine" id="cb45-130" data-line-number="130"><span class="co">#&gt;           8.3871e-01, -1.4697e-01, -7.5005e-01,  3.2681e-01, -1.8192e-01],</span></a>
-<a class="sourceLine" id="cb45-131" data-line-number="131"><span class="co">#&gt;         [ 2.3140e-01, -5.6645e-01,  1.6019e+00, -4.2772e-01,  8.5043e-01,</span></a>
-<a class="sourceLine" id="cb45-132" data-line-number="132"><span class="co">#&gt;          -7.6953e-01,  7.9653e-01, -2.3941e-01,  3.9811e-01, -2.5461e-01],</span></a>
-<a class="sourceLine" id="cb45-133" data-line-number="133"><span class="co">#&gt;         [ 1.3155e+00, -2.1840e+00, -4.1911e-01,  4.2374e-01, -8.2222e-01,</span></a>
-<a class="sourceLine" id="cb45-134" data-line-number="134"><span class="co">#&gt;           9.2117e-01,  4.2968e-01, -8.3852e-01,  1.1757e+00, -2.0456e-01],</span></a>
-<a class="sourceLine" id="cb45-135" data-line-number="135"><span class="co">#&gt;         [-1.7210e-02, -2.6539e+00, -1.0081e-02, -5.6146e-01,  2.9132e+00,</span></a>
-<a class="sourceLine" id="cb45-136" data-line-number="136"><span class="co">#&gt;          -1.0540e-01,  2.7179e-01, -3.4898e-01,  1.3059e-01,  1.0864e+00],</span></a>
-<a class="sourceLine" id="cb45-137" data-line-number="137"><span class="co">#&gt;         [-9.8057e-01,  2.5094e+00,  1.1020e-01,  3.3461e-01, -8.5337e-01,</span></a>
-<a class="sourceLine" id="cb45-138" data-line-number="138"><span class="co">#&gt;          -2.9595e-01, -4.8602e-01, -1.3127e-01,  3.0056e-01, -2.8605e-01],</span></a>
-<a class="sourceLine" id="cb45-139" data-line-number="139"><span class="co">#&gt;         [-7.0357e-02, -1.7221e+00, -1.0027e+00, -9.0394e-01,  1.7845e+00,</span></a>
-<a class="sourceLine" id="cb45-140" data-line-number="140"><span class="co">#&gt;          -3.4258e-01, -1.1481e-02,  1.1190e+00, -1.5565e-01,  2.1864e+00],</span></a>
-<a class="sourceLine" id="cb45-141" data-line-number="141"><span class="co">#&gt;         [-5.1729e-03,  3.7680e-01, -5.8992e-01, -5.4730e-01,  1.2886e-01,</span></a>
-<a class="sourceLine" id="cb45-142" data-line-number="142"><span class="co">#&gt;           2.9942e-01, -1.5657e-01,  2.5368e-01,  1.1530e-01, -2.9112e-01],</span></a>
-<a class="sourceLine" id="cb45-143" data-line-number="143"><span class="co">#&gt;         [-2.3338e-01, -1.3862e+00, -5.3944e-01,  4.7124e-01,  2.8229e-01,</span></a>
-<a class="sourceLine" id="cb45-144" data-line-number="144"><span class="co">#&gt;          -8.4157e-02, -3.1672e-01,  2.3169e+00, -2.8050e-01,  5.0440e-01],</span></a>
-<a class="sourceLine" id="cb45-145" data-line-number="145"><span class="co">#&gt;         [ 5.5682e-02, -9.5129e-01,  1.1545e+00, -1.7227e+00, -7.5766e-02,</span></a>
-<a class="sourceLine" id="cb45-146" data-line-number="146"><span class="co">#&gt;           1.2949e-01,  4.4355e-01, -7.3513e-01,  1.2904e+00,  2.0312e-01],</span></a>
-<a class="sourceLine" id="cb45-147" data-line-number="147"><span class="co">#&gt;         [-9.3241e-01, -9.7587e-01, -2.5480e-01, -1.7386e-01,  7.1081e-01,</span></a>
-<a class="sourceLine" id="cb45-148" data-line-number="148"><span class="co">#&gt;           1.3843e-01,  3.2702e-03,  1.9084e-03,  5.3868e-01,  9.3341e-01],</span></a>
-<a class="sourceLine" id="cb45-149" data-line-number="149"><span class="co">#&gt;         [-8.7538e-01, -2.5229e-01,  1.2369e+00,  6.8716e-01, -3.3659e-01,</span></a>
-<a class="sourceLine" id="cb45-150" data-line-number="150"><span class="co">#&gt;          -8.9092e-02, -3.5720e-01, -4.3552e-01,  5.7238e-01,  1.6721e-01],</span></a>
-<a class="sourceLine" id="cb45-151" data-line-number="151"><span class="co">#&gt;         [-9.8094e-01, -8.4412e-01,  1.3047e-01, -8.2755e-01,  9.3575e-01,</span></a>
-<a class="sourceLine" id="cb45-152" data-line-number="152"><span class="co">#&gt;          -4.5999e-01, -7.1312e-01,  1.5034e+00,  1.7122e-01,  7.9973e-01],</span></a>
-<a class="sourceLine" id="cb45-153" data-line-number="153"><span class="co">#&gt;         [-1.2600e+00, -5.6682e-01, -7.3048e-01,  4.1072e-01,  5.1541e-01,</span></a>
-<a class="sourceLine" id="cb45-154" data-line-number="154"><span class="co">#&gt;           2.6841e-01, -8.0669e-03, -2.0659e-01,  7.5984e-01,  7.1995e-01],</span></a>
-<a class="sourceLine" id="cb45-155" data-line-number="155"><span class="co">#&gt;         [ 5.5572e-01, -2.5432e-01,  9.1548e-01, -1.8160e-01,  3.1467e-01,</span></a>
-<a class="sourceLine" id="cb45-156" data-line-number="156"><span class="co">#&gt;          -9.0932e-01,  6.3884e-01,  9.1451e-02, -1.9492e-01, -6.0018e-01],</span></a>
-<a class="sourceLine" id="cb45-157" data-line-number="157"><span class="co">#&gt;         [-5.5470e-01, -1.4207e+00,  3.4236e-01, -1.0832e+00,  2.3067e+00,</span></a>
-<a class="sourceLine" id="cb45-158" data-line-number="158"><span class="co">#&gt;          -7.7195e-01, -1.1985e-01,  6.3048e-01,  2.3383e-01,  8.9332e-01],</span></a>
-<a class="sourceLine" id="cb45-159" data-line-number="159"><span class="co">#&gt;         [-1.3735e+00, -4.6738e-01, -6.0161e-02,  2.8376e+00, -4.4597e-01,</span></a>
-<a class="sourceLine" id="cb45-160" data-line-number="160"><span class="co">#&gt;           8.7465e-01, -7.9342e-01, -9.2627e-01,  1.1541e+00,  1.1207e-01],</span></a>
-<a class="sourceLine" id="cb45-161" data-line-number="161"><span class="co">#&gt;         [ 2.8387e+00, -1.4026e+00,  7.3116e-01, -4.5720e-01, -1.1303e+00,</span></a>
-<a class="sourceLine" id="cb45-162" data-line-number="162"><span class="co">#&gt;           7.5949e-01,  4.5594e-01, -4.7585e-02, -3.2538e-04, -3.3002e-01],</span></a>
-<a class="sourceLine" id="cb45-163" data-line-number="163"><span class="co">#&gt;         [ 5.5668e-01, -1.1238e+00, -9.1198e-01, -1.2546e-01, -2.4127e-01,</span></a>
-<a class="sourceLine" id="cb45-164" data-line-number="164"><span class="co">#&gt;          -3.6377e-01, -5.7986e-01,  2.9072e+00, -3.0887e-01,  3.8172e-01],</span></a>
-<a class="sourceLine" id="cb45-165" data-line-number="165"><span class="co">#&gt;         [ 4.5877e+00, -2.8865e+00,  8.8817e-01,  3.1386e-01, -1.0231e+00,</span></a>
-<a class="sourceLine" id="cb45-166" data-line-number="166"><span class="co">#&gt;           9.8905e-01,  1.1282e-01, -1.7017e+00,  4.6117e-01, -1.3122e+00],</span></a>
-<a class="sourceLine" id="cb45-167" data-line-number="167"><span class="co">#&gt;         [ 1.5182e+00, -1.4177e+00,  1.7770e+00,  1.1809e+00, -1.3613e+00,</span></a>
-<a class="sourceLine" id="cb45-168" data-line-number="168"><span class="co">#&gt;           2.3232e-02,  4.2016e-01, -7.1729e-01,  7.8264e-02, -1.9168e+00],</span></a>
-<a class="sourceLine" id="cb45-169" data-line-number="169"><span class="co">#&gt;         [-1.4455e+00,  8.3384e-01,  1.6910e-01, -2.3545e-01, -8.4773e-01,</span></a>
-<a class="sourceLine" id="cb45-170" data-line-number="170"><span class="co">#&gt;          -2.9165e-01, -9.4894e-01,  7.0316e-01,  1.2574e+00,  5.1472e-01],</span></a>
-<a class="sourceLine" id="cb45-171" data-line-number="171"><span class="co">#&gt;         [-1.2898e+00,  2.2663e+00, -2.3340e-01,  7.4958e-02, -8.2285e-01,</span></a>
-<a class="sourceLine" id="cb45-172" data-line-number="172"><span class="co">#&gt;           2.8143e-01,  3.7870e-02,  4.0381e-03,  6.2006e-01, -1.4765e-01],</span></a>
-<a class="sourceLine" id="cb45-173" data-line-number="173"><span class="co">#&gt;         [-1.7207e+00,  5.3628e-01, -2.3137e-01, -5.9206e-01,  7.4948e-01,</span></a>
-<a class="sourceLine" id="cb45-174" data-line-number="174"><span class="co">#&gt;          -5.6493e-01, -6.9646e-01,  1.9346e+00,  8.0627e-02,  9.3887e-01],</span></a>
-<a class="sourceLine" id="cb45-175" data-line-number="175"><span class="co">#&gt;         [-3.2347e-01,  3.0169e-01, -5.2680e-01,  2.3395e+00, -8.5364e-01,</span></a>
-<a class="sourceLine" id="cb45-176" data-line-number="176"><span class="co">#&gt;           9.9568e-01, -4.4383e-01, -1.0329e+00,  5.1928e-01, -7.6330e-01],</span></a>
-<a class="sourceLine" id="cb45-177" data-line-number="177"><span class="co">#&gt;         [-8.6903e-01, -2.6417e-01,  6.7670e-01, -7.4696e-01, -2.3992e-01,</span></a>
-<a class="sourceLine" id="cb45-178" data-line-number="178"><span class="co">#&gt;          -4.5559e-01,  8.3877e-02,  1.5333e+00, -2.4239e-01,  6.6928e-01],</span></a>
-<a class="sourceLine" id="cb45-179" data-line-number="179"><span class="co">#&gt;         [-1.8118e+00,  9.5620e-01, -5.9575e-01,  7.6622e-02, -2.0921e-01,</span></a>
-<a class="sourceLine" id="cb45-180" data-line-number="180"><span class="co">#&gt;           2.2335e-01, -5.8401e-01,  3.9350e-01,  8.0103e-01,  7.0133e-01],</span></a>
-<a class="sourceLine" id="cb45-181" data-line-number="181"><span class="co">#&gt;         [-5.3578e-01, -5.0726e-01, -7.1554e-01, -1.4070e+00, -1.1618e-01,</span></a>
-<a class="sourceLine" id="cb45-182" data-line-number="182"><span class="co">#&gt;          -2.0605e-01, -1.1890e+00,  3.2062e+00,  3.3332e-01,  8.7602e-01],</span></a>
-<a class="sourceLine" id="cb45-183" data-line-number="183"><span class="co">#&gt;         [-5.6124e-01, -1.4839e+00, -1.2023e+00, -1.5434e-01,  1.0501e+00,</span></a>
-<a class="sourceLine" id="cb45-184" data-line-number="184"><span class="co">#&gt;           3.9861e-01, -3.7033e-01,  1.5068e+00, -3.2418e-01,  1.6879e+00],</span></a>
-<a class="sourceLine" id="cb45-185" data-line-number="185"><span class="co">#&gt;         [-1.1308e-01, -1.8000e+00,  5.6397e-01, -4.4684e-01,  9.8292e-02,</span></a>
-<a class="sourceLine" id="cb45-186" data-line-number="186"><span class="co">#&gt;           2.5393e-01,  2.4103e+00, -4.4372e-01, -5.0054e-01,  2.8227e-01],</span></a>
-<a class="sourceLine" id="cb45-187" data-line-number="187"><span class="co">#&gt;         [-6.5848e-01, -1.1948e+00,  3.9566e+00, -1.1577e-01, -1.9759e-01,</span></a>
-<a class="sourceLine" id="cb45-188" data-line-number="188"><span class="co">#&gt;          -1.0423e+00,  8.7469e-01, -9.3740e-01,  4.1329e-01, -1.3062e+00],</span></a>
-<a class="sourceLine" id="cb45-189" data-line-number="189"><span class="co">#&gt;         [-4.7659e-01, -1.5280e+00, -8.4819e-01, -1.5351e-01,  1.0116e+00,</span></a>
-<a class="sourceLine" id="cb45-190" data-line-number="190"><span class="co">#&gt;          -2.3226e-02, -9.1367e-01,  2.3735e+00, -7.0303e-02,  1.4353e+00],</span></a>
-<a class="sourceLine" id="cb45-191" data-line-number="191"><span class="co">#&gt;         [-9.7556e-01, -4.6167e-02, -1.7708e-01, -4.4590e-01,  7.7978e-01,</span></a>
-<a class="sourceLine" id="cb45-192" data-line-number="192"><span class="co">#&gt;           6.8395e-01, -5.7767e-01, -6.6005e-01,  1.1749e+00,  6.1810e-01],</span></a>
-<a class="sourceLine" id="cb45-193" data-line-number="193"><span class="co">#&gt;         [-8.7062e-01, -2.2571e+00, -7.9822e-01,  1.1733e-01,  3.0949e+00,</span></a>
-<a class="sourceLine" id="cb45-194" data-line-number="194"><span class="co">#&gt;           1.9942e-01, -2.6478e-01, -5.2972e-01,  5.7967e-01,  1.6447e+00],</span></a>
-<a class="sourceLine" id="cb45-195" data-line-number="195"><span class="co">#&gt;         [-1.8301e+00,  6.0180e-01, -1.6205e-01, -7.8192e-01, -8.0825e-02,</span></a>
-<a class="sourceLine" id="cb45-196" data-line-number="196"><span class="co">#&gt;          -6.7596e-01, -1.1745e+00,  2.8907e+00,  3.7246e-01,  9.7364e-01],</span></a>
-<a class="sourceLine" id="cb45-197" data-line-number="197"><span class="co">#&gt;         [-1.2712e-01, -1.3581e+00, -8.9089e-01,  1.8846e+00, -1.6958e-01,</span></a>
-<a class="sourceLine" id="cb45-198" data-line-number="198"><span class="co">#&gt;           1.3250e+00,  7.4889e-01, -3.8056e-01,  5.0308e-02, -1.4124e-02],</span></a>
-<a class="sourceLine" id="cb45-199" data-line-number="199"><span class="co">#&gt;         [-3.3799e-01, -2.0311e+00,  4.9939e-01, -1.1710e+00,  1.1791e+00,</span></a>
-<a class="sourceLine" id="cb45-200" data-line-number="200"><span class="co">#&gt;          -6.4472e-01,  2.5305e+00, -1.9118e-01, -5.7729e-01,  4.1430e-01],</span></a>
-<a class="sourceLine" id="cb45-201" data-line-number="201"><span class="co">#&gt;         [-1.6162e+00,  3.0353e+00,  5.6028e-01,  1.5899e-01, -6.2475e-01,</span></a>
-<a class="sourceLine" id="cb45-202" data-line-number="202"><span class="co">#&gt;          -4.1455e-01, -2.0429e-01, -3.8781e-01,  5.7995e-01, -4.4323e-01],</span></a>
-<a class="sourceLine" id="cb45-203" data-line-number="203"><span class="co">#&gt;         [ 1.3702e-01, -6.9119e-01,  2.7989e-02,  2.7905e+00, -1.3160e+00,</span></a>
-<a class="sourceLine" id="cb45-204" data-line-number="204"><span class="co">#&gt;           8.4192e-01, -1.3525e+00, -4.3798e-01,  7.5612e-01, -6.3657e-01],</span></a>
-<a class="sourceLine" id="cb45-205" data-line-number="205"><span class="co">#&gt;         [-9.2037e-01, -4.9822e-01,  2.4099e-01, -8.4557e-01,  2.9517e-01,</span></a>
-<a class="sourceLine" id="cb45-206" data-line-number="206"><span class="co">#&gt;           3.2908e-02,  2.6889e+00, -1.1956e+00,  4.8181e-02,  9.6156e-02],</span></a>
-<a class="sourceLine" id="cb45-207" data-line-number="207"><span class="co">#&gt;         [-1.0288e+00,  6.1449e-02,  8.2936e-02, -6.8804e-01,  4.0239e-01,</span></a>
-<a class="sourceLine" id="cb45-208" data-line-number="208"><span class="co">#&gt;          -1.0268e-01, -3.8046e-01, -2.7614e-01,  7.0359e-01,  4.1305e-01],</span></a>
-<a class="sourceLine" id="cb45-209" data-line-number="209"><span class="co">#&gt;         [-9.1463e-01, -4.6202e-01, -7.4166e-01,  2.6206e+00, -1.4443e+00,</span></a>
-<a class="sourceLine" id="cb45-210" data-line-number="210"><span class="co">#&gt;           1.1016e+00, -9.9052e-01,  5.2807e-01,  7.0911e-01, -4.4538e-02],</span></a>
-<a class="sourceLine" id="cb45-211" data-line-number="211"><span class="co">#&gt;         [-1.9004e+00,  1.7063e+00,  4.5598e-02, -3.6437e-02, -4.8096e-01,</span></a>
-<a class="sourceLine" id="cb45-212" data-line-number="212"><span class="co">#&gt;           2.8219e-01,  3.8821e-01, -1.7532e-01,  1.0511e+00,  6.8568e-02],</span></a>
-<a class="sourceLine" id="cb45-213" data-line-number="213"><span class="co">#&gt;         [-6.1618e-01, -3.3871e-01, -2.3149e-01, -1.3639e+00,  2.4518e+00,</span></a>
-<a class="sourceLine" id="cb45-214" data-line-number="214"><span class="co">#&gt;          -5.8775e-01,  3.9136e-01,  1.9443e-02, -1.6647e-03,  1.4578e+00],</span></a>
-<a class="sourceLine" id="cb45-215" data-line-number="215"><span class="co">#&gt;         [-1.0246e+00,  3.4916e-01, -3.8437e-01,  3.3761e-01, -4.2542e-02,</span></a>
-<a class="sourceLine" id="cb45-216" data-line-number="216"><span class="co">#&gt;           3.0793e-01,  2.3650e-02,  1.2414e-01,  6.0167e-01,  2.6365e-01],</span></a>
-<a class="sourceLine" id="cb45-217" data-line-number="217"><span class="co">#&gt;         [-1.9321e+00,  1.5037e+00, -5.5137e-01,  3.4913e-01, -1.4774e-02,</span></a>
-<a class="sourceLine" id="cb45-218" data-line-number="218"><span class="co">#&gt;          -1.4295e-01, -6.4084e-02,  8.7607e-01,  1.9259e-01,  5.3951e-01],</span></a>
-<a class="sourceLine" id="cb45-219" data-line-number="219"><span class="co">#&gt;         [ 1.0418e+00, -1.1661e+00,  7.3804e-01, -7.0273e-01, -1.6313e-01,</span></a>
-<a class="sourceLine" id="cb45-220" data-line-number="220"><span class="co">#&gt;           6.8867e-01,  1.7735e+00, -1.2363e+00, -2.6549e-01, -6.3869e-01],</span></a>
-<a class="sourceLine" id="cb45-221" data-line-number="221"><span class="co">#&gt;         [-1.1630e+00, -1.3540e+00,  2.8724e-01, -4.4669e-01,  1.8120e+00,</span></a>
-<a class="sourceLine" id="cb45-222" data-line-number="222"><span class="co">#&gt;          -7.9498e-01, -4.2053e-01,  1.0101e+00,  2.8994e-01,  2.2748e+00]],</span></a>
+<a class="sourceLine" id="cb45-23" data-line-number="23"><span class="co">#&gt; tensor([[-3.4564e-01, -1.1338e+00, -6.0006e-01, -2.5275e-02, -1.4853e-02,</span></a>
+<a class="sourceLine" id="cb45-24" data-line-number="24"><span class="co">#&gt;          -3.3151e-01, -1.1867e+00,  2.8442e+00, -1.0472e-01,  8.8659e-01],</span></a>
+<a class="sourceLine" id="cb45-25" data-line-number="25"><span class="co">#&gt;         [ 3.5293e-01, -4.5890e-02,  1.4756e+00,  9.8685e-01, -1.9499e+00,</span></a>
+<a class="sourceLine" id="cb45-26" data-line-number="26"><span class="co">#&gt;           6.2585e-01,  1.2490e+00, -2.1181e+00,  4.4414e-01, -1.6655e+00],</span></a>
+<a class="sourceLine" id="cb45-27" data-line-number="27"><span class="co">#&gt;         [-8.4013e-01,  2.3500e+00,  1.9918e-01,  8.8181e-02, -4.4141e-01,</span></a>
+<a class="sourceLine" id="cb45-28" data-line-number="28"><span class="co">#&gt;          -3.0882e-01, -1.5853e-01, -2.0936e-01,  1.4088e-01, -4.8771e-01],</span></a>
+<a class="sourceLine" id="cb45-29" data-line-number="29"><span class="co">#&gt;         [ 2.7975e+00, -2.5580e+00, -1.5869e-01, -2.1608e-01, -9.6239e-01,</span></a>
+<a class="sourceLine" id="cb45-30" data-line-number="30"><span class="co">#&gt;           7.7862e-01,  1.2519e+00,  1.8450e-01, -5.2105e-01, -1.7821e-01],</span></a>
+<a class="sourceLine" id="cb45-31" data-line-number="31"><span class="co">#&gt;         [-1.4184e-01, -2.0367e+00,  4.0580e-01, -5.0936e-01,  1.6271e+00,</span></a>
+<a class="sourceLine" id="cb45-32" data-line-number="32"><span class="co">#&gt;          -4.7728e-01,  1.6816e-03,  2.3693e-01,  3.3733e-02,  8.1843e-01],</span></a>
+<a class="sourceLine" id="cb45-33" data-line-number="33"><span class="co">#&gt;         [-1.3058e+00,  2.8085e+00,  9.4739e-02,  1.4033e-01, -4.6524e-01,</span></a>
+<a class="sourceLine" id="cb45-34" data-line-number="34"><span class="co">#&gt;          -3.7854e-01, -6.8885e-01, -9.9558e-02,  3.5212e-01, -3.9642e-01],</span></a>
+<a class="sourceLine" id="cb45-35" data-line-number="35"><span class="co">#&gt;         [-1.1631e+00, -1.3389e+00, -8.6857e-01,  1.6165e-01,  1.2900e+00,</span></a>
+<a class="sourceLine" id="cb45-36" data-line-number="36"><span class="co">#&gt;           4.5810e-02, -7.9668e-01,  4.7238e-01,  4.3097e-01,  8.3733e-01],</span></a>
+<a class="sourceLine" id="cb45-37" data-line-number="37"><span class="co">#&gt;         [-1.3460e+00, -3.2760e-01, -5.2732e-01, -3.5533e-02,  7.8892e-01,</span></a>
+<a class="sourceLine" id="cb45-38" data-line-number="38"><span class="co">#&gt;           2.8155e-01,  1.7967e-01,  2.7626e-02, -8.9529e-02,  1.2822e+00],</span></a>
+<a class="sourceLine" id="cb45-39" data-line-number="39"><span class="co">#&gt;         [ 4.1083e-01, -3.7315e-01,  7.4299e-01, -1.2699e+00,  6.3834e-01,</span></a>
+<a class="sourceLine" id="cb45-40" data-line-number="40"><span class="co">#&gt;           1.5430e-01,  7.2954e-01, -1.0911e+00,  1.3444e-01, -1.8111e-01],</span></a>
+<a class="sourceLine" id="cb45-41" data-line-number="41"><span class="co">#&gt;         [-6.2765e-01, -7.6508e-01, -1.0431e+00, -1.2190e+00,  1.2631e+00,</span></a>
+<a class="sourceLine" id="cb45-42" data-line-number="42"><span class="co">#&gt;          -1.7704e-01, -5.3163e-01,  1.7202e+00,  3.3362e-02,  1.8139e+00],</span></a>
+<a class="sourceLine" id="cb45-43" data-line-number="43"><span class="co">#&gt;         [ 3.3998e+00, -1.9856e+00,  3.4907e-01,  9.7559e-01, -8.3843e-01,</span></a>
+<a class="sourceLine" id="cb45-44" data-line-number="44"><span class="co">#&gt;           8.9590e-01, -6.0659e-01, -1.6241e+00,  5.5209e-01, -1.8356e+00],</span></a>
+<a class="sourceLine" id="cb45-45" data-line-number="45"><span class="co">#&gt;         [ 7.5068e-01, -6.2523e-01,  3.2750e-01, -9.7976e-02,  6.6215e-02,</span></a>
+<a class="sourceLine" id="cb45-46" data-line-number="46"><span class="co">#&gt;          -4.8735e-01,  6.1056e-01, -1.2832e+00,  2.4298e-01, -5.8321e-01],</span></a>
+<a class="sourceLine" id="cb45-47" data-line-number="47"><span class="co">#&gt;         [-8.3449e-01, -1.4498e+00, -8.3416e-01, -9.8658e-01,  1.4281e+00,</span></a>
+<a class="sourceLine" id="cb45-48" data-line-number="48"><span class="co">#&gt;          -5.7043e-02, -2.0422e-01,  9.8864e-01,  2.1449e-01,  2.2930e+00],</span></a>
+<a class="sourceLine" id="cb45-49" data-line-number="49"><span class="co">#&gt;         [ 2.9179e+00, -2.3663e+00, -2.6902e-01, -4.0659e-01, -4.0510e-01,</span></a>
+<a class="sourceLine" id="cb45-50" data-line-number="50"><span class="co">#&gt;           9.0175e-01, -3.8771e-01, -6.9812e-01,  5.5749e-01,  3.1349e-01],</span></a>
+<a class="sourceLine" id="cb45-51" data-line-number="51"><span class="co">#&gt;         [-1.2484e+00,  2.5977e+00, -1.2415e-01,  5.4644e-01, -9.5376e-01,</span></a>
+<a class="sourceLine" id="cb45-52" data-line-number="52"><span class="co">#&gt;          -1.7998e-01, -2.3899e-02, -3.0995e-01,  2.9802e-01, -3.5692e-01],</span></a>
+<a class="sourceLine" id="cb45-53" data-line-number="53"><span class="co">#&gt;         [ 3.7665e-01, -7.6371e-01, -1.4747e-01,  1.5318e+00, -5.2400e-01,</span></a>
+<a class="sourceLine" id="cb45-54" data-line-number="54"><span class="co">#&gt;           6.3339e-01, -3.8516e-01, -5.0900e-01,  3.9709e-01, -5.4781e-01],</span></a>
+<a class="sourceLine" id="cb45-55" data-line-number="55"><span class="co">#&gt;         [-4.8063e-01, -1.9716e+00, -3.6043e-02, -5.6480e-01,  1.2700e+00,</span></a>
+<a class="sourceLine" id="cb45-56" data-line-number="56"><span class="co">#&gt;          -6.4104e-01, -2.9336e-01,  7.7066e-01,  1.5368e-01,  1.8586e+00],</span></a>
+<a class="sourceLine" id="cb45-57" data-line-number="57"><span class="co">#&gt;         [ 3.4425e-02, -1.5360e+00, -8.1319e-01,  5.5049e-01, -3.1270e-01,</span></a>
+<a class="sourceLine" id="cb45-58" data-line-number="58"><span class="co">#&gt;          -3.1395e-01, -8.4846e-01,  2.5693e+00, -3.8503e-01,  5.3861e-01],</span></a>
+<a class="sourceLine" id="cb45-59" data-line-number="59"><span class="co">#&gt;         [-8.7019e-01, -2.1584e-01, -8.1031e-02,  9.6291e-01, -6.8066e-01,</span></a>
+<a class="sourceLine" id="cb45-60" data-line-number="60"><span class="co">#&gt;           1.4504e-01,  7.7224e-01, -4.9435e-01,  1.8610e-01, -1.9395e-01],</span></a>
+<a class="sourceLine" id="cb45-61" data-line-number="61"><span class="co">#&gt;         [-1.0397e+00, -1.4268e+00, -5.3041e-01, -2.1455e-01,  1.8663e+00,</span></a>
+<a class="sourceLine" id="cb45-62" data-line-number="62"><span class="co">#&gt;          -2.3999e-03, -1.5312e-01,  6.0587e-02, -1.3017e-01,  1.2754e+00],</span></a>
+<a class="sourceLine" id="cb45-63" data-line-number="63"><span class="co">#&gt;         [-9.7659e-01, -3.3179e-01, -1.2522e+00,  4.0296e-02,  5.3771e-01,</span></a>
+<a class="sourceLine" id="cb45-64" data-line-number="64"><span class="co">#&gt;           2.7951e-01, -1.3215e+00,  1.6229e+00,  2.5743e-01,  1.5247e+00],</span></a>
+<a class="sourceLine" id="cb45-65" data-line-number="65"><span class="co">#&gt;         [-7.4157e-01, -1.6358e+00, -1.2797e-01, -9.6821e-03,  3.0762e-01,</span></a>
+<a class="sourceLine" id="cb45-66" data-line-number="66"><span class="co">#&gt;           3.0982e-01,  1.9919e+00, -1.4911e+00,  2.2351e-01, -1.8131e-01],</span></a>
+<a class="sourceLine" id="cb45-67" data-line-number="67"><span class="co">#&gt;         [-5.5107e-01,  9.2378e-02,  3.8456e-01, -8.4591e-01,  9.2701e-01,</span></a>
+<a class="sourceLine" id="cb45-68" data-line-number="68"><span class="co">#&gt;          -1.3538e+00,  9.9248e-01, -1.5643e-01,  3.3792e-02, -5.3331e-02],</span></a>
+<a class="sourceLine" id="cb45-69" data-line-number="69"><span class="co">#&gt;         [-1.5353e-02, -9.0952e-01, -5.8750e-01,  2.1999e-01, -3.0358e-02,</span></a>
+<a class="sourceLine" id="cb45-70" data-line-number="70"><span class="co">#&gt;           1.2112e+00,  5.3638e-01, -7.0473e-01,  8.2842e-01, -9.2016e-02],</span></a>
+<a class="sourceLine" id="cb45-71" data-line-number="71"><span class="co">#&gt;         [-7.9446e-01, -1.1870e+00, -4.6613e-02,  2.7338e-02,  1.3841e+00,</span></a>
+<a class="sourceLine" id="cb45-72" data-line-number="72"><span class="co">#&gt;          -2.1337e-01, -2.2437e-01,  2.7189e-01, -1.8418e-01,  9.6575e-01],</span></a>
+<a class="sourceLine" id="cb45-73" data-line-number="73"><span class="co">#&gt;         [ 4.3527e+00, -2.9079e+00,  5.5776e-01, -1.3545e+00, -3.0697e-01,</span></a>
+<a class="sourceLine" id="cb45-74" data-line-number="74"><span class="co">#&gt;           9.4055e-01,  8.2782e-01, -1.0096e+00, -1.6788e-01, -1.4654e+00],</span></a>
+<a class="sourceLine" id="cb45-75" data-line-number="75"><span class="co">#&gt;         [-2.9389e-01, -1.2314e+00, -5.1718e-01,  9.1438e-02,  3.6233e-01,</span></a>
+<a class="sourceLine" id="cb45-76" data-line-number="76"><span class="co">#&gt;          -2.5849e-01, -7.0578e-01,  1.8693e+00, -3.6611e-01,  1.1335e+00],</span></a>
+<a class="sourceLine" id="cb45-77" data-line-number="77"><span class="co">#&gt;         [-5.2664e-01, -2.2328e+00, -3.5500e-01, -8.1280e-01,  2.1703e+00,</span></a>
+<a class="sourceLine" id="cb45-78" data-line-number="78"><span class="co">#&gt;          -1.3318e-01,  1.6017e-01, -1.6041e-01, -2.5300e-02,  1.3998e+00],</span></a>
+<a class="sourceLine" id="cb45-79" data-line-number="79"><span class="co">#&gt;         [ 2.6414e+00, -2.3608e+00,  1.7482e-01,  8.9205e-01, -1.1931e+00,</span></a>
+<a class="sourceLine" id="cb45-80" data-line-number="80"><span class="co">#&gt;           8.4127e-01, -2.3751e-01, -8.4435e-01,  6.2538e-01, -7.0155e-01],</span></a>
+<a class="sourceLine" id="cb45-81" data-line-number="81"><span class="co">#&gt;         [-1.0687e+00,  1.3316e+00, -3.3817e-01,  1.4141e-01, -4.6058e-01,</span></a>
+<a class="sourceLine" id="cb45-82" data-line-number="82"><span class="co">#&gt;           1.7700e-01,  3.3515e-02, -2.9162e-01,  4.3766e-01, -3.5233e-01],</span></a>
+<a class="sourceLine" id="cb45-83" data-line-number="83"><span class="co">#&gt;         [-8.8157e-01, -1.3030e-01, -1.0126e+00,  2.3277e+00, -1.1148e+00,</span></a>
+<a class="sourceLine" id="cb45-84" data-line-number="84"><span class="co">#&gt;           9.5477e-01, -2.8673e-01,  4.9695e-01,  1.7349e-01, -3.6863e-02],</span></a>
+<a class="sourceLine" id="cb45-85" data-line-number="85"><span class="co">#&gt;         [-9.6790e-01,  1.1640e+00, -4.2848e-01,  3.2053e-01, -2.2841e-01,</span></a>
+<a class="sourceLine" id="cb45-86" data-line-number="86"><span class="co">#&gt;           1.9960e-02, -2.3662e-01,  4.4998e-03,  1.3628e-01,  1.6750e-01],</span></a>
+<a class="sourceLine" id="cb45-87" data-line-number="87"><span class="co">#&gt;         [-9.7734e-01, -7.1927e-01, -7.5814e-01,  2.2876e+00, -3.3723e-01,</span></a>
+<a class="sourceLine" id="cb45-88" data-line-number="88"><span class="co">#&gt;           1.4483e+00, -2.5768e-01, -1.2393e+00,  3.4632e-01, -9.3916e-02],</span></a>
+<a class="sourceLine" id="cb45-89" data-line-number="89"><span class="co">#&gt;         [ 1.5425e+00, -1.6096e+00,  7.6501e-01, -2.0622e+00,  7.4708e-01,</span></a>
+<a class="sourceLine" id="cb45-90" data-line-number="90"><span class="co">#&gt;           4.3546e-02,  1.3679e+00, -8.6783e-01, -1.8846e-01, -1.8515e-01],</span></a>
+<a class="sourceLine" id="cb45-91" data-line-number="91"><span class="co">#&gt;         [-8.7473e-01, -3.0094e-01,  8.8948e-01, -3.7530e-01, -2.1085e-01,</span></a>
+<a class="sourceLine" id="cb45-92" data-line-number="92"><span class="co">#&gt;          -3.9884e-01, -1.3686e+00,  1.6825e+00,  6.5789e-01,  5.9253e-01],</span></a>
+<a class="sourceLine" id="cb45-93" data-line-number="93"><span class="co">#&gt;         [ 3.9754e-01, -1.3424e+00,  2.5359e+00,  3.4030e-01, -1.1126e+00,</span></a>
+<a class="sourceLine" id="cb45-94" data-line-number="94"><span class="co">#&gt;           8.6124e-02,  4.3843e-01, -6.6871e-01,  3.4705e-01, -1.7173e+00],</span></a>
+<a class="sourceLine" id="cb45-95" data-line-number="95"><span class="co">#&gt;         [-4.6276e-01, -1.6667e+00,  1.0630e-01, -1.1182e-01, -3.2904e-01,</span></a>
+<a class="sourceLine" id="cb45-96" data-line-number="96"><span class="co">#&gt;          -4.6474e-01, -4.7117e-01,  2.1182e+00, -2.6756e-01,  1.1419e+00],</span></a>
+<a class="sourceLine" id="cb45-97" data-line-number="97"><span class="co">#&gt;         [-1.2504e+00,  2.0327e+00, -4.5093e-01,  6.6280e-02, -4.9623e-01,</span></a>
+<a class="sourceLine" id="cb45-98" data-line-number="98"><span class="co">#&gt;          -4.3873e-02, -8.2564e-02, -1.0702e-01,  4.5615e-01, -6.4129e-02],</span></a>
+<a class="sourceLine" id="cb45-99" data-line-number="99"><span class="co">#&gt;         [ 3.4009e-01,  5.0829e-01,  8.9266e-01,  1.3126e+00, -1.9481e+00,</span></a>
+<a class="sourceLine" id="cb45-100" data-line-number="100"><span class="co">#&gt;           3.3435e-01,  5.4201e-01, -1.2257e+00,  5.9783e-01, -1.4746e+00],</span></a>
+<a class="sourceLine" id="cb45-101" data-line-number="101"><span class="co">#&gt;         [-1.3904e+00,  2.8958e+00, -2.5935e-01,  4.1800e-01, -1.1940e+00,</span></a>
+<a class="sourceLine" id="cb45-102" data-line-number="102"><span class="co">#&gt;           5.7660e-02, -1.4340e-02, -7.2440e-01,  5.8147e-01, -4.1214e-01],</span></a>
+<a class="sourceLine" id="cb45-103" data-line-number="103"><span class="co">#&gt;         [-6.7267e-01,  1.5388e+00, -2.0450e-02,  1.3740e-01, -3.3902e-01,</span></a>
+<a class="sourceLine" id="cb45-104" data-line-number="104"><span class="co">#&gt;          -1.1146e-01, -5.5716e-02, -1.5294e-01,  6.1530e-02, -2.3775e-01],</span></a>
+<a class="sourceLine" id="cb45-105" data-line-number="105"><span class="co">#&gt;         [-8.8435e-01, -8.6494e-01, -2.2825e-01, -2.3642e-01,  3.6957e-02,</span></a>
+<a class="sourceLine" id="cb45-106" data-line-number="106"><span class="co">#&gt;          -2.0776e-01, -7.3426e-01,  2.1282e+00, -2.3453e-01,  1.2844e+00],</span></a>
+<a class="sourceLine" id="cb45-107" data-line-number="107"><span class="co">#&gt;         [-1.9952e+00, -5.0457e-01, -4.0010e-01, -3.5279e-01,  2.0788e+00,</span></a>
+<a class="sourceLine" id="cb45-108" data-line-number="108"><span class="co">#&gt;          -6.8136e-01, -1.0446e+00,  4.3757e-01,  4.2377e-01,  1.6438e+00],</span></a>
+<a class="sourceLine" id="cb45-109" data-line-number="109"><span class="co">#&gt;         [-3.3724e-01,  8.2052e-01,  1.0790e+00, -1.6590e-01, -2.7806e-01,</span></a>
+<a class="sourceLine" id="cb45-110" data-line-number="110"><span class="co">#&gt;          -3.4032e-01, -6.1010e-02, -1.3644e+00,  4.5521e-01, -4.0807e-01],</span></a>
+<a class="sourceLine" id="cb45-111" data-line-number="111"><span class="co">#&gt;         [-1.0767e+00,  1.3945e-01, -1.0659e-01,  1.3694e+00, -6.4423e-01,</span></a>
+<a class="sourceLine" id="cb45-112" data-line-number="112"><span class="co">#&gt;           5.1645e-01,  5.1543e-01, -2.4258e-01,  1.1903e-01, -2.2836e-01],</span></a>
+<a class="sourceLine" id="cb45-113" data-line-number="113"><span class="co">#&gt;         [ 1.7767e-01, -1.1577e+00, -5.2339e-01,  1.5442e+00, -6.0870e-01,</span></a>
+<a class="sourceLine" id="cb45-114" data-line-number="114"><span class="co">#&gt;           1.1883e+00, -8.5313e-02, -1.3257e+00,  9.5786e-01, -6.5569e-01],</span></a>
+<a class="sourceLine" id="cb45-115" data-line-number="115"><span class="co">#&gt;         [-1.4993e+00,  2.7249e-01,  1.4760e-01,  6.9671e-01, -1.8482e-01,</span></a>
+<a class="sourceLine" id="cb45-116" data-line-number="116"><span class="co">#&gt;           3.5277e-01, -5.5182e-02, -8.3887e-02,  3.8110e-01,  1.9376e-01],</span></a>
+<a class="sourceLine" id="cb45-117" data-line-number="117"><span class="co">#&gt;         [-7.0144e-01, -3.3324e-01,  1.6060e+00, -4.6872e-01,  2.1697e-01,</span></a>
+<a class="sourceLine" id="cb45-118" data-line-number="118"><span class="co">#&gt;          -7.7753e-01,  6.2622e-01, -4.4679e-01,  3.4942e-02,  1.7759e-02],</span></a>
+<a class="sourceLine" id="cb45-119" data-line-number="119"><span class="co">#&gt;         [-1.0980e+00, -2.7875e+00, -1.4590e+00, -2.8433e-01,  2.6349e+00,</span></a>
+<a class="sourceLine" id="cb45-120" data-line-number="120"><span class="co">#&gt;           2.0795e-01, -8.8892e-01,  2.5040e-01,  6.7171e-01,  1.9528e+00],</span></a>
+<a class="sourceLine" id="cb45-121" data-line-number="121"><span class="co">#&gt;         [-4.8091e-01, -2.2372e+00,  6.7722e-01, -5.3544e-01,  2.2275e+00,</span></a>
+<a class="sourceLine" id="cb45-122" data-line-number="122"><span class="co">#&gt;          -8.6331e-01,  2.3889e-01,  8.9700e-02, -3.7699e-01,  1.0318e+00],</span></a>
+<a class="sourceLine" id="cb45-123" data-line-number="123"><span class="co">#&gt;         [-8.8515e-02, -8.9275e-01,  1.2656e-01,  2.9868e-01, -3.5599e-01,</span></a>
+<a class="sourceLine" id="cb45-124" data-line-number="124"><span class="co">#&gt;           4.8885e-01,  2.1363e+00, -1.2017e+00, -1.1939e-01, -5.0921e-01],</span></a>
+<a class="sourceLine" id="cb45-125" data-line-number="125"><span class="co">#&gt;         [-3.1854e-01, -9.4168e-01, -4.0079e-01,  1.9384e+00, -8.3478e-01,</span></a>
+<a class="sourceLine" id="cb45-126" data-line-number="126"><span class="co">#&gt;           3.6064e-01, -4.6157e-02, -3.0805e-01, -3.0790e-01, -6.3160e-02],</span></a>
+<a class="sourceLine" id="cb45-127" data-line-number="127"><span class="co">#&gt;         [ 5.4823e-01, -1.0671e+00, -1.3290e+00, -1.4840e-01,  8.3261e-01,</span></a>
+<a class="sourceLine" id="cb45-128" data-line-number="128"><span class="co">#&gt;           1.2996e+00,  5.2546e-02, -1.5022e-01,  1.6213e-01,  3.7446e-01],</span></a>
+<a class="sourceLine" id="cb45-129" data-line-number="129"><span class="co">#&gt;         [ 3.0154e-01, -7.0436e-01, -3.2758e-01,  1.1673e+00, -8.4220e-02,</span></a>
+<a class="sourceLine" id="cb45-130" data-line-number="130"><span class="co">#&gt;           6.8284e-01, -2.1290e-01, -7.4883e-01,  2.5903e-01, -4.2275e-01],</span></a>
+<a class="sourceLine" id="cb45-131" data-line-number="131"><span class="co">#&gt;         [ 2.3479e-01, -3.1610e-01,  1.4768e+00, -2.3131e-01,  4.7199e-01,</span></a>
+<a class="sourceLine" id="cb45-132" data-line-number="132"><span class="co">#&gt;          -1.0366e+00,  9.2816e-01, -7.4728e-01,  1.9848e-01, -5.8543e-01],</span></a>
+<a class="sourceLine" id="cb45-133" data-line-number="133"><span class="co">#&gt;         [ 1.3947e+00, -2.1881e+00, -5.5260e-01,  1.8833e-01, -6.7838e-01,</span></a>
+<a class="sourceLine" id="cb45-134" data-line-number="134"><span class="co">#&gt;           9.4674e-01,  1.7412e-01, -9.4523e-01,  1.2730e+00, -1.9944e-01],</span></a>
+<a class="sourceLine" id="cb45-135" data-line-number="135"><span class="co">#&gt;         [ 5.2484e-02, -2.8911e+00, -8.9029e-02, -4.8200e-01,  2.5001e+00,</span></a>
+<a class="sourceLine" id="cb45-136" data-line-number="136"><span class="co">#&gt;          -1.6784e-01,  3.6697e-01, -3.5334e-01, -3.3022e-02,  8.2528e-01],</span></a>
+<a class="sourceLine" id="cb45-137" data-line-number="137"><span class="co">#&gt;         [-8.4753e-01,  2.4456e+00,  1.1589e-01,  2.2028e-01, -7.1533e-01,</span></a>
+<a class="sourceLine" id="cb45-138" data-line-number="138"><span class="co">#&gt;          -1.5086e-01, -5.3197e-01, -1.0506e-01,  2.8914e-01, -3.0901e-01],</span></a>
+<a class="sourceLine" id="cb45-139" data-line-number="139"><span class="co">#&gt;         [-3.7863e-01, -1.8275e+00, -9.8749e-01, -8.3060e-01,  1.7678e+00,</span></a>
+<a class="sourceLine" id="cb45-140" data-line-number="140"><span class="co">#&gt;          -3.6149e-01, -1.3610e-01,  9.9308e-01, -3.4906e-01,  2.1908e+00],</span></a>
+<a class="sourceLine" id="cb45-141" data-line-number="141"><span class="co">#&gt;         [ 1.6377e-02,  1.7556e-01, -4.1718e-01, -3.2914e-01,  2.7074e-01,</span></a>
+<a class="sourceLine" id="cb45-142" data-line-number="142"><span class="co">#&gt;           4.9505e-01, -2.1903e-01,  4.0314e-01,  1.7224e-01, -3.5015e-01],</span></a>
+<a class="sourceLine" id="cb45-143" data-line-number="143"><span class="co">#&gt;         [-3.8433e-01, -1.8910e+00, -8.7773e-01,  6.2353e-01,  2.2266e-01,</span></a>
+<a class="sourceLine" id="cb45-144" data-line-number="144"><span class="co">#&gt;          -3.1590e-01, -6.0868e-01,  2.2409e+00, -6.2684e-01,  2.4644e-01],</span></a>
+<a class="sourceLine" id="cb45-145" data-line-number="145"><span class="co">#&gt;         [ 2.6305e-01, -9.7892e-01,  1.2133e+00, -1.5093e+00, -4.3023e-01,</span></a>
+<a class="sourceLine" id="cb45-146" data-line-number="146"><span class="co">#&gt;           1.8726e-02,  4.9466e-01, -7.4150e-01,  1.1868e+00,  2.6013e-01],</span></a>
+<a class="sourceLine" id="cb45-147" data-line-number="147"><span class="co">#&gt;         [-9.0674e-01, -9.4848e-01, -1.5987e-01, -3.8920e-01,  6.1216e-01,</span></a>
+<a class="sourceLine" id="cb45-148" data-line-number="148"><span class="co">#&gt;           4.8064e-02, -8.9842e-03, -2.7495e-01,  3.2685e-01,  1.1225e+00],</span></a>
+<a class="sourceLine" id="cb45-149" data-line-number="149"><span class="co">#&gt;         [-9.6983e-01, -2.5722e-01,  1.1940e+00,  6.5705e-01, -2.5144e-01,</span></a>
+<a class="sourceLine" id="cb45-150" data-line-number="150"><span class="co">#&gt;          -1.4530e-01, -3.7849e-01, -9.2955e-01,  3.4447e-01,  2.9862e-01],</span></a>
+<a class="sourceLine" id="cb45-151" data-line-number="151"><span class="co">#&gt;         [-9.4627e-01, -9.6231e-01,  2.9115e-01, -4.8892e-01,  7.6869e-01,</span></a>
+<a class="sourceLine" id="cb45-152" data-line-number="152"><span class="co">#&gt;          -6.0418e-01, -5.3591e-01,  1.5442e+00,  1.4812e-01,  6.2634e-01],</span></a>
+<a class="sourceLine" id="cb45-153" data-line-number="153"><span class="co">#&gt;         [-1.3399e+00, -4.9677e-01, -6.6660e-01,  3.2265e-01,  5.1796e-01,</span></a>
+<a class="sourceLine" id="cb45-154" data-line-number="154"><span class="co">#&gt;           2.8821e-01, -1.5387e-01, -2.7130e-01,  5.4372e-01,  7.2660e-01],</span></a>
+<a class="sourceLine" id="cb45-155" data-line-number="155"><span class="co">#&gt;         [ 4.2673e-01, -5.1439e-01,  6.7241e-01, -2.2079e-01,  4.4144e-01,</span></a>
+<a class="sourceLine" id="cb45-156" data-line-number="156"><span class="co">#&gt;          -8.6878e-01,  5.9312e-01,  3.7624e-02, -3.5291e-01, -5.4810e-01],</span></a>
+<a class="sourceLine" id="cb45-157" data-line-number="157"><span class="co">#&gt;         [-3.2306e-01, -1.2890e+00,  5.9507e-01, -8.6414e-01,  2.0963e+00,</span></a>
+<a class="sourceLine" id="cb45-158" data-line-number="158"><span class="co">#&gt;          -7.0459e-01, -3.9541e-01,  3.4197e-01, -4.0710e-03,  4.6265e-01],</span></a>
+<a class="sourceLine" id="cb45-159" data-line-number="159"><span class="co">#&gt;         [-1.3478e+00, -4.1975e-01, -3.7824e-01,  2.6787e+00, -6.0352e-01,</span></a>
+<a class="sourceLine" id="cb45-160" data-line-number="160"><span class="co">#&gt;           9.8328e-01, -7.8180e-01, -1.0321e+00,  8.8281e-01, -1.0461e-01],</span></a>
+<a class="sourceLine" id="cb45-161" data-line-number="161"><span class="co">#&gt;         [ 2.7198e+00, -1.4207e+00,  6.6662e-01, -7.2796e-01, -1.4472e+00,</span></a>
+<a class="sourceLine" id="cb45-162" data-line-number="162"><span class="co">#&gt;           5.0870e-01,  2.7811e-02, -1.8390e-01, -3.0498e-01, -7.9730e-01],</span></a>
+<a class="sourceLine" id="cb45-163" data-line-number="163"><span class="co">#&gt;         [ 2.0499e-01, -1.4901e+00, -1.0418e+00,  1.7478e-01, -3.4975e-02,</span></a>
+<a class="sourceLine" id="cb45-164" data-line-number="164"><span class="co">#&gt;          -3.1510e-01, -7.7895e-01,  2.8745e+00, -3.0569e-01,  3.6625e-01],</span></a>
+<a class="sourceLine" id="cb45-165" data-line-number="165"><span class="co">#&gt;         [ 4.4238e+00, -2.8872e+00,  9.3004e-01,  1.7180e-01, -1.2156e+00,</span></a>
+<a class="sourceLine" id="cb45-166" data-line-number="166"><span class="co">#&gt;           8.0985e-01, -7.8977e-02, -1.7985e+00,  3.4585e-01, -1.7968e+00],</span></a>
+<a class="sourceLine" id="cb45-167" data-line-number="167"><span class="co">#&gt;         [ 1.3774e+00, -1.1985e+00,  1.6984e+00,  9.6535e-01, -1.1847e+00,</span></a>
+<a class="sourceLine" id="cb45-168" data-line-number="168"><span class="co">#&gt;           1.6558e-01,  3.5373e-01, -1.1125e+00,  2.6874e-01, -1.9591e+00],</span></a>
+<a class="sourceLine" id="cb45-169" data-line-number="169"><span class="co">#&gt;         [-1.4483e+00,  9.4671e-01,  4.3281e-01, -1.3504e-01, -7.9817e-01,</span></a>
+<a class="sourceLine" id="cb45-170" data-line-number="170"><span class="co">#&gt;          -3.4784e-01, -9.5641e-01,  9.0392e-01,  1.2296e+00,  6.2921e-01],</span></a>
+<a class="sourceLine" id="cb45-171" data-line-number="171"><span class="co">#&gt;         [-1.2396e+00,  2.2696e+00, -3.8555e-01,  1.5065e-01, -7.4453e-01,</span></a>
+<a class="sourceLine" id="cb45-172" data-line-number="172"><span class="co">#&gt;           8.4066e-02, -5.4862e-04, -1.4012e-01,  5.9549e-01, -2.5350e-01],</span></a>
+<a class="sourceLine" id="cb45-173" data-line-number="173"><span class="co">#&gt;         [-1.7944e+00,  3.0241e-01, -5.2784e-01, -4.9973e-01,  8.7231e-01,</span></a>
+<a class="sourceLine" id="cb45-174" data-line-number="174"><span class="co">#&gt;          -6.4315e-01, -8.1029e-01,  1.5847e+00,  1.3244e-01,  7.4525e-01],</span></a>
+<a class="sourceLine" id="cb45-175" data-line-number="175"><span class="co">#&gt;         [-2.8294e-01,  1.7816e-01, -3.7291e-01,  2.1598e+00, -9.4734e-01,</span></a>
+<a class="sourceLine" id="cb45-176" data-line-number="176"><span class="co">#&gt;           1.0114e+00, -5.0824e-01, -1.2849e+00,  4.5710e-01, -9.0987e-01],</span></a>
+<a class="sourceLine" id="cb45-177" data-line-number="177"><span class="co">#&gt;         [-7.8757e-01, -4.4467e-01,  6.6353e-01, -5.5224e-01, -1.6245e-01,</span></a>
+<a class="sourceLine" id="cb45-178" data-line-number="178"><span class="co">#&gt;          -5.9033e-01,  8.4956e-02,  1.5716e+00, -2.9244e-01,  3.7864e-01],</span></a>
+<a class="sourceLine" id="cb45-179" data-line-number="179"><span class="co">#&gt;         [-1.7389e+00,  1.1484e+00, -6.6717e-01, -1.0438e-02, -1.2760e-01,</span></a>
+<a class="sourceLine" id="cb45-180" data-line-number="180"><span class="co">#&gt;           1.0584e-01, -6.0197e-01,  2.6480e-01,  7.9318e-01,  6.3942e-01],</span></a>
+<a class="sourceLine" id="cb45-181" data-line-number="181"><span class="co">#&gt;         [-5.7751e-01, -6.4384e-01, -3.9230e-01, -9.5214e-01,  1.6688e-01,</span></a>
+<a class="sourceLine" id="cb45-182" data-line-number="182"><span class="co">#&gt;          -3.6310e-01, -1.3429e+00,  3.4312e+00,  2.3366e-01,  9.4845e-01],</span></a>
+<a class="sourceLine" id="cb45-183" data-line-number="183"><span class="co">#&gt;         [-6.0143e-01, -1.7209e+00, -1.1494e+00, -1.5037e-01,  1.0337e+00,</span></a>
+<a class="sourceLine" id="cb45-184" data-line-number="184"><span class="co">#&gt;           4.3592e-01, -3.9708e-01,  1.6140e+00, -5.6450e-01,  1.6807e+00],</span></a>
+<a class="sourceLine" id="cb45-185" data-line-number="185"><span class="co">#&gt;         [ 1.9210e-02, -1.9223e+00,  3.8673e-01, -6.4197e-01,  1.1106e-01,</span></a>
+<a class="sourceLine" id="cb45-186" data-line-number="186"><span class="co">#&gt;           1.8099e-01,  2.2784e+00, -5.9888e-01, -1.7361e-01,  2.6417e-02],</span></a>
+<a class="sourceLine" id="cb45-187" data-line-number="187"><span class="co">#&gt;         [-6.2876e-01, -1.1091e+00,  3.7508e+00, -2.3448e-01, -5.8493e-01,</span></a>
+<a class="sourceLine" id="cb45-188" data-line-number="188"><span class="co">#&gt;          -1.1884e+00,  7.8236e-01, -1.3223e+00,  4.7385e-01, -1.0343e+00],</span></a>
+<a class="sourceLine" id="cb45-189" data-line-number="189"><span class="co">#&gt;         [-6.7678e-01, -1.7449e+00, -8.4556e-01, -1.1483e-01,  6.9988e-01,</span></a>
+<a class="sourceLine" id="cb45-190" data-line-number="190"><span class="co">#&gt;          -8.7946e-02, -1.1765e+00,  2.2800e+00, -2.6902e-01,  1.5336e+00],</span></a>
+<a class="sourceLine" id="cb45-191" data-line-number="191"><span class="co">#&gt;         [-8.5717e-01, -1.2230e-01, -4.1116e-01, -6.0145e-01,  3.7790e-01,</span></a>
+<a class="sourceLine" id="cb45-192" data-line-number="192"><span class="co">#&gt;           6.3771e-01, -7.4120e-01, -6.7263e-01,  1.0677e+00,  4.3252e-01],</span></a>
+<a class="sourceLine" id="cb45-193" data-line-number="193"><span class="co">#&gt;         [-1.0534e+00, -2.4691e+00, -9.4150e-01,  1.9233e-01,  2.7386e+00,</span></a>
+<a class="sourceLine" id="cb45-194" data-line-number="194"><span class="co">#&gt;           3.5948e-02, -3.9486e-01, -4.7238e-01,  1.9305e-01,  1.2211e+00],</span></a>
+<a class="sourceLine" id="cb45-195" data-line-number="195"><span class="co">#&gt;         [-1.7862e+00,  5.2157e-01, -3.0508e-01, -6.5667e-01, -1.7478e-01,</span></a>
+<a class="sourceLine" id="cb45-196" data-line-number="196"><span class="co">#&gt;          -7.3403e-01, -1.2763e+00,  3.0680e+00,  3.5662e-01,  8.3210e-01],</span></a>
+<a class="sourceLine" id="cb45-197" data-line-number="197"><span class="co">#&gt;         [-2.0383e-01, -1.4847e+00, -1.1861e+00,  1.8072e+00, -2.5057e-01,</span></a>
+<a class="sourceLine" id="cb45-198" data-line-number="198"><span class="co">#&gt;           1.0957e+00,  5.9455e-01, -2.8468e-01,  3.5113e-03,  2.4995e-01],</span></a>
+<a class="sourceLine" id="cb45-199" data-line-number="199"><span class="co">#&gt;         [-2.2450e-01, -2.1181e+00,  8.5168e-01, -1.3561e+00,  1.1374e+00,</span></a>
+<a class="sourceLine" id="cb45-200" data-line-number="200"><span class="co">#&gt;          -8.7003e-01,  2.3503e+00, -1.2551e-01, -7.3214e-01,  3.2295e-01],</span></a>
+<a class="sourceLine" id="cb45-201" data-line-number="201"><span class="co">#&gt;         [-1.5622e+00,  2.9467e+00,  2.3842e-01, -4.1466e-03, -4.9765e-01,</span></a>
+<a class="sourceLine" id="cb45-202" data-line-number="202"><span class="co">#&gt;          -4.4173e-01, -2.7219e-01, -4.8037e-01,  4.2418e-01, -6.4807e-01],</span></a>
+<a class="sourceLine" id="cb45-203" data-line-number="203"><span class="co">#&gt;         [ 3.2558e-01, -7.5724e-01, -3.3548e-01,  2.5756e+00, -1.2860e+00,</span></a>
+<a class="sourceLine" id="cb45-204" data-line-number="204"><span class="co">#&gt;           8.6770e-01, -1.5311e+00, -6.9928e-01,  7.0599e-01, -8.3875e-01],</span></a>
+<a class="sourceLine" id="cb45-205" data-line-number="205"><span class="co">#&gt;         [-1.0576e+00, -6.6676e-01,  2.5216e-01, -6.8168e-01,  3.6745e-01,</span></a>
+<a class="sourceLine" id="cb45-206" data-line-number="206"><span class="co">#&gt;          -3.0722e-01,  2.5982e+00, -1.0629e+00, -2.4848e-02, -4.1388e-02],</span></a>
+<a class="sourceLine" id="cb45-207" data-line-number="207"><span class="co">#&gt;         [-9.5286e-01,  1.9398e-02,  1.0449e-01, -6.3894e-01,  5.5353e-01,</span></a>
+<a class="sourceLine" id="cb45-208" data-line-number="208"><span class="co">#&gt;          -1.4634e-01, -1.2423e-01, -1.7330e-01,  6.2860e-01,  4.6942e-01],</span></a>
+<a class="sourceLine" id="cb45-209" data-line-number="209"><span class="co">#&gt;         [-8.5543e-01, -5.4686e-01, -6.9736e-01,  2.6438e+00, -1.5634e+00,</span></a>
+<a class="sourceLine" id="cb45-210" data-line-number="210"><span class="co">#&gt;           1.1179e+00, -9.4266e-01,  6.2668e-01,  7.7778e-01,  5.8852e-03],</span></a>
+<a class="sourceLine" id="cb45-211" data-line-number="211"><span class="co">#&gt;         [-2.2078e+00,  1.6199e+00, -2.2630e-01,  1.2530e-01, -4.7198e-01,</span></a>
+<a class="sourceLine" id="cb45-212" data-line-number="212"><span class="co">#&gt;           1.0774e-02,  2.9402e-01, -4.8964e-01,  7.1760e-01, -1.9049e-01],</span></a>
+<a class="sourceLine" id="cb45-213" data-line-number="213"><span class="co">#&gt;         [-9.1752e-01, -3.7215e-01, -4.7562e-01, -1.3739e+00,  2.1835e+00,</span></a>
+<a class="sourceLine" id="cb45-214" data-line-number="214"><span class="co">#&gt;          -5.7999e-01,  2.8290e-01,  1.0376e-01, -1.9788e-01,  9.8971e-01],</span></a>
+<a class="sourceLine" id="cb45-215" data-line-number="215"><span class="co">#&gt;         [-1.1180e+00,  5.1952e-01, -3.8798e-01,  2.1147e-01, -8.3925e-02,</span></a>
+<a class="sourceLine" id="cb45-216" data-line-number="216"><span class="co">#&gt;           2.4309e-01, -3.1124e-01,  1.8244e-01,  3.3479e-01,  2.1253e-01],</span></a>
+<a class="sourceLine" id="cb45-217" data-line-number="217"><span class="co">#&gt;         [-1.9207e+00,  1.1729e+00, -6.8848e-01,  1.9835e-02, -4.4881e-01,</span></a>
+<a class="sourceLine" id="cb45-218" data-line-number="218"><span class="co">#&gt;          -2.0059e-01, -2.0613e-02,  6.3143e-01,  3.2693e-01,  3.8787e-01],</span></a>
+<a class="sourceLine" id="cb45-219" data-line-number="219"><span class="co">#&gt;         [ 8.8183e-01, -1.0252e+00,  7.2092e-01, -8.0147e-01, -3.8480e-01,</span></a>
+<a class="sourceLine" id="cb45-220" data-line-number="220"><span class="co">#&gt;           5.0632e-01,  1.9679e+00, -1.0822e+00,  4.3187e-02, -8.1902e-01],</span></a>
+<a class="sourceLine" id="cb45-221" data-line-number="221"><span class="co">#&gt;         [-1.3331e+00, -1.7548e+00,  5.5981e-02, -4.4007e-01,  1.5412e+00,</span></a>
+<a class="sourceLine" id="cb45-222" data-line-number="222"><span class="co">#&gt;          -9.3015e-01, -4.2966e-01,  8.7212e-01,  7.0002e-02,  2.2018e+00]],</span></a>
 <a class="sourceLine" id="cb45-223" data-line-number="223"><span class="co">#&gt;        grad_fn=&lt;AddmmBackward&gt;)</span></a>
 <a class="sourceLine" id="cb45-224" data-line-number="224"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(predicted)</a>
-<a class="sourceLine" id="cb45-225" data-line-number="225"><span class="co">#&gt; tensor([8, 9, 0, 1, 4, 7, 4, 8, 6, 7, 8, 0, 8, 2, 8, 4, 7, 8, 9, 7, 8, 6, 4, 1,</span></a>
-<a class="sourceLine" id="cb45-226" data-line-number="226"><span class="co">#&gt;         4, 8, 8, 4, 4, 7, 0, 1, 9, 2, 8, 7, 8, 2, 6, 0, 0, 6, 3, 8, 8, 9, 1, 4,</span></a>
+<a class="sourceLine" id="cb45-225" data-line-number="225"><span class="co">#&gt; tensor([8, 9, 0, 1, 4, 7, 4, 2, 6, 7, 8, 0, 8, 2, 8, 4, 7, 8, 9, 7, 8, 6, 4, 1,</span></a>
+<a class="sourceLine" id="cb45-226" data-line-number="226"><span class="co">#&gt;         4, 2, 2, 4, 4, 7, 0, 1, 9, 2, 8, 7, 8, 2, 6, 0, 0, 6, 3, 8, 8, 9, 1, 4,</span></a>
 <a class="sourceLine" id="cb45-227" data-line-number="227"><span class="co">#&gt;         0, 6, 1, 0, 0, 0, 0, 8, 1, 7, 7, 1, 4, 6, 0, 7, 0, 3, 6, 8, 7, 1, 3, 2,</span></a>
-<a class="sourceLine" id="cb45-228" data-line-number="228"><span class="co">#&gt;         4, 4, 4, 2, 6, 4, 1, 7, 2, 6, 6, 0, 1, 2, 3, 4, 5, 6, 7, 8, 4, 0, 1, 2,</span></a>
+<a class="sourceLine" id="cb45-228" data-line-number="228"><span class="co">#&gt;         4, 4, 4, 2, 6, 4, 1, 7, 2, 6, 6, 0, 1, 2, 8, 4, 5, 6, 7, 8, 4, 0, 1, 2,</span></a>
 <a class="sourceLine" id="cb45-229" data-line-number="229"><span class="co">#&gt;         3, 4, 8, 6])</span></a></code></pre></div>
 <div id="printing-output-size" class="section level3">
 <h3 class="hasAnchor">
@@ -937,20 +938,20 @@ number 7: 2.9352</code></pre>
 <a class="sourceLine" id="cb48-26" data-line-number="26"><span class="co">#&gt; tf$newaxis or np$newaxis) must match thenumber of dimensions in the tensor,</span></a>
 <a class="sourceLine" id="cb48-27" data-line-number="27"><span class="co">#&gt; unless an all_dims() was supplied (this will produce an error in the</span></a>
 <a class="sourceLine" id="cb48-28" data-line-number="28"><span class="co">#&gt; future)</span></a>
-<a class="sourceLine" id="cb48-29" data-line-number="29"><span class="co">#&gt; tensor([-0.3254, -1.1548, -0.5346, -0.3282,  0.0402, -0.4223, -1.0254,  2.8650,</span></a>
-<a class="sourceLine" id="cb48-30" data-line-number="30"><span class="co">#&gt;         -0.0497,  0.7303], grad_fn=&lt;SelectBackward&gt;)</span></a>
+<a class="sourceLine" id="cb48-29" data-line-number="29"><span class="co">#&gt; tensor([-0.3456, -1.1338, -0.6001, -0.0253, -0.0149, -0.3315, -1.1867,  2.8442,</span></a>
+<a class="sourceLine" id="cb48-30" data-line-number="30"><span class="co">#&gt;         -0.1047,  0.8866], grad_fn=&lt;SelectBackward&gt;)</span></a>
 <a class="sourceLine" id="cb48-31" data-line-number="31"><span class="co">#&gt; Warning in `[.torch.Tensor`(outputs, 100): Incorrect number of dimensions</span></a>
 <a class="sourceLine" id="cb48-32" data-line-number="32"><span class="co">#&gt; supplied. The number of supplied arguments, (not counting any NULL,</span></a>
 <a class="sourceLine" id="cb48-33" data-line-number="33"><span class="co">#&gt; tf$newaxis or np$newaxis) must match thenumber of dimensions in the tensor,</span></a>
 <a class="sourceLine" id="cb48-34" data-line-number="34"><span class="co">#&gt; unless an all_dims() was supplied (this will produce an error in the</span></a>
 <a class="sourceLine" id="cb48-35" data-line-number="35"><span class="co">#&gt; future)</span></a>
-<a class="sourceLine" id="cb48-36" data-line-number="36"><span class="co">#&gt; tensor([-1.1630, -1.3540,  0.2872, -0.4467,  1.8120, -0.7950, -0.4205,  1.0101,</span></a>
-<a class="sourceLine" id="cb48-37" data-line-number="37"><span class="co">#&gt;          0.2899,  2.2748], grad_fn=&lt;SelectBackward&gt;)</span></a>
+<a class="sourceLine" id="cb48-36" data-line-number="36"><span class="co">#&gt; tensor([-1.3331, -1.7548,  0.0560, -0.4401,  1.5412, -0.9302, -0.4297,  0.8721,</span></a>
+<a class="sourceLine" id="cb48-37" data-line-number="37"><span class="co">#&gt;          0.0700,  2.2018], grad_fn=&lt;SelectBackward&gt;)</span></a>
 <a class="sourceLine" id="cb48-38" data-line-number="38"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(predicted)</a>
-<a class="sourceLine" id="cb48-39" data-line-number="39"><span class="co">#&gt; tensor([8, 9, 0, 1, 4, 7, 4, 8, 6, 7, 8, 0, 8, 2, 8, 4, 7, 8, 9, 7, 8, 6, 4, 1,</span></a>
-<a class="sourceLine" id="cb48-40" data-line-number="40"><span class="co">#&gt;         4, 8, 8, 4, 4, 7, 0, 1, 9, 2, 8, 7, 8, 2, 6, 0, 0, 6, 3, 8, 8, 9, 1, 4,</span></a>
+<a class="sourceLine" id="cb48-39" data-line-number="39"><span class="co">#&gt; tensor([8, 9, 0, 1, 4, 7, 4, 2, 6, 7, 8, 0, 8, 2, 8, 4, 7, 8, 9, 7, 8, 6, 4, 1,</span></a>
+<a class="sourceLine" id="cb48-40" data-line-number="40"><span class="co">#&gt;         4, 2, 2, 4, 4, 7, 0, 1, 9, 2, 8, 7, 8, 2, 6, 0, 0, 6, 3, 8, 8, 9, 1, 4,</span></a>
 <a class="sourceLine" id="cb48-41" data-line-number="41"><span class="co">#&gt;         0, 6, 1, 0, 0, 0, 0, 8, 1, 7, 7, 1, 4, 6, 0, 7, 0, 3, 6, 8, 7, 1, 3, 2,</span></a>
-<a class="sourceLine" id="cb48-42" data-line-number="42"><span class="co">#&gt;         4, 4, 4, 2, 6, 4, 1, 7, 2, 6, 6, 0, 1, 2, 3, 4, 5, 6, 7, 8, 4, 0, 1, 2,</span></a>
+<a class="sourceLine" id="cb48-42" data-line-number="42"><span class="co">#&gt;         4, 4, 4, 2, 6, 4, 1, 7, 2, 6, 6, 0, 1, 2, 8, 4, 5, 6, 7, 8, 4, 0, 1, 2,</span></a>
 <a class="sourceLine" id="cb48-43" data-line-number="43"><span class="co">#&gt;         3, 4, 8, 6])</span></a></code></pre></div>
 </div>
 <div id="printing-prediction-output" class="section level3">
@@ -1111,7 +1112,7 @@ number 7: 2.9352</code></pre>
 <a class="sourceLine" id="cb53-19" data-line-number="19">}</a>
 <a class="sourceLine" id="cb53-20" data-line-number="20">accuracy =<span class="st"> </span><span class="dv">100</span> <span class="op">*</span><span class="st"> </span>correct <span class="op">/</span><span class="st"> </span>total</a>
 <a class="sourceLine" id="cb53-21" data-line-number="21"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(accuracy)</a>
-<a class="sourceLine" id="cb53-22" data-line-number="22"><span class="co">#&gt; [1] 82.6</span></a></code></pre></div>
+<a class="sourceLine" id="cb53-22" data-line-number="22"><span class="co">#&gt; [1] 82.75</span></a></code></pre></div>
 </div>
 </div>
 <div id="saving-pytorch-model" class="section level2">
