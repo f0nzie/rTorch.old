@@ -420,7 +420,6 @@ print(image.shape)
 
 # we need to transform the matrix 28x28 to an array 1x28x28
 
-
 ```
 
 ```{r, fig.width=3, fig.height=3}
@@ -473,16 +472,20 @@ view_classify <- function(imag, ps, version='Fashion') {
   ps <- ps$data$numpy()
   
   print(class(imag))
-  image(imshow(imag))
+  image(imshow(imag))   # image() cannot view multidimensional arrays
 }
 
-view_classify(img_pick$view(1L, 28L, 28L), ps)
-# view_classify(img_pick, ps)
+# ERROR:
+# view_classify(img_pick$view(1L, 28L, 28L), ps)
+# Error in py_call_impl(callable, dots$args, dots$keywords) : ValueError: operands could not be broadcast together with shapes (3,) (28,28)
 ```
 
 
 
 ```{python}
+# Python equivalent operations to replicate in R
+# plt.imshow() from matplotlib can plot multidmensional arrays
+# R image() only plot 2D arrays or matrices
 arr = np.arange(784)
 arr = np.reshape(arr, (1, 28, 28))
 arr.shape
@@ -500,7 +503,4 @@ last = np.clip(img, 0, 1)
 last.shape
 ```
 
-```{r}
-image(main$last)
-```
 
