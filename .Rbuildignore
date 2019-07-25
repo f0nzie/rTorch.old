@@ -9,3 +9,4 @@ notebooks
 ^Meta$
 _pkgdown.yaml
 ^docs$
+datasets/
