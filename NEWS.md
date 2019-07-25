@@ -1,5 +1,6 @@
 # rTorch 0.0.1.9012
 * July 24 2019
+* Change MNIST download folder to ~/raw_data instead of inst/
 * On vignette `mnist_fashion_inference.Rmd`:
 * Add dropout class to reduce overfitting
 * Add a training loop for the dropout class
