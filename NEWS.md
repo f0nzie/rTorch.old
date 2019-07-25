@@ -1,3 +1,9 @@
+# rTorch 0.0.1.9013
+* July 25 2019
+* Add roxygen documentation
+* Change download folders for MNIST datasets under project folder
+
+
 # rTorch 0.0.1.9012
 * July 24 2019
 * Change MNIST download folder to ~/raw_data instead of inst/
