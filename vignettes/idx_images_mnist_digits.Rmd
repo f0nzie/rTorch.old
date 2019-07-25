@@ -34,7 +34,7 @@ batch_size_train <-  64L
 ### Load training dataset
 
 ```{r}
-local_folder <- '~/raw_data'
+local_folder <- '../datasets/raw_data1'
 # this will save the datasets to the local drive
 train_dataset = dsets$MNIST(root=file.path(local_folder), 
                             train=TRUE, 
