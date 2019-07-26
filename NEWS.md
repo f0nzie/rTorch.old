@@ -1,6 +1,9 @@
 # rTorch 0.0.1.9013
 * July 25 2019
-* Add roxygen documentation
+* Add function remainder for tensors. Equivalent to `a %% b`
+* Change unit tests in `test_generics.R` to use new function `expect_true_tensor`
+* Enhance functions `any` and `all`. Add examples
+* Add roxygen documentation to two tensor operations
 * Change download folders for MNIST datasets under project folder
 
 
