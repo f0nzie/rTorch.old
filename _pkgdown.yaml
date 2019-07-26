@@ -20,6 +20,7 @@ reference:
       - log.torch.Tensor
       - log10.torch.Tensor
       - log2.torch.Tensor
+      - '`%%.torch.Tensor`'
 
 
   - title: Generics

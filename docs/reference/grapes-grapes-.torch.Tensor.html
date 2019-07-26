@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>any — any.torch.Tensor • rTorch</title>
+<title>Remainder — %%.torch.Tensor • rTorch</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="any — any.torch.Tensor" />
+<meta property="og:title" content="Remainder — %%.torch.Tensor" />
 
-<meta property="og:description" content="Returns True if any elements in the tensor are non-zero, False otherwise." />
+<meta property="og:description" content="Computes the element-wise remainder of division." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -102,47 +102,40 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>any</h1>
+    <h1>Remainder</h1>
     <small class="dont-index">Source: <a href='https://github.com/f0nzie/rTorch/blob/master/R/generics.R'><code>R/generics.R</code></a></small>
-    <div class="hidden name"><code>any.torch.Tensor.Rd</code></div>
+    <div class="hidden name"><code>grapes-grapes-.torch.Tensor.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Returns True if any elements in the tensor are non-zero, False otherwise.</p>
+    <p>Computes the element-wise remainder of division.</p>
     
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for torch.Tensor</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/any'>any</a></span>(<span class='no'>x</span>, <span class='no'>dim</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"># S3 method for torch.Tensor
+%%(a, b)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>tensor</p></td>
+      <th>a</th>
+      <td><p>a tensor</p></td>
     </tr>
     <tr>
-      <th>dim</th>
-      <td><p>dimension to reduce</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>other params (yet to be developed)</p></td>
+      <th>b</th>
+      <td><p>a scalar or a tensor</p></td>
     </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>a</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>BoolTensor</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='fl'>TRUE</span>, <span class='fl'>TRUE</span>, <span class='fl'>TRUE</span>, <span class='fl'>TRUE</span>))
-<span class='no'>b</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>BoolTensor</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='fl'>FALSE</span>, <span class='fl'>TRUE</span>, <span class='fl'>TRUE</span>, <span class='fl'>TRUE</span>))
-<span class='no'>c</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>BoolTensor</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='fl'>TRUE</span>, <span class='fl'>TRUE</span>, <span class='fl'>TRUE</span>, <span class='fl'>FALSE</span>))
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/any'>any</a></span>(<span class='no'>a</span>)</div><div class='output co'>#&gt; tensor(1, dtype=torch.uint8)</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/any'>any</a></span>(<span class='no'>b</span>)</div><div class='output co'>#&gt; tensor(1, dtype=torch.uint8)</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/any'>any</a></span>(<span class='no'>c</span>)</div><div class='output co'>#&gt; tensor(1, dtype=torch.uint8)</div><div class='input'><span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>tensor</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='fl'>1</span>, <span class='fl'>0</span>),
-                       <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='fl'>0</span>, <span class='fl'>0</span>),
-                       <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>),
-                       <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='fl'>0</span>, <span class='fl'>0</span>)), <span class='kw'>dtype</span><span class='kw'>=</span><span class='no'>torch</span>$<span class='no'>uint8</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/any'>any</a></span>(<span class='no'>d</span>)</div><div class='output co'>#&gt; tensor(1, dtype=torch.uint8)</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/any'>any</a></span>(<span class='no'>d</span>, <span class='kw'>dim</span><span class='kw'>=</span><span class='fl'>0L</span>)</div><div class='output co'>#&gt; tensor([1, 1], dtype=torch.uint8)</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/any'>any</a></span>(<span class='no'>d</span>, <span class='kw'>dim</span><span class='kw'>=</span><span class='fl'>1L</span>)</div><div class='output co'>#&gt; tensor([1, 0, 1, 0], dtype=torch.uint8)</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>Tensor</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(-<span class='fl'>3.</span>, -<span class='fl'>2</span>, -<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>))
+<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>Tensor</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='fl'>1.</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>4</span>, <span class='fl'>5</span>))
+<span class='no'>torch</span>$<span class='fu'>remainder</span>(<span class='no'>x</span>, <span class='fl'>2</span>)</div><div class='output co'>#&gt; tensor([1., 0., 1., 1., 0., 1.])</div><div class='input'><span class='no'>torch</span>$<span class='fu'>remainder</span>(<span class='no'>y</span>, <span class='fl'>1.5</span>)</div><div class='output co'>#&gt; tensor([1.0000, 0.5000, 0.0000, 1.0000, 0.5000])</div><div class='input'>
+<span class='no'>x</span> <span class='kw'>%%</span> <span class='fl'>2</span></div><div class='output co'>#&gt; tensor([1., 0., 1., 1., 0., 1.])</div><div class='input'><span class='no'>y</span> <span class='kw'>%%</span> <span class='fl'>1.5</span></div><div class='output co'>#&gt; tensor([1.0000, 0.5000, 0.0000, 1.0000, 0.5000])</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
