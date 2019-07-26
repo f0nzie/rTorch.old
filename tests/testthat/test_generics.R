@@ -3,6 +3,9 @@ library(testthat)
 
 source("tensor_functions.R")
 
+TRUE_TENSOR  <- torch$as_tensor(1L, dtype=torch$uint8)
+FALSE_TENSOR <- torch$as_tensor(0L, dtype=torch$uint8)
+
 all_boolean <- function(x) {
   # convert tensor of 1s and 0s to a unique boolean
   as.logical(torch$all(x)$numpy())
