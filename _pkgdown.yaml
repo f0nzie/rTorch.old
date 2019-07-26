@@ -15,6 +15,12 @@ reference:
       - '`torch_extract_opts`'
       - '`torch_getLogger`'
       - '`torch_size`'
+      - all.torch.Tensor
+      - any.torch.Tensor
+      - log.torch.Tensor
+      - log10.torch.Tensor
+      - log2.torch.Tensor
+
 
   - title: Generics
     desc: ~

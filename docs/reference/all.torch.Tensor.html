@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>One tensor operation — one_tensor_op • rTorch</title>
+<title>Find if all tensors are TRUE — all.torch.Tensor • rTorch</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="One tensor operation — one_tensor_op" />
+<meta property="og:title" content="Find if all tensors are TRUE — all.torch.Tensor" />
 
-<meta property="og:description" content="One tensor operation" />
+<meta property="og:description" content="Find if all tensors are TRUE" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -102,30 +102,19 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>One tensor operation</h1>
+    <h1>Find if all tensors are TRUE</h1>
     <small class="dont-index">Source: <a href='https://github.com/f0nzie/rTorch/blob/master/R/generics.R'><code>R/generics.R</code></a></small>
-    <div class="hidden name"><code>one_tensor_op.Rd</code></div>
+    <div class="hidden name"><code>all.torch.Tensor.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>One tensor operation</p>
+    <p>Find if all tensors are TRUE</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>one_tensor_op</span>(<span class='no'>x</span>)
-
-<span class='co'># S3 method for torch.Tensor</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/dim'>dim</a></span>(<span class='no'>x</span>)
-
-<span class='co'># S3 method for torch.Tensor</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>x</span>)
-
-<span class='co'># S3 method for torch.Tensor</span>
-!(<span class='no'>x</span>)
-
-<span class='co'># S3 method for torch.Tensor</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>exp</a></span>(<span class='no'>x</span>)</pre>
+    <pre class="usage"><span class='co'># S3 method for torch.Tensor</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all'>all</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -134,35 +123,24 @@
       <th>x</th>
       <td><p>tensor</p></td>
     </tr>
+    <tr>
+      <th>...</th>
+      <td><p>other tensors (yet to be developed)</p></td>
+    </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Get the dimensions of a tensor displaying it as a vector.</p>
-    
-    <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
-
-    <ul>
-<li><p><code>torch.Tensor</code>: Dimensions of a tensor</p></li>
-<li><p><code>torch.Tensor</code>: Length of a tensor. Eqivalent to torch$numel()</p></li>
-<li><p><code>torch.Tensor</code>: Logical NOT of a tensor</p></li>
-<li><p><code>torch.Tensor</code>: Exponential of a tensor</p></li>
-</ul>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>A</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>ones</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>60000L</span>, <span class='fl'>1L</span>, <span class='fl'>28L</span>, <span class='fl'>28L</span>))
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/dim'>dim</a></span>(<span class='no'>A</span>)</div><div class='output co'>#&gt; [1] 60000     1    28    28</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>a</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>BoolTensor</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='fl'>TRUE</span>, <span class='fl'>TRUE</span>, <span class='fl'>TRUE</span>, <span class='fl'>TRUE</span>))
+<span class='no'>b</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>BoolTensor</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='fl'>FALSE</span>, <span class='fl'>TRUE</span>, <span class='fl'>TRUE</span>, <span class='fl'>TRUE</span>))
+<span class='no'>c</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>BoolTensor</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='fl'>TRUE</span>, <span class='fl'>TRUE</span>, <span class='fl'>TRUE</span>, <span class='fl'>FALSE</span>))
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all'>all</a></span>(<span class='no'>a</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all'>all</a></span>(<span class='no'>b</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/all'>all</a></span>(<span class='no'>c</span>)</div><div class='output co'>#&gt; [1] FALSE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#methods-by-class-">Methods (by class)</a></li>
-      
+            
       <li><a href="#examples">Examples</a></li>
     </ul>
 

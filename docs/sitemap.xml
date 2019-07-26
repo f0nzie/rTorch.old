@@ -4,7 +4,13 @@
     <loc>https://github.com/f0nzie/rTorch/index.html</loc>
   </url>
   <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/all.torch.Tensor.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/f0nzie/rTorch/reference/all_dims.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/any.torch.Tensor.html</loc>
   </url>
   <url>
     <loc>https://github.com/f0nzie/rTorch/reference/dataset_mnist_digits.html</loc>
@@ -14,6 +20,15 @@
   </url>
   <url>
     <loc>https://github.com/f0nzie/rTorch/reference/grapes-times-times-grapes.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/log.torch.Tensor.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/log10.torch.Tensor.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/log2.torch.Tensor.html</loc>
   </url>
   <url>
     <loc>https://github.com/f0nzie/rTorch/reference/modules.html</loc>

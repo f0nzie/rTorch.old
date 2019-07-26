@@ -41,10 +41,14 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
 #' One tensor operation
 #'
 #' @param x tensor
+#' @examples
+#' A <- torch$ones(c(60000L, 1L, 28L, 28L))
+#' dim(A)
 one_tensor_op <- function(x) UseMethod("one_tensor_op")
 
 
 #' @describeIn one_tensor_op Dimensions of a tensor
+#' @details Get the dimensions of a tensor displaying it as a vector.
 #' @export
 "dim.torch.Tensor" <- function(x) {        # change .tensor to .Tensor
     if (py_is_null_xptr(x))
@@ -59,7 +63,7 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
     }
 }
 
-#' @describeIn one_tensor_op Length of a tensor
+#' @describeIn one_tensor_op Length of a tensor. Eqivalent to torch$numel()
 #' @export
 "length.torch.Tensor" <- function(x) {
     if (py_is_null_xptr(x))
@@ -73,7 +77,17 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 # any <- function(x, ...) UseMethod("any")
 
 
+#' Find if all tensors are TRUE
+#' @param x tensor
+#' @param ... other tensors (yet to be developed)
 #' @export
+#' @examples
+#' a <- torch$BoolTensor(list(TRUE, TRUE, TRUE, TRUE))
+#' b <- torch$BoolTensor(list(FALSE, TRUE, TRUE, TRUE))
+#' c <- torch$BoolTensor(list(TRUE, TRUE, TRUE, FALSE))
+#' all(a)
+#' all(b)
+#' all(c)
 "all.torch.Tensor" <- function(x, ...) {
     # quick version of torch$all
     # TODO: modify to use all arguments
@@ -84,7 +98,17 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
     as.logical(torch$all(x)$numpy())
 }
 
+#' Find if any of the tensors are TRUE
+#' @param x tensor
+#' @param ... other tensors (yet to be developed)
 #' @export
+#' @examples
+#' a <- torch$BoolTensor(list(TRUE, TRUE, TRUE, TRUE))
+#' b <- torch$BoolTensor(list(FALSE, TRUE, TRUE, TRUE))
+#' c <- torch$BoolTensor(list(TRUE, TRUE, TRUE, FALSE))
+#' any(a)
+#' any(b)
+#' any(c)
 "any.torch.Tensor" <- function(x, ...) {
     # quick version of torch$any
     # TODO: modify to use all arguments
@@ -241,7 +265,7 @@ tensor_not_equal <- function(x, y) {
 
 
 
-#' Dot product
+#' Dot product of two tensors
 #' PyTorch dot function
 #' @param a Tensor 1
 #' @param b Tensor 2
@@ -251,7 +275,7 @@ tensor_not_equal <- function(x, y) {
 }
 
 
-#' Matrix/Tensor multiplication
+#' Matrix/Tensor multiplication of two tensors
 #' PyTorch matmul
 #' @param a Tensor 1
 #' @param b Tensor 2
@@ -263,8 +287,7 @@ tensor_not_equal <- function(x, y) {
 
 
 
-
-#' @describeIn tensor_ops A tensor to the power of
+#' @describeIn tensor_ops A tensor 'a' to the power of 'b'
 #' @export
 "^.torch.Tensor" <- function(a, b) {
     torch$pow(a, b)
@@ -277,6 +300,10 @@ tensor_not_equal <- function(x, y) {
     torch$exp(x)
 }
 
+
+#' Logarithm of a tensor given the tensor and the base
+#' @param x a tensor
+#' @param base the base of the logarithm
 #' @export
 "log.torch.Tensor" <- function(x, base = exp(1L)) {
     if (is_tensor(base) || base != exp(1L)) {
@@ -289,12 +316,16 @@ tensor_not_equal <- function(x, y) {
     }
 }
 
+#' Logarithm of a tensor in base 2
+#' @param x a tensor
 #' @export
 #' @method log2 torch.Tensor
 "log2.torch.Tensor" <- function(x) {
     torch$log2(x)
 }
 
+#' Logarithm of a tensor in base 10
+#' @param x a tensor
 #' @export
 #' @method log10 torch.Tensor
 "log10.torch.Tensor" <- function(x) {
