@@ -73,13 +73,36 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 }
 
 
+#' Remainder
+#'
+#' Computes the element-wise remainder of division.
+#' @param a a tensor
+#' @param b a scalar or a tensor
+#' @export
+#' @examples
+#' x <- torch$Tensor(list(-3., -2, -1, 1, 2, 3))
+#' y <- torch$Tensor(list(1., 2, 3, 4, 5))
+#' torch$remainder(x, 2)
+#' torch$remainder(y, 1.5)
+#'
+#' x %% 2
+#' y %% 1.5
+#'
+"%%.torch.Tensor" <- function(a, b) {
+    torch$remainder(a, b)
+}
+
+
 # all <- function(x, ...) UseMethod("all")
 # any <- function(x, ...) UseMethod("any")
 
 
-#' Find if all tensors are TRUE
+#' all
+#'
+#' Returns True if all elements in the tensor are non-zero, False otherwise.
 #' @param x tensor
-#' @param ... other tensors (yet to be developed)
+#' @param dim dimension to reduce
+#' @param ... other parameters (yet to be developed)
 #' @export
 #' @examples
 #' a <- torch$BoolTensor(list(TRUE, TRUE, TRUE, TRUE))
@@ -88,19 +111,31 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #' all(a)
 #' all(b)
 #' all(c)
-"all.torch.Tensor" <- function(x, ...) {
+#' d <- torch$tensor(list(list(0, 0),
+#'                        list(0, 0),
+#'                        list(0, 1),
+#'                        list(1, 1)), dtype=torch$uint8)
+#' all(d)
+#' all(d, dim=0L)
+#' all(d, dim=1L)
+"all.torch.Tensor" <- function(x, dim, ...) {
     # quick version of torch$all
     # TODO: modify to use all arguments
     # all(dim, keepdim=False, out=None) → Tensor
     # DO NOT USE torch$tensor() to prevent warning:
     #            ... it is recommended to use sourceTensor.clone().detach()
     x <- torch$as_tensor(x, dtype = torch$uint8)
-    as.logical(torch$all(x)$numpy())
+    # as.logical(torch$all(x)$numpy())
+    if (missing(dim)) torch$all(x) else torch$all(x, dim=as.integer(dim))
 }
 
-#' Find if any of the tensors are TRUE
+
+#' any
+#'
+#' Returns True if any elements in the tensor are non-zero, False otherwise.
 #' @param x tensor
-#' @param ... other tensors (yet to be developed)
+#' @param dim dimension to reduce
+#' @param ... other params (yet to be developed)
 #' @export
 #' @examples
 #' a <- torch$BoolTensor(list(TRUE, TRUE, TRUE, TRUE))
@@ -109,14 +144,22 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #' any(a)
 #' any(b)
 #' any(c)
-"any.torch.Tensor" <- function(x, ...) {
+#' d <- torch$tensor(list(list(1, 0),
+#'                        list(0, 0),
+#'                        list(0, 1),
+#'                        list(0, 0)), dtype=torch$uint8)
+#' any(d)
+#' any(d, dim=0L)
+#' any(d, dim=1L)
+"any.torch.Tensor" <- function(x, dim, ...) {
     # quick version of torch$any
     # TODO: modify to use all arguments
     # all(dim, keepdim=False, out=None) → Tensor
     # DO NOT USE torch$tensor() to prevent warning:
     #            ... it is recommended to use sourceTensor.clone().detach()
     x <- torch$as_tensor(x, dtype = torch$uint8)
-    as.logical(torch$any(x)$numpy())
+    # as.logical(torch$any(x)$numpy())
+    if (missing(dim)) torch$any(x) else torch$any(x, dim=as.integer(dim))
 }
 
 
