@@ -5,29 +5,47 @@ template:
   params:
     bootswatch: cosmo
 
+reference:
+  - title: All
+    desc: ~
+    contents:
+      - '`all_dims`'
+      - '`rTorch`'
+      - '`shape`'
+      - '`torch_extract_opts`'
+      - '`torch_getLogger`'
+      - '`torch_size`'
 
-navbar:
-  type: inverse
-  left:
-    - icon: fa-home
-      href: index.html
-    - text: "Vignettes"
-      menu:
-        - text: Simple Linear Regression
-          href: articles/simple_linear_regression.html
-        - text: Linear Regregression, rainfall
-          href: articles/linear_regression_rainfall.html
-        - text: Linear Regregression, rainfall. PyTorch builtins
-          href: articles/linear_regression_rainfall_builtins.html
-        - text: Two Layer Neural Network
-          href: articles/two_layer_neural_network.html
-        - text: Logistic Regression, MNIST digits
-          href: articles/logistic_regression_mnist_digits_idx.html
-        - text: MNIST digits recognition, IDX format
-          href: articles/idx_images_minist_digits.html
-        - text: MNIST digits recognition, PNG images
-          href: articles/png_images_mnist_digits.html
-        - text: MNIST Fashion images. Inference and Validation
-          href: articles/mnist_fashion_inference.html
+  - title: Generics
+    desc: ~
+    contents:
+      - '`%.*%`'
+      - '`%**%`'
+      - '`[.torch.Tensor`'
+
+  - title: One tensor operation
+    contents:
+      - '`dim.torch.Tensor`'
+      - '`length.torch.Tensor`'
+      - '`exp.torch.Tensor`'
+
+  - title: Two tensor operations
+    decs: ~
+    contents:
+      tensor_ops
+
+  - title: Get datasets
+    desc: ~
+    contents:
+      - '`dataset_mnist_digits`'
+
+  - title: Modules
+    desc: ~
+    contents:
+      - '`np`'
+      - '`torch`'
+      - '`torchvision`'
+
+
 
 
