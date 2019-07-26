@@ -667,18 +667,22 @@ all(A1 <= A0)
 ### Logical NOT
 
 ```{r}
-lo <- torch$BoolTensor(list(TRUE, TRUE, TRUE, TRUE))
-lo
+all_true <- torch$BoolTensor(list(TRUE, TRUE, TRUE, TRUE))
+all_true
 
 # logical NOT
-!lo
+not_all_true <- !all_true
+not_all_true
 ```
 
 ```{r}
-d <- torch$eye(5L)
-d
+diag <- torch$eye(5L)
+diag
 
 # logical NOT
-!d
+not_diag <- !diag
+
+# convert to integer
+not_diag$to(dtype=torch$uint8)
 ```
 
