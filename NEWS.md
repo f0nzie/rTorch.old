@@ -1,3 +1,6 @@
+# rTorch 0.0.1.9014
+* July 26 2019
+
 # rTorch 0.0.1.9013
 * July 26 2019
 * Vignettes temporarily moved to inst/vignettes to reduce build time of package
