@@ -157,26 +157,6 @@ tensor_ops <- function(a, b) UseMethod("tensor_ops")
 
 
 
-#' @describeIn tensor_ops Multiply two tensors of type float
-#' @export
-"*.torch.Tensor" <- function(a, b) {
-    # TODO: finish these two and tensor float ###################
-    if (any(class(a) == "torch._C.FloatTensorBase"))
-        torch$mul(a, b)
-    else
-        torch$mul(b, a)
-}
-
-#' @describeIn tensor_ops Divide two tensors of type float
-#' @export
-"/.torch.Tensor" <- function(a, b) {
-    if (any(class(a) == "torch._C.FloatTensorBase"))
-        torch$div(a, b)
-    else
-        torch$div(b, a)
-}
-
-##################################################################
 
 #' @describeIn tensor_ops Compare two tensors if equal
 #' @export
