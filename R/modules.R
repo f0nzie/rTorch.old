@@ -1,11 +1,10 @@
-
 #' Main PyTorch module
 #'
 #' Interface to main PyTorch module. Provides access to top level classes
 #'
 #' @format PyTorch module
-#'
 #' @export
+#' @rdname modules
 torch <- NULL
 
 
@@ -15,8 +14,8 @@ torch <- NULL
 #' Interface to numpy module.
 #'
 #' @format numpy module
-#'
 #' @export
+#' @rdname modules
 np <- NULL
 
 
@@ -26,6 +25,6 @@ np <- NULL
 #' Interface to Torchvision module.
 #'
 #' @format Torchvision module
-#'
 #' @export
+#' @rdname modules
 torchvision <- NULL
