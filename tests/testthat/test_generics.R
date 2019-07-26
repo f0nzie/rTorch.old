@@ -15,6 +15,13 @@ expect_all_equal <- function(x, y) {
   all_boolean(torch$eq(x, y))
 }
 
+expect_false_tensor <- function(x) {
+  expect_equal(x, FALSE_TENSOR)
+}
+
+expect_true_tensor <- function(x) {
+  expect_equal(x, TRUE_TENSOR)
+}
 
 context("dim on tensor")
 
