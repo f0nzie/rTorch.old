@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Torch configuration information — torch_config • rTorch</title>
+<title>One tensor operation — one_tensor_op • rTorch</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Torch configuration information — torch_config" />
+<meta property="og:title" content="One tensor operation — one_tensor_op" />
 
-<meta property="og:description" content="Torch configuration information" />
+<meta property="og:description" content="One tensor operation" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -102,35 +102,57 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Torch configuration information</h1>
-    <small class="dont-index">Source: <a href='https://github.com/f0nzie/rTorch/blob/master/R/package.R'><code>R/package.R</code></a></small>
-    <div class="hidden name"><code>torch_config.Rd</code></div>
+    <h1>One tensor operation</h1>
+    <small class="dont-index">Source: <a href='https://github.com/f0nzie/rTorch/blob/master/R/generics.R'><code>R/generics.R</code></a></small>
+    <div class="hidden name"><code>one_tensor_op.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Torch configuration information</p>
+    <p>One tensor operation</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>torch_config</span>()
+    <pre class="usage"><span class='fu'>one_tensor_op</span>(<span class='no'>x</span>)
 
-<span class='fu'>torch_version</span>()</pre>
-        
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+<span class='co'># S3 method for torch.Tensor</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/dim'>dim</a></span>(<span class='no'>x</span>)
 
-    <p>List with information on the current configuration of PyTorch.
-  You can determine whether PyTorch was found using the `available`
-  member (other members vary depending on whether `available` is `TRUE`
-  or `FALSE`)</p>
+<span class='co'># S3 method for torch.Tensor</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>x</span>)
+
+<span class='co'># S3 method for torch.Tensor</span>
+!(<span class='no'>x</span>)
+
+<span class='co'># S3 method for torch.Tensor</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>exp</a></span>(<span class='no'>x</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>tensor</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
+
+    <ul>
+<li><p><code>torch.Tensor</code>: Dimensions of a tensor</p></li>
+<li><p><code>torch.Tensor</code>: Length of a tensor</p></li>
+<li><p><code>torch.Tensor</code>: Logical NOT of a tensor</p></li>
+<li><p><code>torch.Tensor</code>: Exponential of a tensor</p></li>
+</ul>
     
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
+      <li><a href="#methods-by-class-">Methods (by class)</a></li>
           </ul>
 
   </div>

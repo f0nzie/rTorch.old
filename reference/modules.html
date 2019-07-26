@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Torch configuration information — torch_config • rTorch</title>
+<title>Main PyTorch module — torch • rTorch</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,11 @@
 
 
 
-<meta property="og:title" content="Torch configuration information — torch_config" />
+<meta property="og:title" content="Main PyTorch module — torch" />
 
-<meta property="og:description" content="Torch configuration information" />
+<meta property="og:description" content="Interface to main PyTorch module. Provides access to top level classes
+Interface to numpy module.
+Interface to Torchvision module." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -102,27 +104,28 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Torch configuration information</h1>
-    <small class="dont-index">Source: <a href='https://github.com/f0nzie/rTorch/blob/master/R/package.R'><code>R/package.R</code></a></small>
-    <div class="hidden name"><code>torch_config.Rd</code></div>
+    <h1>Main PyTorch module</h1>
+    <small class="dont-index">Source: <a href='https://github.com/f0nzie/rTorch/blob/master/R/modules.R'><code>R/modules.R</code></a></small>
+    <div class="hidden name"><code>modules.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Torch configuration information</p>
+    <p>Interface to main PyTorch module. Provides access to top level classes</p>
+<p>Interface to numpy module.</p>
+<p>Interface to Torchvision module.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>torch_config</span>()
+    <pre class="usage"><span class='no'>torch</span>
 
-<span class='fu'>torch_version</span>()</pre>
+<span class='no'>np</span>
+
+<span class='no'>torchvision</span></pre>
         
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>List with information on the current configuration of PyTorch.
-  You can determine whether PyTorch was found using the `available`
-  member (other members vary depending on whether `available` is `TRUE`
-  or `FALSE`)</p>
+    <p>PyTorch module</p>
     
 
   </div>
@@ -130,7 +133,7 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
-      <li><a href="#value">Value</a></li>
+      <li><a href="#format">Format</a></li>
           </ul>
 
   </div>
