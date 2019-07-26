@@ -178,9 +178,9 @@ context("tensor comparison")
 test_that("tensor is less than ", {
   A <- torch$ones(60000L, 1L, 28L, 28L)
   C <- A * 0.5
-  expect_true(all_boolean(torch$lt(C, A)))
-  expect_true(all_boolean(C < A))
-  expect_false(all_boolean(A < C))
+  expect_true(all(torch$lt(C, A)))
+  expect_true(all(C < A))
+  expect_false(all(A < C))
 })
 
 
@@ -188,20 +188,20 @@ test_that("tensor is greater than ", {
   A <- torch$ones(60000L, 1L, 28L, 28L)
   D <- A * 2.0
   # print(as.logical(torch$all(torch$gt(D, A))$numpy()))
-  expect_true(all_boolean(torch$gt(D, A)))
-  expect_false(all_boolean(torch$gt(A, D)))
+  expect_true(all(torch$gt(D, A)))
+  expect_false(all(torch$gt(A, D)))
 })
 
 test_that("tensor is less than or equal", {
   A <- torch$ones(60000L, 1L, 28L, 28L)
-  expect_true(all_boolean(torch$le(A, A)))
-  expect_true(all_boolean(A <= A))
+  expect_true(all(torch$le(A, A)))
+  expect_true(all(A <= A))
 })
 
 test_that("tensor is greater than or equal", {
   A <- torch$ones(60000L, 1L, 28L, 28L)
-  expect_true(all_boolean(torch$ge(A, A)))
-  expect_true(all_boolean(A >= A))
+  expect_true(all(torch$ge(A, A)))
+  expect_true(all(A >= A))
 })
 
 

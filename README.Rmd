@@ -624,44 +624,44 @@ m1 | m2
 ```
 
 ```{r}
-all_boolean <- function(x) {
-  # convert tensor of 1s and 0s to a unique boolean
-  as.logical(torch$all(x)$numpy())
-}
+# all_boolean <- function(x) {
+#   # convert tensor of 1s and 0s to a unique boolean
+#   as.logical(torch$all(x)$numpy())
+# }
 
 # tensor is less than
 A <- torch$ones(60000L, 1L, 28L, 28L)
 C <- A * 0.5
 
 # is C < A
-all_boolean(torch$lt(C, A))
-all_boolean(C < A)
+all(torch$lt(C, A))
+all(C < A)
 # is A < C
-all_boolean(A < C)
+all(A < C)
 ```
 
 ```{r}
 # tensor is greater than
 A <- torch$ones(60000L, 1L, 28L, 28L)
 D <- A * 2.0
-all_boolean(torch$gt(D, A))
-all_boolean(torch$gt(A, D))
+all(torch$gt(D, A))
+all(torch$gt(A, D))
 ```
 
 
 ```{r}
 # tensor is less than or equal
 A1 <- torch$ones(60000L, 1L, 28L, 28L)
-all_boolean(torch$le(A1, A1))
-all_boolean(A1 <= A1)
+all(torch$le(A1, A1))
+all(A1 <= A1)
 
 # tensor is greater than or equal
 A0 <- torch$zeros(60000L, 1L, 28L, 28L)
-all_boolean(torch$ge(A0, A0))
-all_boolean(A0 >= A0)
+all(torch$ge(A0, A0))
+all(A0 >= A0)
 
-all_boolean(A1 >= A0)
-all_boolean(A1 <= A0)
+all(A1 >= A0)
+all(A1 <= A0)
 ```
 
 ### Logical NOT
