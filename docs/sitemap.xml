@@ -4,19 +4,40 @@
     <loc>https://github.com/f0nzie/rTorch/index.html</loc>
   </url>
   <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/all.torch.Tensor.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/f0nzie/rTorch/reference/all_dims.html</loc>
   </url>
   <url>
-    <loc>https://github.com/f0nzie/rTorch/reference/dataset_mnist.html</loc>
+    <loc>https://github.com/f0nzie/rTorch/reference/any.torch.Tensor.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/dataset_mnist_digits.html</loc>
   </url>
   <url>
     <loc>https://github.com/f0nzie/rTorch/reference/grapes-.-times-grapes.html</loc>
   </url>
   <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/grapes-grapes-.torch.Tensor.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/f0nzie/rTorch/reference/grapes-times-times-grapes.html</loc>
   </url>
   <url>
-    <loc>https://github.com/f0nzie/rTorch/reference/np.html</loc>
+    <loc>https://github.com/f0nzie/rTorch/reference/log.torch.Tensor.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/log10.torch.Tensor.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/log2.torch.Tensor.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/modules.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/one_tensor_op.html</loc>
   </url>
   <url>
     <loc>https://github.com/f0nzie/rTorch/reference/rTorch.html</loc>
@@ -31,7 +52,7 @@
     <loc>https://github.com/f0nzie/rTorch/reference/sub-.torch.Tensor.html</loc>
   </url>
   <url>
-    <loc>https://github.com/f0nzie/rTorch/reference/torch.html</loc>
+    <loc>https://github.com/f0nzie/rTorch/reference/tensor_ops.html</loc>
   </url>
   <url>
     <loc>https://github.com/f0nzie/rTorch/reference/torch_config.html</loc>
@@ -44,32 +65,5 @@
   </url>
   <url>
     <loc>https://github.com/f0nzie/rTorch/reference/torch_size.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/f0nzie/rTorch/reference/torchvision.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/f0nzie/rTorch/articles/idx_images_minist_digits.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/f0nzie/rTorch/articles/linear_regression_rainfall.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/f0nzie/rTorch/articles/linear_regression_rainfall_builtins.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/f0nzie/rTorch/articles/logistic_regression_mnist_digits_idx.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/f0nzie/rTorch/articles/mnist_fashion_inference.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/f0nzie/rTorch/articles/png_images_mnist_digits.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/f0nzie/rTorch/articles/simple_linear_regression.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/f0nzie/rTorch/articles/two_layer_neural_network.html</loc>
   </url>
 </urlset>

@@ -49,7 +49,7 @@
   <body>
     <div class="container template-news">
       <header>
-      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
@@ -60,7 +60,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9012</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9013</span>
       </span>
     </div>
 
@@ -68,42 +68,15 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home"></span>
+    <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Vignettes
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/simple_linear_regression.html">Simple Linear Regression</a>
-    </li>
-    <li>
-      <a href="../articles/linear_regression_rainfall.html">Linear Regregression, rainfall</a>
-    </li>
-    <li>
-      <a href="../articles/linear_regression_rainfall_builtins.html">Linear Regregression, rainfall. PyTorch builtins</a>
-    </li>
-    <li>
-      <a href="../articles/two_layer_neural_network.html">Two Layer Neural Network</a>
-    </li>
-    <li>
-      <a href="../articles/logistic_regression_mnist_digits_idx.html">Logistic Regression, MNIST digits</a>
-    </li>
-    <li>
-      <a href="../articles/idx_images_minist_digits.html">MNIST digits recognition, IDX format</a>
-    </li>
-    <li>
-      <a href="../articles/png_images_mnist_digits.html">MNIST digits recognition, PNG images</a>
-    </li>
-    <li>
-      <a href="../articles/mnist_fashion_inference.html">MNIST Fashion images. Inference and Validation</a>
-    </li>
-  </ul>
+<li>
+  <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -130,6 +103,20 @@
       <small>Source: <a href='https://github.com/f0nzie/rTorch/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="rtorch-0-0-1-9013" class="section level1">
+<h1 class="page-header">
+<a href="#rtorch-0-0-1-9013" class="anchor"></a>rTorch 0.0.1.9013</h1>
+<ul>
+<li>July 25 2019</li>
+<li>Add function remainder for tensors. Equivalent to <code>a %% b</code>
+</li>
+<li>Change unit tests in <code>test_generics.R</code> to use new function <code>expect_true_tensor</code>
+</li>
+<li>Enhance functions <code>any</code> and <code>all</code>. Add examples</li>
+<li>Add roxygen documentation to two tensor operations</li>
+<li>Change download folders for MNIST datasets under project folder</li>
+</ul>
+</div>
     <div id="rtorch-0-0-1-9012" class="section level1">
 <h1 class="page-header">
 <a href="#rtorch-0-0-1-9012" class="anchor"></a>rTorch 0.0.1.9012</h1>
@@ -260,6 +247,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#rtorch-0-0-1-9013">0.0.1.9013</a></li>
         <li><a href="#rtorch-0-0-1-9012">0.0.1.9012</a></li>
         <li><a href="#rtorch-0-0-1-9011">0.0.1.9011</a></li>
         <li><a href="#rtorch-0-0-1-9010">0.0.1.9010</a></li>
