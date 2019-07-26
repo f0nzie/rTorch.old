@@ -38,6 +38,13 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
 }
 
 
+#' One tensor operation
+#'
+#' @param x tensor
+one_tensor_op <- function(x) UseMethod("one_tensor_op")
+
+
+#' @describeIn one_tensor_op Dimensions of a tensor
 #' @export
 "dim.torch.Tensor" <- function(x) {        # change .tensor to .Tensor
     if (py_is_null_xptr(x))
@@ -52,7 +59,7 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
     }
 }
 
-
+#' @describeIn one_tensor_op Length of a tensor
 #' @export
 "length.torch.Tensor" <- function(x) {
     if (py_is_null_xptr(x))
@@ -89,7 +96,23 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
 }
 
 
+#' Two tensor operations
+#'
+#' @param a tensor
+#' @param b tensor
+#' @examples
+#' a <- torch$Tensor(list(1, 1, 1))
+#' b <- torch$Tensor(list(2, 2, 2))
+#' s <- 2.0
+#' a + b
+#' b - a
+#' a * b
+#' a / s
+tensor_ops <- function(a, b) UseMethod("tensor_ops")
 
+
+
+#' @describeIn tensor_ops Add two tensors
 #' @export
 "+.torch.Tensor" <- function(a, b) {
     if (any(class(a) == "torch.Tensor"))
@@ -99,6 +122,7 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
 }
 
 
+#' @describeIn tensor_ops Subtract two tensors
 #' @export
 "-.torch.Tensor" <- function(a, b) {
     if (missing(b)) {
@@ -115,7 +139,9 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
 }
 
 
+
 #' @export
+#' @describeIn tensor_ops Tensor multiplication
 "*.torch.Tensor" <- function(a, b) {
     if (py_has_attr(torch, "multiply"))
         torch$multiply(a, b)
@@ -123,6 +149,7 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
         torch$mul(a, b)
 }
 
+#' @describeIn tensor_ops Divide two tensors
 #' @export
 "/.torch.Tensor" <- function(a, b) {
     torch$div(a, b)
@@ -130,18 +157,17 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
 
 
 
-
-
-# TODO: finish these two and tensor float ###################
+#' @describeIn tensor_ops Multiply two tensors of type float
 #' @export
 "*.torch.Tensor" <- function(a, b) {
+    # TODO: finish these two and tensor float ###################
     if (any(class(a) == "torch._C.FloatTensorBase"))
         torch$mul(a, b)
     else
         torch$mul(b, a)
 }
 
-
+#' @describeIn tensor_ops Divide two tensors of type float
 #' @export
 "/.torch.Tensor" <- function(a, b) {
     if (any(class(a) == "torch._C.FloatTensorBase"))
@@ -152,7 +178,7 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
 
 ##################################################################
 
-
+#' @describeIn tensor_ops Compare two tensors if equal
 #' @export
 "==.torch.Tensor" <- function(a, b) {
     torch$as_tensor(torch$eq(a, b), dtype = torch$bool)
@@ -167,6 +193,7 @@ tensor_not_equal <- function(x, y) {
     torch$BoolTensor(np$not_equal(x, y))
 }
 
+#' @describeIn tensor_ops Compare two tensors if not equal
 #' @export
 "!=.torch.Tensor" <- function(a, b) {
     # there is not not_equal function in PyTorch
@@ -174,33 +201,36 @@ tensor_not_equal <- function(x, y) {
     torch$ne(a, b)
 }
 
+#' @describeIn one_tensor_op Logical NOT of a tensor
 #' @export
-"!.torch.Tensor" <- function(a) {
+"!.torch.Tensor" <- function(x) {
     # there is not logical not in torch
     # torch$BoolTensor(np$logical_not(a))
-    torch$as_tensor(np$logical_not(a), dtype = torch$bool)
+    torch$as_tensor(np$logical_not(x), dtype = torch$bool)
 }
 
 
-
+#' @describeIn tensor_ops A tensor less than another tensor
 #' @export
 "<.torch.Tensor" <- function(a, b) {
     torch$lt(a, b)
 }
 
 
+#' @describeIn tensor_ops A tensor less or equal than another tensor
 #' @export
 "<=.torch.Tensor" <- function(a, b) {
     torch$le(a, b)
 }
 
 
+#' @describeIn tensor_ops A tensor greater than another tensor
 #' @export
 ">.torch.Tensor" <- function(a, b) {
     torch$gt(a, b)
 }
 
-
+#' @describeIn tensor_ops A tensor greater or equal than another tensor
 #' @export
 ">=.torch.Tensor" <- function(a, b) {
     torch$ge(a, b)
@@ -231,12 +261,14 @@ tensor_not_equal <- function(x, y) {
 
 
 
-
+#' @describeIn tensor_ops A tensor to the power of
 #' @export
 "^.torch.Tensor" <- function(a, b) {
     torch$pow(a, b)
 }
 
+
+#' @describeIn one_tensor_op Exponential of a tensor
 #' @export
 "exp.torch.Tensor" <- function(x) {
     torch$exp(x)
@@ -252,8 +284,6 @@ tensor_not_equal <- function(x, y) {
         # print("not here")
         torch$log(x)
     }
-
-
 }
 
 #' @export
@@ -283,12 +313,14 @@ tensor_logical_or <- function(x, y) {
 }
 
 
+#' @describeIn tensor_ops Logical AND of two tensors
 #' @export
 "&.torch.Tensor" <- function(a, b) {
     tensor_logical_and(a, b)
 }
 
 
+#' @describeIn tensor_ops Logical OR of two tensors
 #' @export
 "|.torch.Tensor" <- function(a, b) {
     tensor_logical_or(a, b)
