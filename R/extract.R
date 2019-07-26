@@ -1,7 +1,7 @@
 
 #' Subset tensors with `[`
 #'
-#' @param x Tensorflow tensor
+#' @param x a tensor
 #' @param ... slicing specs. See examples and details.
 #' @param drop whether to drop scalar dimensions
 #' @param style One of `"python"` or `"R"`.
@@ -75,9 +75,7 @@
 #' # slicing with tensors is valid too, but note, tensors are never
 #' # translated and are always interpreted python-style.
 #' # A warning is issued the first time a tensor is passed to `[`
-#' sess$run( x[, tf$constant(0L):tf$constant(2L)] )
 #' # just as in python, only scalar tensors are valid
-#' # https://www.tensorflow.org/api_docs/python/tf/Tensor#__getitem__
 #'
 #' # To silence the warnings about tensors being passed as-is and negative numbers
 #' # being interpreted python-style, set
@@ -255,7 +253,7 @@ torch_extract_opts <- function(
 #' @export
 #' @examples
 #' \dontrun{
-#' # in python, if x is a numpy array or tensorflow tensor
+#' # in python, if x is a numpy array or torch tensor
 #' x[..., i]
 #' # the ellipsis means "expand to match number of dimension of x".
 #' # to translate the above python expression to R, write:
@@ -495,7 +493,7 @@ stop_if_any_zeros <- function(dots) {
     function(d) isTRUE(any(d == 0)),
     if_any_TRUE = stop( paste(
         "It looks like you might be using 0-based indexing to extract using `[`.",
-        "The tensorflow package now uses 1-based extraction by default.\n",
+        "The rTorch package now uses 1-based extraction by default.\n",
         "You can switch to the old behavior (0-based extraction) with:",
         "  options(torch.extract.one_based = FALSE)\n", sep = "\n" ),
       call. = FALSE
@@ -514,7 +512,7 @@ warn_if_any_negative <- function(dots) {
     ignore_py_slice_step = TRUE,
     if_any_TRUE = {
       warning( call. = FALSE,
-        "Negative numbers are interpreted python-style when subsetting tensorflow tensors.",
+        "Negative numbers are interpreted python-style when subsetting rTorch tensors.",
         "(they select items by counting from the back). For more details, see: ",
         "https://docs.scipy.org/doc/numpy-1.13.0/reference/arrays.indexing.html#basic-slicing-and-indexing\n",
         "To turn off this warning, set ",

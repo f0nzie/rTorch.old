@@ -12,11 +12,13 @@ vignettes/datasets
 inst/raw_data/MNIST/
 
 *.pkl
+*.pt
 doc
 Meta
 
 *.ckpt
 
 vignettes/mnist_fashion/FashionMNIST/raw/
+datasets/
 
-*.pt
+

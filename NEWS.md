@@ -1,3 +1,13 @@
+# rTorch 0.0.1.9013
+* July 26 2019
+* Vignettes temporarily moved to inst/vignettes to reduce build time of package
+* Add function remainder for tensors. Equivalent to `a %% b`
+* Change unit tests in `test_generics.R` to use new function `expect_true_tensor`
+* Enhance functions `any` and `all`. Add examples
+* Add roxygen documentation to two tensor operations
+* Change download folders for MNIST datasets under project folder
+
+
 # rTorch 0.0.1.9012
 * July 24 2019
 * Change MNIST download folder to ~/raw_data instead of inst/

@@ -36,18 +36,18 @@ torch$manual_seed(123)
 As usual, let's start by loading the dataset through torchvision. 
 
 ```{r, load_datasets}
-
+local_folder <- "../datasets/mnist_fashion"
 # Define a transform to normalize the data
 transform = transforms$Compose(list(transforms$ToTensor(),
                                 transforms$Normalize(list(0.5), list(0.5) )))
                                 
 # Download and load the training data
-trainset = datasets$FashionMNIST('mnist_fashion', download=TRUE, train=TRUE,  
+trainset = datasets$FashionMNIST(local_folder, download=TRUE, train=TRUE,  
         transform=transform)
 train_loader = torch$utils$data$DataLoader(trainset, batch_size=64L, shuffle=TRUE)
 
 # Download and load the test data
-testset = datasets$FashionMNIST('mnist_fashion', download=TRUE, train=FALSE,
+testset = datasets$FashionMNIST(local_folder, download=TRUE, train=FALSE,
     transform=transform)
 test_loader = torch$utils$data$DataLoader(testset, batch_size=64L, shuffle=TRUE)
 

@@ -119,7 +119,7 @@ print.pytorch_config <- function(x, ...) {
 
 
 
-# Build error message for TensorFlow configuration errors
+# Build error message for rTorch configuration errors
 torch_config_error_message <- function() {
     message <- "Installation of Torch not found."
     config <- py_config()
