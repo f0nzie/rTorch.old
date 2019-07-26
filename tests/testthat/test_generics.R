@@ -119,8 +119,10 @@ test_that("tensor equal as x == y", {
       list(1, 1, 1, 1),
       list(1, 1, 1, 1)
     ))
-    expect_true(all(torch$eq(x, y)))
-    expect_true(all(x == y))
+    # true_tensor <- torch$as_tensor(1L, dtype=torch$uint8)
+    # print(true_tensor)
+    expect_equal(all(torch$eq(x, y)), TRUE_TENSOR)
+    expect_equal(all(x == y), TRUE_TENSOR)
     expect_equal((x == y), expected)
 })
 
@@ -130,33 +132,32 @@ context("tensors not equal !=")
 test_that("tensor equal as x == y", {
   A <- torch$ones(60000L, 3L, 28L, 28L)
   B <- torch$ones(60000L, 3L, 28L, 28L)
-  expect_true(all(A == B))
-  expect_false(all(A != B))
+  expect_equal(all(A == B), TRUE_TENSOR)
+  expect_equal(all(A != B), TRUE_TENSOR)
 })
 
 
 test_that("tensor not equal as x != y", {
   a <- torch$Tensor(list(2, 2, 2, 2))
   b <- torch$Tensor(list(2, 2, 2, 1))
-  expect_false(all(a == b))
-  expect_true(any(a != b))
-  # print((a != b))
-  expect_equal((a != b), torch$BoolTensor(list(FALSE, FALSE, FALSE, TRUE)))
+  expect_equal(all(a == b), FALSE_TENSOR)
+  expect_equal(any(a != b), TRUE_TENSOR)
+  # expect_equal((a != b), torch$BoolTensor(list(FALSE, FALSE, FALSE, TRUE)))
 
   x = torch$rand(5L, 4L)
   y = torch$rand(5L, 4L)
-  expect_false(all(torch$eq(x, y)))
-  expect_true(!all(torch$eq(x, y)))
-  expect_true(all(x != y))
+  expect_false_tensor(all(torch$eq(x, y)))
+  expect_true_tensor(!all(torch$eq(x, y)))
+  expect_true_tensor(all(x != y))
 
 
   A <- torch$ones(60000L, 3L, 28L, 28L)    # all ones
   B <- torch$zeros(60000L, 3L, 28L, 28L)   # all zeroes
-  expect_true(all(A != B))
+  expect_true_tensor(all(A != B))
 
   A <- torch$ones(60000L, 1L, 28L, 28L)
   B <- torch$ones(60000L, 1L, 28L, 28L)
-  expect_false(all(A != B))
+  expect_false_tensor(all(A != B))
 })
 
 
@@ -164,19 +165,19 @@ test_that("tensor not equal as x != y", {
 
 test_that("numpy logical-not works as !", {
   A <- torch$ones(5L)
-  expect_false(all(!A))
+  expect_false_tensor(all(!A))
 
   Z <- torch$zeros(5L)
-  expect_false(all(Z))
-  expect_true(all(!Z))
+  expect_false_tensor(all(Z))
+  expect_true_tensor(all(!Z))
 
   E <- torch$eye(3L)
-  expect_true(all(torch$diag(E)))
+  expect_true_tensor(all(torch$diag(E)))
 
   # torch$diag does not work on boolean tensors when diag are all zeros
   # the tensor has to be converted first to uint8 dtype
   NE <- torch$as_tensor(!E, dtype = torch$uint8)
-  expect_false(all(NE$diag()))
+  expect_false_tensor(all(NE$diag()))
 
   expect_error(torch$diag(!E))    # this will throw an error
 })
@@ -188,9 +189,9 @@ context("tensor comparison")
 test_that("tensor is less than ", {
   A <- torch$ones(60000L, 1L, 28L, 28L)
   C <- A * 0.5
-  expect_true(all(torch$lt(C, A)))
-  expect_true(all(C < A))
-  expect_false(all(A < C))
+  expect_true_tensor(all(torch$lt(C, A)))
+  expect_true_tensor(all(C < A))
+  expect_false_tensor(all(A < C))
 })
 
 
@@ -198,20 +199,20 @@ test_that("tensor is greater than ", {
   A <- torch$ones(60000L, 1L, 28L, 28L)
   D <- A * 2.0
   # print(as.logical(torch$all(torch$gt(D, A))$numpy()))
-  expect_true(all(torch$gt(D, A)))
-  expect_false(all(torch$gt(A, D)))
+  expect_true_tensor(all(torch$gt(D, A)))
+  expect_false_tensor(all(torch$gt(A, D)))
 })
 
 test_that("tensor is less than or equal", {
   A <- torch$ones(60000L, 1L, 28L, 28L)
-  expect_true(all(torch$le(A, A)))
-  expect_true(all(A <= A))
+  expect_true_tensor(all(torch$le(A, A)))
+  expect_true_tensor(all(A <= A))
 })
 
 test_that("tensor is greater than or equal", {
   A <- torch$ones(60000L, 1L, 28L, 28L)
-  expect_true(all(torch$ge(A, A)))
-  expect_true(all(A >= A))
+  expect_true_tensor(all(torch$ge(A, A)))
+  expect_true_tensor(all(A >= A))
 })
 
 
