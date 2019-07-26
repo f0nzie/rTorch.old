@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Torch configuration information — torch_config • rTorch</title>
+<title>MNIST database of handwritten digits — dataset_mnist_digits • rTorch</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,10 @@
 
 
 
-<meta property="og:title" content="Torch configuration information — torch_config" />
+<meta property="og:title" content="MNIST database of handwritten digits — dataset_mnist_digits" />
 
-<meta property="og:description" content="Torch configuration information" />
+<meta property="og:description" content="Dataset of 60,000 28x28 grayscale images of the 10 digits, along with a test
+set of 10,000 images." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -102,36 +103,44 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Torch configuration information</h1>
-    <small class="dont-index">Source: <a href='https://github.com/f0nzie/rTorch/blob/master/R/package.R'><code>R/package.R</code></a></small>
-    <div class="hidden name"><code>torch_config.Rd</code></div>
+    <h1>MNIST database of handwritten digits</h1>
+    <small class="dont-index">Source: <a href='https://github.com/f0nzie/rTorch/blob/master/R/datasets.R'><code>R/datasets.R</code></a></small>
+    <div class="hidden name"><code>dataset_mnist_digits.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Torch configuration information</p>
+    <p>Dataset of 60,000 28x28 grayscale images of the 10 digits, along with a test
+set of 10,000 images.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>torch_config</span>()
-
-<span class='fu'>torch_version</span>()</pre>
-        
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>List with information on the current configuration of PyTorch.
-  You can determine whether PyTorch was found using the `available`
-  member (other members vary depending on whether `available` is `TRUE`
-  or `FALSE`)</p>
+    <pre class="usage"><span class='fu'>dataset_mnist_digits</span>(<span class='kw'>ntrain</span> <span class='kw'>=</span> <span class='fl'>60000L</span>, <span class='kw'>ntest</span> <span class='kw'>=</span> <span class='fl'>10000L</span>, <span class='kw'>onehot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>ntrain</th>
+      <td><p>number of training samples</p></td>
+    </tr>
+    <tr>
+      <th>ntest</th>
+      <td><p>number of test samples</p></td>
+    </tr>
+    <tr>
+      <th>onehot</th>
+      <td><p>boolean</p></td>
+    </tr>
+    </table>
     
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      
-      <li><a href="#value">Value</a></li>
-          </ul>
+      <li><a href="#arguments">Arguments</a></li>
+                </ul>
 
   </div>
 </div>
