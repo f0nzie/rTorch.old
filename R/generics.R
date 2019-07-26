@@ -108,6 +108,24 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #' b - a
 #' a * b
 #' a / s
+#' a == b
+#' a == a
+#' a != a
+#' x <- torch$Tensor(list(list(2, 2, 2), list(4, 4, 4)))
+#' y <- torch$Tensor(list(list(1, 2, 1), list(3, 4, 5)))
+#' x > y
+#' x < y
+#' x >= y
+#' y <= x
+#' diag <- torch$eye(3L)
+#' zeros <- torch$zeros(c(3L, 3L))
+#' diag & zeros
+#' diag & diag
+#' diag | diag
+#' zeros | zeros
+#' zeros & zeros
+#' diag & zeros
+#' diag | zeros
 tensor_ops <- function(a, b) UseMethod("tensor_ops")
 
 
@@ -178,7 +196,8 @@ tensor_not_equal <- function(x, y) {
 "!=.torch.Tensor" <- function(a, b) {
     # there is not not_equal function in PyTorch
     # tensor_not_equal(a, b)
-    torch$ne(a, b)
+    # torch$ne(a, b)
+    torch$as_tensor(torch$ne(a, b), dtype = torch$bool)
 }
 
 #' @describeIn one_tensor_op Logical NOT of a tensor
@@ -193,27 +212,31 @@ tensor_not_equal <- function(x, y) {
 #' @describeIn tensor_ops A tensor less than another tensor
 #' @export
 "<.torch.Tensor" <- function(a, b) {
-    torch$lt(a, b)
+    # torch$lt(a, b)
+    torch$as_tensor(torch$lt(a, b), dtype = torch$bool)
 }
 
 
 #' @describeIn tensor_ops A tensor less or equal than another tensor
 #' @export
 "<=.torch.Tensor" <- function(a, b) {
-    torch$le(a, b)
+    # torch$le(a, b)
+    torch$as_tensor(torch$le(a, b), dtype = torch$bool)
 }
 
 
 #' @describeIn tensor_ops A tensor greater than another tensor
 #' @export
 ">.torch.Tensor" <- function(a, b) {
-    torch$gt(a, b)
+    # torch$gt(a, b)
+    torch$as_tensor(torch$gt(a, b), dtype = torch$bool)
 }
 
 #' @describeIn tensor_ops A tensor greater or equal than another tensor
 #' @export
 ">=.torch.Tensor" <- function(a, b) {
-    torch$ge(a, b)
+    # torch$ge(a, b)
+    torch$as_tensor(torch$ge(a, b), dtype = torch$bool)
 }
 
 
