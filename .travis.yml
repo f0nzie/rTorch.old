@@ -16,7 +16,7 @@ matrix:
   include:
     - name: "PyTorch with reticulate master"
       env:
-        - PYTORCH_VERSION="1.1.0"
+        - PYTORCH_VERSION="1.0.1"
       r_github_packages:
         - rstudio/reticulate
 
