@@ -22,9 +22,8 @@ matrix:
         - rstudio/reticulate
 
 before_script:
-  - sudo add-apt-repository ppa:jonathonf/python-3.6
   - sudo apt-get update
-  - sudo apt-get install python3.6
+  - sudo apt-get install python3
   - pip install --upgrade --ignore-installed --user travis virtualenv
   - R CMD INSTALL .
   - R -e 'rTorch::install_pytorch(version = Sys.getenv("PYTORCH_VERSION"))'
