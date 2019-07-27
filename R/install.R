@@ -65,7 +65,7 @@ install_pytorch <- function(method = c("auto", "virtualenv", "conda"),
   default_packages <- c("pandas")
 
   # Resolve TF probability version.
-  if (!is.na(version) && substr(version, 1, 4) %in% c("1.12", "1.13", "1.14")) {
+  if (!is.na(version) && substr(version, 1, 4) %in% c("1.1.0", "1.13", "1.14")) {
     default_packages <- c(default_packages, "numpy")
     # install tfp-nightly
   } else if (is.na(version) ||(substr(version, 1, 4) %in% c("2.0.") || version == "nightly")) {
