@@ -190,7 +190,7 @@ parse_torch_version <- function(version) {
 
   if (version == "default") {
 
-    ver$package <- paste0("pytorch==", ver$version)
+    ver$package <- paste0("pytorch-cpu==", ver$version)
 
     # default gpu version
   } else if (version == "gpu") {
@@ -239,7 +239,7 @@ parse_torch_version <- function(version) {
       if (ver$gpu) {
         ver$package <- paste0("pytorch-gpu==", ver$version)
       } else {
-        ver$package <- paste0("pytorch==", ver$version)
+        ver$package <- paste0("pytorch-cpu==", ver$version)
       }
 
     }
