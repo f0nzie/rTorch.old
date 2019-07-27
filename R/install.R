@@ -180,7 +180,7 @@ install_virtualenv <- function(package, extra_packages, envname, ...) {
 
 parse_torch_version <- function(version) {
 
-  default_version <- "1.14.0"
+  default_version <- "1.1.0"
 
   ver <- list(
     version = default_version,
