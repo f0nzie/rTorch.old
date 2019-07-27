@@ -247,7 +247,7 @@ torch_extract_opts <- function(
 #' All dims
 #'
 #' This function returns an object that can be used when subsetting tensors with
-#' `[`. If you are familiar with python,, this is equivalent to the python Ellipsis
+#' `[`. If you are familiar with Python, this is equivalent to the Python Ellipsis
 #' `...`, (not to be confused with `...` in `R`).
 #'
 #' @export
