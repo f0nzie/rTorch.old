@@ -37,7 +37,7 @@
 #'
 #' @export
 install_pytorch <- function(method = c("auto", "virtualenv", "conda"),
-                               conda = "auto",
+                               conda = "conda",
                                version = "default",
                                envname = "r-torch",
                                extra_packages = NULL,
