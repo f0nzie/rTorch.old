@@ -19,6 +19,10 @@ NULL
 packageStartupMessage("loading PyTorch")
 
 .onLoad <- function(libname, pkgname) {
+  # if TENSORFLOW_PYTHON is defined then forward it to RETICULATE_PYTHON
+  torch_python <- Sys.getenv("TORCH_PYTHON", unset = NA)
+  if (!is.na(torch_python))
+    Sys.setenv(RETICULATE_PYTHON = torch_python)
 
     # delay load PyTorch
     torch <<- import("torch", delay_load = list(
