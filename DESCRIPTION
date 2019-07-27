@@ -31,4 +31,3 @@ Suggests:
 SystemRequirements: PyTorch (https://pytorch.org/)
 RoxygenNote: 6.1.1
 URL: https://github.com/f0nzie/rTorch
-VignetteBuilder: knitr
