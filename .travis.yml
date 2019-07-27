@@ -26,9 +26,6 @@ before_script:
   - conda config --set always_yes yes --set changeps1 no
   - conda update -q conda
   - conda info -a
-  - conda create -q -n test-env python=$TRAVIS_PYTHON_VERSION
-  - source activate test-env
-  - conda install -c pytorch pytorch-cpu torchvision-cpu
   - R CMD INSTALL .
   - R -e 'rTorch::install_pytorch(version = Sys.getenv("PYTORCH_VERSION"))'
   - R -e 'rTorch::torch_config()'
