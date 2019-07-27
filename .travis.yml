@@ -27,3 +27,6 @@ before_script:
   - source activate test-env
   - conda install -c pytorch pytorch-cpu torchvision-cpu
   - R CMD INSTALL .
+  - R -e 'rTorch::install_pytorch(version = Sys.getenv("TENSORFLOW_VERSION"))'
+  - R -e 'rTorch::torch_config()'
+
