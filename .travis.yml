@@ -23,3 +23,6 @@ install:
   - conda create -q -n test-env python=$TRAVIS_PYTHON_VERSION
   - source activate test-env
   - conda install -c pytorch pytorch-cpu torchvision-cpu
+
+before_script:
+  - R CMD INSTALL .
