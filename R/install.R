@@ -150,6 +150,7 @@ install_conda <- function(package, extra_packages, envname, conda, conda_python_
     packages = c(package, extra_packages),
     conda = conda,
     pip = TRUE, # always use pip since it's the recommend way.
+    forge = "pytorch",
     ...
   )
 
