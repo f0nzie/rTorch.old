@@ -21,6 +21,6 @@ install:
 
 before_script:
   - R CMD INSTALL .
-  - R -e 'tensorflow::install_pytorch(version = Sys.getenv("TENSORFLOW_VERSION"))'
-  - R -e 'tensorflow::torch_config()'
+  - R -e 'rTorch::install_pytorch(version = Sys.getenv("TENSORFLOW_VERSION"))'
+  - R -e 'rTorch::torch_config()'
 
