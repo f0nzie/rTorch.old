@@ -40,6 +40,7 @@ packageStartupMessage("loading PyTorch")
       environment = "r-np"          # this is a user generated environment
     ))
 
+
   # provide a common base S3 class for tensors
   reticulate::register_class_filter(function(classes) {
       if (any(c("torch.autograd.variable.Variable",
@@ -71,6 +72,7 @@ torch_config <- function() {
 
     # get py config
     config <- py_config()
+    print(config)
 
     # found it!
     if (have_torch) {
