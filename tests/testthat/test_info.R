@@ -14,6 +14,7 @@ test_that("CUDA is not available", {
     expect_equal(torch$cuda$is_available(), FALSE)
 })
 
+
 test_that("Number of CPUs", {
     expect_equal(torch$get_num_threads(), 4)
 })
