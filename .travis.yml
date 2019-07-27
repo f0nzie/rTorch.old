@@ -23,7 +23,7 @@ matrix:
 
 before_script:
   - sudo apt-get update
-  - sudo apt-get install python3
+  - sudo apt-get install python3.6
   - pip install --upgrade --ignore-installed --user travis virtualenv
   - R CMD INSTALL .
   - R -e 'rTorch::install_pytorch(version = Sys.getenv("PYTORCH_VERSION"))'
