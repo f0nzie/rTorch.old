@@ -15,6 +15,7 @@ test_that("CUDA is not available", {
 })
 
 
+skip_on_travis()
 test_that("Number of CPUs", {
     expect_equal(torch$get_num_threads(), 4)
 })
