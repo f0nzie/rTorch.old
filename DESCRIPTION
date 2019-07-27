@@ -22,6 +22,7 @@ Imports: logging,
     utils,
     methods,
     R6,
+    rstudioapi (>= 0.7),
     data.table
 Suggests: 
     testthat,
