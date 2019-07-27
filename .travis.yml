@@ -1,30 +1,29 @@
-language: python
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+language: r
 
-python:
-  - "3.6"
- # - "2.7"
-
-# cache:
-#   directories:
-#     - $HOME/.torch
+dist: trusty
+sudo: false
+warnings_are_errors: false
 
 
-install:
-  - sudo apt-get update
-  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
-  - bash miniconda.sh -b -p $HOME/miniconda
-  - export PATH="$HOME/miniconda/bin:$PATH"
-  - hash -r
-  - conda config --set always_yes yes --set changeps1 no
-  - conda update -q conda
-  # Useful for debugging any issues with conda
-  - conda info -a
-  - conda create -q -n test-environment -c pytorch python=$TRAVIS_PYTHON_VERSION pytorch-cpu
-  - if [[ $TRAVIS_PYTHON_VERSION == 2.7 ]]; then pip install enum34; fi
-  - source activate test-environment
+cache:
+  packages: true
+  directories:
+    - $HOME/.cache/pip
 
+
+matrix:
+  include:
+    - name: "PyTorch with reticulate master"
+      env:
+        - PYTORCH_VERSION="1.1.0"
+      r_github_packages:
+        - rstudio/reticulate
 
 before_script:
-    - R CMD INSTALL .
-    - R -e 'rTorch::install_pytorch(version = Sys.getenv("PYTORCH_VERSION"))'
-    - R -e 'rTorch::torch_config()'
+  - sudo apt-get update
+  - sudo apt-get install python3
+  - pip install --upgrade --ignore-installed --user travis virtualenv
+  - R CMD INSTALL .
+  - R -e 'rTorch::install_pytorch(version = Sys.getenv("PYTORCH_VERSION"))'
+  - R -e 'rTorch::torch_config()'
