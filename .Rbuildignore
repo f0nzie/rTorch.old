@@ -12,3 +12,4 @@ _pkgdown.yaml
 datasets/
 ^.travis\.yml$
 ^.Rprofile
+^\.travis\.yml$

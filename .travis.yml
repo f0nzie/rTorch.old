@@ -1,26 +1,4 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
-# this will install R
-language: r
 
-cache:
-  packages: true
-  directories:
-    - $HOME/.cache/pip
-
-install:
-  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
-  - bash miniconda.sh -b -p $HOME/miniconda
-  - export PATH="$HOME/miniconda/bin:$PATH"
-  - hash -r
-  - conda config --set always_yes yes --set changeps1 no
-  - conda update -q conda
-  - conda info -a
-  - conda create -q -n test-env python=$TRAVIS_PYTHON_VERSION
-  - source activate test-env
-  - conda install -c pytorch pytorch-cpu torchvision-cpu
-
-before_script:
-  - R CMD INSTALL .
-  - R -e 'rTorch::install_pytorch(version = Sys.getenv("TENSORFLOW_VERSION"))'
-  - R -e 'rTorch::torch_config()'
-
+language: R
+cache: packages
