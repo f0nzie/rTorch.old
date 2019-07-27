@@ -10,3 +10,4 @@ notebooks
 _pkgdown.yaml
 ^docs$
 datasets/
+^.travis\.yml$
