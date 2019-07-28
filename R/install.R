@@ -43,6 +43,7 @@ install_pytorch <- function(method = c("auto", "virtualenv", "conda"),
                                extra_packages = NULL,
                                restart_session = TRUE,
                                conda_python_version = "3.6",
+                                channel = NULL,
                                ...) {
 
   # verify 64-bit
@@ -62,11 +63,11 @@ install_pytorch <- function(method = c("auto", "virtualenv", "conda"),
 
   # Packages in this list should always be installed.
 
-  default_packages <- c("pandas")
+  default_packages <- c("matplotlib")
 
   # Resolve TF probability version.
-  if (!is.na(version) && substr(version, 1, 4) %in% c("1.1.0", "1.13", "1.14")) {
-    default_packages <- c(default_packages, "numpy")
+  if (!is.na(version) && substr(version, 1, 4) %in% c("1.1.0", "1.1", "1.1.0")) {
+    default_packages <- c(default_packages, "pandas")
     # install tfp-nightly
   } else if (is.na(version) ||(substr(version, 1, 4) %in% c("2.0.") || version == "nightly")) {
     default_packages <- c(default_packages, "numpy")
@@ -84,6 +85,7 @@ install_pytorch <- function(method = c("auto", "virtualenv", "conda"),
         envname = envname,
         conda = conda,
         conda_python_version = conda_python_version,
+        channel = channel,
         ...
       )
     } else if (method == "virtualenv" || method == "auto") {
@@ -108,6 +110,7 @@ install_pytorch <- function(method = c("auto", "virtualenv", "conda"),
         envname = envname,
         conda = conda,
         conda_python_version = conda_python_version,
+        channel = channel,
         ...
       )
 
@@ -126,7 +129,8 @@ install_pytorch <- function(method = c("auto", "virtualenv", "conda"),
   invisible(NULL)
 }
 
-install_conda <- function(package, extra_packages, envname, conda, conda_python_version, ...) {
+install_conda <- function(package, extra_packages, envname, conda,
+                          conda_python_version, channel, ...) {
 
   # find if environment exists
   envname_exists <- envname %in% reticulate::conda_list(conda = conda)$name
@@ -145,11 +149,14 @@ install_conda <- function(package, extra_packages, envname, conda, conda_python_
   )
 
   cat("Installing python modules...\n")
-  reticulate::conda_install(
+  # rTorch::conda_install(envname="r-torch-37", packages="pytorch-cpu",
+  #         channel = "pytorch", conda="auto", python_version = "3.7")
+  rTorch::conda_install(
     envname = envname,
     packages = c(package, extra_packages),
     conda = conda,
     pip = TRUE, # always use pip since it's the recommend way.
+    channel = channel,
     ...
   )
 
@@ -180,7 +187,7 @@ install_virtualenv <- function(package, extra_packages, envname, ...) {
 
 parse_torch_version <- function(version) {
 
-  default_version <- "1.0.1"
+  default_version <- "1.1"
 
   ver <- list(
     version = default_version,
