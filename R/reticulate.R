@@ -68,6 +68,7 @@ conda_install <- function(envname = NULL,
     else
       args <- c(args, "-c", channel)
     args <- c(args, python_package, packages)
+    print(shQuote(args))
     result <- system2(conda, shQuote(args))
   }
 
