@@ -12,4 +12,3 @@ _pkgdown.yaml
 datasets/
 ^.Rprofile
 ^\.travis\.yml$
-^miniconda\.sh$
