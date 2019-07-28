@@ -30,6 +30,9 @@
 #' @param conda_python_version the python version installed in the created conda
 #'   environment. Python 3.6 is installed by default.
 #'
+#'   @param pip logical
+#'   @param channel conda channel
+#'
 #' @param ... other arguments passed to [reticulate::conda_install()] or
 #'   [reticulate::virtualenv_install()].
 #'
@@ -43,7 +46,8 @@ install_pytorch <- function(method = c("auto", "virtualenv", "conda"),
                                extra_packages = NULL,
                                restart_session = TRUE,
                                conda_python_version = "3.6",
-                                channel = NULL,
+                               pip = TRUE,
+                               channel = NULL,
                                ...) {
 
   # verify 64-bit
@@ -63,7 +67,7 @@ install_pytorch <- function(method = c("auto", "virtualenv", "conda"),
 
   # Packages in this list should always be installed.
 
-  default_packages <- c("matplotlib")
+  default_packages <- c("scipy")
 
   # Resolve TF probability version.
   if (!is.na(version) && substr(version, 1, 4) %in% c("1.1.0", "1.1", "1.1.0")) {
@@ -74,6 +78,7 @@ install_pytorch <- function(method = c("auto", "virtualenv", "conda"),
   }
 
   extra_packages <- unique(c(default_packages, extra_packages))
+
 
   # Main OS verification.
   if (is_osx() || is_linux()) {
@@ -86,6 +91,7 @@ install_pytorch <- function(method = c("auto", "virtualenv", "conda"),
         conda = conda,
         conda_python_version = conda_python_version,
         channel = channel,
+        pip = pip,
         ...
       )
     } else if (method == "virtualenv" || method == "auto") {
@@ -130,7 +136,7 @@ install_pytorch <- function(method = c("auto", "virtualenv", "conda"),
 }
 
 install_conda <- function(package, extra_packages, envname, conda,
-                          conda_python_version, channel, ...) {
+                          conda_python_version, channel, pip, ...) {
 
   # find if environment exists
   envname_exists <- envname %in% reticulate::conda_list(conda = conda)$name
@@ -155,7 +161,7 @@ install_conda <- function(package, extra_packages, envname, conda,
     envname = envname,
     packages = c(package, extra_packages),
     conda = conda,
-    pip = TRUE, # always use pip since it's the recommend way.
+    pip = pip,       # always use pip since it's the recommend way.
     channel = channel,
     ...
   )
