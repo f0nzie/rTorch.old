@@ -6,7 +6,7 @@ source("tensor_functions.R")
 context("PyTorch version")
 
 test_that("PyTorch version is 1.1.0", {
-    expect_equal(torch$`__version__`, "1.1.0")
+    expect_true(torch$`__version__` %in% c("1.1.0", "1.1", "1.0", "1.0.0"))
 })
 
 
