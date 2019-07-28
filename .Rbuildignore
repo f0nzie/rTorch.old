@@ -10,6 +10,6 @@ notebooks
 _pkgdown.yaml
 ^docs$
 datasets/
-^.travis\.yml$
 ^.Rprofile
 ^\.travis\.yml$
+^miniconda\.sh$
