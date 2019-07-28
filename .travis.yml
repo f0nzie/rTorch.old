@@ -19,8 +19,10 @@ r-packages:
 
 
 before_script:
-  - sudo apt-get update
-  - sudo apt-get install libstdc++6
+  - sudo apt-get update && sudo apt-get upgrade
+  - sudo apt-get install build-essential
+  - sudo apt-get install aptitude
+  - sudo apt-get install libstdc++6   # needed by PyTorch
   - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
   - bash miniconda.sh -b -p $HOME/miniconda
   - export PATH="$HOME/miniconda/bin:$PATH"
