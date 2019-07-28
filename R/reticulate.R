@@ -64,15 +64,14 @@ conda_install <- function(envname = NULL,
 
   } else {
     # use conda
-    args <- conda_args("install", envname)
+    args_ <- conda_args("install", envname)
     if (forge)
-      args <- c(args, "-c", "conda-forge")
+      args_ <- c(args_, "-c", "conda-forge")
     if (!is.null(channel))
-      args <- c(args, "-c", channel)
+      args_ <- c(args_, "-c", channel)
 
-    args <- c(args, python_package, packages)
-    print(args)
-    result <- system2(conda, shQuote(args))
+    args_ <- c(args_, python_package, packages)
+    result <- system2(conda, shQuote(args_))
   }
 
   # check for errors
