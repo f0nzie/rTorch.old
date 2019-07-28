@@ -25,7 +25,7 @@ test_that("Number of CPUs", {
 context("package config functions")
 
 test_that("torch_version returns value", {
-  expect_equal(torch_version(), "1.1")
+  expect_equal(torch_version(), "1.1.0")
   # print(torch_version())
 
 })
