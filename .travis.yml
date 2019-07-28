@@ -7,7 +7,7 @@ warnings_are_errors: false
 
 env:
   global:
-    - PYTORCH_VERSION="1.0"
+    - PYTORCH_VERSION="1.1"
 
 r-packages:
   - logging
