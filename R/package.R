@@ -72,7 +72,6 @@ torch_config <- function() {
 
     # get py config
     config <- py_config()
-    print(config)
 
     # found it!
     if (have_torch) {
