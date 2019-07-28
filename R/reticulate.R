@@ -45,7 +45,6 @@ conda_install <- function(envname = NULL,
   } else if (!is.null(python_package)) {
     print("python_package not null")
     args_ <- conda_args("install", envname, python_package)
-    print(args_)
     status <- system2(conda, shQuote(args_))
     if (status != 0L) {
       fmt <- "installation of '%s' into environment '%s' failed [error code %i]"
