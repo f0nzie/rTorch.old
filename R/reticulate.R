@@ -24,7 +24,7 @@ conda_install <- function(envname = NULL,
   conda <- conda_binary(conda)
 
   # resolve environment name
-  envname <- reticulate:::condaenv_resolve(envname)
+  envname <- condaenv_resolve(envname)
 
   # honor request for specific Python
   python_package <- NULL
