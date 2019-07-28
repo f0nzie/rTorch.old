@@ -7,8 +7,6 @@
 #'   pip due to compilation requirements).
 #'
 #'
-#' @keywords internal
-#'
 #' @export
 conda_install <- function(envname = NULL,
                           packages,
@@ -20,11 +18,13 @@ conda_install <- function(envname = NULL,
                           channel = NULL,
                           ...)
 {
+  # rTorch::conda_install(envname="r-torch-37", packages="pytorch-cpu",
+  #         channel = "pytorch", conda="auto", python_version = "3.7")
   # resolve conda binary
   conda <- conda_binary(conda)
 
   # resolve environment name
-  envname <- condaenv_resolve(envname)
+  envname <- reticulate:::condaenv_resolve(envname)
 
   # honor request for specific Python
   python_package <- NULL
@@ -39,7 +39,9 @@ conda_install <- function(envname = NULL,
   if (inherits(python, "error") || !file.exists(python)) {
     conda_create(envname, packages = python_package, conda = conda)
   } else if (!is.null(python_package)) {
+    print("python_package not null")
     args <- conda_args("install", envname, python_package)
+    print(args)
     status <- system2(conda, shQuote(args))
     if (status != 0L) {
       fmt <- "installation of '%s' into environment '%s' failed [error code %i]"
@@ -63,12 +65,13 @@ conda_install <- function(envname = NULL,
   } else {
     # use conda
     args <- conda_args("install", envname)
-    if (forge && is.null(conda))
+    if (forge)
       args <- c(args, "-c", "conda-forge")
-    else
+    if (!is.null(channel))
       args <- c(args, "-c", channel)
+
     args <- c(args, python_package, packages)
-    print(shQuote(args))
+    print(args)
     result <- system2(conda, shQuote(args))
   }
 
@@ -79,4 +82,48 @@ conda_install <- function(envname = NULL,
   }
 
   invisible(NULL)
+}
+
+
+
+conda_args <- function(action, envname = NULL, ...) {
+
+  envname <- condaenv_resolve(envname)
+
+  # use '--prefix' as opposed to '--name' if envname looks like a path
+  args <- c(action, "--yes")
+  if (grepl("[/\\]", envname))
+    args <- c(args, "--prefix", envname, ...)
+  else
+    args <- c(args, "--name", envname, ...)
+
+  args
+
+}
+
+
+condaenv_resolve <- function(envname = NULL) {
+
+  python_environment_resolve(
+    envname = envname,
+    resolve = identity
+  )
+
+}
+
+
+python_environment_resolve <- function(envname = NULL, resolve = identity) {
+
+  # use RETICULATE_PYTHON_ENV as default
+  envname <- envname %||% Sys.getenv("RETICULATE_PYTHON_ENV", unset = "r-reticulate")
+
+  # treat environment 'names' containing slashes as full paths
+  if (grepl("[/\\]", envname)) {
+    envname <- normalizePath(envname, winslash = "/", mustWork = FALSE)
+    return(envname)
+  }
+
+  # otherwise, resolve the environment name as necessary
+  resolve(envname)
+
 }
