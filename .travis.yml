@@ -28,7 +28,7 @@ before_script:
   - conda update -q conda
   - conda info -a
 #  - conda install -c pytorch pytorch-cpu torchvision-cpu
-  - rTorch::install_pytorch(method="conda", version = "1.0", pip=FALSE, channel="pytorch", conda_python_version = "3.7")
+  - R -e 'rTorch::install_pytorch(method="conda", version = "1.0", pip=FALSE, channel="pytorch", conda_python_version = "3.7")'
   - R CMD INSTALL .
 #  - R -e 'rTorch::install_pytorch(method="conda", version = Sys.getenv("PYTORCH_VERSION"), channel="pytorch")'
 #  - R -e 'rTorch::torch_config()'
