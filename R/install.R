@@ -67,7 +67,7 @@ install_pytorch <- function(method = c("auto", "virtualenv", "conda"),
 
   # Packages in this list should always be installed.
 
-  default_packages <- c("scipy")
+  default_packages <- c("torchvision-cpu")
 
   # Resolve TF probability version.
   if (!is.na(version) && substr(version, 1, 4) %in% c("1.1.0", "1.1", "1.1.0")) {
