@@ -46,7 +46,7 @@ install_pytorch <- function(method = c("auto", "virtualenv", "conda"),
                                extra_packages = NULL,
                                restart_session = TRUE,
                                conda_python_version = "3.6",
-                               pip = TRUE,
+                               pip = FALSE,
                                channel = NULL,
                                ...) {
 
