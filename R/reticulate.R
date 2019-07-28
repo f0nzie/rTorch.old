@@ -127,3 +127,30 @@ python_environment_resolve <- function(envname = NULL, resolve = identity) {
   resolve(envname)
 
 }
+
+
+#' @export
+conda_python <- function(envname = NULL, conda = "auto") {
+  # resolve envname
+  envname <- condaenv_resolve(envname)
+
+  # for fully-qualified paths, construct path explicitly
+  if (grepl("[/\\\\]", envname)) {
+    suffix <- if (is_windows()) "python.exe" else "bin/python"
+    path <- file.path(envname, suffix)
+    if (file.exists(path))
+      return(path)
+
+    fmt <- "no conda environment exists at path '%s'"
+    stop(sprintf(fmt, envname))
+  }
+
+  # otherwise, list conda environments and try to find it
+  conda_envs <- conda_list(conda = conda)
+  env <- subset(conda_envs, conda_envs$name == envname)
+  if (nrow(env) > 0)
+    path.expand(env$python[[1]])
+  else
+    stop("conda environment ", envname, " not found")
+}
+
