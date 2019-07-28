@@ -26,6 +26,7 @@ before_script:
   - conda config --set always_yes yes --set changeps1 no
   - conda update -q conda
   - conda info -a
-  - R -e 'rTorch::install_pytorch(method="conda", version=Sys.getenv("PYTORCH_VERSION"), channel="pytorch", conda_python_version="3.6")'
   - R CMD INSTALL .
+  - R -e 'rTorch::install_pytorch(method="conda", version=Sys.getenv("PYTORCH_VERSION"), channel="pytorch", conda_python_version="3.6")'
+
 
