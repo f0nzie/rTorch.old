@@ -5,6 +5,10 @@ language: R
 
 warnings_are_errors: false
 
+os:
+  - linux
+  - windows
+
 env:
   global:
     - PYTORCH_VERSION="1.1"
