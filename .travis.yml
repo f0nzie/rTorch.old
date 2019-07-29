@@ -19,7 +19,7 @@ r-packages:
 
 
 before_script:
-  -  #! /usr/bin/env bash
+  - #! /usr/bin/env bash
   curl -s -X POST \
    -H "Content-Type: application/json" \
    -H "Accept: application/json" \
