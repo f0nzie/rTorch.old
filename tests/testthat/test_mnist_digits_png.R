@@ -52,8 +52,9 @@ test_that("attributes of train_dataset", {
 })
 
 test_that("train_dataset has __getitem()__ method", {
-    expect_error(train_dataset[0])
-    expect_error(train_dataset[[0]])
+    # expect_error(train_dataset[0])
+    # expect_error(train_dataset[[0]])
+    expect_true(rTorch:::is_tensor(train_dataset[[2]][[1]]))
     result <- train_dataset$`__getitem__`(0L)
     expect_equal(length(result), 2)
 })
@@ -71,7 +72,8 @@ test_that("train_dataset is a tuple in Python", {
 
 test_that("1st member of train_dataset list is a tensor: image", {
     result <- py_get_item(train_dataset, 0L)[[1]]
-    expect_true(is_tensor(result))
+    # print(result)
+    expect_true(rTorch:::is_tensor(result))
 })
 
 test_that("2nd member of train_dataset list is an integer: label", {
