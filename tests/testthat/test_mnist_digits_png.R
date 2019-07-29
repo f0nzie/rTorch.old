@@ -52,9 +52,9 @@ test_that("attributes of train_dataset", {
 })
 
 test_that("train_dataset has __getitem()__ method", {
-    # expect_error(train_dataset[0])
-    # expect_error(train_dataset[[0]])
-    expect_true(rTorch:::is_tensor(train_dataset[[2]][[1]]))
+    if (rTorch:::is_linux()) expect_error(train_dataset[0])
+    if (rTorch:::is_linux()) expect_error(train_dataset[[0]])
+    if (rTorch:::is_windows()) expect_true(rTorch:::is_tensor(train_dataset[[2]][[1]]))
     result <- train_dataset$`__getitem__`(0L)
     expect_equal(length(result), 2)
 })
