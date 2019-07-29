@@ -19,18 +19,10 @@ r-packages:
 
 
 before_script:
-  - #! /usr/bin/env bash
-  curl -s -X POST \
-   -H "Content-Type: application/json" \
-   -H "Accept: application/json" \
-   -H "Travis-API-Version: 3" \
-   -H "Authorization: token o3T4yLss84XBrnf5TuF97A" \
-   -d '{ "quiet": true }' \
-   https://api.travis-ci.org/job/<JOB_ID>/debug
-  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+#  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
   - sudo apt-get update
   - sudo apt-get install gcc-4.9
-  - sudo apt-get install libstdc++6   # needed by PyTorch
+#  - sudo apt-get install libstdc++6   # needed by PyTorch
   - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
   - bash miniconda.sh -b -p $HOME/miniconda
   - export PATH="$HOME/miniconda/bin:$PATH"
