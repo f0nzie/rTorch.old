@@ -5,9 +5,6 @@ language: R
 
 warnings_are_errors: false
 
-os:
-  - linux
-  - windows
 
 env:
   global:
