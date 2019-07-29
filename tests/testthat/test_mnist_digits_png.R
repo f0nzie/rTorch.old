@@ -5,17 +5,17 @@ source("tensor_functions.R")
 
 skip_on_travis()
 # folders where te images are located
-train_data_path = '~/mnist_png_full/training/'
-test_data_path  = '~/mnist_png_full/testing/'
+train_data_path = '~/mnist_digits_png_full/training/'
+test_data_path  = '~/mnist_digits_png_full/testing/'
 
 # read the datasets without normalization or corrections; as-is
 train_dataset <<-  torchvision$datasets$ImageFolder(
-    root = train_data_path,
+    root = normalizePath(train_data_path),
     transform = torchvision$transforms$ToTensor()
 )
 
 test_dataset = torchvision$datasets$ImageFolder(
-    root = test_data_path,
+    root = normalizePath(test_data_path),
     transform = torchvision$transforms$ToTensor()
 )
 
