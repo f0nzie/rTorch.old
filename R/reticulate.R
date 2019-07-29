@@ -10,7 +10,7 @@
 #' @export
 conda_install <- function(envname = NULL,
                           packages,
-                          forge = TRUE,
+                          forge = FALSE,
                           pip = FALSE,
                           pip_ignore_installed = TRUE,
                           conda = "auto",
