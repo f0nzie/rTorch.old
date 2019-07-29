@@ -39,7 +39,7 @@
 #' @importFrom jsonlite fromJSON
 #'
 #' @export
-install_pytorch <- function(method = c("auto", "virtualenv", "conda"),
+install_pytorch <- function(method = c("conda", "virtualenv", "auto"),
                                conda = "auto",
                                version = "default",
                                envname = "r-torch",
