@@ -47,7 +47,7 @@ install_pytorch <- function(method = c("auto", "virtualenv", "conda"),
                                restart_session = TRUE,
                                conda_python_version = "3.6",
                                pip = FALSE,
-                               channel = NULL,
+                               channel = "pytorch",
                                ...) {
 
   # verify 64-bit
