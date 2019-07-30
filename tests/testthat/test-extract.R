@@ -52,41 +52,6 @@ reset_warnings <- function() {
 }
 
 
-test_that('extract works for unknown dimensions', {
-
-  skip_if_no_torch()
-
-  oopt <- options(torch.extract.style = "R")
-
-  # expected values with 5 rows
-  x_vals <- matrix(rnorm(50), 5, 10)
-  y1_exp <- as.array(x_vals[, 1])
-  y2_exp <- as.array(x_vals[, 1, drop = FALSE])
-
-
-    t <- torch$as_tensor(x_vals)
-    # print(t)
-    # print(t[, 1])
-    # print(t[, 1, drop = FALSE])
-
-    # print(t[, 1] %>% as.array())
-    # y1_obs <- t[, 1] %>% as.array()
-    # y2_obs <- t[, 1, drop = FALSE] %>% as.array()
-
-    # # the output should retain the missing dimension
-    # x <- tf$placeholder(tf$float64, shape(NULL, 10))
-    # y1 <- x[, 1]
-    # y2 <- x[, 1, drop = FALSE]
-    # expect_identical(dim(y1), list(NULL))
-    # expect_identical(dim(y2), list(NULL, 1L))
-
-
-  # expect_identical(y1_obs, y1_exp)
-  # expect_identical(y2_obs, y2_exp)
-
-  options(oopt)
-})
-t
 
 test_that("scalar indexing works", {
 
