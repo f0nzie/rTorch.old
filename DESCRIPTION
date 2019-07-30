@@ -23,7 +23,8 @@ Imports: logging,
     methods,
     R6,
     rstudioapi (>= 0.7),
-    data.table
+    data.table,
+    rprojroot
 Suggests: 
     testthat,
     knitr,
