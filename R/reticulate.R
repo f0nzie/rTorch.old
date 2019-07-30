@@ -131,6 +131,7 @@ python_environment_resolve <- function(envname = NULL, resolve = identity) {
 }
 
 
+#' @rdname conda-tools
 #' @export
 conda_python <- function(envname = NULL, conda = "auto") {
   # resolve envname
