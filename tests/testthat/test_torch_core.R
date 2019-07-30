@@ -1,5 +1,7 @@
 library(testthat)
 
+skip_on_cran()
+
 context("core PyTorch functions")
 
 test_that("masked_select", {

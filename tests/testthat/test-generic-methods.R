@@ -1,6 +1,9 @@
 
+skip_on_cran()
+
 source("tensor_functions.R")
 source("utils.R")
+
 
 context("generic methods")
 

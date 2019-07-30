@@ -1,7 +1,8 @@
 library(testthat)
 
-source("tensor_functions.R")
+skip_on_cran()
 
+source("tensor_functions.R")
 
 context("PyTorch version")
 

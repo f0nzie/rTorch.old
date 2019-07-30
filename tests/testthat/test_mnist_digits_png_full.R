@@ -1,8 +1,10 @@
 library(testthat)
 
-source("tensor_functions.R")
 
+skip_on_cran()
 skip_on_travis()
+
+source("tensor_functions.R")
 
 context("methods of train_dataset")
 
