@@ -140,8 +140,7 @@ conda_python <- function(envname = NULL, conda = "auto") {
   if (grepl("[/\\\\]", envname)) {
     suffix <- if (is_windows()) "python.exe" else "bin/python"
     path <- file.path(envname, suffix)
-    if (file.exists(path))
-      return(path)
+    if (file.exists(path))c
 
     fmt <- "no conda environment exists at path '%s'"
     stop(sprintf(fmt, envname))
