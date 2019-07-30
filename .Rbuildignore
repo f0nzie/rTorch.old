@@ -13,3 +13,4 @@ datasets/
 ^.Rprofile
 ^.git
 ^\.travis\.yml$
+^\appveyor\.yml$
