@@ -2,6 +2,7 @@ library(testthat)
 
 source("tensor_functions.R")
 
+skip_on_travis()
 
 context("methods of train_dataset")
 
