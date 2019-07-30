@@ -30,8 +30,8 @@
 #' @param conda_python_version the python version installed in the created conda
 #'   environment. Python 3.6 is installed by default.
 #'
-#'   @param pip logical
-#'   @param channel conda channel
+#' @param pip logical
+#' @param channel conda channel
 #'
 #' @param ... other arguments passed to [reticulate::conda_install()] or
 #'   [reticulate::virtualenv_install()].
