@@ -1,4 +1,4 @@
-
+skip_if_no_torch()
 
 source("tensor_functions.R")
 source("utils.R")
