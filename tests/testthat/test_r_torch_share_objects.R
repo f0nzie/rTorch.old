@@ -1,7 +1,7 @@
 library(testthat)
 
-
-source("tensor_functions.R")
+test_folder <- file.path(rprojroot::find_rstudio_root_file(), "tests", "testthat")
+source(file.path(test_folder, "tensor_functions.R"))
 
 
 context("print R values from within Python")
