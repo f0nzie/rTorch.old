@@ -1,6 +1,5 @@
 context("extract syntax")
 
-skip_on_cran()
 
 source("utils.R")
 
