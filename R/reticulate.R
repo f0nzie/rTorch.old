@@ -1,4 +1,14 @@
-#' Conda install
+#' Conda install function (modified from reticulate)
+#'
+#' R functions for managing Python [conda
+#' environments](https://conda.io/docs/user-guide/tasks/manage-environments.html).
+#'
+#' @param envname Name of conda environment
+#' @param conda Path to conda executable (or "auto" to find conda using the
+#'   PATH and other conventional install locations).
+#' @param packages Character vector with package names to install or remove.
+#' @param pip `TRUE` to use pip (defaults to `FALSE`)
+#'
 #' @param forge Include the [Conda Forge](https://conda-forge.org/) repository.
 #' @param pip_ignore_installed Ignore installed versions when using pip. This is `TRUE` by default
 #'   so that specific package versions can be installed even if they are downgrades. The `FALSE`
@@ -6,6 +16,15 @@
 #'   of a conda binary package (e.g. SciPy on Windows which is very difficult to install via
 #'   pip due to compilation requirements).
 #'
+#' @param channel conda channel for pytorch
+#'
+#' @param ... Optional arguments, reserved for future expansion.
+#'
+#' @return `conda_list()` returns a data frame with the names and paths to the
+#'   respective python binaries of available environments. `conda_create()`
+#'   returns the Path to the python binary of the created environment.
+#'   `conda_binary()` returns the location of the main conda binary or `NULL`
+#'   if none can be found.
 #'
 #' @export
 conda_install <- function(envname = NULL,
