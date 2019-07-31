@@ -3,7 +3,7 @@ library(testthat)
 source("tensor_functions.R")
 
 
-
+skip_on_travis()
 # folders where te images are located
 train_data_path = '~/mnist_png_full/training/'
 test_data_path  = '~/mnist_png_full/testing/'

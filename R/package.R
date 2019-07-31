@@ -19,6 +19,10 @@ NULL
 packageStartupMessage("loading PyTorch")
 
 .onLoad <- function(libname, pkgname) {
+  # if TENSORFLOW_PYTHON is defined then forward it to RETICULATE_PYTHON
+  torch_python <- Sys.getenv("TORCH_PYTHON", unset = NA)
+  if (!is.na(torch_python))
+    Sys.setenv(RETICULATE_PYTHON = torch_python)
 
     # delay load PyTorch
     torch <<- import("torch", delay_load = list(
@@ -35,6 +39,7 @@ packageStartupMessage("loading PyTorch")
       priority = 3,                 # decrease priority so we don't get collision with torch
       environment = "r-np"          # this is a user generated environment
     ))
+
 
   # provide a common base S3 class for tensors
   reticulate::register_class_filter(function(classes) {

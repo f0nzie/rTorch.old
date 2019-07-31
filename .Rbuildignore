@@ -10,3 +10,5 @@ notebooks
 _pkgdown.yaml
 ^docs$
 datasets/
+^.Rprofile
+^\.travis\.yml$

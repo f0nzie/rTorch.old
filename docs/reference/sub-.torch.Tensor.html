@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9013</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9014.2</span>
       </span>
     </div>
 
@@ -123,7 +123,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>Tensorflow tensor</p></td>
+      <td><p>a tensor</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -210,9 +210,7 @@
 <span class='co'># slicing with tensors is valid too, but note, tensors are never</span>
 <span class='co'># translated and are always interpreted python-style.</span>
 <span class='co'># A warning is issued the first time a tensor is passed to `[`</span>
-<span class='no'>sess</span>$<span class='fu'>run</span>( <span class='no'>x</span>[, <span class='no'>tf</span>$<span class='fu'>constant</span>(<span class='fl'>0L</span>):<span class='no'>tf</span>$<span class='fu'>constant</span>(<span class='fl'>2L</span>)] )
 <span class='co'># just as in python, only scalar tensors are valid</span>
-<span class='co'># https://www.tensorflow.org/api_docs/python/tf/Tensor#__getitem__</span>
 
 <span class='co'># To silence the warnings about tensors being passed as-is and negative numbers</span>
 <span class='co'># being interpreted python-style, set</span>
