@@ -11,4 +11,6 @@ _pkgdown.yaml
 ^docs$
 datasets/
 ^.Rprofile
+^.git
 ^\.travis\.yml$
+^appveyor\.yml$

@@ -1,5 +1,6 @@
 library(testthat)
 
+skip_on_cran()
 
 # read, write by index ---------------------------------------------------------
 context("read, write tensors by index")

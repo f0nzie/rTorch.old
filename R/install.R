@@ -30,8 +30,8 @@
 #' @param conda_python_version the python version installed in the created conda
 #'   environment. Python 3.6 is installed by default.
 #'
-#'   @param pip logical
-#'   @param channel conda channel
+#' @param pip logical
+#' @param channel conda channel
 #'
 #' @param ... other arguments passed to [reticulate::conda_install()] or
 #'   [reticulate::virtualenv_install()].
@@ -39,7 +39,7 @@
 #' @importFrom jsonlite fromJSON
 #'
 #' @export
-install_pytorch <- function(method = c("auto", "virtualenv", "conda"),
+install_pytorch <- function(method = c("conda", "virtualenv", "auto"),
                                conda = "auto",
                                version = "default",
                                envname = "r-torch",
@@ -47,7 +47,7 @@ install_pytorch <- function(method = c("auto", "virtualenv", "conda"),
                                restart_session = TRUE,
                                conda_python_version = "3.6",
                                pip = FALSE,
-                               channel = NULL,
+                               channel = "pytorch",
                                ...) {
 
   # verify 64-bit
