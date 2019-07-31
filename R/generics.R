@@ -42,8 +42,10 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
 #'
 #' @param x tensor
 #' @examples
+#' \dontrun{
 #' A <- torch$ones(c(60000L, 1L, 28L, 28L))
 #' dim(A)
+#' }
 one_tensor_op <- function(x) UseMethod("one_tensor_op")
 
 
@@ -80,6 +82,7 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #' @param b a scalar or a tensor
 #' @export
 #' @examples
+#' \dontrun{
 #' x <- torch$Tensor(list(-3., -2, -1, 1, 2, 3))
 #' y <- torch$Tensor(list(1., 2, 3, 4, 5))
 #' torch$remainder(x, 2)
@@ -87,7 +90,7 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #'
 #' x %% 2
 #' y %% 1.5
-#'
+#' }
 "%%.torch.Tensor" <- function(a, b) {
     torch$remainder(a, b)
 }
