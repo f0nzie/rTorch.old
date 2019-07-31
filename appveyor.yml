@@ -1,7 +1,7 @@
 # DO NOT CHANGE the "init" and "install" sections below
 
 environment:
-  APPVEYOR_RDP_PASSWORD: PassW0rd
+  APPVEYOR_RDP_PASSWORD: rTorch%package
   matrix:
     - TORCH_VERSION: 1.1.0
 
