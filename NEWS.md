@@ -2,7 +2,7 @@
 * July 31 2019
 * Submitted to CRAN at 15:30. Received. Waiting manual inspection.
 * Test with `appveyor.yml`
-* Created repository [r-appveyor](https://github.com/f0nzie/r-appveyor) at Oil Gains Analytics GitHub account. `appveyor` scripts now are called from this repo.
+* Created repository [r-appveyor](https://github.com/f0nzie/r-appveyor) at Oil Gains Analytics GitHub account. `appveyor` scripts now are called from this repo. Original source is at [krlmlr/r-appveyor](https://github.com/krlmlr/r-appveyor)
 * Test with `.travis.yml`
 * Copy three functions from reticulate to customize it and be able to specify the conda channel. Using `pytorch` channel in `reticulate.R`.
 * Specify torch-cpu and torchvision-cpu in `install.R`
