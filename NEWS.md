@@ -1,5 +1,6 @@
 # rTorch 0.0.2
 * July 31 2019
+* Submitted to CRAN at 15:30. Received. Waiting manual inspection.
 * Test with `appveyor.yml`
 * Created repository [r-appveyor](https://github.com/f0nzie/r-appveyor) at Oil Gains Analytics GitHub account. `appveyor` scripts now are called from this repo.
 * Test with `.travis.yml`
