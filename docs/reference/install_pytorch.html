@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Torch for R — rTorch • rTorch</title>
+<title>Install TensorFlow and its dependencies — install_pytorch • rTorch</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Torch for R — rTorch" />
+<meta property="og:title" content="Install TensorFlow and its dependencies — install_pytorch" />
 
-<meta property="og:description" content="Torch for R" />
+<meta property="og:description" content="Install TensorFlow and its dependencies" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -102,23 +102,90 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Torch for R</h1>
-    <small class="dont-index">Source: <a href='https://github.com/f0nzie/rTorch/blob/master/R/package.R'><code>R/package.R</code></a></small>
-    <div class="hidden name"><code>rTorch.Rd</code></div>
+    <h1>Install TensorFlow and its dependencies</h1>
+    <small class="dont-index">Source: <a href='https://github.com/f0nzie/rTorch/blob/master/R/install.R'><code>R/install.R</code></a></small>
+    <div class="hidden name"><code>install_pytorch.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Torch for R</p>
+    <p>Install TensorFlow and its dependencies</p>
     
     </div>
 
-        
+    <pre class="usage"><span class='fu'>install_pytorch</span>(<span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"conda"</span>, <span class='st'>"virtualenv"</span>, <span class='st'>"auto"</span>),
+  <span class='kw'>conda</span> <span class='kw'>=</span> <span class='st'>"auto"</span>, <span class='kw'>version</span> <span class='kw'>=</span> <span class='st'>"default"</span>, <span class='kw'>envname</span> <span class='kw'>=</span> <span class='st'>"r-torch"</span>,
+  <span class='kw'>extra_packages</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>restart_session</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>conda_python_version</span> <span class='kw'>=</span> <span class='st'>"3.6"</span>, <span class='kw'>pip</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>channel</span> <span class='kw'>=</span> <span class='st'>"pytorch"</span>,
+  <span class='no'>...</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>method</th>
+      <td><p>Installation method. By default, "auto" automatically finds a
+method that will work in the local environment. Change the default to force
+a specific installation method. Note that the "virtualenv" method is not
+available on Windows (as this isn't supported by TensorFlow). Note also
+that since this command runs without privillege the "system" method is
+available only on Windows.</p></td>
+    </tr>
+    <tr>
+      <th>conda</th>
+      <td><p>Path to conda executable (or "auto" to find conda using the
+PATH and other conventional install locations).</p></td>
+    </tr>
+    <tr>
+      <th>version</th>
+      <td><p>TensorFlow version to install. Specify "default" to install
+  the CPU version of the latest release. Specify "gpu" to install the GPU
+  version of the latest release.</p>
+<p>You can also provide a full major.minor.patch specification (e.g. "1.1.0"),
+  appending "-gpu" if you want the GPU version (e.g. "1.1.0-gpu").</p>
+<p>Alternatively, you can provide the full URL to an installer binary (e.g.
+  for a nightly binary).</p></td>
+    </tr>
+    <tr>
+      <th>envname</th>
+      <td><p>Name of Python environment to install within</p></td>
+    </tr>
+    <tr>
+      <th>extra_packages</th>
+      <td><p>Additional Python packages to install along with
+TensorFlow.</p></td>
+    </tr>
+    <tr>
+      <th>restart_session</th>
+      <td><p>Restart R session after installing (note this will
+only occur within RStudio).</p></td>
+    </tr>
+    <tr>
+      <th>conda_python_version</th>
+      <td><p>the python version installed in the created conda
+environment. Python 3.6 is installed by default.</p></td>
+    </tr>
+    <tr>
+      <th>pip</th>
+      <td><p>logical</p></td>
+    </tr>
+    <tr>
+      <th>channel</th>
+      <td><p>conda channel</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>other arguments passed to [reticulate::conda_install()] or
+[reticulate::virtualenv_install()].</p></td>
+    </tr>
+    </table>
+    
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
                 </ul>
 
   </div>

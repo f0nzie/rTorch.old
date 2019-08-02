@@ -17,6 +17,7 @@
 Returns True if any elements in the tensor are non-zero, False otherwise.
 }
 \examples{
+\dontrun{
 a <- torch$BoolTensor(list(TRUE, TRUE, TRUE, TRUE))
 b <- torch$BoolTensor(list(FALSE, TRUE, TRUE, TRUE))
 c <- torch$BoolTensor(list(TRUE, TRUE, TRUE, FALSE))
@@ -30,4 +31,5 @@ d <- torch$tensor(list(list(1, 0),
 any(d)
 any(d, dim=0L)
 any(d, dim=1L)
+}
 }

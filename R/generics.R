@@ -42,8 +42,10 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
 #'
 #' @param x tensor
 #' @examples
+#' \dontrun{
 #' A <- torch$ones(c(60000L, 1L, 28L, 28L))
 #' dim(A)
+#' }
 one_tensor_op <- function(x) UseMethod("one_tensor_op")
 
 
@@ -80,6 +82,7 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #' @param b a scalar or a tensor
 #' @export
 #' @examples
+#' \dontrun{
 #' x <- torch$Tensor(list(-3., -2, -1, 1, 2, 3))
 #' y <- torch$Tensor(list(1., 2, 3, 4, 5))
 #' torch$remainder(x, 2)
@@ -87,7 +90,7 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #'
 #' x %% 2
 #' y %% 1.5
-#'
+#' }
 "%%.torch.Tensor" <- function(a, b) {
     torch$remainder(a, b)
 }
@@ -105,6 +108,7 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #' @param ... other parameters (yet to be developed)
 #' @export
 #' @examples
+#' \dontrun{
 #' a <- torch$BoolTensor(list(TRUE, TRUE, TRUE, TRUE))
 #' b <- torch$BoolTensor(list(FALSE, TRUE, TRUE, TRUE))
 #' c <- torch$BoolTensor(list(TRUE, TRUE, TRUE, FALSE))
@@ -118,6 +122,7 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #' all(d)
 #' all(d, dim=0L)
 #' all(d, dim=1L)
+#' }
 "all.torch.Tensor" <- function(x, dim, ...) {
     # quick version of torch$all
     # TODO: modify to use all arguments
@@ -138,6 +143,7 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #' @param ... other params (yet to be developed)
 #' @export
 #' @examples
+#' \dontrun{
 #' a <- torch$BoolTensor(list(TRUE, TRUE, TRUE, TRUE))
 #' b <- torch$BoolTensor(list(FALSE, TRUE, TRUE, TRUE))
 #' c <- torch$BoolTensor(list(TRUE, TRUE, TRUE, FALSE))
@@ -151,6 +157,7 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #' any(d)
 #' any(d, dim=0L)
 #' any(d, dim=1L)
+#' }
 "any.torch.Tensor" <- function(x, dim, ...) {
     # quick version of torch$any
     # TODO: modify to use all arguments
@@ -168,6 +175,7 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #' @param a tensor
 #' @param b tensor
 #' @examples
+#' \dontrun{
 #' a <- torch$Tensor(list(1, 1, 1))
 #' b <- torch$Tensor(list(2, 2, 2))
 #' s <- 2.0
@@ -193,6 +201,7 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #' zeros & zeros
 #' diag & zeros
 #' diag | zeros
+#' }
 tensor_ops <- function(a, b) UseMethod("tensor_ops")
 
 

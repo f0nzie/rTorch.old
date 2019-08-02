@@ -1,18 +1,8 @@
 library(testthat)
 
-test_folder <- file.path(rprojroot::find_rstudio_root_file(), "tests", "testthat")
-# source(file.path(test_folder, "tensor_functions.R"))
+skip_on_cran()
 
-library(reticulate)
-
-
-torch       <- import("torch")
-torchvision <- import("torchvision")
-nn          <- import("torch.nn")
-transforms  <- import("torchvision.transforms")
-dsets       <- import("torchvision.datasets")
-builtins    <- import_builtins()
-np          <- import("numpy")
+source("tensor_functions.R")
 
 
 context("print R values from within Python")

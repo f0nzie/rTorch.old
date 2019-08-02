@@ -83,6 +83,7 @@ Two tensor operations
 }}
 
 \examples{
+\dontrun{
 a <- torch$Tensor(list(1, 1, 1))
 b <- torch$Tensor(list(2, 2, 2))
 s <- 2.0
@@ -108,4 +109,5 @@ zeros | zeros
 zeros & zeros
 diag & zeros
 diag | zeros
+}
 }

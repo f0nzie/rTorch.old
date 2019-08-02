@@ -260,6 +260,7 @@ torch_extract_opts <- function(
 #' x[all_dims(), i]
 #' }
 #' @examples
+#' \dontrun{
 #' # Run this
 #' d <- torch$tensor(list(list(0, 0),
 #'                        list(0, 0),
@@ -271,6 +272,7 @@ torch_extract_opts <- function(
 #' f
 #' f[all_dims()]
 #' f[all_dims(), 1L]
+#' }
 all_dims <- function()
   .globals$builtin_ellipsis %||%
   (.globals$builtin_ellipsis <- import_builtins(FALSE)$Ellipsis)

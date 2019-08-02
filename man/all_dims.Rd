@@ -19,6 +19,7 @@ x[..., i]
 # to translate the above python expression to R, write:
 x[all_dims(), i]
 }
+\dontrun{
 # Run this
 d <- torch$tensor(list(list(0, 0),
                        list(0, 0),
@@ -30,4 +31,5 @@ f <- torch$arange(9L)$reshape(c(3L, 3L))
 f
 f[all_dims()]
 f[all_dims(), 1L]
+}
 }
