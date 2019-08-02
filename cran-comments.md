@@ -14,7 +14,8 @@ the user. That's why wrapping examples in \dontrun{} adds the comment
 Please unwrap the examples if they are executable in < 5 sec, or replace
 \dontrun{} with \donttest.
 
-## warning messages
+
+## warning messages. `DONE!`
 Please check:
 Warning messages:
 1: In res[i] <- withCallingHandlers(if (tangle) process_tangle(group)
@@ -37,6 +38,6 @@ suppressed. Instead of `print()/cat()` rather use `message()/warning()`  or
 `if(verbose)cat(..)` if you really have to write text to the console.
 
 
-## add \value to .Rd files
+## add \value to .Rd files. `DONE!`
 Please add \value to .Rd files and explain the functions results in the
 documentation.
