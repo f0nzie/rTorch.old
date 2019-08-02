@@ -1,5 +1,5 @@
 # v0.0.2
-By Martina Schmirl
+Notes submitted by Martina Schmirl
 
 ## single quotes. `DONE!`
 Please always write package names, software names and API names in
