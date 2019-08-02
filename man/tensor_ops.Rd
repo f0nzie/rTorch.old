@@ -3,17 +3,11 @@
 \name{tensor_ops}
 \alias{tensor_ops}
 \alias{^.torch.Tensor}
-\alias{&.torch.Tensor}
-\alias{|.torch.Tensor}
 \title{Two tensor operations}
 \usage{
 tensor_ops(a, b)
 
 \method{^}{torch.Tensor}(a, b)
-
-\method{&}{torch.Tensor}(a, b)
-
-\method{|}{torch.Tensor}(a, b)
 }
 \arguments{
 \item{a}{tensor}
@@ -26,10 +20,6 @@ Two tensor operations
 \section{Methods (by class)}{
 \itemize{
 \item \code{torch.Tensor}: A tensor 'a' to the power of 'b'
-
-\item \code{torch.Tensor}: Logical AND of two tensors
-
-\item \code{torch.Tensor}: Logical OR of two tensors
 }}
 
 \examples{

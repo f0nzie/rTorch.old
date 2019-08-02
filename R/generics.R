@@ -639,6 +639,7 @@ tensor_logical_or <- function(x, y) {
 #' B & C
 #' }
 #' @export
+#' @name logical_and
 "&.torch.Tensor" <- function(a, b) {
     tensor_logical_and(a, b)
 }
@@ -665,6 +666,7 @@ tensor_logical_or <- function(x, y) {
 #' B | C
 #' }
 #' @export
+#' @name logical_or
 "|.torch.Tensor" <- function(a, b) {
     tensor_logical_or(a, b)
 }
