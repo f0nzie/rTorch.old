@@ -1,6 +1,6 @@
 # rTorch 0.0.3
 * 20190802
-* Released to CRAN at 15:30
+* Released to CRAN at 15:20
 
 
 # rTorch 0.0.2.9000
@@ -11,6 +11,7 @@
 * Get rid of a warning message
 * Replace print/cat by message/warning
 * Add `\value` to all functions with `@return`
+* Added `cran-comments.md`
 
 
 # rTorch 0.0.2
