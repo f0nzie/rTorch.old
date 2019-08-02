@@ -33,9 +33,8 @@ else process_group(group),  :
 
 ## do not use print/cat to write information to the console
 You write information messages to the console that cannot be easily
-suppressed.
-Instead of print()/cat() rather use message()/warning()  or
-if(verbose)cat(..) if you really have to write text to the console.
+suppressed. Instead of `print()/cat()` rather use `message()/warning()`  or
+`if(verbose)cat(..)` if you really have to write text to the console.
 
 
 ## add \value to .Rd files

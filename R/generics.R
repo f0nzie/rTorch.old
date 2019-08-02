@@ -4,13 +4,13 @@
 #' @export
 "print.torch.Tensor" <- function(x, ...) {
     if (py_is_null_xptr(x))
-        cat("<pointer: 0x0>\n")
+        message("<pointer: 0x0>\n")
     else {
         str(x, ...)
         if (!is.null(torch$get_num_threads())) {
             value <- tryCatch(x$eval(), error = function(e) NULL)
             if (!is.null(value))
-                cat(" ", str(value), "\n", sep = "")
+                message(" ", str(value), "\n", sep = "")
         }
     }
 }
@@ -361,9 +361,7 @@ tensor_not_equal <- function(x, y) {
     if (is_tensor(base) || base != exp(1L)) {
         base <- torch$as_tensor(base, x$dtype)
         torch$log(x) / torch$log(base)
-        # print("here")
     } else {
-        # print("not here")
         torch$log(x)
     }
 }
