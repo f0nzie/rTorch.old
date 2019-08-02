@@ -6,7 +6,6 @@ notebooks
 vignettes/data
 vignettes/datasets
 
-*.Rd
 *.pyc
 
 inst/raw_data/MNIST/

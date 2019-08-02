@@ -1,3 +1,13 @@
+# rTorch 0.0.2
+* July 31 2019
+* Submitted to CRAN at 15:30. Received. Waiting manual inspection.
+* Test with `appveyor.yml`
+* Created repository [r-appveyor](https://github.com/f0nzie/r-appveyor) at Oil Gains Analytics GitHub account. `appveyor` scripts now are called from this repo. Original source is at [krlmlr/r-appveyor](https://github.com/krlmlr/r-appveyor)
+* Test with `.travis.yml`
+* Copy three functions from reticulate to customize it and be able to specify the conda channel. Using `pytorch` channel in `reticulate.R`.
+* Specify torch-cpu and torchvision-cpu in `install.R`
+* Move out vignettes to reduce testing time. Will ship separately using `rsuite`.
+
 # rTorch 0.0.1.9013
 * July 26 2019
 * Vignettes temporarily moved to inst/vignettes to reduce build time of package

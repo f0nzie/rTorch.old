@@ -9,6 +9,9 @@
 NULL
 
 
+torch_v2 <- function() {
+  package_version(torch_version()) >= "2.0"
+}
 
 
 .globals <- new.env(parent = emptyenv())
@@ -19,11 +22,60 @@ NULL
 packageStartupMessage("loading PyTorch")
 
 .onLoad <- function(libname, pkgname) {
+  # if TENSORFLOW_PYTHON is defined then forward it to RETICULATE_PYTHON
+  torch_python <- Sys.getenv("TORCH_PYTHON", unset = NA)
+  if (!is.na(torch_python))
+    Sys.setenv(RETICULATE_PYTHON = torch_python)
 
     # delay load PyTorch
     torch <<- import("torch", delay_load = list(
         priority = 5,
-        environment = "r-torch"       # this is a user generated environment
+        environment = "r-torch" #,       # this is a user generated environment
+
+        # on_load = function() {
+        #
+        #   # register warning suppression handler
+        #   register_suppress_warnings_handler(list(
+        #     suppress = function() {
+        #       if (torch_v2()) {
+        #         torchlogger <- torch$get_logger()
+        #         logging <- reticulate::import("logging")
+        #
+        #         old_verbosity <- torch_logger$level
+        #         torch_logger$setLevel(logging$ERROR)
+        #         old_verbosity
+        #       }
+        #       else {
+        #         old_verbosity <- torch$logging$get_verbosity()
+        #         torch$logging$set_verbosity(torch$logging$ERROR)
+        #         old_verbosity
+        #       }
+        #     },
+        #     restore = function(context) {
+        #       if (torch_v2()) {
+        #         torch_logger <- torch$get_logger()
+        #         torch_logger$setLevel(context)
+        #       }
+        #       else {
+        #         torch$logging$set_verbosity(context)
+        #       }
+        #     }
+        #   ))
+        #
+        #   # if we loaded tensorflow then register tf help handler
+        #   register_torch_help_handler()
+        #
+        #   # workaround to silence crash-causing deprecation warnings
+        #   tryCatch(torch$python$util$deprecation$silence()$`__enter__`(),
+        #            error = function(e) NULL)
+        # }
+        # ,
+        #
+        # on_error = function(e) {
+        #   stop(torch_config_error_message(), call. = FALSE)
+        # }
+
+
     ))
 
     torchvision <<- import("torchvision", delay_load = list(
@@ -35,6 +87,7 @@ packageStartupMessage("loading PyTorch")
       priority = 3,                 # decrease priority so we don't get collision with torch
       environment = "r-np"          # this is a user generated environment
     ))
+
 
   # provide a common base S3 class for tensors
   reticulate::register_class_filter(function(classes) {

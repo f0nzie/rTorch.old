@@ -5,8 +5,13 @@
 vignettes/data
 vignettes/datasets
 notebooks
+datasets
 ^doc$
 ^Meta$
 _pkgdown.yaml
 ^docs$
-datasets/
+^datasets$
+^.Rprofile
+^.git
+^\.travis\.yml$
+^appveyor\.yml$

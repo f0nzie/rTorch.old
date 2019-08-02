@@ -13,6 +13,9 @@ knitr::opts_chunk$set(
 )
 ```
 
+<!-- badges: start -->
+[![Travis build status](https://travis-ci.org/f0nzie/rTorch.svg?branch=master)](https://travis-ci.org/f0nzie/rTorch)
+<!-- badges: end -->
 
 # rTorch
 

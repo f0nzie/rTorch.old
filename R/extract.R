@@ -247,7 +247,7 @@ torch_extract_opts <- function(
 #' All dims
 #'
 #' This function returns an object that can be used when subsetting tensors with
-#' `[`. If you are familiar with python,, this is equivalent to the python Ellipsis
+#' `[`. If you are familiar with Python, this is equivalent to the Python Ellipsis
 #' `...`, (not to be confused with `...` in `R`).
 #'
 #' @export
@@ -258,6 +258,20 @@ torch_extract_opts <- function(
 #' # the ellipsis means "expand to match number of dimension of x".
 #' # to translate the above python expression to R, write:
 #' x[all_dims(), i]
+#' }
+#' @examples
+#' \dontrun{
+#' # Run this
+#' d <- torch$tensor(list(list(0, 0),
+#'                        list(0, 0),
+#'                        list(0, 1),
+#'                        list(1, 1)), dtype=torch$uint8)
+#' d[all_dims(), 1]
+#'
+#' f <- torch$arange(9L)$reshape(c(3L, 3L))
+#' f
+#' f[all_dims()]
+#' f[all_dims(), 1L]
 #' }
 all_dims <- function()
   .globals$builtin_ellipsis %||%

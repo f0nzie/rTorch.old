@@ -1,26 +1,25 @@
 Package: rTorch
-Title: R bindings to 'PyTorch'
-Version: 0.0.1.9013
+Title: R Bindings to 'PyTorch'
+Version: 0.0.2
 Authors@R: c(
     person("Alfonso R.", "Reyes", role = c("aut", "cre", "cph"), email = "alfonso.reyes@oilgainsanalytics.com"),
     person("Daniel", "Falbel", role = c("ctb", "cph"), email = "daniel@rstudio.com"),
     person("JJ", "Allaire", role = c("ctb", "cph"))
     )
 Description: R implementation and interface of the Machine Learning platform 
-    'PyTorch' <https://pytorch.org/> developed in Python. It requires a conda 
-    environment with 'torch' and 'torchvision' to provide PyTorch functions, 
-    methods and classes. The key object in PyTorch is the tensor which is in
+    'PyTorch' <https://pytorch.org/> developed in Python. It requires a 'conda'
+    environment with 'torch' and 'torchvision' to provide 'PyTorch' functions, 
+    methods and classes. The key object in 'PyTorch' is the tensor which is in
     essence a multidimensional array. These tensors are fairly flexible to perform
-    calculations in CPUs as well as GPUs.
+    calculations in CPUs as well as 'GPUs'.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends: R (>= 3.1)
 Imports: logging,
-    config,
     reticulate,
+    jsonlite (>= 1.2),
     utils,
-    yaml,
     methods,
     R6,
     rstudioapi (>= 0.7),
@@ -29,6 +28,6 @@ Suggests:
     testthat,
     knitr,
     rmarkdown
+SystemRequirements: PyTorch (https://pytorch.org/)
 RoxygenNote: 6.1.1
 URL: https://github.com/f0nzie/rTorch
-VignetteBuilder: knitr
