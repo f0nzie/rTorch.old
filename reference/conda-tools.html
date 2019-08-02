@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Torch for R — rTorch • rTorch</title>
+<title>Conda install function (modified from reticulate) — conda-tools • rTorch</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,10 @@
 
 
 
-<meta property="og:title" content="Torch for R — rTorch" />
+<meta property="og:title" content="Conda install function (modified from reticulate) — conda-tools" />
 
-<meta property="og:description" content="Torch for R" />
+<meta property="og:description" content="R functions for managing Python [conda
+environments](https://conda.io/docs/user-guide/tasks/manage-environments.html)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -102,24 +103,83 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Torch for R</h1>
-    <small class="dont-index">Source: <a href='https://github.com/f0nzie/rTorch/blob/master/R/package.R'><code>R/package.R</code></a></small>
-    <div class="hidden name"><code>rTorch.Rd</code></div>
+    <h1>Conda install function (modified from reticulate)</h1>
+    <small class="dont-index">Source: <a href='https://github.com/f0nzie/rTorch/blob/master/R/reticulate.R'><code>R/reticulate.R</code></a></small>
+    <div class="hidden name"><code>conda-tools.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Torch for R</p>
+    <p>R functions for managing Python [conda
+environments](https://conda.io/docs/user-guide/tasks/manage-environments.html).</p>
     
     </div>
 
-        
+    <pre class="usage"><span class='fu'>conda_install</span>(<span class='kw'>envname</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>packages</span>, <span class='kw'>forge</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>pip</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>pip_ignore_installed</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>conda</span> <span class='kw'>=</span> <span class='st'>"auto"</span>, <span class='kw'>python_version</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>channel</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
+
+<span class='fu'>conda_python</span>(<span class='kw'>envname</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>conda</span> <span class='kw'>=</span> <span class='st'>"auto"</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>envname</th>
+      <td><p>Name of conda environment</p></td>
+    </tr>
+    <tr>
+      <th>packages</th>
+      <td><p>Character vector with package names to install or remove.</p></td>
+    </tr>
+    <tr>
+      <th>forge</th>
+      <td><p>Include the [Conda Forge](https://conda-forge.org/) repository.</p></td>
+    </tr>
+    <tr>
+      <th>pip</th>
+      <td><p>`TRUE` to use pip (defaults to `FALSE`)</p></td>
+    </tr>
+    <tr>
+      <th>pip_ignore_installed</th>
+      <td><p>Ignore installed versions when using pip. This is `TRUE` by default
+so that specific package versions can be installed even if they are downgrades. The `FALSE`
+option is useful for situations where you don't want a pip install to attempt an overwrite
+of a conda binary package (e.g. SciPy on Windows which is very difficult to install via
+pip due to compilation requirements).</p></td>
+    </tr>
+    <tr>
+      <th>conda</th>
+      <td><p>Path to conda executable (or "auto" to find conda using the
+PATH and other conventional install locations).</p></td>
+    </tr>
+    <tr>
+      <th>channel</th>
+      <td><p>conda channel for pytorch</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Optional arguments, reserved for future expansion.</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>`conda_list()` returns a data frame with the names and paths to the
+  respective python binaries of available environments. `conda_create()`
+  returns the Path to the python binary of the created environment.
+  `conda_binary()` returns the location of the main conda binary or `NULL`
+  if none can be found.</p>
+    
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-                </ul>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+          </ul>
 
   </div>
 </div>
