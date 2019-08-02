@@ -83,7 +83,7 @@ Two tensor operations
 }}
 
 \examples{
-\dontrun{
+\donttest{
 a <- torch$Tensor(list(1, 1, 1))
 b <- torch$Tensor(list(2, 2, 2))
 s <- 2.0

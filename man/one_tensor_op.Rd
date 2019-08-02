@@ -39,7 +39,7 @@ Get the dimensions of a tensor displaying it as a vector.
 }}
 
 \examples{
-\dontrun{
+\donttest{
 A <- torch$ones(c(60000L, 1L, 28L, 28L))
 dim(A)
 }

@@ -12,14 +12,14 @@ This function returns an object that can be used when subsetting tensors with
 `...`, (not to be confused with `...` in `R`).
 }
 \examples{
-\dontrun{
+\donttest{
 # in python, if x is a numpy array or torch tensor
 x[..., i]
 # the ellipsis means "expand to match number of dimension of x".
 # to translate the above python expression to R, write:
 x[all_dims(), i]
 }
-\dontrun{
+\donttest{
 # Run this
 d <- torch$tensor(list(list(0, 0),
                        list(0, 0),
