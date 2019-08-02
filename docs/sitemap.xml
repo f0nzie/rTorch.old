@@ -19,6 +19,15 @@
     <loc>https://github.com/f0nzie/rTorch/reference/dataset_mnist_digits.html</loc>
   </url>
   <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/dim.torch.Tensor.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/dot-torch.Tensor.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/equals-.torch.Tensor.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/f0nzie/rTorch/reference/grapes-.-times-grapes.html</loc>
   </url>
   <url>
@@ -28,10 +37,25 @@
     <loc>https://github.com/f0nzie/rTorch/reference/grapes-times-times-grapes.html</loc>
   </url>
   <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/greater-than-.torch.Tensor.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/greater-than-equals-.torch.Tensor.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/f0nzie/rTorch/reference/install_pytorch.html</loc>
   </url>
   <url>
     <loc>https://github.com/f0nzie/rTorch/reference/install_torch_extras.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/length.torch.Tensor.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/less-than-.torch.Tensor.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/less-than-equals-.torch.Tensor.html</loc>
   </url>
   <url>
     <loc>https://github.com/f0nzie/rTorch/reference/log.torch.Tensor.html</loc>
@@ -43,10 +67,25 @@
     <loc>https://github.com/f0nzie/rTorch/reference/log2.torch.Tensor.html</loc>
   </url>
   <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/logical_and.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/logical_not.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/logical_or.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/f0nzie/rTorch/reference/modules.html</loc>
   </url>
   <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/not_equal_to.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/f0nzie/rTorch/reference/one_tensor_op.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/plus-.torch.Tensor.html</loc>
   </url>
   <url>
     <loc>https://github.com/f0nzie/rTorch/reference/rTorch.html</loc>
@@ -58,10 +97,16 @@
     <loc>https://github.com/f0nzie/rTorch/reference/shape.html</loc>
   </url>
   <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/slash-.torch.Tensor.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/f0nzie/rTorch/reference/sub-.torch.Tensor.html</loc>
   </url>
   <url>
     <loc>https://github.com/f0nzie/rTorch/reference/tensor_ops.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/times-.torch.Tensor.html</loc>
   </url>
   <url>
     <loc>https://github.com/f0nzie/rTorch/reference/torch_config.html</loc>

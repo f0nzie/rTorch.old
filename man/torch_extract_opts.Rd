@@ -47,7 +47,7 @@ an object with class "torch_extract_opts", suitable for passing to
 Tensor extract options
 }
 \examples{
-\dontrun{
+\donttest{
 x <- tf$constant(1:10)
 
 opts <-  torch_extract_opts("R")

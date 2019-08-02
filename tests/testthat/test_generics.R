@@ -18,12 +18,17 @@ expect_all_equal <- function(x, y) {
 }
 
 expect_false_tensor <- function(x) {
-  expect_equal(x, FALSE_TENSOR)
+  expect_true(torch$equal(x, FALSE_TENSOR))
 }
 
 expect_true_tensor <- function(x) {
-  expect_equal(x, TRUE_TENSOR)
+  expect_true(torch$equal(x, TRUE_TENSOR))
 }
+
+expect_tensor_equal <- function(a, b) {
+  expect_true(torch$equal(a, b))
+}
+
 
 context("dim on tensor")
 
@@ -149,17 +154,19 @@ test_that("tensor not equal as x != y", {
   x = torch$rand(5L, 4L)
   y = torch$rand(5L, 4L)
   expect_false_tensor(all(torch$eq(x, y)))
-  expect_true_tensor(!all(torch$eq(x, y)))
   expect_true_tensor(all(x != y))
 
 
   A <- torch$ones(60000L, 3L, 28L, 28L)    # all ones
   B <- torch$zeros(60000L, 3L, 28L, 28L)   # all zeroes
-  expect_true_tensor(all(A != B))
+  # expect_true_tensor(all(A != B))
+  # expect_false_tensor(all(A != B))
+  expect_tensor_equal(all(A != B), TRUE_TENSOR)
 
   A <- torch$ones(60000L, 1L, 28L, 28L)
   B <- torch$ones(60000L, 1L, 28L, 28L)
-  expect_false_tensor(all(A != B))
+
+  expect_tensor_equal(all(A != B), FALSE_TENSOR)
 })
 
 

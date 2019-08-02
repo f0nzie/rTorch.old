@@ -13,11 +13,15 @@
 
 \item{...}{other params (yet to be developed)}
 }
+\value{
+A tensor of type torch.uint8 representing the boolean result:
+1 for TRUE and 0 for FALSE.
+}
 \description{
 Returns True if any elements in the tensor are non-zero, False otherwise.
 }
 \examples{
-\dontrun{
+\donttest{
 a <- torch$BoolTensor(list(TRUE, TRUE, TRUE, TRUE))
 b <- torch$BoolTensor(list(FALSE, TRUE, TRUE, TRUE))
 c <- torch$BoolTensor(list(TRUE, TRUE, TRUE, FALSE))

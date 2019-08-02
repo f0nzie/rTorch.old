@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2.9000</span>
       </span>
     </div>
 
@@ -116,15 +116,6 @@
     <pre class="usage"><span class='fu'>one_tensor_op</span>(<span class='no'>x</span>)
 
 <span class='co'># S3 method for torch.Tensor</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/dim'>dim</a></span>(<span class='no'>x</span>)
-
-<span class='co'># S3 method for torch.Tensor</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>x</span>)
-
-<span class='co'># S3 method for torch.Tensor</span>
-!(<span class='no'>x</span>)
-
-<span class='co'># S3 method for torch.Tensor</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>exp</a></span>(<span class='no'>x</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -136,33 +127,22 @@
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Get the dimensions of a tensor displaying it as a vector.</p>
-    
     <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
 
     <ul>
-<li><p><code>torch.Tensor</code>: Dimensions of a tensor</p></li>
-<li><p><code>torch.Tensor</code>: Length of a tensor. Eqivalent to torch$numel()</p></li>
-<li><p><code>torch.Tensor</code>: Logical NOT of a tensor</p></li>
 <li><p><code>torch.Tensor</code>: Exponential of a tensor</p></li>
 </ul>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='no'>A</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>ones</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>60000L</span>, <span class='fl'>1L</span>, <span class='fl'>28L</span>, <span class='fl'>28L</span>))
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/dim'>dim</a></span>(<span class='no'>A</span>)
-<span class='co'># }</span></pre>
+    <pre class="examples"><div class='input'><span class='no'>A</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>ones</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>60000L</span>, <span class='fl'>1L</span>, <span class='fl'>28L</span>, <span class='fl'>28L</span>))
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/dim'>dim</a></span>(<span class='no'>A</span>)</div><div class='output co'>#&gt; [1] 60000     1    28    28</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#details">Details</a></li>
-
       <li><a href="#methods-by-class-">Methods (by class)</a></li>
       
       <li><a href="#examples">Examples</a></li>

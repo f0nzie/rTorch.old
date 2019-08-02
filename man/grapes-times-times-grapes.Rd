@@ -2,17 +2,26 @@
 % Please edit documentation in R/generics.R
 \name{\%**\%}
 \alias{\%**\%}
-\title{Matrix/Tensor multiplication of two tensors
-PyTorch matmul}
+\title{Matrix/Tensor multiplication of two tensors}
 \usage{
 a \%**\% b
 }
 \arguments{
-\item{a}{Tensor 1}
+\item{a}{tensor}
 
-\item{b}{Tensor 2}
+\item{b}{tensor}
+}
+\value{
+a scalar or a tensor
 }
 \description{
-Matrix/Tensor multiplication of two tensors
-PyTorch matmul
+This generic is similar to \code{torch$matmul(a, b)}
+}
+\examples{
+\donttest{
+p <- torch$randn(3L)
+q <- torch$randn(3L)
+p \%**\% q
+}
+
 }

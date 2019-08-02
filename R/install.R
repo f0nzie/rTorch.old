@@ -128,7 +128,7 @@ install_pytorch <- function(method = c("conda", "virtualenv", "auto"),
          "Binary installation is available for Windows, OS X, and Linux")
   }
 
-  cat("\nInstallation complete.\n\n")
+  message("\nInstallation complete.\n\n")
 
   if (restart_session && rstudioapi::hasFun("restartSession"))
     rstudioapi::restartSession()
@@ -144,18 +144,18 @@ install_conda <- function(package, extra_packages, envname, conda,
 
   # remove environment
   if (envname_exists) {
-    cat("Removing ", envname, " conda environment... \n")
+    message("Removing ", envname, " conda environment... \n")
     reticulate::conda_remove(envname = envname, conda = conda)
   }
 
 
-  cat("Creating ", envname, " conda environment... \n")
+  message("Creating ", envname, " conda environment... \n")
   reticulate::conda_create(
     envname = envname, conda = conda,
     packages = paste0("python=", conda_python_version)
   )
 
-  cat("Installing python modules...\n")
+  message("Installing python modules...\n")
   # rTorch::conda_install(envname="r-torch-37", packages="pytorch-cpu",
   #         channel = "pytorch", conda="auto", python_version = "3.7")
   rTorch::conda_install(
@@ -176,14 +176,14 @@ install_virtualenv <- function(package, extra_packages, envname, ...) {
 
   # remove environment
   if (envname_exists) {
-    cat("Removing ", envname, " virtualenv environment... \n")
+    message("Removing ", envname, " virtualenv environment... \n")
     reticulate::virtualenv_remove(envname = envname, confirm = FALSE)
   }
 
-  cat("Creating ", envname, " virtualenv environment... \n")
+  message("Creating ", envname, " virtualenv environment... \n")
   reticulate::virtualenv_create(envname = envname)
 
-  cat("Installing python modules...\n")
+  message("Installing python modules...\n")
   reticulate::virtualenv_install(
     envname = envname,
     packages = c(package, extra_packages),
