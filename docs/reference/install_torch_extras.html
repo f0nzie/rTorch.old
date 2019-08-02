@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Torch for R — rTorch • rTorch</title>
+<title>Install additional Python packages alongside TensorFlow — install_torch_extras • rTorch</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,10 @@
 
 
 
-<meta property="og:title" content="Torch for R — rTorch" />
+<meta property="og:title" content="Install additional Python packages alongside TensorFlow — install_torch_extras" />
 
-<meta property="og:description" content="Torch for R" />
+<meta property="og:description" content="This function is deprecated. Use the `extra_packages` argument to
+`install_tensorflow()` to install additional packages." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -102,23 +103,41 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Torch for R</h1>
-    <small class="dont-index">Source: <a href='https://github.com/f0nzie/rTorch/blob/master/R/package.R'><code>R/package.R</code></a></small>
-    <div class="hidden name"><code>rTorch.Rd</code></div>
+    <h1>Install additional Python packages alongside TensorFlow</h1>
+    <small class="dont-index">Source: <a href='https://github.com/f0nzie/rTorch/blob/master/R/install.R'><code>R/install.R</code></a></small>
+    <div class="hidden name"><code>install_torch_extras.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Torch for R</p>
+    <p>This function is deprecated. Use the `extra_packages` argument to
+`install_tensorflow()` to install additional packages.</p>
     
     </div>
 
-        
+    <pre class="usage"><span class='fu'>install_torch_extras</span>(<span class='no'>packages</span>, <span class='kw'>conda</span> <span class='kw'>=</span> <span class='st'>"auto"</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>packages</th>
+      <td><p>Python packages to install</p></td>
+    </tr>
+    <tr>
+      <th>conda</th>
+      <td><p>Path to conda executable (or "auto" to find conda using the PATH
+and other conventional install locations). Only used when TensorFlow is
+installed within a conda environment.</p></td>
+    </tr>
+    </table>
+    
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
                 </ul>
 
   </div>

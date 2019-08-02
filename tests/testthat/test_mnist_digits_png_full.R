@@ -22,6 +22,8 @@ test_dataset <<- torchvision$datasets$ImageFolder(
   transform = torchvision$transforms$ToTensor()
 )
 
+context("Sanity of local folder for MNIST images")
+
 test_that("folders exist", {
   expect_true(dir.exists("~/"))
   expect_true(dir.exists(normalizePath(train_data_path)))
@@ -62,8 +64,8 @@ test_that("attributes of train_dataset", {
 })
 
 test_that("train_dataset has __getitem()__ method", {
-  if (rTorch:::is_linux()) expect_error(train_dataset[0])
-  if (rTorch:::is_linux()) expect_error(train_dataset[[0]])
+  if (rTorch:::is_linux()) expect_error(!train_dataset[0])
+  if (rTorch:::is_linux()) expect_error(!train_dataset[[0]])
   if (rTorch:::is_windows()) expect_true(rTorch:::is_tensor(train_dataset[[2]][[1]]))
   result <- train_dataset$`__getitem__`(0L)
   expect_equal(length(result), 2)
