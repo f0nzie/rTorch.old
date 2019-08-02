@@ -6,8 +6,8 @@ Authors@R: c(
     person("Daniel", "Falbel", role = c("ctb", "cph"), email = "daniel@rstudio.com"),
     person("JJ", "Allaire", role = c("ctb", "cph"))
     )
-Description: R implementation and interface of the Machine Learning platform 
-    'PyTorch' <https://pytorch.org/> developed in Python. It requires a 'conda'
+Description: 'R' implementation and interface of the Machine Learning platform 
+    'PyTorch' <https://pytorch.org/> developed in 'Python'. It requires a 'conda'
     environment with 'torch' and 'torchvision' to provide 'PyTorch' functions, 
     methods and classes. The key object in 'PyTorch' is the tensor which is in
     essence a multidimensional array. These tensors are fairly flexible to perform
