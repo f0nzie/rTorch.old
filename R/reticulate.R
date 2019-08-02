@@ -46,7 +46,6 @@ conda_install <- function(envname = NULL,
   # rTorch::conda_install(envname="r-torch-37", packages="pytorch-cpu",
   #         channel = "pytorch", conda="auto", python_version = "3.7")
   # resolve conda binary
-  cat("inside conda_install")
   conda <- conda_binary(conda)
 
   # resolve environment name
@@ -65,10 +64,10 @@ conda_install <- function(envname = NULL,
   python <- tryCatch(conda_python(envname = envname, conda = conda), error = identity)
 
   if (inherits(python, "error") || !file.exists(python)) {
-    print("conda_error_create")
+    warning("conda_error_create")
     conda_create(envname, packages = python_package, conda = conda)
   } else if (!is.null(python_package)) {
-    print("python_package not null")
+    warning("python_package not null")
     args_ <- conda_args("install", envname, python_package)
     status <- system2(conda, shQuote(args_))
     if (status != 0L) {

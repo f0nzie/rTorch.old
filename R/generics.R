@@ -4,13 +4,13 @@
 #' @export
 "print.torch.Tensor" <- function(x, ...) {
     if (py_is_null_xptr(x))
-        cat("<pointer: 0x0>\n")
+        message("<pointer: 0x0>\n")
     else {
         str(x, ...)
         if (!is.null(torch$get_num_threads())) {
             value <- tryCatch(x$eval(), error = function(e) NULL)
             if (!is.null(value))
-                cat(" ", str(value), "\n", sep = "")
+                message(" ", str(value), "\n", sep = "")
         }
     }
 }
@@ -41,16 +41,23 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
 #' One tensor operation
 #'
 #' @param x tensor
+#'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' A <- torch$ones(c(60000L, 1L, 28L, 28L))
 #' dim(A)
 #' }
 one_tensor_op <- function(x) UseMethod("one_tensor_op")
 
 
-#' @describeIn one_tensor_op Dimensions of a tensor
-#' @details Get the dimensions of a tensor displaying it as a vector.
+
+#' Dimensions of a tensor
+#'
+#' Get the dimensions of a tensor displaying it as a vector.
+#'
+#' @param x tensor
+#'
+#' @return a vector of integers with the dimensions of the tensor
 #' @export
 "dim.torch.Tensor" <- function(x) {        # change .tensor to .Tensor
     if (py_is_null_xptr(x))
@@ -65,7 +72,13 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
     }
 }
 
-#' @describeIn one_tensor_op Length of a tensor. Eqivalent to torch$numel()
+#' Length of a tensor.
+#'
+#' This function is equivalent to torch$numel()
+#'
+#' @param x tensor
+#'
+#' @return the number of elements of a tensor as an integer
 #' @export
 "length.torch.Tensor" <- function(x) {
     if (py_is_null_xptr(x))
@@ -82,7 +95,7 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #' @param b a scalar or a tensor
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' x <- torch$Tensor(list(-3., -2, -1, 1, 2, 3))
 #' y <- torch$Tensor(list(1., 2, 3, 4, 5))
 #' torch$remainder(x, 2)
@@ -91,6 +104,7 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #' x %% 2
 #' y %% 1.5
 #' }
+#' @return the reminder of the division between tensor by a scalar or tensor
 "%%.torch.Tensor" <- function(a, b) {
     torch$remainder(a, b)
 }
@@ -106,9 +120,13 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #' @param x tensor
 #' @param dim dimension to reduce
 #' @param ... other parameters (yet to be developed)
+#'
+#' @return A tensor of type torch.uint8 representing the boolean result:
+#' 1 for TRUE and 0 for FALSE.
+#'
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' a <- torch$BoolTensor(list(TRUE, TRUE, TRUE, TRUE))
 #' b <- torch$BoolTensor(list(FALSE, TRUE, TRUE, TRUE))
 #' c <- torch$BoolTensor(list(TRUE, TRUE, TRUE, FALSE))
@@ -141,9 +159,13 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #' @param x tensor
 #' @param dim dimension to reduce
 #' @param ... other params (yet to be developed)
+#'
+#' @return A tensor of type torch.uint8 representing the boolean result:
+#' 1 for TRUE and 0 for FALSE.
+#'
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' a <- torch$BoolTensor(list(TRUE, TRUE, TRUE, TRUE))
 #' b <- torch$BoolTensor(list(FALSE, TRUE, TRUE, TRUE))
 #' c <- torch$BoolTensor(list(TRUE, TRUE, TRUE, FALSE))
@@ -175,7 +197,7 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #' @param a tensor
 #' @param b tensor
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' a <- torch$Tensor(list(1, 1, 1))
 #' b <- torch$Tensor(list(2, 2, 2))
 #' s <- 2.0
@@ -206,7 +228,21 @@ tensor_ops <- function(a, b) UseMethod("tensor_ops")
 
 
 
-#' @describeIn tensor_ops Add two tensors
+#' Add two tensors
+#'
+#' This generic is similar to applying \code{torch$add(a, b)}
+#'
+#' @param a tensor
+#' @param b tensor
+#' @return Another tensor representing the addition of two tensors.
+#'
+#' @examples
+#' \donttest{
+#' a <- torch$Tensor(list(1, 1, 1))
+#' b <- torch$Tensor(list(2, 2, 2))
+#' s <- 2.0
+#' a + b
+#' }
 #' @export
 "+.torch.Tensor" <- function(a, b) {
     if (any(class(a) == "torch.Tensor"))
@@ -216,7 +252,22 @@ tensor_ops <- function(a, b) UseMethod("tensor_ops")
 }
 
 
-#' @describeIn tensor_ops Subtract two tensors
+#' Subtract two tensors
+#'
+#' This generic is similar to applying \code{torch$sub(a, b)}
+#'
+#' @param a tensor
+#' @param b tensor
+#' @return Another tensor representing the subtraction of two tensors.
+#'
+#' @examples
+#' \donttest{
+#' a <- torch$Tensor(list(1, 1, 1))
+#' b <- torch$Tensor(list(2, 2, 2))
+#' s <- 2.0
+#' a - b
+#' }
+#'
 #' @export
 "-.torch.Tensor" <- function(a, b) {
     if (missing(b)) {
@@ -233,9 +284,23 @@ tensor_ops <- function(a, b) UseMethod("tensor_ops")
 }
 
 
-
+#' Tensor multiplication
+#'
+#' This generic is similar to \code{torch$mul(a, b)}
+#'
+#' @param a tensor
+#' @param b tensor
+#' @return Another tensor representing the multiplication of two tensors.
+#'
+#' @examples
+#' \donttest{
+#' a <- torch$Tensor(list(1, 1, 1))
+#' b <- torch$Tensor(list(2, 2, 2))
+#' s <- 2.0
+#' a * b
+#' }
+#'
 #' @export
-#' @describeIn tensor_ops Tensor multiplication
 "*.torch.Tensor" <- function(a, b) {
     if (py_has_attr(torch, "multiply"))
         torch$multiply(a, b)
@@ -243,7 +308,22 @@ tensor_ops <- function(a, b) UseMethod("tensor_ops")
         torch$mul(a, b)
 }
 
-#' @describeIn tensor_ops Divide two tensors
+
+#' Divide two tensors
+#'
+#' This generic is similar to \code{torch$div(a, b)}
+#'
+#' @param a tensor
+#' @param b tensor
+#' @return Another tensor representing the division of two tensors.
+#'
+#' @examples
+#' \donttest{
+#' a <- torch$Tensor(list(1, 1, 1))
+#' b <- torch$Tensor(list(2, 2, 2))
+#' s <- 2.0
+#' a / b
+#' }
 #' @export
 "/.torch.Tensor" <- function(a, b) {
     torch$div(a, b)
@@ -252,7 +332,24 @@ tensor_ops <- function(a, b) UseMethod("tensor_ops")
 
 
 
-#' @describeIn tensor_ops Compare two tensors if equal
+#' Compares two tensors if equal
+#'
+#' This generic is approximately similar to \code{torch$eq(a, b)}, with the
+#' difference that the generic returns a tensor of booleans instead of
+#' a tensor of data type \code{torch$uint8}.
+#'
+#' @param a tensor
+#' @param b tensor
+#' @return A tensor of booleans, where False corresponds to 0, and 1 to True
+#' in a tensor of data type \code{torch$bool}.
+#'
+#' @examples
+#' \donttest{
+#' a <- torch$Tensor(list(1, 1, 1))
+#' b <- torch$Tensor(list(2, 2, 2))
+#' a == b
+#' }
+#'
 #' @export
 "==.torch.Tensor" <- function(a, b) {
     torch$as_tensor(torch$eq(a, b), dtype = torch$bool)
@@ -267,8 +364,25 @@ tensor_not_equal <- function(x, y) {
     torch$BoolTensor(np$not_equal(x, y))
 }
 
-#' @describeIn tensor_ops Compare two tensors if not equal
+#' Compare two tensors if not equal
+#'
+#' This generic is approximately similar to \code{torch$ne(a, b)}, with the
+#' difference that the generic returns a tensor of booleans instead of
+#' a tensor of data type \code{torch$uint8}.
+#'
+#' @param a tensor
+#' @param b tensor
+#' @return A tensor of booleans, where False corresponds to 0, and 1 to True
+#' in a tensor of data type \code{torch$bool}.
+#'
+#' @examples
+#' \donttest{
+#' a <- torch$Tensor(list(1, 1, 1))
+#' b <- torch$Tensor(list(2, 2, 2))
+#' a != b
+#' }
 #' @export
+#' @name not_equal_to
 "!=.torch.Tensor" <- function(a, b) {
     # there is not not_equal function in PyTorch
     # tensor_not_equal(a, b)
@@ -276,8 +390,28 @@ tensor_not_equal <- function(x, y) {
     torch$as_tensor(torch$ne(a, b), dtype = torch$bool)
 }
 
-#' @describeIn one_tensor_op Logical NOT of a tensor
+
+
+#' Logical NOT of a tensor
+#'
+#' There is not equivalent function in PyTorch for this generic.
+#' To generate This generic we use the function \code{np$logical_not(x)}.
+#'
+#' @param x tensor
+#'
+#' @return A tensor of booleans, where False corresponds to 0, and 1 to True
+#' in a tensor of data type \code{torch$bool}.
+#'
+#' @examples
+#' \donttest{
+#' A <- torch$ones(5L)
+#' !A
+#'
+#' Z <- torch$zeros(5L)
+#' !B
+#' }
 #' @export
+#' @name logical_not
 "!.torch.Tensor" <- function(x) {
     # there is not logical not in torch
     # torch$BoolTensor(np$logical_not(a))
@@ -285,7 +419,23 @@ tensor_not_equal <- function(x, y) {
 }
 
 
-#' @describeIn tensor_ops A tensor less than another tensor
+#' Is a tensor less than another tensor
+#'
+#' This generic is similar to \code{torch$lt(a, b)}
+#'
+#' @param a tensor
+#' @param b tensor
+#'
+#' @return A tensor of booleans representing the logical result of the comparison.
+#' False to represent 0, and True to represent 1 in a tensor of data type \code{torch$uint8}.
+#'
+#' @examples
+#' \donttest{
+#' A <- torch$ones(28L, 28L)
+#' C <- A * 0.5
+#' A < C
+#'
+#' }
 #' @export
 "<.torch.Tensor" <- function(a, b) {
     # torch$lt(a, b)
@@ -293,7 +443,23 @@ tensor_not_equal <- function(x, y) {
 }
 
 
-#' @describeIn tensor_ops A tensor less or equal than another tensor
+#' Is a tensor less or equal than another tensor
+#'
+#' This generic is similar to \code{torch$le(a, b)}
+#'
+#' @param a tensor
+#' @param b tensor
+#'
+#' @return A tensor of booleans representing the logical result of the comparison.
+#' False to represent 0, and True to represent 1 in a tensor of data type \code{torch$uint8}.
+#'
+#' @examples
+#' \donttest{
+#' A <- torch$ones(5L, 5L)
+#' C <- torch$as_tensor(np$random$randint(2L, size=c(5L, 5L)), dtype=torch$float32)
+#' A <= C
+#' C <= A
+#' }
 #' @export
 "<=.torch.Tensor" <- function(a, b) {
     # torch$le(a, b)
@@ -301,14 +467,46 @@ tensor_not_equal <- function(x, y) {
 }
 
 
-#' @describeIn tensor_ops A tensor greater than another tensor
+#' A tensor greater than another tensor
+#'
+#' This generic is similar to \code{torch$gt(a, b)}
+#'
+#' @param a tensor
+#' @param b tensor
+#'
+#' @return A tensor of booleans representing the logical result of the comparison.
+#' False to represent 0, and True to represent 1 in a tensor of data type \code{torch$uint8}.
+#'
+#' @examples
+#' \donttest{
+#' A <- torch$ones(5L, 5L)
+#' C <- torch$as_tensor(np$random$randint(2L, size=c(5L, 5L)), dtype=torch$float32)
+#' A > C
+#' C > A
+#' }
 #' @export
 ">.torch.Tensor" <- function(a, b) {
     # torch$gt(a, b)
     torch$as_tensor(torch$gt(a, b), dtype = torch$bool)
 }
 
-#' @describeIn tensor_ops A tensor greater or equal than another tensor
+#' Is a tensor greater or equal than another tensor
+#'
+#' This generic is similar to \code{torch$ge(a, b)}
+#'
+#' @param a tensor
+#' @param b tensor
+#'
+#' @return A tensor of booleans representing the logical result of the comparison.
+#' False to represent 0, and True to represent 1 in a tensor of data type \code{torch$uint8}.
+#'
+#' @examples
+#' \donttest{
+#' A <- torch$ones(5L, 5L)
+#' C <- torch$as_tensor(np$random$randint(2L, size=c(5L, 5L)), dtype=torch$float32)
+#' A >= C
+#' C >= A
+#' }
 #' @export
 ">=.torch.Tensor" <- function(a, b) {
     # torch$ge(a, b)
@@ -318,9 +516,20 @@ tensor_not_equal <- function(x, y) {
 
 
 #' Dot product of two tensors
-#' PyTorch dot function
-#' @param a Tensor 1
-#' @param b Tensor 2
+#'
+#' This generic is similar to \code{torch$dot(a, b)}
+#'
+#' @param a tensor
+#' @param b tensor
+#'
+#' @examples
+#' \donttest{
+#' p <- torch$Tensor(list(2, 3))
+#' q <- torch$Tensor(list(2, 1))
+#' p %.*% q
+#' }
+#'
+#' @return a scalar
 #' @export
 `%.*%` <- function(a, b) {
     torch$dot(a, b)
@@ -328,9 +537,21 @@ tensor_not_equal <- function(x, y) {
 
 
 #' Matrix/Tensor multiplication of two tensors
-#' PyTorch matmul
-#' @param a Tensor 1
-#' @param b Tensor 2
+#'
+#' This generic is similar to \code{torch$matmul(a, b)}
+#'
+#' @param a tensor
+#' @param b tensor
+#'
+#' @return a scalar or a tensor
+#'
+#' @examples
+#' \donttest{
+#' p <- torch$randn(3L)
+#' q <- torch$randn(3L)
+#' p %**% q
+#' }
+#'
 #' @export
 `%**%` <- function(a, b) {
     torch$matmul(a, b)
@@ -361,9 +582,7 @@ tensor_not_equal <- function(x, y) {
     if (is_tensor(base) || base != exp(1L)) {
         base <- torch$as_tensor(base, x$dtype)
         torch$log(x) / torch$log(base)
-        # print("here")
     } else {
-        # print("not here")
         torch$log(x)
     }
 }
@@ -399,15 +618,55 @@ tensor_logical_or <- function(x, y) {
 }
 
 
-#' @describeIn tensor_ops Logical AND of two tensors
+#' Logical AND of two tensors
+#'
+#' There is not equivalent function in PyTorch for this generic.
+#' To generate this generic we use the function \code{np$logical_and()}.
+#'
+#' @param a tensor
+#' @param b tensor
+#'
+#' @return A tensor of booleans representing the logical result of the comparison.
+#' False to represent 0, and True to represent 1 in a tensor of data type \code{torch$uint8}.
+#'
+#' @examples
+#' \donttest{
+#' A <- torch$BoolTensor(list(0L, 1L))
+#' B <- torch$BoolTensor(list(1L, 0L))
+#' C <- torch$BoolTensor(list(1L, 1L))
+#' A & B
+#' C & A
+#' B & C
+#' }
 #' @export
+#' @name logical_and
 "&.torch.Tensor" <- function(a, b) {
     tensor_logical_and(a, b)
 }
 
 
-#' @describeIn tensor_ops Logical OR of two tensors
+#' Logical OR of two tensors
+#'
+#' There is not equivalent function in PyTorch for this generic.
+#' To generate this generic we use the function \code{np$logical_or()}.
+#'
+#' @param a tensor
+#' @param b tensor
+#'
+#' @return A tensor of booleans representing the logical result of the comparison.
+#' False to represent 0, and True to represent 1 in a tensor of data type \code{torch$uint8}.
+#'
+#' @examples
+#' \donttest{
+#' A <- torch$BoolTensor(list(0L, 1L))
+#' B <- torch$BoolTensor(list(1L, 0L))
+#' C <- torch$BoolTensor(list(1L, 1L))
+#' A | B
+#' C | A
+#' B | C
+#' }
 #' @export
+#' @name logical_or
 "|.torch.Tensor" <- function(a, b) {
     tensor_logical_or(a, b)
 }

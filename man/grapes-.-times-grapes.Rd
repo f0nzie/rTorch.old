@@ -2,17 +2,26 @@
 % Please edit documentation in R/generics.R
 \name{\%.*\%}
 \alias{\%.*\%}
-\title{Dot product of two tensors
-PyTorch dot function}
+\title{Dot product of two tensors}
 \usage{
 a \%.*\% b
 }
 \arguments{
-\item{a}{Tensor 1}
+\item{a}{tensor}
 
-\item{b}{Tensor 2}
+\item{b}{tensor}
+}
+\value{
+a scalar
 }
 \description{
-Dot product of two tensors
-PyTorch dot function
+This generic is similar to \code{torch$dot(a, b)}
+}
+\examples{
+\donttest{
+p <- torch$Tensor(list(2, 3))
+q <- torch$Tensor(list(2, 1))
+p \%.*\% q
+}
+
 }

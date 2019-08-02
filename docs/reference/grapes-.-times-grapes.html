@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Dot product of two tensors
-PyTorch dot function — %.*% • rTorch</title>
+<title>Dot product of two tensors — %.*% • rTorch</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -31,11 +30,9 @@ PyTorch dot function — %.*% • rTorch</title>
 
 
 
-<meta property="og:title" content="Dot product of two tensors
-PyTorch dot function — %.*%" />
+<meta property="og:title" content="Dot product of two tensors — %.*%" />
 
-<meta property="og:description" content="Dot product of two tensors
-PyTorch dot function" />
+<meta property="og:description" content="This generic is similar to torch$dot(a, b)" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -66,7 +63,7 @@ PyTorch dot function" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2.9000</span>
       </span>
     </div>
 
@@ -105,16 +102,14 @@ PyTorch dot function" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Dot product of two tensors
-PyTorch dot function</h1>
+    <h1>Dot product of two tensors</h1>
     <small class="dont-index">Source: <a href='https://github.com/f0nzie/rTorch/blob/master/R/generics.R'><code>R/generics.R</code></a></small>
     <div class="hidden name"><code>grapes-.-times-grapes.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Dot product of two tensors
-PyTorch dot function</p>
+    <p>This generic is similar to <code>torch$dot(a, b)</code></p>
     
     </div>
 
@@ -125,21 +120,34 @@ PyTorch dot function</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>a</th>
-      <td><p>Tensor 1</p></td>
+      <td><p>tensor</p></td>
     </tr>
     <tr>
       <th>b</th>
-      <td><p>Tensor 2</p></td>
+      <td><p>tensor</p></td>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>a scalar</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>Tensor</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='fl'>2</span>, <span class='fl'>3</span>))
+<span class='no'>q</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>Tensor</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='fl'>2</span>, <span class='fl'>1</span>))
+<span class='no'>p</span> <span class='kw'>%.*%</span> <span class='no'>q</span></div><div class='output co'>#&gt; tensor(7.)</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#value">Value</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

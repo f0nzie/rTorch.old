@@ -1,3 +1,19 @@
+# rTorch 0.0.3
+* 20190802
+* Released to CRAN at 15:20
+
+
+# rTorch 0.0.2.9000
+* 20190802
+* Returned from CRAN with notes
+* Fix single quotes in DESCRIPTION
+* Change `\dontrun` by `\donttest` where applicable
+* Get rid of a warning message
+* Replace print/cat by message/warning
+* Add `\value` to all functions with `@return`
+* Added `cran-comments.md`
+
+
 # rTorch 0.0.2
 * July 31 2019
 * Submitted to CRAN at 15:30. Received. Waiting manual inspection.

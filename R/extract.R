@@ -10,7 +10,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' sess <- tf$Session()
 #'
 #' x <- tf$constant(1:15, shape = c(3, 5))
@@ -159,7 +159,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' x <- tf$constant(1:10)
 #'
 #' opts <-  torch_extract_opts("R")
@@ -252,7 +252,7 @@ torch_extract_opts <- function(
 #'
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # in python, if x is a numpy array or torch tensor
 #' x[..., i]
 #' # the ellipsis means "expand to match number of dimension of x".
@@ -260,7 +260,7 @@ torch_extract_opts <- function(
 #' x[all_dims(), i]
 #' }
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Run this
 #' d <- torch$tensor(list(list(0, 0),
 #'                        list(0, 0),

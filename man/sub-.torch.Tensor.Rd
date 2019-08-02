@@ -23,7 +23,7 @@
 Subset tensors with `[`
 }
 \examples{
-\dontrun{
+\donttest{
 sess <- tf$Session()
 
 x <- tf$constant(1:15, shape = c(3, 5))
