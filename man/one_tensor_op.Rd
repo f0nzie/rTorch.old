@@ -21,6 +21,11 @@ one_tensor_op(x)
 \arguments{
 \item{x}{tensor}
 }
+\value{
+a vector of integers with the dimensions of the tensor
+
+the number of elements of a tensor as an integer
+}
 \description{
 One tensor operation
 }

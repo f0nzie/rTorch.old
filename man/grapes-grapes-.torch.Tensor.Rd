@@ -11,6 +11,9 @@
 
 \item{b}{a scalar or a tensor}
 }
+\value{
+the reminder of the division between tensor by a scalar or tensor
+}
 \description{
 Computes the element-wise remainder of division.
 }

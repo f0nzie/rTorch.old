@@ -41,6 +41,7 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
 #' One tensor operation
 #'
 #' @param x tensor
+#'
 #' @examples
 #' \donttest{
 #' A <- torch$ones(c(60000L, 1L, 28L, 28L))
@@ -51,6 +52,7 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 
 #' @describeIn one_tensor_op Dimensions of a tensor
 #' @details Get the dimensions of a tensor displaying it as a vector.
+#' @return a vector of integers with the dimensions of the tensor
 #' @export
 "dim.torch.Tensor" <- function(x) {        # change .tensor to .Tensor
     if (py_is_null_xptr(x))
@@ -66,6 +68,7 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 }
 
 #' @describeIn one_tensor_op Length of a tensor. Eqivalent to torch$numel()
+#' @return the number of elements of a tensor as an integer
 #' @export
 "length.torch.Tensor" <- function(x) {
     if (py_is_null_xptr(x))
@@ -91,6 +94,7 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #' x %% 2
 #' y %% 1.5
 #' }
+#' @return the reminder of the division between tensor by a scalar or tensor
 "%%.torch.Tensor" <- function(a, b) {
     torch$remainder(a, b)
 }
