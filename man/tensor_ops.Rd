@@ -2,42 +2,12 @@
 % Please edit documentation in R/generics.R
 \name{tensor_ops}
 \alias{tensor_ops}
-\alias{+.torch.Tensor}
-\alias{-.torch.Tensor}
-\alias{*.torch.Tensor}
-\alias{/.torch.Tensor}
-\alias{==.torch.Tensor}
-\alias{!=.torch.Tensor}
-\alias{<.torch.Tensor}
-\alias{<=.torch.Tensor}
-\alias{>.torch.Tensor}
-\alias{>=.torch.Tensor}
 \alias{^.torch.Tensor}
 \alias{&.torch.Tensor}
 \alias{|.torch.Tensor}
 \title{Two tensor operations}
 \usage{
 tensor_ops(a, b)
-
-\method{+}{torch.Tensor}(a, b)
-
-\method{-}{torch.Tensor}(a, b)
-
-\method{*}{torch.Tensor}(a, b)
-
-\method{/}{torch.Tensor}(a, b)
-
-\method{==}{torch.Tensor}(a, b)
-
-\method{!=}{torch.Tensor}(a, b)
-
-\method{<}{torch.Tensor}(a, b)
-
-\method{<=}{torch.Tensor}(a, b)
-
-\method{>}{torch.Tensor}(a, b)
-
-\method{>=}{torch.Tensor}(a, b)
 
 \method{^}{torch.Tensor}(a, b)
 
@@ -55,26 +25,6 @@ Two tensor operations
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{torch.Tensor}: Add two tensors
-
-\item \code{torch.Tensor}: Subtract two tensors
-
-\item \code{torch.Tensor}: Tensor multiplication
-
-\item \code{torch.Tensor}: Divide two tensors
-
-\item \code{torch.Tensor}: Compare two tensors if equal
-
-\item \code{torch.Tensor}: Compare two tensors if not equal
-
-\item \code{torch.Tensor}: A tensor less than another tensor
-
-\item \code{torch.Tensor}: A tensor less or equal than another tensor
-
-\item \code{torch.Tensor}: A tensor greater than another tensor
-
-\item \code{torch.Tensor}: A tensor greater or equal than another tensor
-
 \item \code{torch.Tensor}: A tensor 'a' to the power of 'b'
 
 \item \code{torch.Tensor}: Logical AND of two tensors

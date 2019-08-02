@@ -2,44 +2,21 @@
 % Please edit documentation in R/generics.R
 \name{one_tensor_op}
 \alias{one_tensor_op}
-\alias{dim.torch.Tensor}
-\alias{length.torch.Tensor}
-\alias{!.torch.Tensor}
 \alias{exp.torch.Tensor}
 \title{One tensor operation}
 \usage{
 one_tensor_op(x)
-
-\method{dim}{torch.Tensor}(x)
-
-\method{length}{torch.Tensor}(x)
-
-\method{!}{torch.Tensor}(x)
 
 \method{exp}{torch.Tensor}(x)
 }
 \arguments{
 \item{x}{tensor}
 }
-\value{
-a vector of integers with the dimensions of the tensor
-
-the number of elements of a tensor as an integer
-}
 \description{
 One tensor operation
 }
-\details{
-Get the dimensions of a tensor displaying it as a vector.
-}
 \section{Methods (by class)}{
 \itemize{
-\item \code{torch.Tensor}: Dimensions of a tensor
-
-\item \code{torch.Tensor}: Length of a tensor. Eqivalent to torch$numel()
-
-\item \code{torch.Tensor}: Logical NOT of a tensor
-
 \item \code{torch.Tensor}: Exponential of a tensor
 }}
 

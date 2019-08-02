@@ -43,6 +43,22 @@ reference:
     contents:
       tensor_ops
 
+  - title: Basic arithmetic
+    decs: ~
+    contents:
+      - +.torch.Tensor
+      - '-.torch.Tensor'
+      - '*.torch.Tensor'
+      - '/.torch.Tensor'
+
+  - title: Logical operations
+    decs: ~
+    contents:
+      - '==.torch.Tensor'
+      - 'not_equal_to'
+      - 'logical_not'
+
+
   - title: Get datasets
     desc: ~
     contents:
