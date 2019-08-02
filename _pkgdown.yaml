@@ -21,6 +21,8 @@ reference:
       - log10.torch.Tensor
       - log2.torch.Tensor
       - '`%%.torch.Tensor`'
+      - install_pytorch
+      - install_torch_extras
 
 
   - title: Generics
