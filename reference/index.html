@@ -240,7 +240,19 @@ PyTorch matmul</p></td>
       <tr>
         
         <td>
-          <p><code><a href="one_tensor_op.html">one_tensor_op()</a></code> <code><a href="one_tensor_op.html">dim(<i>&lt;torch.Tensor&gt;</i>)</a></code> <code><a href="one_tensor_op.html">length(<i>&lt;torch.Tensor&gt;</i>)</a></code> <code><a href="one_tensor_op.html">`!`(<i>&lt;torch.Tensor&gt;</i>)</a></code> <code><a href="one_tensor_op.html">exp(<i>&lt;torch.Tensor&gt;</i>)</a></code> </p>
+          <p><code><a href="dim.torch.Tensor.html">dim(<i>&lt;torch.Tensor&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Dimensions of a tensor</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="length.torch.Tensor.html">length(<i>&lt;torch.Tensor&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Length of a tensor.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="one_tensor_op.html">one_tensor_op()</a></code> <code><a href="one_tensor_op.html">exp(<i>&lt;torch.Tensor&gt;</i>)</a></code> </p>
         </td>
         <td><p>One tensor operation</p></td>
       </tr>
@@ -254,9 +266,67 @@ PyTorch matmul</p></td>
       <tr>
         
         <td>
-          <p><code><a href="tensor_ops.html">tensor_ops()</a></code> <code><a href="tensor_ops.html">`+`(<i>&lt;torch.Tensor&gt;</i>)</a></code> <code><a href="tensor_ops.html">`-`(<i>&lt;torch.Tensor&gt;</i>)</a></code> <code><a href="tensor_ops.html">`*`(<i>&lt;torch.Tensor&gt;</i>)</a></code> <code><a href="tensor_ops.html">`/`(<i>&lt;torch.Tensor&gt;</i>)</a></code> <code><a href="tensor_ops.html">`==`(<i>&lt;torch.Tensor&gt;</i>)</a></code> <code><a href="tensor_ops.html">`!=`(<i>&lt;torch.Tensor&gt;</i>)</a></code> <code><a href="tensor_ops.html">`<`(<i>&lt;torch.Tensor&gt;</i>)</a></code> <code><a href="tensor_ops.html">`<=`(<i>&lt;torch.Tensor&gt;</i>)</a></code> <code><a href="tensor_ops.html">`>`(<i>&lt;torch.Tensor&gt;</i>)</a></code> <code><a href="tensor_ops.html">`>=`(<i>&lt;torch.Tensor&gt;</i>)</a></code> <code><a href="tensor_ops.html">`^`(<i>&lt;torch.Tensor&gt;</i>)</a></code> <code><a href="tensor_ops.html">`&`(<i>&lt;torch.Tensor&gt;</i>)</a></code> <code><a href="tensor_ops.html">`|`(<i>&lt;torch.Tensor&gt;</i>)</a></code> </p>
+          <p><code><a href="tensor_ops.html">tensor_ops()</a></code> <code><a href="tensor_ops.html">`<`(<i>&lt;torch.Tensor&gt;</i>)</a></code> <code><a href="tensor_ops.html">`<=`(<i>&lt;torch.Tensor&gt;</i>)</a></code> <code><a href="tensor_ops.html">`>`(<i>&lt;torch.Tensor&gt;</i>)</a></code> <code><a href="tensor_ops.html">`>=`(<i>&lt;torch.Tensor&gt;</i>)</a></code> <code><a href="tensor_ops.html">`^`(<i>&lt;torch.Tensor&gt;</i>)</a></code> <code><a href="tensor_ops.html">`&`(<i>&lt;torch.Tensor&gt;</i>)</a></code> <code><a href="tensor_ops.html">`|`(<i>&lt;torch.Tensor&gt;</i>)</a></code> </p>
         </td>
         <td><p>Two tensor operations</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-basic-arithmetic" class="hasAnchor"><a href="#section-basic-arithmetic" class="anchor"></a>Basic arithmetic</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="plus-.torch.Tensor.html">`+`(<i>&lt;torch.Tensor&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Add two tensors</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="dot-torch.Tensor.html">`-`(<i>&lt;torch.Tensor&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Subtract two tensors</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="times-.torch.Tensor.html">`*`(<i>&lt;torch.Tensor&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Tensor multiplication</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="slash-.torch.Tensor.html">`/`(<i>&lt;torch.Tensor&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Divide two tensors</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-logical-operations" class="hasAnchor"><a href="#section-logical-operations" class="anchor"></a>Logical operations</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="equals-.torch.Tensor.html">`==`(<i>&lt;torch.Tensor&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compares two tensors if equal</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="logical_not.html">`!`(<i>&lt;torch.Tensor&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Logical NOT of a tensor</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="not_equal_to.html">`!=`(<i>&lt;torch.Tensor&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compare two tensors if not equal</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -297,6 +367,8 @@ PyTorch matmul</p></td>
       <li><a href="#section-generics">Generics</a></li>
       <li><a href="#section-one-tensor-operation">One tensor operation</a></li>
       <li><a href="#section-two-tensor-operations">Two tensor operations</a></li>
+      <li><a href="#section-basic-arithmetic">Basic arithmetic</a></li>
+      <li><a href="#section-logical-operations">Logical operations</a></li>
       <li><a href="#section-get-datasets">Get datasets</a></li>
       <li><a href="#section-modules">Modules</a></li>
     </ul>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Subtract two tensors — -.torch.Tensor • rTorch</title>
+<title>Tensor multiplication — *.torch.Tensor • rTorch</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Subtract two tensors — -.torch.Tensor" />
+<meta property="og:title" content="Tensor multiplication — *.torch.Tensor" />
 
-<meta property="og:description" content="This generic is similar to applying torch$sub(a, b)" />
+<meta property="og:description" content="This generic is similar to torch$mul(a, b)" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -102,19 +102,19 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Subtract two tensors</h1>
+    <h1>Tensor multiplication</h1>
     <small class="dont-index">Source: <a href='https://github.com/f0nzie/rTorch/blob/master/R/generics.R'><code>R/generics.R</code></a></small>
-    <div class="hidden name"><code>dot-torch.Tensor.Rd</code></div>
+    <div class="hidden name"><code>times-.torch.Tensor.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This generic is similar to applying <code>torch$sub(a, b)</code></p>
+    <p>This generic is similar to <code>torch$mul(a, b)</code></p>
     
     </div>
 
     <pre class="usage"># S3 method for torch.Tensor
--(a, b)</pre>
+*(a, b)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -131,14 +131,14 @@
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Another tensor representing the subtraction of two tensors.</p>
+    <p>Another tensor representing the multiplication of two tensors.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>a</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>Tensor</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>))
 <span class='no'>b</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>Tensor</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>2</span>))
 <span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fl'>2.0</span>
-<span class='no'>a</span> - <span class='no'>b</span></div><div class='output co'>#&gt; tensor([-1., -1., -1.])</div><div class='input'>
+<span class='no'>a</span> * <span class='no'>b</span></div><div class='output co'>#&gt; tensor([2., 2., 2.])</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
