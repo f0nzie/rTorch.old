@@ -57,6 +57,12 @@ reference:
       - '==.torch.Tensor'
       - 'not_equal_to'
       - 'logical_not'
+      - '>.torch.Tensor'
+      - '>=.torch.Tensor'
+      - '<.torch.Tensor'
+      - '<=.torch.Tensor'
+      - 'logical_and'
+      - 'logical_or'
 
 
   - title: Get datasets
