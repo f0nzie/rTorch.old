@@ -37,6 +37,12 @@
     <loc>https://github.com/f0nzie/rTorch/reference/grapes-times-times-grapes.html</loc>
   </url>
   <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/greater-than-.torch.Tensor.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/greater-than-equals-.torch.Tensor.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/f0nzie/rTorch/reference/install_pytorch.html</loc>
   </url>
   <url>
@@ -44,6 +50,12 @@
   </url>
   <url>
     <loc>https://github.com/f0nzie/rTorch/reference/length.torch.Tensor.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/less-than-.torch.Tensor.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/less-than-equals-.torch.Tensor.html</loc>
   </url>
   <url>
     <loc>https://github.com/f0nzie/rTorch/reference/log.torch.Tensor.html</loc>
@@ -55,7 +67,13 @@
     <loc>https://github.com/f0nzie/rTorch/reference/log2.torch.Tensor.html</loc>
   </url>
   <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/logical_and.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/f0nzie/rTorch/reference/logical_not.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/logical_or.html</loc>
   </url>
   <url>
     <loc>https://github.com/f0nzie/rTorch/reference/modules.html</loc>
