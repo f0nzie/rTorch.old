@@ -1,12 +1,12 @@
 # v0.0.2
 By Martina Schmirl
 
-## single quotes
+## single quotes. `DONE!`
 Please always write package names, software names and API names in
 single quotes in the title and the description field.
 f.i.: --> 'Python'
 
-## change dontrun to donttest
+## change dontrun to donttest. `DONE!`
 \dontrun{} should be only used if the example really cannot be executed
 (e.g. because of missing additional software, missing API keys, ...) by
 the user. That's why wrapping examples in \dontrun{} adds the comment
@@ -31,7 +31,7 @@ else process_group(group),  :
    number of items to replace is not a multiple of replacement length
 
 
-## do not use print/cat to write information to the console
+## do not use print/cat to write information to the console. `DONE!`
 You write information messages to the console that cannot be easily
 suppressed. Instead of `print()/cat()` rather use `message()/warning()`  or
 `if(verbose)cat(..)` if you really have to write text to the console.
