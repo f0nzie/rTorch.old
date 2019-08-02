@@ -42,7 +42,7 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
 #'
 #' @param x tensor
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' A <- torch$ones(c(60000L, 1L, 28L, 28L))
 #' dim(A)
 #' }
@@ -82,7 +82,7 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #' @param b a scalar or a tensor
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' x <- torch$Tensor(list(-3., -2, -1, 1, 2, 3))
 #' y <- torch$Tensor(list(1., 2, 3, 4, 5))
 #' torch$remainder(x, 2)
@@ -108,7 +108,7 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #' @param ... other parameters (yet to be developed)
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' a <- torch$BoolTensor(list(TRUE, TRUE, TRUE, TRUE))
 #' b <- torch$BoolTensor(list(FALSE, TRUE, TRUE, TRUE))
 #' c <- torch$BoolTensor(list(TRUE, TRUE, TRUE, FALSE))
@@ -143,7 +143,7 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #' @param ... other params (yet to be developed)
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' a <- torch$BoolTensor(list(TRUE, TRUE, TRUE, TRUE))
 #' b <- torch$BoolTensor(list(FALSE, TRUE, TRUE, TRUE))
 #' c <- torch$BoolTensor(list(TRUE, TRUE, TRUE, FALSE))
@@ -175,7 +175,7 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #' @param a tensor
 #' @param b tensor
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' a <- torch$Tensor(list(1, 1, 1))
 #' b <- torch$Tensor(list(2, 2, 2))
 #' s <- 2.0

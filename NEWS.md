@@ -1,3 +1,8 @@
+# rTorch 0.0.2.9000
+* 20190802
+* Returned from CRAN with notes
+
+
 # rTorch 0.0.2
 * July 31 2019
 * Submitted to CRAN at 15:30. Received. Waiting manual inspection.
