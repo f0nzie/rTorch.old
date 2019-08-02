@@ -8,8 +8,8 @@ np <- import("numpy")
 
 as_vector <- function(...) as.vector(...)
 
-tensor_false <- torch$BoolTensor(list(0L))
-tensor_true <- torch$BoolTensor(list(1L))
+tensor_false <<- torch$BoolTensor(list(0L))
+tensor_true  <<- torch$BoolTensor(list(1L))
 
 tensor_logical_and <- function(x, y) {
   x <- r_to_py(x$numpy())
@@ -54,7 +54,8 @@ test_that("tensor_logical_and", {
   C <- torch$BoolTensor(list(1L))
   expect_equal((A & B), tensor_false)
   expect_equal((A & C), tensor_false)
-  expect_equal((A & C), tensor_true)
+  expect_equal((C & C), tensor_true)
+  expect_equal((C & C), tensor_false)
 })
 
 
@@ -74,8 +75,8 @@ test_that("tensor_logical_or", {
   A <- torch$BoolTensor(list(0L))
   B <- torch$BoolTensor(list(0L))
   C <- torch$BoolTensor(list(1L))
-  expect_equal((A & B), tensor_false)
-  expect_equal((A & C), tensor_true)
-  expect_equal((A & C), tensor_true)
+  expect_equal((A | B), tensor_false)
+  expect_equal((A | C), tensor_true)
+  expect_equal((B | C), tensor_true)
 })
 
