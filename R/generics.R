@@ -50,8 +50,11 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
 one_tensor_op <- function(x) UseMethod("one_tensor_op")
 
 
-#' @describeIn one_tensor_op Dimensions of a tensor
-#' @details Get the dimensions of a tensor displaying it as a vector.
+
+#' Dimensions of a tensor
+#'
+#' Get the dimensions of a tensor displaying it as a vector.
+#'
 #' @return a vector of integers with the dimensions of the tensor
 #' @export
 "dim.torch.Tensor" <- function(x) {        # change .tensor to .Tensor
@@ -67,7 +70,11 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
     }
 }
 
-#' @describeIn one_tensor_op Length of a tensor. Eqivalent to torch$numel()
+#' Length of a tensor.
+#'
+#' This function is equivalent to torch$numel()
+#'
+#'
 #' @return the number of elements of a tensor as an integer
 #' @export
 "length.torch.Tensor" <- function(x) {
