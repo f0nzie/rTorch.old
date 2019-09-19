@@ -1,3 +1,7 @@
+# rTorch 0.0.3.9001
+* 20190918
+* Rename tensorflow old labels to pytorch
+
 # rTorch 0.0.3.9000
 * 20190805
 * Now in CRAN. 10:00
