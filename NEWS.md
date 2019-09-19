@@ -1,3 +1,8 @@
+# rTorch 0.0.3.9000
+* 20190805
+* Now in CRAN. 10:00
+* Announce in LinkedIn and Twitter
+
 # rTorch 0.0.3
 * 20190802
 * Released to CRAN at 15:20
