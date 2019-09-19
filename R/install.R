@@ -1,15 +1,15 @@
-#' Install TensorFlow and its dependencies
+#' Install PyTorch and its dependencies
 #'
 #' @inheritParams reticulate::conda_list
 #'
 #' @param method Installation method. By default, "auto" automatically finds a
 #'   method that will work in the local environment. Change the default to force
 #'   a specific installation method. Note that the "virtualenv" method is not
-#'   available on Windows (as this isn't supported by TensorFlow). Note also
+#'   available on Windows (as this isn't supported by PyTorch). Note also
 #'   that since this command runs without privillege the "system" method is
 #'   available only on Windows.
 #'
-#' @param version TensorFlow version to install. Specify "default" to install
+#' @param version PyTorch version to install. Specify "default" to install
 #'   the CPU version of the latest release. Specify "gpu" to install the GPU
 #'   version of the latest release.
 #'
@@ -22,7 +22,7 @@
 #' @param envname Name of Python environment to install within
 #'
 #' @param extra_packages Additional Python packages to install along with
-#'   TensorFlow.
+#'   PyTorch.
 #'
 #' @param restart_session Restart R session after installing (note this will
 #'   only occur within RStudio).
@@ -264,19 +264,19 @@ parse_torch_version <- function(version) {
 }
 
 
-#' Install additional Python packages alongside TensorFlow
+#' Install additional Python packages alongside PyTorch
 #'
 #' This function is deprecated. Use the `extra_packages` argument to
-#' `install_tensorflow()` to install additional packages.
+#' `install_pytorch()` to install additional packages.
 #'
 #' @param packages Python packages to install
 #' @param conda Path to conda executable (or "auto" to find conda using the PATH
-#'   and other conventional install locations). Only used when TensorFlow is
+#'   and other conventional install locations). Only used when PyTorch is
 #'   installed within a conda environment.
 #'
 #' @export
 install_torch_extras <- function(packages, conda = "auto") {
   message("Extra packages not installed (this function is deprecated). \n",
-          "Use the extra_packages argument to install_tensorflow() to ",
+          "Use the extra_packages argument to install_pytorch() to ",
           "install additional packages.")
 }
