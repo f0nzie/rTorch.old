@@ -22,7 +22,7 @@ torch_v2 <- function() {
 packageStartupMessage("loading PyTorch")
 
 .onLoad <- function(libname, pkgname) {
-  # if TENSORFLOW_PYTHON is defined then forward it to RETICULATE_PYTHON
+  # if TORCH_PYTHON is defined then forward it to RETICULATE_PYTHON
   torch_python <- Sys.getenv("TORCH_PYTHON", unset = NA)
   if (!is.na(torch_python))
     Sys.setenv(RETICULATE_PYTHON = torch_python)
@@ -62,7 +62,7 @@ packageStartupMessage("loading PyTorch")
         #     }
         #   ))
         #
-        #   # if we loaded tensorflow then register tf help handler
+        #   # if we loaded pytorch then register tf help handler
         #   register_torch_help_handler()
         #
         #   # workaround to silence crash-causing deprecation warnings
