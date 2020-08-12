@@ -1,3 +1,15 @@
+# rTorch 0.0.3.9002
+* 20200810
+* creating branch `fix-elimination-cpu-suffix` to address removal of suffix by developer.
+* Installed PyTorch 1.1 with `rTorch:::install_conda(package="pytorch=1.1", envname="r-torch", conda="auto", conda_python_version = "3.6", pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))`
+* revise unit tests and fix version dependence. Two test failing since last release PyTorch 1.1. Four tests failing with PyTorch 1.6 installed. Related to versioning checks.
+* All tests in README passing and running.
+* fixed tests in `test_types.R`. Minor changes in `reticulate` makes it more sensitive.
+* set aside check on `mnist` dataset until internal tests are resolved
+
+
+
+
 # rTorch 0.0.3.9001
 * 20190918
 * Rename tensorflow old labels to pytorch
