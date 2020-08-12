@@ -6,8 +6,11 @@ source("tensor_functions.R")
 
 context("PyTorch version")
 
-test_that("PyTorch version is 1.1.0", {
-    expect_true(torch$`__version__` %in% c("1.1.0", "1.1", "1.0", "1.0.0"))
+VERSIONS <- c("1.1", "1.0", "1.2", "1.3", "1.4", "1.5", "1.6")
+
+test_that("PyTorch version ", {
+    expect_true(substr(torch$`__version__`, 1, 3)  %in% VERSIONS
+                  )
 })
 
 
@@ -26,7 +29,7 @@ test_that("Number of CPUs", {
 context("package config functions")
 
 test_that("torch_version returns value", {
-  expect_true(torch_version() %in% c("1.1", "1.1.0", "1.0.0"))
+  expect_true(torch_version() %in% VERSIONS)
   # print(torch_version())
 
 })

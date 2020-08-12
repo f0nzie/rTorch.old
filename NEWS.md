@@ -6,6 +6,9 @@
 * All tests in README passing and running.
 * fixed tests in `test_types.R`. Minor changes in `reticulate` makes it more sensitive.
 * set aside check on `mnist` dataset until internal tests are resolved
+* install PyTorch 1.6 on Python 3.6`. Restart RStudio.
+* fix version test with `VERSIONS <- c("1.1", "1.0", "1.2", "1.3", "1.4", "1.5", "1.6")` in `test_info.R`
+*
 
 
 
