@@ -104,7 +104,7 @@ test_that("* sign multiplication of tensor times a negative scalar", {
 
 test_that("length of tensor is the same as numel()", {
   a_matrix <- matrix(rnorm(100), ncol = 2)
-  a_tensor <- torch$as_tensor(a_matrix)
+  a_tensor <- torch$as_tensor(make_copy(a_matrix))
   expect_equal(a_tensor$numel(), 100)
   expect_equal(length(a_tensor), 100)
 })
@@ -168,8 +168,6 @@ test_that("tensor not equal as x != y", {
 
   expect_tensor_equal(all(A != B), FALSE_TENSOR)
 })
-
-
 
 
 test_that("numpy logical-not works as !", {
