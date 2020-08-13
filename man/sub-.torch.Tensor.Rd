@@ -4,9 +4,13 @@
 \alias{[.torch.Tensor}
 \title{Subset tensors with `[`}
 \usage{
-\method{[}{torch.Tensor}(x, ..., drop = TRUE,
+\method{[}{torch.Tensor}(
+  x,
+  ...,
+  drop = TRUE,
   style = getOption("torch.extract.style"),
-  options = torch_extract_opts(style))
+  options = torch_extract_opts(style)
+)
 }
 \arguments{
 \item{x}{a tensor}

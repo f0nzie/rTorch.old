@@ -10,6 +10,8 @@ builtins    <- import_builtins()
 np          <- import("numpy")
 
 
+as_tensor <- function(...) torch$as_tensor(...)
+
 tensor_dot <- function(A, B) {
     torch$dot(A, B)
 }

@@ -6,9 +6,17 @@
 \alias{conda_python}
 \title{Conda install function (modified from reticulate)}
 \usage{
-conda_install(envname = NULL, packages, forge = FALSE, pip = FALSE,
-  pip_ignore_installed = TRUE, conda = "auto", python_version = NULL,
-  channel = NULL, ...)
+conda_install(
+  envname = NULL,
+  packages,
+  forge = FALSE,
+  pip = FALSE,
+  pip_ignore_installed = TRUE,
+  conda = "auto",
+  python_version = NULL,
+  channel = NULL,
+  ...
+)
 
 conda_python(envname = NULL, conda = "auto")
 }

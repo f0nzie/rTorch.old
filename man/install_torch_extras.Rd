@@ -2,7 +2,7 @@
 % Please edit documentation in R/install.R
 \name{install_torch_extras}
 \alias{install_torch_extras}
-\title{Install additional Python packages alongside TensorFlow}
+\title{Install additional Python packages alongside PyTorch}
 \usage{
 install_torch_extras(packages, conda = "auto")
 }
@@ -10,10 +10,10 @@ install_torch_extras(packages, conda = "auto")
 \item{packages}{Python packages to install}
 
 \item{conda}{Path to conda executable (or "auto" to find conda using the PATH
-and other conventional install locations). Only used when TensorFlow is
+and other conventional install locations). Only used when PyTorch is
 installed within a conda environment.}
 }
 \description{
 This function is deprecated. Use the `extra_packages` argument to
-`install_tensorflow()` to install additional packages.
+`install_pytorch()` to install additional packages.
 }

@@ -1,14 +1,14 @@
-skip_if_no_torch()
-
 source("tensor_functions.R")
 source("utils.R")
 
+skip_if_no_torch()
 
 context("generic methods")
 
-as_tensor <- function(...) torch$as_tensor(...)
 
-expect_near <- function(..., tol = 1e-5) expect_equal(..., tolerance = tol)
+
+
+
 
 test_that("logical operations", {
   a = torch$ByteTensor(list(0, 1, 1, 0))
