@@ -9,9 +9,35 @@ dsets       <- import("torchvision.datasets")
 builtins    <- import_builtins()
 np          <- import("numpy")
 
+# https://stackoverflow.com/a/59337065/5270873
+# filter_warnings <- import("warnings.filterwarnings")
+# filter_warnings("ignore")
+
+
+tensor_logical_and <- function(x, y) {
+    x <- r_to_py(x$numpy())
+    y <- r_to_py(y$numpy())
+    torch$BoolTensor(make_copy(np$logical_and(x, y)))
+}
+
+tensor_logical_or <- function(x, y) {
+    x <- r_to_py(x$numpy())
+    y <- r_to_py(y$numpy())
+    torch$BoolTensor(make_copy(np$logical_or(x, y)))
+}
+
+
+expect_tensor_equal <- function(a, b) {
+    # a <- make_copy(a)
+    # b <- make_copy(b)
+    expect_true(torch$equal(a, b))
+}
 
 make_copy <- function(object, ...) {
-    if (class(object) == "numpy.ndarray") {
+    if (class(object) == "torch.Tensor") {
+        obj <- object$copy_(object)
+    }
+    else if (class(object) == "numpy.ndarray") {
         obj <- object$copy()
     } else {
         obj <- r_to_py(object)$copy()

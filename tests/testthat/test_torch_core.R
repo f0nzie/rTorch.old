@@ -1,4 +1,4 @@
-library(testthat)
+# using function make_copy() to get rid off PyTorch warnings
 
 source("tensor_functions.R")
 
@@ -101,108 +101,109 @@ test_that("index_select", {
     expect_equal(x1, x1_expect)
 })
 
-# test_that("split", {
-#     # Splits the tensor into chunks.
-#     # Last chunk will be smaller if tensor size along dimension is not divisible
-#     # torch.split(tensor, split_size_or_sections, dim=0)
-#     #
-#     #  0.3367  0.1288  0.2345  0.2303
-#     # -1.1229 -0.1863  2.2082 -0.6380
-#     #  0.4617  0.2674  0.5349  0.8094
-#
-#     torch$manual_seed(42L)
-#     x <- torch$randn(3L, 4L)
-#
-#     # split by rows. no-divisible
-#     x0 <- torch$split(x, 2L, dim = 0L)
-#     src <- "
-#      0.3367  0.1288  0.2345  0.2303
-#     -1.1229 -0.1863  2.2082 -0.6380
-#     "
-#     x01_expect <- torch$FloatTensor(as.matrix(read.table(text = src)))
-#     expect_equal(x0[[1]], x01_expect)
-#     src <- "
-#      0.4617  0.2674  0.5349  0.8094
-#     "
-#     x02_expect <- torch$FloatTensor(as.matrix(read.table(text = src)))
-#     expect_equal(x0[[2]], x02_expect)
-#
-#     # split by columns. divisible
-#     x1 <- torch$split(x, 2L, dim = 1L)
-#     src <- "
-#      0.3367  0.1288
-#     -1.1229 -0.1863
-#      0.4617  0.2674
-#     "
-#     x11_expect <- torch$FloatTensor(as.matrix(read.table(text = src)))
-#     expect_equal(x1[[1]], x11_expect)
-#     src <- "
-#     0.2345  0.2303
-#     2.2082 -0.6380
-#     0.5349  0.8094
-#     "
-#     x12_expect <- torch$FloatTensor(as.matrix(read.table(text = src)))
-#     expect_equal(x1[[2]], x12_expect)
-# })
-#
-#
-# test_that("squeeze", {
-#     # removes dimensions of size 1
-#     x = torch$zeros(2L, 1L, 2L, 1L, 2L)
-#     expect_equal(x$size(), torch$Size(c(2L, 1L, 2L, 1L, 2L)))
-#
-#     y = torch$squeeze(x)
-#     expect_equal(y$size(), torch$Size(c(2L, 2L, 2L)))
-#
-#     # squeeze specified dimension at index=0. if size not 1, skip
-#     y0 = torch$squeeze(x, 0L)
-#     # print(y0$size())
-#     expect_equal(y0$size(), torch$Size(c(2L, 1L, 2L, 1L, 2L)))
-#
-#     # squeeze specified dimension at index=1; removed because it is 1
-#     y1 = torch$squeeze(x, 1L)
-#     expect_equal(y1$size(), torch$Size(c(2L, 2L, 1L, 2L)))
-#
-# })
-#
-# test_that("take", {
-#     # treats the tensor like a vector and extracts elements in the order
-#     # specified by the 2nd argument
-#     src <- torch$Tensor(rbind(c(4, 3, 5),
-#                               c(6, 7, 8)))
-#     res <- torch$take(src, torch$LongTensor(c(0L, 2L, 5L)))
-#     expect_equal(res, torch$FloatTensor(c(4, 5, 8)))
-# })
-#
-#
-#
-# test_that("narrow", {
-#     # Returns a new tensor that is a narrowed version of self tensor. The
-#     # dimension dim is narrowed from start to start + length.
-#
-#     # narrow # 1
-#     x_t <- "
-#     1  2  3
-#     4  5  6
-#     7  8  9
-#     "
-#     x_ <- as.matrix(read.table(text = x_t))
-#     x  <- torch$Tensor(x_)
-#
-#     r_t <- "
-#     1  2  3
-#     4  5  6
-#     "
-#     r <- torch$Tensor(as.matrix(read.table(text = r_t)))
-#     expect_equal(x$narrow(0L, 0L , 2L), r)
-#
-#     # narrow #2
-#     r_t <- "
-#     2  3
-#     5  6
-#     8  9
-#     "
-#     r <- torch$Tensor(as.matrix(read.table(text = r_t)))
-#     expect_equal(x$narrow(1L, 1L , 2L), r)
-#
-# })
+test_that("split", {
+    # Splits the tensor into chunks.
+    # Last chunk will be smaller if tensor size along dimension is not divisible
+    # torch.split(tensor, split_size_or_sections, dim=0)
+    #
+    #  0.3367  0.1288  0.2345  0.2303
+    # -1.1229 -0.1863  2.2082 -0.6380
+    #  0.4617  0.2674  0.5349  0.8094
+
+    torch$manual_seed(42L)
+    x <- torch$randn(3L, 4L)
+
+    # split by rows. no-divisible
+    x0 <- torch$split(x, 2L, dim = 0L)
+    src <- "
+     0.3367  0.1288  0.2345  0.2303
+    -1.1229 -0.1863  2.2082 -0.6380
+    "
+    mx <- as.matrix(read.table(text = src))
+    x01_expect <- torch$FloatTensor(make_copy(mx))
+    expect_equal(x0[[1]], x01_expect)
+    src <- "
+     0.4617  0.2674  0.5349  0.8094
+    "
+    x02_expect <- torch$FloatTensor(make_copy(as.matrix(read.table(text = src))))
+    expect_equal(x0[[2]], x02_expect)
+
+    # split by columns. divisible
+    x1 <- torch$split(x, 2L, dim = 1L)
+    src <- "
+     0.3367  0.1288
+    -1.1229 -0.1863
+     0.4617  0.2674
+    "
+    x11_expect <- torch$FloatTensor(make_copy(as.matrix(read.table(text = src))))
+    expect_equal(x1[[1]], x11_expect)
+    src <- "
+    0.2345  0.2303
+    2.2082 -0.6380
+    0.5349  0.8094
+    "
+    x12_expect <- torch$FloatTensor(make_copy(as.matrix(read.table(text = src))))
+    expect_equal(x1[[2]], x12_expect)
+})
+
+
+test_that("squeeze", {
+    # removes dimensions of size 1
+    x = torch$zeros(2L, 1L, 2L, 1L, 2L)
+    expect_equal(x$size(), torch$Size(c(2L, 1L, 2L, 1L, 2L)))
+
+    y = torch$squeeze(x)
+    expect_equal(y$size(), torch$Size(c(2L, 2L, 2L)))
+
+    # squeeze specified dimension at index=0. if size not 1, skip
+    y0 = torch$squeeze(x, 0L)
+    # print(y0$size())
+    expect_equal(y0$size(), torch$Size(c(2L, 1L, 2L, 1L, 2L)))
+
+    # squeeze specified dimension at index=1; removed because it is 1
+    y1 = torch$squeeze(x, 1L)
+    expect_equal(y1$size(), torch$Size(c(2L, 2L, 1L, 2L)))
+
+})
+
+test_that("take", {
+    # treats the tensor like a vector and extracts elements in the order
+    # specified by the 2nd argument
+    src <- torch$Tensor(make_copy(rbind(c(4, 3, 5),
+                              c(6, 7, 8))))
+    res <- torch$take(src, torch$LongTensor(c(0L, 2L, 5L)))
+    expect_equal(res, torch$FloatTensor(c(4, 5, 8)))
+})
+
+
+
+test_that("narrow", {
+    # Returns a new tensor that is a narrowed version of self tensor. The
+    # dimension dim is narrowed from start to start + length.
+
+    # narrow # 1
+    x_t <- "
+    1  2  3
+    4  5  6
+    7  8  9
+    "
+    x_ <- as.matrix(read.table(text = x_t))
+    x  <- torch$Tensor(make_copy(x_))
+
+    r_t <- "
+    1  2  3
+    4  5  6
+    "
+    r <- torch$Tensor(make_copy(as.matrix(read.table(text = r_t))))
+    expect_equal(x$narrow(0L, 0L , 2L), r)
+
+    # narrow #2
+    r_t <- "
+    2  3
+    5  6
+    8  9
+    "
+    r <- torch$Tensor(make_copy(as.matrix(read.table(text = r_t))))
+    expect_equal(x$narrow(1L, 1L , 2L), r)
+
+})

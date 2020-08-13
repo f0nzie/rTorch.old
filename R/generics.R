@@ -608,13 +608,15 @@ tensor_not_equal <- function(x, y) {
 tensor_logical_and <- function(x, y) {
     x <- r_to_py(x$numpy())
     y <- r_to_py(y$numpy())
-    torch$BoolTensor(np$logical_and(x, y))
+    np_logical_and <- r_to_py(np$logical_and(x, y))
+    torch$BoolTensor(np_logical_and$copy())          # prevent PyTorch warning
 }
 
 tensor_logical_or <- function(x, y) {
     x <- r_to_py(x$numpy())
     y <- r_to_py(y$numpy())
-    torch$BoolTensor(np$logical_or(x, y))
+    np_logical_or <- r_to_py(np$logical_or(x, y))
+    torch$BoolTensor(np_logical_or$copy())
 }
 
 

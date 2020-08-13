@@ -1,6 +1,5 @@
-skip_on_cran()
-
 source("tensor_functions.R")
+skip_on_cran()
 
 context("numpy logical operations")
 
@@ -14,22 +13,7 @@ tensor_true  <<- torch$BoolTensor(list(1L))
 TRUE_TENSOR  <- torch$as_tensor(1L, dtype=torch$uint8)
 FALSE_TENSOR <- torch$as_tensor(0L, dtype=torch$uint8)
 
-tensor_logical_and <- function(x, y) {
-  x <- r_to_py(x$numpy())
-  y <- r_to_py(y$numpy())
-  torch$BoolTensor(np$logical_and(x, y))
-}
 
-tensor_logical_or <- function(x, y) {
-  x <- r_to_py(x$numpy())
-  y <- r_to_py(y$numpy())
-  torch$BoolTensor(np$logical_or(x, y))
-}
-
-
-expect_tensor_equal <- function(a, b) {
-  expect_true(torch$equal(a, b))
-}
 
 context("AND logical operations")
 
@@ -47,14 +31,14 @@ test_that("np$logical_and() return R logical", {
 
 
 test_that("tensor+numpy AND yields logical arrays", {
-  p <- torch$BoolTensor(list(1, 0))
-  q <- torch$BoolTensor(list(0, 1))
-  A <- torch$BoolTensor(list(0L))
-  B <- torch$BoolTensor(list(0L))
+  p <- torch$BoolTensor(make_copy(list(1, 0)))
+  q <- torch$BoolTensor(make_copy(list(0, 1)))
+  A <- torch$BoolTensor(make_copy(list(0L)))
+  B <- torch$BoolTensor(make_copy(list(0L)))
+
   expect_tensor_equal(tensor_logical_and(A, B), tensor_false)
   expect_tensor_equal(tensor_logical_and(A, B), !tensor_true)
-
-  expect_tensor_equal(tensor_logical_and(p, q), torch$BoolTensor(list(FALSE, FALSE)))
+  expect_tensor_equal(tensor_logical_and(p, q), torch$BoolTensor(make_copy(list(FALSE, FALSE))))
 })
 
 test_that("tensor_logical_and", {
@@ -62,6 +46,7 @@ test_that("tensor_logical_and", {
   B <- torch$BoolTensor(list(1L))
   C <- torch$BoolTensor(list(0L))
   D <- torch$BoolTensor(list(0L))
+
   # expect_equal((A & B), tensor_false)
   # expect_equal((A & C), tensor_false)
   # expect_equal((C & C), tensor_true)
