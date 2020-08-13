@@ -10,6 +10,16 @@ builtins    <- import_builtins()
 np          <- import("numpy")
 
 
+make_copy <- function(object, ...) {
+    if (class(object) == "numpy.ndarray") {
+        obj <- object$copy()
+    } else {
+        obj <- r_to_py(object)$copy()
+    }
+    return(obj)
+}
+
+
 as_tensor <- function(...) torch$as_tensor(...)
 
 tensor_dot <- function(A, B) {

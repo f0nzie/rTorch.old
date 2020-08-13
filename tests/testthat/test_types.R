@@ -69,6 +69,9 @@ test_that("indices in numpy array have to be integers", {
     expect_error(np$zeros(c(2, 3, 2)))
 })
 
+
+# This test associated and affected by global variables in another script
+
 # test_that("Python string of commands returns a dictionary", {
 #     # ensure other Python variables have been cleared
 #     # indent Python code to the left margin
