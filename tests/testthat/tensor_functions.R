@@ -46,7 +46,7 @@ make_copy <- function(object, ...) {
 }
 
 
-as_tensor <- function(...) torch$as_tensor(...)
+# as_tensor <- function(...) torch$as_tensor(...)
 
 tensor_dot <- function(A, B) {
     torch$dot(A, B)
