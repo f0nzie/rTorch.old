@@ -580,9 +580,11 @@ tensor_not_equal <- function(x, y) {
 #' @export
 "log.torch.Tensor" <- function(x, base = exp(1L)) {
     if (is_tensor(base) || base != exp(1L)) {
-        base <- torch$as_tensor(base, x$dtype)
+        # print("base IS a tensor")
+        base <- torch$as_tensor(base, dtype=x$dtype)       # dtype mus be there
         torch$log(x) / torch$log(base)
     } else {
+        # print("base is not a tensor")
         torch$log(x)
     }
 }
