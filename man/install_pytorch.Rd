@@ -2,26 +2,33 @@
 % Please edit documentation in R/install.R
 \name{install_pytorch}
 \alias{install_pytorch}
-\title{Install TensorFlow and its dependencies}
+\title{Install PyTorch and its dependencies}
 \usage{
-install_pytorch(method = c("conda", "virtualenv", "auto"),
-  conda = "auto", version = "default", envname = "r-torch",
-  extra_packages = NULL, restart_session = TRUE,
-  conda_python_version = "3.6", pip = FALSE, channel = "pytorch",
-  ...)
+install_pytorch(
+  method = c("conda", "virtualenv", "auto"),
+  conda = "auto",
+  version = "default",
+  envname = "r-torch",
+  extra_packages = NULL,
+  restart_session = TRUE,
+  conda_python_version = "3.6",
+  pip = FALSE,
+  channel = "pytorch",
+  ...
+)
 }
 \arguments{
 \item{method}{Installation method. By default, "auto" automatically finds a
 method that will work in the local environment. Change the default to force
 a specific installation method. Note that the "virtualenv" method is not
-available on Windows (as this isn't supported by TensorFlow). Note also
+available on Windows (as this isn't supported by PyTorch). Note also
 that since this command runs without privillege the "system" method is
 available only on Windows.}
 
-\item{conda}{Path to conda executable (or "auto" to find conda using the
-PATH and other conventional install locations).}
+\item{conda}{The path to a \code{conda} executable. Use \code{"auto"} to allow \code{reticulate} to
+automatically find an appropriate \code{conda} binary. See \strong{Finding Conda} for more details.}
 
-\item{version}{TensorFlow version to install. Specify "default" to install
+\item{version}{PyTorch version to install. Specify "default" to install
   the CPU version of the latest release. Specify "gpu" to install the GPU
   version of the latest release.
 
@@ -34,7 +41,7 @@ PATH and other conventional install locations).}
 \item{envname}{Name of Python environment to install within}
 
 \item{extra_packages}{Additional Python packages to install along with
-TensorFlow.}
+PyTorch.}
 
 \item{restart_session}{Restart R session after installing (note this will
 only occur within RStudio).}
@@ -50,5 +57,5 @@ environment. Python 3.6 is installed by default.}
 [reticulate::virtualenv_install()].}
 }
 \description{
-Install TensorFlow and its dependencies
+Install PyTorch and its dependencies
 }

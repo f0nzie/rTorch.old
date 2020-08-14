@@ -63,16 +63,28 @@ test_that("scalar indexing works", {
   x2_ <- arr(3, 3)
   x3_ <- arr(3, 3, 3)
 
+  x1_py <- r_to_py(x1_)
+  x1 <- torch$from_numpy(x1_py$copy())          # copy numpy array to fix warning
+
+  expect_true(class(x1_) == "array")
+  expect_true(class(x1_py)[1] == "numpy.ndarray")
+
+  # expect_all_true is custom made in utils.R
+  expect_all_true(class(x1) %in%
+                c("torch.Tensor", "torch._C._TensorBase", "python.builtin.object"))
+
+  x2_py <- r_to_py(x2_)
+  x3_py <- r_to_py(x3_)
   # cast to Tensors
-  x1 <- torch$as_tensor(x1_)
-  x2 <- torch$as_tensor(x2_)
-  x3 <- torch$as_tensor(x3_)
+  x2 <- torch$from_numpy(x2_py$copy())                    # fix warning
+  x3 <- torch$from_numpy(x3_py$copy())                    # fix warning
+
 
   # extract as arrays
   y1_ <- x1_[1]
   y2_ <- x2_[1, 2]
   y3_ <- x3_[1, 2, 3]
-  # print(y1_)
+  expect_true(class(y2_) == "integer")
   # print(y2_)
   # print(y3_)
 
@@ -96,6 +108,7 @@ test_that("scalar indexing works", {
 })
 
 
+
 test_that("vector indexing works", {
   skip_if_no_torch()
 
@@ -105,8 +118,8 @@ test_that("vector indexing works", {
   x2_ <- arr(3, 3)
 
   # cast to Tensors
-  x1 <- torch$as_tensor(x1_)
-  x2 <- torch$as_tensor(x2_)
+  x1 <- torch$as_tensor(r_to_py(x1_)$copy())                    # fix warning
+  x2 <- torch$as_tensor(r_to_py(x2_)$copy())                    # fix warning
 
   # extract as arrays
   y1_ <- x1_[2:3]
@@ -128,6 +141,7 @@ test_that("vector indexing works", {
   options(oopt)
 })
 
+
 test_that("blank indices retain all elements", {
   skip_if_no_torch()
 
@@ -140,10 +154,10 @@ test_that("blank indices retain all elements", {
   x4_ <- arr(3, 3, 3, 3)
 
   # cast to Tensors
-  x1 <- torch$as_tensor(x1_)
-  x2 <- torch$as_tensor(x2_)
-  x3 <- torch$as_tensor(x3_)
-  x4 <- torch$as_tensor(x4_)
+  x1 <- torch$as_tensor(r_to_py(x1_)$copy())                    # fix warning
+  x2 <- torch$as_tensor(r_to_py(x2_)$copy())                    # fix warning
+  x3 <- torch$as_tensor(r_to_py(x3_)$copy())                    # fix warning
+  x4 <- torch$as_tensor(r_to_py(x4_)$copy())                    # fix warning
 
   # extract as arrays
   y1_ <- x1_[]
@@ -191,9 +205,9 @@ test_that("indexing works within functions", {
   x3_ <- arr(3, 3, 3)
 
   # cast to Tensors
-  x1 <- torch$as_tensor(x1_)
-  x2 <- torch$as_tensor(x2_)
-  x3 <- torch$as_tensor(x3_)
+  x1 <- torch$as_tensor(r_to_py(x1_)$copy())
+  x2 <- torch$as_tensor(r_to_py(x2_)$copy())
+  x3 <- torch$as_tensor(r_to_py(x3_)$copy())
 
   # set up functions
   sub1 <- function (x, a)
@@ -237,9 +251,9 @@ test_that("indexing works with variables", {
   }
 
   # set up tensors
-  x1 <- torch$as_tensor(arr(3))
-  x2 <- torch$as_tensor(arr(3, 3))
-  x3 <- torch$as_tensor(arr(3, 3, 3))
+  x1 <- torch$as_tensor(r_to_py(arr(3))$copy())
+  x2 <- torch$as_tensor(r_to_py(arr(3, 3))$copy())
+  x3 <- torch$as_tensor(r_to_py(arr(3, 3, 3))$copy())
 
   # extract with index (these shouldn't error)
   index <- 2
@@ -257,8 +271,8 @@ test_that("indexing with negative sequences errors", {
   oopt <- options(torch.extract.style = "R")
 
   # set up Tensors
-  x1 <- torch$as_tensor(arr(3))
-  x2 <- torch$as_tensor(arr(3, 3))
+  x1 <- torch$as_tensor(r_to_py(arr(3))$copy())
+  x2 <- torch$as_tensor(r_to_py(arr(3, 3))$copy())
 
   # extract with negative indices (where : is not the top level call)
   expect_error(x1[-(1:2)], 'positive')
@@ -267,11 +281,12 @@ test_that("indexing with negative sequences errors", {
   options(oopt)
 })
 
+
 test_that("incorrect number of indices errors", {
   skip_if_no_torch()
 
   # set up Tensor
-  x <- torch$as_tensor(arr(3, 3, 3))
+  x <- torch$as_tensor(r_to_py(arr(3, 3, 3))$copy())
   # options(tensorflow.extract.one_based = TRUE)
   # too many
   expect_error(x[1:2, 2, 1:2, 3],
@@ -294,7 +309,7 @@ test_that("silly indices error", {
   skip_if_no_torch()
 
   # set up Tensor
-  x <- torch$as_tensor(arr(3, 3, 3))
+  x <- torch$as_tensor(r_to_py(arr(3, 3, 3))$copy())
 
   # these should all error and notify the user of the failing index
   expect_error(x[1:2, NA, 2], 'NA')
@@ -304,12 +319,13 @@ test_that("silly indices error", {
 })
 
 
+
 test_that("passing non-vector indices errors", {
   skip_if_no_torch()
 
   # set up Tensor
-  x1 <- torch$as_tensor(arr(3, 3))
-  x2 <- torch$as_tensor(arr(3, 3, 3))
+  x1 <- torch$as_tensor(r_to_py(arr(3, 3))$copy())
+  x2 <- torch$as_tensor(r_to_py(arr(3, 3, 3))$copy())
 
   # block indices
   block_idx_1 <- rbind(c(1, 2), c(0, 1))
@@ -320,50 +336,34 @@ test_that("passing non-vector indices errors", {
                'not currently supported')
   expect_error(x2[block_idx_2],
                'not currently supported')
-
 })
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 test_that("dim(), length(), nrow(), and ncol() work on tensors", {
-
   skip_if_no_torch()
-
   a_matrix <- matrix(rnorm(100), ncol = 2)
-  a_tensor <- torch$as_tensor(a_matrix)
+  a_tensor <- torch$as_tensor(r_to_py(a_matrix)$copy())
+
   expect_equal(dim(a_matrix), dim(a_tensor))
   expect_equal(length(a_matrix), length(a_tensor))
   expect_equal(nrow(a_matrix), nrow(a_tensor))
   expect_equal(ncol(a_matrix), ncol(a_tensor))
-
 })
 
 
+
 test_that("all_dims()", {
-
   skip_if_no_torch()
-
   x1.r <- arr(3)
   x2.r <- arr(3, 3)
   x3.r <- arr(3, 3, 3)
   x4.r <- arr(3, 3, 3, 3)
 
-  x1.t <- torch$as_tensor(x1.r)
-  x2.t <- torch$as_tensor(x2.r)
-  x3.t <- torch$as_tensor(x3.r)
-  x4.t <- torch$as_tensor(x4.r)
+  x1.t <- torch$as_tensor(r_to_py(x1.r)$copy())
+  x2.t <- torch$as_tensor(r_to_py(x2.r)$copy())
+  x3.t <- torch$as_tensor(r_to_py(x3.r)$copy())
+  x4.t <- torch$as_tensor(r_to_py(x4.r)$copy())
 
   expect_equal(as_array(x1.t[all_dims()]), x1.r[])
   # print(x1.t[all_dims()])
@@ -393,6 +393,8 @@ test_that("all_dims()", {
 })
 
 
+
+
 test_that("negative-integers work python style", {
 
   skip_if_no_torch()
@@ -402,8 +404,8 @@ test_that("negative-integers work python style", {
   x1.r <- arr(4)
   x2.r <- arr(4, 4)
 
-  x1.t <- torch$as_tensor(x1.r)
-  x2.t <- torch$as_tensor(x2.r)
+  x1.t <- torch$as_tensor(r_to_py(x1.r)$copy())
+  x2.t <- torch$as_tensor(r_to_py(x2.r)$copy())
 
   options(torch.extract.one_based = TRUE)
   # expect_equal(as_array( x1.t[-1] ),     x1.r[4]    )
@@ -428,15 +430,15 @@ test_that("negative-integers work python style", {
 })
 
 
+context("switch extract style R to Python")
 
 test_that("python-style strided slice", {
-
   skip_if_no_torch()
   oopts <- options()
   options(torch.extract.warn_negatives_pythonic = FALSE)
 
   x.r <- arr(20, 2) # 2nd dim to keep R from dropping (since tf always returns 1d array)
-  x.t <- torch$as_tensor(x.r)
+  x.t <- torch$as_tensor(r_to_py(x.r)$copy())            # fix overwrite warning
 
   options(torch.extract.style = "R")
 
@@ -466,21 +468,21 @@ test_that("python-style strided slice", {
 
   # TODO: these two test give error
   # decreasing indexes work
-  # expect_equal(as_array( x.t[ `6:2:-2`,]), x.r[ seq.int(6, 2, -2) ,])
-  # expect_equal(as_array( x.t[  6:2:-2 ,]), x.r[ seq.int(6, 2, -2) ,])
+  # expect_equal(as_array( x.t[ `6:2:-2`,]), x.r[ seq.int(6, 2, -2) ,]) # Valuestep must be greater than zero
+  # expect_equal(as_array( x.t[  6:2:-2 ,]), x.r[ seq.int(6, 2, -2) ,]) # Valuestep must be greater than zero
 
   # TODO: error Valuenegative step not yet supported
   # sign of step gets automatically inverted on decreasing indexes
-  # expect_equal(as_array( x.t[ `6:2:2` ,]), x.r[ seq.int(6, 2, -2) ,])
-  # expect_equal(as_array( x.t[  6:2:2  ,]), x.r[ seq.int(6, 2, -2) ,])
+  # expect_equal(as_array( x.t[ `6:2:2` ,]), x.r[ seq.int(6, 2, -2) ,]) # Valuestep must be greater than zero
+  # expect_equal(as_array( x.t[  6:2:2  ,]), x.r[ seq.int(6, 2, -2) ,]) # same error for the rest
   # expect_equal(as_array( x.t[  6:2    ,]),   x.r[ 6:2 ,])
   # expect_equal(as_array( x.t[  6:2:1 ,]),   x.r[ 6:2  ,])
   # expect_equal(as_array( x.t[  6:2:-1 ,]),   x.r[ 6:2 ,])
-  #
-  #
+
+
   options(torch.extract.style = "python")
   # options set to match python
-  # helper to actually test in python
+  # helper function to actually test in python
   test_in_python <- (function() {
     # main <- reticulate::import_main()
     reticulate::py_run_string(paste(
@@ -498,7 +500,7 @@ test_that("python-style strided slice", {
   # print(x.t[ 2:5,])
   # print(test_in_python("x[2:5,]"))
   expect_equal(as_array( x.t[ 2:-5 ,] ), test_in_python("x[ 2:-5 ,]"))
-  expect_equal(as_array( x.t[ 2:5:2 ,] ), test_in_python("x[ 2:5:2 ,]"))
+  # expect_equal(as_array( x.t[ 2:5:2 ,] ), test_in_python("x[ 2:5:2 ,]"))
 
   # TODO: Valuenegative step not yet supported
   # expect_equal(as_array( x.t[ -2:-5:-1 ,] ), test_in_python("x[ -2:-5:-1 ,]"))
@@ -525,7 +527,7 @@ test_that("python-style strided slice", {
   # expect_warning(as_array( x.t[torch$as_tensor(2L):torch$as_tensor(5L),] ), "ignored")
   expect_equal(x.t[torch$as_tensor(2L):torch$as_tensor(5L),],
   torch$tensor(list(
-              list(3, 23),
+               list(3, 23),
                list(4, 24),
                list(5, 25)), dtype=torch$int32))
 

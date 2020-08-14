@@ -1,6 +1,9 @@
-library(testthat)
+# using function make_copy() to get rid off PyTorch warnings
+
+source("tensor_functions.R")
 
 skip_on_cran()
+
 
 context("core PyTorch functions")
 
@@ -11,15 +14,19 @@ test_that("masked_select", {
     mask <- x$ge(0.5)
     mselect <- torch$masked_select(x, mask)
 
-    mask_expect <- torch$ByteTensor(rbind(
-                    c(0,  0,  0,  0),
-                    c(0,  0,  1,  0),
-                    c(0,  0,  1,  1)
-    ))
+    mask_expect_r <- rbind(
+        c(0,  0,  0,  0),
+        c(0,  0,  1,  0),
+        c(0,  0,  1,  1)
+    )
+
+    mask_expect <- torch$ByteTensor(make_copy(mask_expect_r))
+
     mselect_expect <- torch$FloatTensor(c(
                         -0.9105,
                         1.2812,
                         -0.9752))
+
     expect_equal(mask, mask_expect)
     expect_equal(mselect, mselect_expect)
     expect_equal(x$size(), torch$Size(c(3L, 4L)))
@@ -45,16 +52,20 @@ test_that("cat", {
         0.3367  0.1288  0.2345
         0.2303 -1.1229 -0.1863
     "
-    x30_expect <- torch$FloatTensor(as.matrix(read.table(text = src)))
+
+    m_r <- as.matrix(read.table(text = src))
+    x30_expect <- torch$FloatTensor(make_copy(m_r))
     expect_equal(x30, x30_expect)
 
     # concatenate along columns, dim = 1
-    x31 <- torch$cat(c(x, x, x), 1L)
+    vec <- c(x, x, x)
+    x31 <- torch$cat(make_copy(vec), 1L)
     src <- "
     0.3367  0.1288  0.2345  0.3367  0.1288  0.2345  0.3367  0.1288  0.2345
     0.2303 -1.1229 -0.1863  0.2303 -1.1229 -0.1863  0.2303 -1.1229 -0.1863
     "
-    x31_expect <- torch$FloatTensor(as.matrix(read.table(text = src)))
+    mx <- as.matrix(read.table(text = src))
+    x31_expect <- torch$FloatTensor(make_copy(mx))
     expect_equal(x31, x31_expect)
 
 })
@@ -74,8 +85,8 @@ test_that("index_select", {
      0.3367  0.1288  0.2345  0.2303
      0.4617  0.2674  0.5349  0.8094
     "
-    x0_expect <- torch$FloatTensor(
-        as.matrix(read.table(text = src)))
+    mx <- as.matrix(read.table(text = src))
+    x0_expect <- torch$FloatTensor(make_copy(mx))
     expect_equal(x0, x0_expect)
 
     # select indices by columns, dim = 1L
@@ -85,8 +96,8 @@ test_that("index_select", {
     -1.1229  2.2082
      0.4617  0.5349
     "
-    x1_expect <- torch$FloatTensor(
-        as.matrix(read.table(text = src)))
+    mx <- as.matrix(read.table(text = src))
+    x1_expect <- torch$FloatTensor(make_copy(mx))
     expect_equal(x1, x1_expect)
 })
 
@@ -108,12 +119,13 @@ test_that("split", {
      0.3367  0.1288  0.2345  0.2303
     -1.1229 -0.1863  2.2082 -0.6380
     "
-    x01_expect <- torch$FloatTensor(as.matrix(read.table(text = src)))
+    mx <- as.matrix(read.table(text = src))
+    x01_expect <- torch$FloatTensor(make_copy(mx))
     expect_equal(x0[[1]], x01_expect)
     src <- "
      0.4617  0.2674  0.5349  0.8094
     "
-    x02_expect <- torch$FloatTensor(as.matrix(read.table(text = src)))
+    x02_expect <- torch$FloatTensor(make_copy(as.matrix(read.table(text = src))))
     expect_equal(x0[[2]], x02_expect)
 
     # split by columns. divisible
@@ -123,14 +135,14 @@ test_that("split", {
     -1.1229 -0.1863
      0.4617  0.2674
     "
-    x11_expect <- torch$FloatTensor(as.matrix(read.table(text = src)))
+    x11_expect <- torch$FloatTensor(make_copy(as.matrix(read.table(text = src))))
     expect_equal(x1[[1]], x11_expect)
     src <- "
     0.2345  0.2303
     2.2082 -0.6380
     0.5349  0.8094
     "
-    x12_expect <- torch$FloatTensor(as.matrix(read.table(text = src)))
+    x12_expect <- torch$FloatTensor(make_copy(as.matrix(read.table(text = src))))
     expect_equal(x1[[2]], x12_expect)
 })
 
@@ -157,8 +169,8 @@ test_that("squeeze", {
 test_that("take", {
     # treats the tensor like a vector and extracts elements in the order
     # specified by the 2nd argument
-    src <- torch$Tensor(rbind(c(4, 3, 5),
-                              c(6, 7, 8)))
+    src <- torch$Tensor(make_copy(rbind(c(4, 3, 5),
+                              c(6, 7, 8))))
     res <- torch$take(src, torch$LongTensor(c(0L, 2L, 5L)))
     expect_equal(res, torch$FloatTensor(c(4, 5, 8)))
 })
@@ -176,13 +188,13 @@ test_that("narrow", {
     7  8  9
     "
     x_ <- as.matrix(read.table(text = x_t))
-    x  <- torch$Tensor(x_)
+    x  <- torch$Tensor(make_copy(x_))
 
     r_t <- "
     1  2  3
     4  5  6
     "
-    r <- torch$Tensor(as.matrix(read.table(text = r_t)))
+    r <- torch$Tensor(make_copy(as.matrix(read.table(text = r_t))))
     expect_equal(x$narrow(0L, 0L , 2L), r)
 
     # narrow #2
@@ -191,7 +203,7 @@ test_that("narrow", {
     5  6
     8  9
     "
-    r <- torch$Tensor(as.matrix(read.table(text = r_t)))
+    r <- torch$Tensor(make_copy(as.matrix(read.table(text = r_t))))
     expect_equal(x$narrow(1L, 1L , 2L), r)
 
 })

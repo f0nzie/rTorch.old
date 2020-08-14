@@ -1,3 +1,22 @@
+# rTorch 0.0.3.9002
+* 20200810
+* creating branch `fix-elimination-cpu-suffix` to address removal of suffix by developer.
+* Installed PyTorch 1.1 with `rTorch:::install_conda(package="pytorch=1.1", envname="r-torch", conda="auto", conda_python_version = "3.6", pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))`
+* revise unit tests and fix version dependence. Two test failing since last release PyTorch 1.1. Four tests failing with PyTorch 1.6 installed. Related to versioning checks.
+* All tests in README passing and running.
+* fixed tests in `test_types.R`. Minor changes in `reticulate` makes it more sensitive.
+* set aside check on `mnist` dataset until internal tests are resolved
+* install PyTorch 1.6 on Python 3.6`. Restart RStudio.
+* fix version test with `VERSIONS <- c("1.1", "1.0", "1.2", "1.3", "1.4", "1.5", "1.6")` in `test_info.R`
+* With PyTorch 1.6 we are getting the warning `extract syntaxsys:1: UserWarning: The given NumPy array is not writeable, and PyTorch does not support non-writeable tensors. This means you can write to the underlying (supposedly non-writeable) NumPy array using the tensor. You may want to copy the array to protect its data or make it writeable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at  /opt/conda/conda-bld/pytorch_1595629417679/work/torch/csrc/utils/tensor_numpy.cpp:141.)`. 
+* add test custom function `expect_all_true()` in `utils.R` that shortens a test with multiple TRUE returning from condition
+* Fix overwriting warning by adding `r_to_py` to R array and then copying with `r_to_py(r_array)$copy()` before converting to tensor
+* five test files giving NumPy overwrite warning test-generic-methods.R, test_generics.R, test_numpy_logical.R, test_tensor_slicing.R, test_torch_core.R
+* change functions `tensor_logical_and()` and `tensor_logical_or()` in `generics.R` -which use NumPy logical functions - to make a copy before converting the numpy array to a tensor
+* change `as_tensor()` function in tensor_functions.R with `torch$as_tensor()`. Use make_copy() to prevent PyTorch warning.
+
+
+
 # rTorch 0.0.3.9001
 * 20190918
 * Rename tensorflow old labels to pytorch

@@ -4,15 +4,15 @@
 \alias{torch_extract_opts}
 \title{Tensor extract options}
 \usage{
-torch_extract_opts(style = getOption("torch.extract.style"), ...,
+torch_extract_opts(
+  style = getOption("torch.extract.style"),
+  ...,
   one_based = getOption("torch.extract.one_based", TRUE),
   inclusive_stop = getOption("torch.extract.inclusive_stop", TRUE),
-  disallow_out_of_bounds = getOption("torch.extract.dissallow_out_of_bounds",
-  TRUE),
-  warn_tensors_passed_asis = getOption("torch.extract.warn_tensors_passed_asis",
-  TRUE),
-  warn_negatives_pythonic = getOption("torch.extract.warn_negatives_pythonic",
-  TRUE))
+  disallow_out_of_bounds = getOption("torch.extract.dissallow_out_of_bounds", TRUE),
+  warn_tensors_passed_asis = getOption("torch.extract.warn_tensors_passed_asis", TRUE),
+  warn_negatives_pythonic = getOption("torch.extract.warn_negatives_pythonic", TRUE)
+)
 }
 \arguments{
 \item{style}{one of `NULL` (the default) `"R"` or `"python"`. If supplied,

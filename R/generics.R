@@ -580,9 +580,11 @@ tensor_not_equal <- function(x, y) {
 #' @export
 "log.torch.Tensor" <- function(x, base = exp(1L)) {
     if (is_tensor(base) || base != exp(1L)) {
-        base <- torch$as_tensor(base, x$dtype)
+        # print("base IS a tensor")
+        base <- torch$as_tensor(base, dtype=x$dtype)       # dtype mus be there
         torch$log(x) / torch$log(base)
     } else {
+        # print("base is not a tensor")
         torch$log(x)
     }
 }
@@ -608,13 +610,15 @@ tensor_not_equal <- function(x, y) {
 tensor_logical_and <- function(x, y) {
     x <- r_to_py(x$numpy())
     y <- r_to_py(y$numpy())
-    torch$BoolTensor(np$logical_and(x, y))
+    np_logical_and <- r_to_py(np$logical_and(x, y))
+    torch$BoolTensor(np_logical_and$copy())            # prevent PyTorch warning
 }
 
 tensor_logical_or <- function(x, y) {
     x <- r_to_py(x$numpy())
     y <- r_to_py(y$numpy())
-    torch$BoolTensor(np$logical_or(x, y))
+    np_logical_or <- r_to_py(np$logical_or(x, y))
+    torch$BoolTensor(np_logical_or$copy())             # prevent PyTorch warning
 }
 
 
