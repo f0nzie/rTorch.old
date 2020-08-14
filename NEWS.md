@@ -12,7 +12,8 @@
 * add test custom function `expect_all_true()` in `utils.R` that shortens a test with multiple TRUE returning from condition
 * Fix overwriting warning by adding `r_to_py` to R array and then copying with `r_to_py(r_array)$copy()` before converting to tensor
 * five test files giving NumPy overwrite warning test-generic-methods.R, test_generics.R, test_numpy_logical.R, test_tensor_slicing.R, test_torch_core.R
-* change functions tensor_logical_and() and tensor_logical_or() in `generics.R` -which use NumPy logical functions - to make a copy before converting the numpy array to a tensor
+* change functions `tensor_logical_and()` and `tensor_logical_or()` in `generics.R` -which use NumPy logical functions - to make a copy before converting the numpy array to a tensor
+* change `as_tensor()` function in tensor_functions.R with `torch$as_tensor()`. Use make_copy() to prevent PyTorch warning.
 
 
 
