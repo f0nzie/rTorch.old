@@ -28,12 +28,6 @@ tensor_logical_or <- function(x, y) {
 }
 
 
-expect_tensor_equal <- function(a, b) {
-    # a <- make_copy(a)
-    # b <- make_copy(b)
-    expect_true(torch$equal(a, b))
-}
-
 make_copy <- function(object, ...) {
     if (class(object) == "torch.Tensor") {
         obj <- object$copy_(object)
@@ -103,3 +97,9 @@ expect_all_true <- function(obj, ...) {
 }
 
 expect_near <- function(..., tol = 1e-5) expect_equal(..., tolerance = tol)
+
+expect_tensor_equal <- function(a, b) {
+    # a <- make_copy(a)
+    # b <- make_copy(b)
+    expect_true(torch$equal(a, b))
+}
