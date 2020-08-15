@@ -7,6 +7,8 @@ skip_on_cran()
 
 context("core PyTorch functions")
 
+context("_select")
+
 test_that("masked_select", {
 
     torch$manual_seed(42L)
@@ -32,6 +34,40 @@ test_that("masked_select", {
     expect_equal(x$size(), torch$Size(c(3L, 4L)))
 })
 
+
+test_that("index_select", {
+    torch$manual_seed(42L)
+    x <- torch$randn(3L, 4L)
+    src <- "
+     0.3367  0.1288  0.2345  0.2303
+    -1.1229 -0.1863  2.2082 -0.6380
+     0.4617  0.2674  0.5349  0.8094
+    "
+    # select indices by rows, dim = 0L
+    indices = torch$LongTensor(c(0L, 2L))
+    x0 <- torch$index_select(x, 0L, indices)
+    src <- "
+     0.3367  0.1288  0.2345  0.2303
+     0.4617  0.2674  0.5349  0.8094
+    "
+    mx <- as.matrix(read.table(text = src))
+    x0_expect <- torch$FloatTensor(make_copy(mx))
+    expect_equal(x0, x0_expect)
+
+    # select indices by columns, dim = 1L
+    x1 <- torch$index_select(x, 1L, indices)
+    src <- "
+     0.3367  0.2345
+    -1.1229  2.2082
+     0.4617  0.5349
+    "
+    mx <- as.matrix(read.table(text = src))
+    x1_expect <- torch$FloatTensor(make_copy(mx))
+    expect_equal(x1, x1_expect)
+})
+
+
+context("cat, split")
 
 test_that("cat", {
     #  concatenates by rows and columns
@@ -70,36 +106,6 @@ test_that("cat", {
 
 })
 
-test_that("index_select", {
-    torch$manual_seed(42L)
-    x <- torch$randn(3L, 4L)
-    src <- "
-     0.3367  0.1288  0.2345  0.2303
-    -1.1229 -0.1863  2.2082 -0.6380
-     0.4617  0.2674  0.5349  0.8094
-    "
-    # select indices by rows, dim = 0L
-    indices = torch$LongTensor(c(0L, 2L))
-    x0 <- torch$index_select(x, 0L, indices)
-    src <- "
-     0.3367  0.1288  0.2345  0.2303
-     0.4617  0.2674  0.5349  0.8094
-    "
-    mx <- as.matrix(read.table(text = src))
-    x0_expect <- torch$FloatTensor(make_copy(mx))
-    expect_equal(x0, x0_expect)
-
-    # select indices by columns, dim = 1L
-    x1 <- torch$index_select(x, 1L, indices)
-    src <- "
-     0.3367  0.2345
-    -1.1229  2.2082
-     0.4617  0.5349
-    "
-    mx <- as.matrix(read.table(text = src))
-    x1_expect <- torch$FloatTensor(make_copy(mx))
-    expect_equal(x1, x1_expect)
-})
 
 test_that("split", {
     # Splits the tensor into chunks.
@@ -147,6 +153,8 @@ test_that("split", {
 })
 
 
+context("squeeze, take, narrow")
+
 test_that("squeeze", {
     # removes dimensions of size 1
     x = torch$zeros(2L, 1L, 2L, 1L, 2L)
@@ -174,7 +182,6 @@ test_that("take", {
     res <- torch$take(src, torch$LongTensor(c(0L, 2L, 5L)))
     expect_equal(res, torch$FloatTensor(c(4, 5, 8)))
 })
-
 
 
 test_that("narrow", {
@@ -207,3 +214,101 @@ test_that("narrow", {
     expect_equal(x$narrow(1L, 1L , 2L), r)
 
 })
+
+
+context("transpose")
+
+test_that("numpy transpose", {
+    # two dimensions: 2x2
+    x = r_to_py(np$arange(4L))
+    x = x$reshape(c(2L,2L))
+    t = np$transpose(x)
+    expected <- (matrix(c(0,1,2,3), nrow = 2))
+    expect_equal(t, expected)
+
+    # two dimensions: 3x3
+    x = r_to_py(np$arange(9L))
+    x = x$reshape(c(3L, 3L))
+    t = np$transpose(x)
+    expected <- (matrix(seq(0,8), nrow = 3))
+    expect_equal(t, expected)
+
+    # two dimensions: 5x5
+    x = r_to_py(np$arange(25L))
+    x = x$reshape(c(5L, 5L))
+    t = np$transpose(x)
+    expected <- (matrix(seq(0,24), nrow = 5))
+    expect_equal(t, expected)
+
+    # three dimensions: 1x2x3
+    x = np$ones(c(1L, 2L, 3L))
+    x = r_to_py(x)
+    t <- np$transpose(x, c(1L, 0L, 2L))
+    result <- r_to_py(t)$shape
+    result <- unlist(py_to_r(result))
+    expect_equal(result, c(2, 1, 3))
+
+})
+
+test_that("torch transpose", {
+    # two dimensions: 2x2
+    x <- torch$arange(4L)
+    x <- x$view(c(2L, 2L))
+    t = torch$transpose(x, 0L, 1L)
+    mat <- matrix(c(0,1,2,3), nrow = 2)
+    expected <- torch$as_tensor(r_to_py(mat)$copy())
+    expect_equal(t, expected)
+
+    # two dimensions: 3x3
+    x <- torch$arange(9L)
+    x <- x$view(c(3L, 3L))
+    t = torch$transpose(x, 0L, 1L)
+    mat <- matrix(seq(0,8), nrow = 3)
+    expected <- torch$as_tensor(r_to_py(mat)$copy())
+    expect_equal(t, expected)
+
+
+    # two dimensions: 5x5
+    x <- torch$arange(25L)
+    x <- x$view(c(5L, 5L))
+    t = torch$transpose(x, 0L, 1L)
+    mat <- matrix(seq(0, 24), nrow = 5)
+    expected <- torch$as_tensor(r_to_py(mat)$copy())
+    expect_equal(t, expected)
+
+    # three dimensions: 1x2x3
+    x <- torch$ones(c(1L, 2L, 3L))
+    t <- torch$transpose(x, 1L, 0L)
+    result <- torch$as_tensor(t$shape)
+    expected <- torch$tensor(c(2L, 1L, 3L))
+    expect_equal(result, expected)
+
+})
+
+context("permute")
+
+test_that("permute in 2D", {
+    x <- torch$tensor(list(list(list(1,2)), list(list(3,4)), list(list(5,6))))
+    result <- torch$as_tensor(x$shape)
+    expected <- torch$tensor(c(3L, 1L, 2L))
+    expect_equal(result, expected)  # test original tensor
+
+    permuted <- x$permute(c(1L, 2L, 0L))
+    result <- torch$as_tensor(permuted$shape)
+    expected <- torch$tensor(c(1L, 2L, 3L))
+    expect_equal(result, expected)  # test permuted tensor
+
+})
+
+test_that("permute in 3D", {
+    x <- torch$randn(10L, 480L, 640L, 3L)
+    result <- torch$as_tensor(x$shape)
+    expected <- torch$tensor(c(10L, 480L, 640L, 3L))
+    expect_equal(result, expected)   # test original tensor
+
+    p <- x$permute(0L, 3L, 1L, 2L)
+    result <- torch$as_tensor(p$size())
+    expected <- torch$tensor(c(10L, 3L, 480L, 640L))
+    expect_equal(result, expected)  # test permuted tensor
+})
+
