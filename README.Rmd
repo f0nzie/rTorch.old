@@ -53,23 +53,30 @@ The automatic installation, like in `rtensorflow`, may be available later.
 
 ## Matrices and Linear Algebra
 
-There are five major type of Tensors in PyTorch
+There are five major type of Tensors in PyTorch:
+* Byte
+* Float
+* Double
+* Long
+* Bool
 
 ```{r}
 library(rTorch)
 
-bt <- torch$ByteTensor(3L, 3L)
-ft <- torch$FloatTensor(3L, 3L)
-dt <- torch$DoubleTensor(3L, 3L)
-lt <- torch$LongTensor(3L, 3L)
-Bt <- torch$BoolTensor(5L, 5L)
+byte_tensor  <- torch$ByteTensor(3L, 3L)
+float_tensor  <- torch$FloatTensor(3L, 3L)
+double_tensor <- torch$DoubleTensor(3L, 3L)
+long_tensor   <- torch$LongTensor(3L, 3L)
+bool_tensor   <- torch$BoolTensor(5L, 5L)
 
-ft
-dt
-Bt
+byte_tensor  
+float_tensor  
+double_tensor 
+long_tensor   
+bool_tensor   
 ```
 
-A 4D tensor like in MNIST hand-written digits recognition dataset:
+A `4D` tensor like in MNIST hand-written digits recognition dataset:
 
 ```{r}
 mnist_4d <- torch$FloatTensor(60000L, 3L, 28L, 28L)
@@ -87,7 +94,7 @@ mnist_4d$shape
 mnist_4d$numel()
 ```
 
-A 3D tensor:
+A `3D` tensor:
 
 ```{r}
 ft3d <- torch$FloatTensor(4L, 3L, 2L)
@@ -101,17 +108,6 @@ ft3d[1, 1, 1]
 
 
 ```{r}
-bt
-# [torch.ByteTensor of size 3x3]
-```
-
-```{r}
-ft
-# [torch.FloatTensor of size 3x3]
-```
-
-
-```{r}
 # create a tensor with a value
 torch$full(list(2L, 3L), 3.141592)
 ```
@@ -121,37 +117,51 @@ torch$full(list(2L, 3L), 3.141592)
 
 ### Add tensors
 
+
 ```{r}
-# add a scalar to a tensor
 # 3x5 matrix uniformly distributed between 0 and 1
 mat0 <- torch$FloatTensor(3L, 5L)$uniform_(0L, 1L)
-mat0 + 0.1
-```
 
-> The expression ``tensor.index(m)`` is equivalent to ``tensor[m]``.
-
-```{r}
-# add an element of tensor to a tensor
 # fill a 3x5 matrix with 0.1
 mat1 <- torch$FloatTensor(3L, 5L)$uniform_(0.1, 0.1)
+
 # a vector with all ones
 mat2 <- torch$FloatTensor(5L)$uniform_(1, 1)
-mat1[1, 1] + mat2
 ```
 
 ```{r}
 # add two tensors
-mat1 + mat0
+mat0 + mat1
+```
+```{r}
+# add three tensors
+mat0 + mat1 + mat2
 ```
 
 
 ```{r}
-# PyTorch add two tensors
+# PyTorch add two tensors using add() function
 x = torch$rand(5L, 4L)
 y = torch$rand(5L, 4L)
 
 print(x$add(y))
 print(x + y)
+```
+### Add tensor element to another tensor
+
+```{r}
+# add an element of tensor to a tensor
+mat1[1, 1] + mat2
+```
+
+> The expression `tensor.index(m)` is equivalent to `tensor[m]`.
+
+
+### Add a scalar to a tensor
+
+```{r}
+# add a scalar to a tensor
+mat0 + 0.1
 ```
 
 ### Multiply tensor by scalar
@@ -219,7 +229,18 @@ X
 np$transpose(X)
 ```
 
-```{r}
+## With newer PyTorch versions we should work with NumPy array copies
+There have been minor changes in the latest version of PyTorch that prevent a direct use of a NumPy array. You will get this warning:
+
+    sys:1: UserWarning: The given NumPy array is not writeable, and PyTorch does 
+    not support non-writeable tensors. This means you can write to the underlying
+    (supposedly non-writeable) NumPy array using the tensor. You may want to copy 
+    the array to protect its data or make it writeable before converting it to a 
+    tensor. This type of warning will be suppressed for the rest of this program.
+  
+For instance, this code will produce the warning:
+
+```{r, eval=FALSE}
 # as_tensor. Modifying tensor modifies numpy object as well
 a = np$array(list(1, 2, 3))
 t = torch$as_tensor(a)
@@ -230,18 +251,38 @@ t[1L]$fill_(-1)
 print(a)
 ```
 
+while this other one -with some extra code- will not:
+
+```{r}
+
+```
+
+
+```{r}
+a = np$array(list(1, 2, 3))
+a_copy = r_to_py(a)$copy()             # we make a copy of the numpy array first
+
+t = torch$as_tensor(a_copy)
+print(t)
+
+torch$tensor(list( 1,  2,  3))
+t[1L]$fill_(-1)
+print(a)
+```
 
 ## Create tensors
 
 ```{r}
 # a random 1D tensor
-ft1 <- torch$FloatTensor(np$random$rand(5L))
+np_arr <- np$random$rand(5L)
+ft1 <- torch$FloatTensor(r_to_py(np_arr)$copy())    # make a copy of numpy array
 ft1
 ```
 
 ```{r}
 # tensor as a float of 64-bits
-ft2 <- torch$as_tensor(np$random$rand(5L), dtype= torch$float64)
+np_copy <- r_to_py(np$random$rand(5L))$copy()       # make a copy of numpy array
+ft2 <- torch$as_tensor(np_copy, dtype= torch$float64)
 ft2
 ```
 
@@ -357,7 +398,7 @@ print(b)
 ```{r}
 # convert a numpy array to a tensor
 np_a = np$array(c(c(3, 4), c(3, 6)))
-t_a = torch$from_numpy(np_a)
+t_a = torch$from_numpy(r_to_py(np_a)$copy())
 print(t_a)
 ```
 
