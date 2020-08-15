@@ -2,7 +2,7 @@ library(testthat)
 
 skip_on_cran()
 
-source("tensor_functions.R")
+source("utils.R")
 
 # test slicing with chunk() and select_index() ---------------------------------
 context("test slicing with chunk() and select_index()")

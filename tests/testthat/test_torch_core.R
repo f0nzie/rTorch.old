@@ -1,11 +1,9 @@
 # using function make_copy() to get rid off PyTorch warnings
 
-source("tensor_functions.R")
+source("utils.R")
 
 skip_on_cran()
 
-
-context("core PyTorch functions")
 
 context("_select")
 

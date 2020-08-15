@@ -1,7 +1,8 @@
-source("tensor_functions.R")
+source("utils.R")
 skip_on_cran()
 
 context("numpy logical operations")
+
 
 np <- import("numpy")
 
