@@ -248,17 +248,12 @@ torch_extract_opts <- function(
 #'
 #' This function returns an object that can be used when subsetting tensors with
 #' `[`. If you are familiar with Python, this is equivalent to the Python Ellipsis
-#' `...`, (not to be confused with `...` in `R`).
+#' `...`, (not to be confused with `...` in `R`). In python, if `x` is a numpy
+#' array or torch tensor, x[..., i] the ellipsis means "expand to match number of
+#' dimension of x".#' To translate the above Python expression to R, write:
+#' x[all_dims(), i]
 #'
 #' @export
-#' @examples
-#' \donttest{
-#' # in python, if x is a numpy array or torch tensor
-#' x[..., i]
-#' # the ellipsis means "expand to match number of dimension of x".
-#' # to translate the above python expression to R, write:
-#' x[all_dims(), i]
-#' }
 #' @examples
 #' \donttest{
 #' # Run this
