@@ -14,14 +14,16 @@
 * Merge to `develop`.
 * Getting this warning during check: `checkRd: (5) rTorch.Rd:0-7: Must have a \description`. Also stops in _travis-ci.org_.
 * Switching from PyTorch `1.6` to `1.1` to debug error in _rTorch.Rd_
-* Fixed problem with _rTorch.Rd_. Block in package.R needed description. Added this extra line below the title: `#' PyTorch bindings for R`.
+* Fixed problem with _rTorch.Rd_. Block in package.R needed description. Added this extra line below the title: `#' PyTorch bindings for R`. The problem originated by the new R version.
 * Reinstall PyTorch 1.6 with `rTorch:::install_conda(package="pytorch=1.6", envname="r-torch", conda="auto", conda_python_version = "3.6", pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))`. Run tests. Run devtools::check(). All passed.
-* Add `--run-donttest` option to check(). Getting errors.
-* Fix `all_dims()` example in _generics.R_.
-* Fix `logical_not()` example in _generics.R_.
+* Add `--run-donttest` option to check() arguments. Getting errors.
+* Fix `all_dims()` examples in _generics.R_.
+* Fix `logical_not()` examples in _generics.R_.
 * Fix ``[.torch.Tensor`` examples in _extract.R_.
 * Fix `torch_extract_opts` examples in _extract.R_.
-* All checks passed.
+* All checks passed. Merge to `develop`. Testing on _Travis_.
+* Travis stopping on error in `dontrun` examples that passed in the local machine. What is different is the PyTorch version specified in `.travis.yml`. Changing variable from "1.1"" to `PYTORCH_VERSION="1.6"`.
+
 
 
 
