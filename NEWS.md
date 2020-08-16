@@ -1,16 +1,18 @@
 # rTorch 0.0.3.9004 TODO
 * make `conda_install()` public
-* add Linear Algebra functions: Gaussian Elimination, Cholesky, LU
+* add Linear Algebra functions: _Gaussian Elimination_, Cholesky, LU
 * add unit tests for linear algebra function
 * add examples for Gaussian Elimination
 
 # rTorch 0.0.3.9003
 * 20200814
-* Using https://travis-ci.org/
+* creating branch `fix-readme-add-tests`.
+* Using _https://travis-ci.org/_
 * combine tensor_functions.R and utils.R
 * unit tests for transpose and permute
 * Getting this warning during check: `checkRd: (5) rTorch.Rd:0-7: Must have a \description`. Also stops in _travis-ci.org_.
-
+* Switching from PyTorch `1.6` to `1.1` to debug error in _rTorch.Rd_
+* Fixed problem with _rTorch.Rd_. Block in package.R needed description. Added this extra line below the title: `#' PyTorch bindings for R`.
 
 
 # rTorch 0.0.3.9002

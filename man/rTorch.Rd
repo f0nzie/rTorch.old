@@ -4,3 +4,6 @@
 \name{rTorch}
 \alias{rTorch}
 \title{Torch for R}
+\description{
+PyTorch bindings for R
+}
