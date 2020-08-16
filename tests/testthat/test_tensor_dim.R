@@ -2,7 +2,7 @@ library(testthat)
 
 skip_on_cran()
 
-source("tensor_functions.R")
+source("utils.R")
 
 # test function tensor_dim ----
 context("test function tensor_dim")

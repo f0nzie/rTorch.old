@@ -3,7 +3,6 @@ library(testthat)
 source("utils.R")
 skip_if_no_torch()
 
-source("tensor_functions.R")
 
 TRUE_TENSOR  <- torch$as_tensor(1L, dtype=torch$uint8)
 FALSE_TENSOR <- torch$as_tensor(0L, dtype=torch$uint8)

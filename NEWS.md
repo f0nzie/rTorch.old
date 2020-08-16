@@ -1,3 +1,9 @@
+# rTorch 0.0.3.9003
+* 20200814
+* combine tensor_functions.R and utils.R
+* unit tests for transpose and permute
+
+
 # rTorch 0.0.3.9002
 * 20200810
 * creating branch `fix-elimination-cpu-suffix` to address removal of suffix by developer.

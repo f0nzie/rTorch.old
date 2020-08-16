@@ -1,7 +1,6 @@
-context("extract syntax")
-
-
 source("utils.R")
+
+context("extract syntax")
 
 as_array <- function(x) {
   if (x$numel() > 1) x$numpy()
@@ -534,7 +533,6 @@ test_that("python-style strided slice", {
   reset_warnings()
   options(torch.extract.warn_tensors_passed_asis = FALSE)
   expect_silent(as_array( x.t[torch$as_tensor(2L):torch$as_tensor(5L),] ))
-
 
   null_out_all_extract_opts()
 })

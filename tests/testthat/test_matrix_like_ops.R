@@ -1,9 +1,8 @@
 library(testthat)
 
+
+source("utils.R")
 skip_on_cran()
-
-source("tensor_functions.R")
-
 
 # matrix like tensor operations ------------------------------------------------
 context("matrix like tensor operations")
