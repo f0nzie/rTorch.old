@@ -11,44 +11,40 @@
 #'
 #' @examples
 #' \donttest{
-#' sess <- tf$Session()
 #'
-#' x <- tf$constant(1:15, shape = c(3, 5))
-#' sess$run(x)
+#' x <- torch$arange(0L, 15L)$view(3L, 5L)
+#'
 #' # by default, numerics supplied to `...` are interpreted R style
-#' sess$run( x[,1] )# first column
-#' sess$run( x[1:2,] ) # first two rows
-#' sess$run( x[,1, drop = FALSE] )
+#' x[,1]    # first column
+#' x[1:2,]  # first two rows
+#' x[,1, drop = FALSE]
 #'
 #' # strided steps can be specified in R syntax or python syntax
-#' sess$run( x[, seq(1, 5, by = 2)] )
-#' sess$run( x[, 1:5:2] )
+#' x[, seq(1, 5, by = 2)]
+#' x[, 1:5:2]
+#'
 #' # if you are unfamiliar with python-style strided steps, see:
 #' # https://docs.scipy.org/doc/numpy-1.13.0/reference/arrays.indexing.html#basic-slicing-and-indexing
 #'
 #' # missing arguments for python syntax are valid, but they must by backticked
 #' # or supplied as NULL
-#' sess$run( x[, `::2`] )
-#' sess$run( x[, NULL:NULL:2] )
-#' sess$run( x[, `2:`] )
+#' x[, `::2`]
+#' x[, NULL:NULL:2]
+#' x[, `2:`]
 #'
-#' # Another python feature that is available is a python style ellipsis `...`
-#' # (not to be confused with R dots `...`)
-#' # a all_dims() expands to the shape of the tensor
-#' y <- tf$constant(1:(3^5), shape = c(3,3,3,3,3))
-#' identical(
-#'   sess$run( y[all_dims(), 1] ),
-#'   sess$run( y[,,,,1] )
-#'   )
+#' # Another Python feature that is available is a Python style ellipsis `...`
+#' # (not to be confused with R dots `...`), that in R has been defined as
+#' # all_dims() expands to the shape of the tensor
 #'
-#' # tf$newaxis are valid
-#' sess$run( x[,, tf$newaxis] )
+#' y <- torch$arange(0L, 3L^5L)$view(3L, 3L, 3L, 3L, 3L)
+#' (all(y[all_dims(), 1] == y[,,,,1]) == torch$tensor(1L))$numpy()
 #'
-#' # negative numbers are always interpreted python style
+#'
+#' # negative numbers are always interpreted Python style
 #' # The first time a negative number is supplied to `[`, a warning is issued
 #' # about the non-standard behavior.
-#' sess$run( x[-1,] ) # last row, with a warning
-#' sess$run( x[-1,] )# the warning is only issued once
+#' x[-1,] # last row, with a warning
+#' x[-1,] # the warning is only issued once
 #'
 #' # specifying `style = 'python'` changes the following:
 #' # +  zero-based indexing is used
@@ -60,22 +56,24 @@
 #' # as a global option
 #'
 #' # example of zero based  indexing
-#' sess$run( x[0, , style = 'python'] ) # first row
-#' sess$run( x[1, , style = 'python'] ) # second row
+#' x[0, , style = 'python']   # first row
+#' x[1, , style = 'python']   # second row
 #'
 #' # example of slices with exclusive stop
+#' # run the next options() line before the tensor operations
+#'
 #' options(torch.extract.style = 'python')
-#' sess$run( x[, 0:1] ) # just the first column
-#' sess$run( x[, 0:2] ) # first and second column
+#' x[, 0:1]   # just the first column
+#' x[, 0:2]   # first and second column
 #'
 #' # example of out-of-bounds index
-#' sess$run( x[, 0:10] )
+#' x[, 0:10]
 #' options(torch.extract.style = NULL)
 #'
-#' # slicing with tensors is valid too, but note, tensors are never
-#' # translated and are always interpreted python-style.
+#' # slicing with tensors is valid too, but note that tensors are never
+#' # translated and are always interpreted Python-style.
 #' # A warning is issued the first time a tensor is passed to `[`
-#' # just as in python, only scalar tensors are valid
+#' # just as in Python, only scalar tensors are valid
 #'
 #' # To silence the warnings about tensors being passed as-is and negative numbers
 #' # being interpreted python-style, set
@@ -160,7 +158,8 @@
 #'
 #' @examples
 #' \donttest{
-#' x <- tf$constant(1:10)
+#'
+#' x <- torch$arange(1L, 10L)
 #'
 #' opts <-  torch_extract_opts("R")
 #' x[1, options = opts]

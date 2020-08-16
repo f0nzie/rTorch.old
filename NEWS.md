@@ -16,7 +16,12 @@
 * Switching from PyTorch `1.6` to `1.1` to debug error in _rTorch.Rd_
 * Fixed problem with _rTorch.Rd_. Block in package.R needed description. Added this extra line below the title: `#' PyTorch bindings for R`.
 * Reinstall PyTorch 1.6 with `rTorch:::install_conda(package="pytorch=1.6", envname="r-torch", conda="auto", conda_python_version = "3.6", pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))`. Run tests. Run devtools::check(). All passed.
-* Add `--run-donttest` option to check().
+* Add `--run-donttest` option to check(). 
+* Fix `all_dims()` example in _generics.R_.
+* Fix `logical_not()` example in _generics.R_.
+* Fix ``[.torch.Tensor`` examples in _extract.R_.
+* Fix `torch_extract_opts` examples in _extract.R_.
+* All checks passed.
 
 
 
