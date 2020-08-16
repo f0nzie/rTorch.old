@@ -48,7 +48,8 @@ Tensor extract options
 }
 \examples{
 \donttest{
-x <- tf$constant(1:10)
+
+x <- torch$arange(1L, 10L)
 
 opts <-  torch_extract_opts("R")
 x[1, options = opts]

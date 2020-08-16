@@ -408,7 +408,7 @@ tensor_not_equal <- function(x, y) {
 #' !A
 #'
 #' Z <- torch$zeros(5L)
-#' !B
+#' !Z
 #' }
 #' @export
 #' @name logical_not

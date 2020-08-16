@@ -9,16 +9,12 @@ all_dims()
 \description{
 This function returns an object that can be used when subsetting tensors with
 `[`. If you are familiar with Python, this is equivalent to the Python Ellipsis
-`...`, (not to be confused with `...` in `R`).
-}
-\examples{
-\donttest{
-# in python, if x is a numpy array or torch tensor
-x[..., i]
-# the ellipsis means "expand to match number of dimension of x".
-# to translate the above python expression to R, write:
+`...`, (not to be confused with `...` in `R`). In python, if `x` is a numpy
+array or torch tensor, x[..., i] the ellipsis means "expand to match number of
+dimension of x".#' To translate the above Python expression to R, write:
 x[all_dims(), i]
 }
+\examples{
 \donttest{
 # Run this
 d <- torch$tensor(list(list(0, 0),

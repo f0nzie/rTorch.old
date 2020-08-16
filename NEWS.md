@@ -4,15 +4,25 @@
 * add unit tests for linear algebra function
 * add examples for Gaussian Elimination
 
+
 # rTorch 0.0.3.9003
 * 20200814
 * creating branch `fix-readme-add-tests`.
 * Using _https://travis-ci.org/_
 * combine tensor_functions.R and utils.R
 * unit tests for transpose and permute
+* Merge to `develop`.
 * Getting this warning during check: `checkRd: (5) rTorch.Rd:0-7: Must have a \description`. Also stops in _travis-ci.org_.
 * Switching from PyTorch `1.6` to `1.1` to debug error in _rTorch.Rd_
 * Fixed problem with _rTorch.Rd_. Block in package.R needed description. Added this extra line below the title: `#' PyTorch bindings for R`.
+* Reinstall PyTorch 1.6 with `rTorch:::install_conda(package="pytorch=1.6", envname="r-torch", conda="auto", conda_python_version = "3.6", pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))`. Run tests. Run devtools::check(). All passed.
+* Add `--run-donttest` option to check(). Getting errors.
+* Fix `all_dims()` example in _generics.R_.
+* Fix `logical_not()` example in _generics.R_.
+* Fix ``[.torch.Tensor`` examples in _extract.R_.
+* Fix `torch_extract_opts` examples in _extract.R_.
+* All checks passed.
+
 
 
 # rTorch 0.0.3.9002

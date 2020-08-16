@@ -24,6 +24,6 @@ A <- torch$ones(5L)
 !A
 
 Z <- torch$zeros(5L)
-!B
+!Z
 }
 }
