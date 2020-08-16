@@ -477,8 +477,6 @@ print(img2$size())
 print(img2$sum())
 ```
 
-
-
 ## Special tensors
 
 ### Identity matrix
@@ -632,6 +630,66 @@ q <- torch$Tensor(list(3L, 1L))
 (r = torch$dot(p, q)) # 14
 (r <- p %.*% q)
 ```
+
+## Transpose
+
+```{r}
+# two dimensions: 3x3
+x <- torch$arange(9L)
+x <- x$view(c(3L, 3L))
+t <- torch$transpose(x, 0L, 1L)
+
+x   # "Original tensor"
+
+t    # "Transposed"
+```
+
+```{r}
+# three dimensions: 1x2x3
+x <- torch$ones(c(1L, 2L, 3L))
+t <- torch$transpose(x, 1L, 0L)
+
+print(x)     # original tensor
+
+print(t)     # transposed
+
+
+print(x$shape)    # original tensor
+print(t$shape)    # transposed
+```
+
+## Permutation
+
+### permute a 2D tensor
+
+```{r}
+x   <- torch$tensor(list(list(list(1,2)), list(list(3,4)), list(list(5,6))))
+xs  <- torch$as_tensor(x$shape)
+xp  <- x$permute(c(1L, 2L, 0L))
+xps <- torch$as_tensor(xp$shape)
+
+print(x)     # original tensor
+
+print(xp)    # permuted tensor
+
+print(xs)     # shape original tensor
+
+print(xps)    # shape permuted tensor
+```
+### permute a 3D tensor
+
+```{r}
+x <- torch$randn(10L, 480L, 640L, 3L)
+xs <- torch$as_tensor(x$size())     # torch$tensor(c(10L, 480L, 640L, 3L))
+xp <- x$permute(0L, 3L, 1L, 2L)     # specify dimensions order
+xps <- torch$as_tensor(xp$size())   # torch$tensor(c(10L, 3L, 480L, 640L))
+
+print(xs)      # original tensor size
+
+print(xps)     # permuted tensor size
+
+```
+
 
 
 ## Logical operations
