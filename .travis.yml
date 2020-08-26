@@ -9,6 +9,7 @@ warnings_are_errors: false
 env:
   global:
     - PYTORCH_VERSION="1.6"
+    - PYTHON_VERSION="3.6"
 
 r-packages:
   - logging
