@@ -7,7 +7,7 @@
 
 # rTorch 0.0.3.9003
 * 20200814
-* creating branch `fix-readme-add-tests`.
+* creating branch, make active `fix-readme-add-tests`.
 * Using _https://travis-ci.org/_
 * combine tensor_functions.R and utils.R
 * unit tests for transpose and permute
@@ -24,7 +24,11 @@
 * All checks passed. Merge to `develop`. Testing on _Travis_.
 * Travis stopping on error in `dontrun` examples that passed in the local machine. What is different is the PyTorch version specified in `.travis.yml`. Changing variable from "1.1"" to `PYTORCH_VERSION="1.6"`.
 * Travis stopping on error related to suffix `pytorch-cpu==1.6` in command `'rTorch::install_pytorch(method="conda", version=Sys.getenv("PYTORCH_VERSION"), channel="pytorch", conda_python_version="3.6")'`. We need to modify function `install_pytorch()`.
-* check out and test from _develop_ branch
+* check out and test from `develop` branch
+* remove installation of gcc or libstdc++
+* remove rTorch::pytorch_install(). Use instead rTorch:::conda_install()
+* create environment variables for PYTORCH_VERSION, PYTHON_VERSION and LD_LIBRARY_PATH
+
 
 
 
