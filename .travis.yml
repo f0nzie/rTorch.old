@@ -48,8 +48,11 @@ before_script:
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo rm /usr/lib/x86_64-linux-gnu/libstdc++.so.6          ; fi
   # - R -e 'rTorch:::install_conda(package="pytorch=1.6", envname="r-torch", conda="auto", conda_python_version="3.6", pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))'
   - >
-    R -e 'rTorch:::install_conda(package=paste0("pytorch=", Sys.getenv("PYTORCH_VERSION")),
-    envname="r-torch", conda="auto", conda_python_version=Sys.getenv("PYTHON_VERSION"),
-    pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))'
+    R -e 'rTorch:::install_conda(
+    package=paste0("pytorch=", Sys.getenv("PYTORCH_VERSION")),
+    envname="r-torch", conda="auto",
+    conda_python_version=Sys.getenv("PYTHON_VERSION"),
+    pip=FALSE, channel="pytorch",
+    extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))'
 
 
