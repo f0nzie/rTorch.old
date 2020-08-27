@@ -5,6 +5,8 @@ language: R
 
 r:
  - 3.6.3
+ - 3.5.3
+ - 4.0.0
 
 warnings_are_errors: false
 
