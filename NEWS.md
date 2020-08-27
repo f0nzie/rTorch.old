@@ -36,6 +36,8 @@
 * after craeful revision no more errors. Only one NOTE: `* checking for future file timestamps ... NOTE. unable to verify current time`.
 * all tests running fine with R-4.0.0. Will change version to R-3.6.3.
 * all tests running fine with R-3.5.3. Multiple R versions through Travis.
+* all tests running fine with R-3.4.3. 
+
 
 
 

@@ -10,6 +10,10 @@ r:
 
 warnings_are_errors: false
 
+os:
+ - linux
+ - osx
+
 env:
   global:
     - PYTORCH_VERSION="1.6"
@@ -22,6 +26,7 @@ r-packages:
   - R6
   - rstudioapi
   - data.table
+
 
 before_script:
   - sudo apt-get update
@@ -37,13 +42,9 @@ before_script:
   - conda update -q conda
   - conda init bash
   - conda info -a
-  # - Rscript -e 'install.packages(c("logging", "reticulate", "jsonlite", "R6", "rstudioapi", "data.table"))'
   - R CMD INSTALL .
-  # - R -e 'rTorch::install_pytorch(method="conda", version=Sys.getenv("PYTORCH_VERSION"), channel="pytorch", conda_python_version="3.6")'
-  - sudo rm /usr/lib/x86_64-linux-gnu/libstdc++.so.6
-  # - R -e 'rTorch:::install_conda(package=paste0("pytorch=", Sys.getenv("PYTORCH_VERSION")), envname="r-torch", conda="auto", conda_python_version=Sys.getenv("PYTHON_VERSION"), pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))'
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then sudo rm /usr/lib/x86_64-linux-gnu/libstdc++.so.6          ; fi
   - R -e 'rTorch:::install_conda(package="pytorch=1.6", envname="r-torch", conda="auto", conda_python_version="3.6", pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))'
-
-
+  # - R -e 'rTorch:::install_conda(package=paste0("pytorch=", Sys.getenv("PYTORCH_VERSION")), envname="r-torch", conda="auto", conda_python_version=Sys.getenv("PYTHON_VERSION"), pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))'
 
 
