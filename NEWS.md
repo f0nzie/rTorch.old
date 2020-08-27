@@ -37,6 +37,7 @@
 * all tests running fine with R-4.0.0. Will change version to R-3.6.3.
 * all tests running fine with R-3.5.3. Multiple R versions through Travis.
 * all tests running fine with R-3.4.3. 
+* all tests passed in osx with versions 3.6.3, 3.5.3 and 3.4.3.
 
 
 
