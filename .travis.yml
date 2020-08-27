@@ -3,6 +3,9 @@
 language: R
 # cache: packages
 
+r:
+ - 3.6.3
+
 warnings_are_errors: false
 
 
@@ -21,13 +24,10 @@ r-packages:
 
 
 before_script:
-# do not need these commented lines
-#  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
   - sudo apt-get update
   - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
   - bash miniconda.sh -b -p $HOME/miniconda
   - export PATH="$HOME/miniconda/bin:$PATH"
-  # - export LD_LIBRARY_PATH=${TRAVIS_HOME}/miniconda/envs/r-torch/lib
   - export LD_LIBRARY_PATH=${TRAVIS_HOME}/miniconda/lib
   - echo $PATH
   - echo $LD_LIBRARY_PATH
@@ -41,10 +41,9 @@ before_script:
   - R CMD INSTALL .
   # - R -e 'rTorch::install_pytorch(method="conda", version=Sys.getenv("PYTORCH_VERSION"), channel="pytorch", conda_python_version="3.6")'
   - sudo rm /usr/lib/x86_64-linux-gnu/libstdc++.so.6
-  # - ls -alh /home/travis/miniconda/lib/libstdc*
   # - R -e 'rTorch:::install_conda(package=paste0("pytorch=", Sys.getenv("PYTORCH_VERSION")), envname="r-torch", conda="auto", conda_python_version=Sys.getenv("PYTHON_VERSION"), pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))'
   - R -e 'rTorch:::install_conda(package="pytorch=1.6", envname="r-torch", conda="auto", conda_python_version="3.6", pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))'
-  - echo $R_LIBS_USER
+
 
 
 
