@@ -37,8 +37,7 @@ before_script:
   - conda update -q conda
   - conda init bash
   - conda info -a
-  - Rscript -e 'install.packages(c("logging", "reticulate", "jsonlite", "R6", "rstudioapi", "data.table"));\
-    if (!all(c("logging", "reticulate", "jsonlite", "R6", "rstudioapi", "data.table")  %in% installed.packages())) { q(status = 1, save = "no")}'
+  - Rscript -e 'install.packages(c("logging", "reticulate", "jsonlite", "R6", "rstudioapi", "data.table"))
   - R CMD INSTALL .
   # - R -e 'rTorch::install_pytorch(method="conda", version=Sys.getenv("PYTORCH_VERSION"), channel="pytorch", conda_python_version="3.6")'
   - sudo rm /usr/lib/x86_64-linux-gnu/libstdc++.so.6
