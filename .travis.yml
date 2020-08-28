@@ -4,7 +4,7 @@ language: R
 # cache: packages
 
 r:
- # - 4.0.0
+ - 4.0.0
  - 3.6.3
  # - 3.5.3
  # - 3.4.3
