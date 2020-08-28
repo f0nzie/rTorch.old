@@ -3,23 +3,22 @@
 language: R
 # cache: packages
 
+warnings_are_errors: false
+
 r:
  - 4.0.0
  - 3.6.3
  # - 3.5.3
  # - 3.4.3
 
-warnings_are_errors: false
+env:
+  global:
+    - PYTORCH_VERSION="1.3"
+    - PYTHON_VERSION="3.6"
 
 os:
  - linux
  - osx
-
-# environment variables global to the matrix
-env:
-  global:
-    - PYTORCH_VERSION="1.4"
-    - PYTHON_VERSION="3.6"
 
 r-packages:
   - logging
