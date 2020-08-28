@@ -18,7 +18,7 @@ os:
 # environment variables global to the matrix
 env:
   global:
-    - PYTORCH_VERSION="1.5"
+    - PYTORCH_VERSION="1.4"
     - PYTHON_VERSION="3.6"
 
 r-packages:
