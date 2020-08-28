@@ -51,8 +51,8 @@ before_script:
   - conda info -a
   - R CMD INSTALL .
   - |
-    if [ "$TRAVIS_OS_NAME" = "linux" ]; then
-      sudo rm /usr/lib/x86_64-linux-gnu/libstdc++.so.6;
+    if [ "$TRAVIS_OS_NAME" = "linux" ];
+      then sudo rm /usr/lib/x86_64-linux-gnu/libstdc++.so.6;
     fi
   - >
     R -e 'rTorch:::install_conda(
