@@ -13,7 +13,7 @@ warnings_are_errors: false
 
 os:
  - linux
- - osx
+# - osx
 
 # environment variables global to the matrix
 env:
