@@ -7,7 +7,7 @@
 
 # rTorch 0.0.3.9003
 * 20200814
-* creating branch `fix-readme-add-tests`.
+* creating branch, make active `fix-readme-add-tests`.
 * Using _https://travis-ci.org/_
 * combine tensor_functions.R and utils.R
 * unit tests for transpose and permute
@@ -24,7 +24,23 @@
 * All checks passed. Merge to `develop`. Testing on _Travis_.
 * Travis stopping on error in `dontrun` examples that passed in the local machine. What is different is the PyTorch version specified in `.travis.yml`. Changing variable from "1.1"" to `PYTORCH_VERSION="1.6"`.
 * Travis stopping on error related to suffix `pytorch-cpu==1.6` in command `'rTorch::install_pytorch(method="conda", version=Sys.getenv("PYTORCH_VERSION"), channel="pytorch", conda_python_version="3.6")'`. We need to modify function `install_pytorch()`.
-*
+* check out and test from `develop` branch
+* tests to be performed with `R version 4.0.0 (2020-04-24) -- "Arbor Day"`
+* first, remove installation of gcc or libstdc++
+* remove `rTorch::pytorch_install()`. Use instead `rTorch:::conda_install()`.
+* create environment variables for PYTORCH_VERSION, PYTHON_VERSION and LD_LIBRARY_PATH.
+* remove symbolic link to `libstdc++.so.6` in the Linux installation. This is confusing Python.
+* export `LD_LIBRARY_PATH=${TRAVIS_HOME}/miniconda/lib`. 
+* install required packages with `Rscript -e 'install.packages(c("logging", "reticulate", "jsonlite", "R6", "rstudioapi", "data.table"))`
+* reduce size of tensor in `test_tensor_dim.R` because throwing error due to lack of memory.
+* after craeful revision no more errors. Only one NOTE: `* checking for future file timestamps ... NOTE. unable to verify current time`.
+* all tests running fine with R-4.0.0. Will change version to R-3.6.3.
+* all tests running fine with R-3.5.3. Multiple R versions through Travis.
+* all tests running fine with R-3.4.3. 
+* all tests passed in osx with versions 3.6.3, 3.5.3 and 3.4.3.
+
+
+
 
 
 

@@ -3,12 +3,23 @@
 language: R
 # cache: packages
 
+r:
+ - 4.0.0
+ - 3.6.3
+ # - 3.5.3
+ # - 3.4.3
+
 warnings_are_errors: false
 
+os:
+ - linux
+ - osx
 
+# environment variables global to the matrix
 env:
   global:
-    - PYTORCH_VERSION="1.6"
+    - PYTORCH_VERSION="1.1"
+    - PYTHON_VERSION="3.6"
 
 r-packages:
   - logging
@@ -20,20 +31,37 @@ r-packages:
 
 
 before_script:
-# do not need these commented lines
-#  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
-  - sudo apt-get update
-  - sudo apt-get install gcc-4.9
-#  - sudo apt-get install libstdc++6   # needed by PyTorch
-  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+  # - sudo apt-get update
+  - |
+    if [ "$TRAVIS_OS_NAME" = "linux" ];
+      then wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+    fi
+  - |
+    if [ "$TRAVIS_OS_NAME" = "osx"   ];
+      then wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh;
+    fi
   - bash miniconda.sh -b -p $HOME/miniconda
   - export PATH="$HOME/miniconda/bin:$PATH"
+  - export LD_LIBRARY_PATH=${TRAVIS_HOME}/miniconda/lib
   - hash -r
   - rm miniconda.sh
   - conda config --set always_yes yes --set changeps1 no
   - conda update -q conda
+  - conda init bash
   - conda info -a
   - R CMD INSTALL .
-  - R -e 'rTorch::install_pytorch(method="conda", version=Sys.getenv("PYTORCH_VERSION"), channel="pytorch", conda_python_version="3.6")'
+  - |
+    if [ "$TRAVIS_OS_NAME" = "linux" ]; then
+      sudo rm /usr/lib/x86_64-linux-gnu/libstdc++.so.6;
+    fi
+  - >
+    R -e 'rTorch:::install_conda(
+    package=paste0("pytorch=", Sys.getenv("PYTORCH_VERSION")),
+    envname="r-torch", conda="auto",
+    conda_python_version=Sys.getenv("PYTHON_VERSION"),
+    pip=FALSE, channel="pytorch",
+    extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))'
+
+  # - R -e 'rTorch:::install_conda(package="pytorch=1.6", envname="r-torch", conda="auto", conda_python_version="3.6", pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))'
 
 
