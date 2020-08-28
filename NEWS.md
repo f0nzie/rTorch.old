@@ -1,8 +1,14 @@
-# rTorch 0.0.3.9004 TODO
+# rTorch 0.0.3.9005 TODO
 * make `conda_install()` public
 * add Linear Algebra functions: _Gaussian Elimination_, Cholesky, LU
 * add unit tests for linear algebra function
 * add examples for Gaussian Elimination
+
+# rTorch 0.0.3.9004
+* 20200828
+* All tests are passing in Travis on R-4.0.0, R-3.6.3, R-3.5.3 and R-3.4.3.
+* Tests that are failing are in the `examples`. 
+* Error is `RuntimeError: Expected object of scalar type Byte but got scalar type Long ` in `[.torch.Tensor` at generics functions.
 
 
 # rTorch 0.0.3.9003
