@@ -37,7 +37,7 @@
 #' # all_dims() expands to the shape of the tensor
 #'
 #' y <- torch$arange(0L, 3L^5L)$view(3L, 3L, 3L, 3L, 3L)
-#' (all(y[all_dims(), 1] == y[,,,,1]) == torch$tensor(1L))$numpy()
+#' as.logical((all(y[all_dims(), 1] == y[,,,,1]))$numpy()) == TRUE
 #'
 #'
 #' # negative numbers are always interpreted Python style

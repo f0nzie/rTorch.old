@@ -26,6 +26,16 @@ is_ubuntu <- function() {
   }
 }
 
+is_debian <- function() {
+  # check /etc/os-release
+  if (is_unix() && file.exists("/etc/os-release")) {
+    osRelease <- readLines("/etc/os-release")
+    any(grepl("Debian", osRelease))
+  } else {
+    FALSE
+  }
+}
+
 dir_exists <- function(x) {
   utils::file_test('-d', x)
 }
