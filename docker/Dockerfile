@@ -11,7 +11,7 @@ WORKDIR /home/travis
 
 ENV R_VERSION="4.0.0"
 ENV PYTHON_VERSION="3.6"
-ENV PYTORCH_VERSION="1.2"
+ENV PYTORCH_VERSION="1.4"
 ENV TRAVIS_HOME /home/travis
 ENV R_BUILD_LIBS=/home/travis/R/Library
 ENV R_LIBS_USER=/home/travis/R/Library
@@ -104,13 +104,20 @@ RUN R -e 'rTorch:::install_conda(\
 # the c++ libs in $HOME/miniconda/lib
 RUN sudo rm /usr/lib/x86_64-linux-gnu/libstdc++.so.6 && \
     # check as CRAN
-    cd f0nzie && \
-    R CMD build rTorch && \
-    R CMD check rTorch_0.0.3.9004.tar.gz --as-cran && \
-    # test
-    cd rTorch && \
-    Rscript -e 'devtools::check()' && \
-    Rscript -e 'devtools::test(cran=TRUE, run_dont_test=TRUE)'
+    # cd f0nzie && \
+    # R CMD build rTorch && \
+    cd f0nzie/rTorch && \
+    export PKGNAME=$(sed -n "s/Package: *\([^ ]*\)/\1/p" DESCRIPTION) && \
+    export PKGVERS=$(sed -n "s/Version: *\([^ ]*\)/\1/p" DESCRIPTION) && \
+    cd .. && \
+    echo $PKGNAME_$PKGVERS.tar.gz && \
+    R CMD build $PKGNAME && \
+    R CMD check ${PKGNAME}_${PKGVERS}.tar.gz --as-cran
+    # R CMD check rTorch_0.0.3.9004.tar.gz --as-cran && \
+    # # test
+    # cd rTorch && \
+    # Rscript -e 'devtools::check()' && \
+    # Rscript -e 'devtools::test(cran=TRUE, run_dont_test=TRUE)'
 
 
 WORKDIR /home/travis/f0nzie/rTorch
