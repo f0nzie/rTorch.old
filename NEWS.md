@@ -12,6 +12,7 @@
 * Tests that are failing are in the `examples`. 
 * Error is `RuntimeError: Expected object of scalar type Byte but got scalar type Long ` in `[.torch.Tensor` at generics functions.
 * Example causing error is a verification of the tensor `(all(y[all_dims(), 1] == y[,,,,1]) == torch$tensor(1L))$numpy()`. In older versions of R it works. We could change the test to something like `as.logical((all(y[all_dims(), 1] == y[,,,,1]))$numpy()) == TRUE`. Tested in R-3.6.3 locally and PASSED. WIll test via Travis.
+* All tests in Ubuntu xenial with PyTorch 1.1 using Travis passed.
 * Testing R-4.0.0 with PyTorch 1.1 generates 28 warnings `test_torch_core.R:211: warning: narrow the condition has length > 1 and only the first element will be used` but all test passed.
 * integrating Docker with rTorch. The Docker container will create an equivalent Travis machine to save time during tests.
 
