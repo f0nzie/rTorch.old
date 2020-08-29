@@ -1,20 +1,30 @@
 # rTorch 0.0.3.9005 TODO
-* make `conda_install()` public
+* modify `pytorch_install` to include version
 * add Linear Algebra functions: _Gaussian Elimination_, Cholesky, LU
 * add unit tests for linear algebra function
 * add examples for Gaussian Elimination
 * add examples for matrices operations.
 * find libraries for fast operations in matrices.
+* make `conda_install()` public
 
 # rTorch 0.0.3.9004
+
 * 20200828
 * All tests are passing in Travis on R-4.0.0, R-3.6.3, R-3.5.3 and R-3.4.3.
 * Tests that are failing are in the `examples`. 
 * Error is `RuntimeError: Expected object of scalar type Byte but got scalar type Long ` in `[.torch.Tensor` at generics functions.
-* Example causing error is a verification of the tensor `(all(y[all_dims(), 1] == y[,,,,1]) == torch$tensor(1L))$numpy()`. In older versions of R it works. We could change the test to something like `as.logical((all(y[all_dims(), 1] == y[,,,,1]))$numpy()) == TRUE`. Tested in R-3.6.3 locally and PASSED. WIll test via Travis.
+* Example causing error is a verification of the tensor `(all(y[all_dims(), 1] == y[,,,,1]) == torch$tensor(1L))$numpy()`. In older versions of R it works. We could change the test to something like `as.logical((all(y[all_dims(), 1] == y[,,,,1]))$numpy()) == TRUE`. Tested in R-3.6.3 locally and PASSED. Will test via Travis.
 * All tests in Ubuntu xenial with PyTorch 1.1 using Travis passed.
 * Testing R-4.0.0 with PyTorch 1.1 generates 28 warnings `test_torch_core.R:211: warning: narrow the condition has length > 1 and only the first element will be used` but all test passed.
 * integrating Docker with rTorch. The Docker container will create an equivalent Travis machine to save time during tests.
+* Adding option `- if [ "$TRAVIS_OS_NAME" = "osx" ]; then conda install nomkl;fi` in *.travis.yml* to be able to get rid off an error related to **OMP**
+* merging branch `003.9004-fix-examples-torch-byte-to-long` with `develop`.
+* will start testing with *PyTorch 1.4* as the average version. Installing PyTorch 1.4 with
+```
+> rTorch:::install_conda(package="pytorch=1.4", envname="r-torch", conda="auto", conda_python_version = "3.6", pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))
+```
+
+
 
 
 
