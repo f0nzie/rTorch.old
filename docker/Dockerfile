@@ -11,7 +11,7 @@ WORKDIR /home/travis
 
 ENV R_VERSION="4.0.0"
 ENV PYTHON_VERSION="3.6"
-ENV PYTORCH_VERSION="1.1"
+ENV PYTORCH_VERSION="1.2"
 ENV TRAVIS_HOME /home/travis
 ENV R_BUILD_LIBS=/home/travis/R/Library
 ENV R_LIBS_USER=/home/travis/R/Library
@@ -85,6 +85,7 @@ RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -
     conda info -a
 
 # copy all the rTorch project to install, build and test in the Travis machine
+# it will automatically detect if files were modified
 COPY . /home/travis/f0nzie/rTorch/
 
 RUN sudo chown -R travis:travis /home/travis/f0nzie/ && \
