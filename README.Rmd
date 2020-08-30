@@ -20,34 +20,53 @@ knitr::opts_chunk$set(
 
 # rTorch
 
-The goal of `rTorch` is providing an R wrapper to [PyTorch](https://pytorch.org/. We have borrowed ideas and code used in R [tensorflow](https://github.com/rstudio/tensorflow) to implement `rTorch`.
+The goal of `rTorch` is providing an R wrapper to [PyTorch](https://pytorch.org/). We have borrowed ideas and code used in R [tensorflow](https://github.com/rstudio/tensorflow) to implement `rTorch`.
 
-Besides the module `torch`, which provides `PyTorch` methods, classes and functions, the package also provides `numpy` as a method called `np`, and `torchvision`, as well. The dollar sign `$` after the module will provide you access to those objects.
+Besides the module `torch`, which directly provides `PyTorch` methods, classes and functions, the package also provides `numpy` as a method called `np`, and `torchvision`, as well. The dollar sign `$` after the module will provide you access to those objects.
 
 
 ## Installation
-`rTorch` is available in GitHub only at this moment.
 
-Install `rTorch` with: 
+### From CRAN
+`rTorch` is available in via CRAN and GitHub.
+
+Install from CRAN using `install.packages("rTorch")` from the R console, or from *RStudio* using `Tools`, `Install Packages` from the menu.
+
+### From GitHub
+
+From GitHub, install `rTorch` with:
 
 `devtools::install_github("f0nzie/rTorch")`
 
-Before start running `rTorch`, install a Python Anaconda environment first. 
+Installing from GitHub gives you the flexibility of experimenting with the latest development version of `rTorch`. For instance, to install `rTorch` from the `develop` branch:
 
-1. Create a conda environment with `conda create -n myenv python=3.7`
+`devtools::install_github("f0nzie/rTorch", ref="develop")`
 
-2. Activate the new environment with `conda activate myenv`
+
+### Installing Python and PyTorch
+Although, Python and PyTorch can be installed directly from the R console, before start running `rTorch`, I would recommend installing a Python or Python-Anaconda environment and testing it working alright first. There are `rTorch` has functions that can install PyTorch from the R console.
+
+If you prefer do it manually, use this example:
+
+1. Create a conda environment with `conda create -n my-torch python=3.7 -y`
+
+2. Activate the new environment with `conda activate my-torch`
 
 3. Install PyTorch related packages with:  
 
-`conda install python=3.6.6 pytorch-cpu torchvision-cpu matplotlib pandas -c pytorch`
+`conda install python=3.6 pytorch torchvision matplotlib pandas -c pytorch`
+
+> Note: If you you don't specify a version `conda` will install the latest `PyTorch`. As of this writing (August-September 2020), the latest PyTorch version is 1.6.
+
+Alternatively, you could create and install a *conda* environment a specific PyTorch version with:
+
+`conda create -n my-torch python=3.6 pytorch=1.3 torchvision matplotlib pandas -c pytorch -y`
+
+`conda` will resolve the dependencies and versions of the other packages automatically, or let you know your options.
 
 
-Now, you can load `rTorch` in R or RStudio.
 
-The automatic installation, like in `rtensorflow`, may be available later.
-
-**Note.** `matplotlib` and `pandas` are not really necessary, but I was asked if `matplotlib` or `pandas` would in PyTorch, that I decided to put them for testing and experimentation. They both work.
+**Note.** `matplotlib` and `pandas` are not really necessary, but I was asked if `matplotlib` or `pandas` would work in PyTorch. Then, I decided to put them for testing and experimentation. They both work.
 
 
 
@@ -63,7 +82,7 @@ There are five major type of Tensors in PyTorch:
 ```{r}
 library(rTorch)
 
-byte_tensor  <- torch$ByteTensor(3L, 3L)
+byte_tensor   <- torch$ByteTensor(3L, 3L)
 float_tensor  <- torch$FloatTensor(3L, 3L)
 double_tensor <- torch$DoubleTensor(3L, 3L)
 long_tensor   <- torch$LongTensor(3L, 3L)
