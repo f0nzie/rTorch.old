@@ -48,10 +48,12 @@ tensor_dot <- function(A, B) {
 }
 
 tensor_dim <- function(tensor) {
+    # same as R dim() returning a vector of integers
     builtins$list(tensor$size())
 }
 
-tensor_dim_ <- function(tensor) {
+tensor_ndim <- function(tensor) {
+    # same as torch$dim()
     size <- builtins$list(tensor$size())
     length(size)
 }

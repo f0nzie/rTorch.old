@@ -1,5 +1,6 @@
 # rTorch 0.0.3.9005 TODO
 * modify `pytorch_install` to include version
+* move some functions in test utils to R utils.
 * add Linear Algebra functions: _Gaussian Elimination_, Cholesky, LU
 * add unit tests for linear algebra function
 * add examples for Gaussian Elimination
@@ -7,8 +8,14 @@
 * find libraries for fast operations in matrices.
 * make `conda_install()` public
 
-# rTorch 0.0.3.9004
+# rTorch 0.0.3.9005
+* 20200829
+* rename function in tests from `tensor_dim_` to `tensor_ndim`
+* Dockerfile now using environment variables for name and version of the package insaide the script.
 
+
+
+# rTorch 0.0.3.9004
 * 20200828
 * All tests are passing in Travis on R-4.0.0, R-3.6.3, R-3.5.3 and R-3.4.3.
 * Tests that are failing are in the `examples`. 

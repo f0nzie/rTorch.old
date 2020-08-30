@@ -42,7 +42,7 @@ test_that("R dim function works as well", {
 
 test_that("tensor dimension is 4D: 60000x3x28x28", {
   img <- torch$ones(60000L, 3L, 28L, 28L)
-  # expect_equal(tensor_dim_(img), 4)
+  # expect_equal(tensor_ndim(img), 4)
   expect_equal(dim(img), c(60000, 3, 28, 28))
   expect_equal(img$dim(), 4)
 })
