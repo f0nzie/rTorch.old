@@ -16,3 +16,22 @@ torch_size <- function(obj) {
     }
     return(unlist(sapply(it, `[`)[2,]))
 }
+
+
+#' @title Make copy of tensor, numpy array or R array
+#' @description A copy o an array or tensor might be needed to prevent warnings
+#' by new PyTorch versions
+#'
+#' @param object a torch tensor or numpy array or R array
+#' @export
+make_copy <- function(object, ...) {
+    if (class(object) == "torch.Tensor") {
+        obj <- object$copy_(object)
+    }
+    else if (class(object) == "numpy.ndarray") {
+        obj <- object$copy()
+    } else {
+        obj <- r_to_py(object)$copy()
+    }
+    return(obj)
+}

@@ -28,17 +28,17 @@ tensor_logical_or <- function(x, y) {
 }
 
 
-make_copy <- function(object, ...) {
-    if (class(object) == "torch.Tensor") {
-        obj <- object$copy_(object)
-    }
-    else if (class(object) == "numpy.ndarray") {
-        obj <- object$copy()
-    } else {
-        obj <- r_to_py(object)$copy()
-    }
-    return(obj)
-}
+# make_copy <- function(object, ...) {
+#     if (class(object) == "torch.Tensor") {
+#         obj <- object$copy_(object)
+#     }
+#     else if (class(object) == "numpy.ndarray") {
+#         obj <- object$copy()
+#     } else {
+#         obj <- r_to_py(object)$copy()
+#     }
+#     return(obj)
+# }
 
 
 # as_tensor <- function(...) torch$as_tensor(...)
