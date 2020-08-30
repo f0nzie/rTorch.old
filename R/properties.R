@@ -19,10 +19,11 @@ torch_size <- function(obj) {
 
 
 #' @title Make copy of tensor, numpy array or R array
-#' @description A copy o an array or tensor might be needed to prevent warnings
-#' by new PyTorch versions
+#' @description A copy of an array or tensor might be needed to prevent warnings
+#' by new PyTorch versions on overwriting the numpy object
 #'
 #' @param object a torch tensor or numpy array or R array
+#' @param ... additional parameters
 #' @export
 make_copy <- function(object, ...) {
     if (class(object) == "torch.Tensor") {
