@@ -1,17 +1,24 @@
-# rTorch 0.0.3.9005 TODO
+# rTorch 0.0.3.9005 TODOs
 * modify `pytorch_install` to include version
-* move some functions in test utils to R utils.
+* Modify `install_pytorch()` and remove `pytorch-cpu==1.1` way to specify `pytorch`. It is causing error because new PyTorch versions do not take the suffix `-cpu`.
+* add to `install_pytorch()` parameters for Python version, packages, and PyTorch version.
 * add Linear Algebra functions: _Gaussian Elimination_, Cholesky, LU
-* add unit tests for linear algebra function
+* add unit tests for linear algebra functions
 * add examples for Gaussian Elimination
 * add examples for matrices operations.
 * find libraries for fast operations in matrices.
-* make `conda_install()` public
+
+## TODOs-half-done
+* move some functions in *test utils* to R utils.
 
 # rTorch 0.0.3.9005
 * 20200829
 * rename function in tests from `tensor_dim_` to `tensor_ndim`
 * Dockerfile now using environment variables for name and version of the package insaide the script.
+* export function `make_copy()` moved from unit test utilities.
+* Update README. Remove mention to `torch$index` (not applicable).
+* Add more installation instructions for PyTorch. 
+* Clarify some examples in the README. Use `message()` instead of `print()`
 
 
 
@@ -30,9 +37,6 @@
 ```
 > rTorch:::install_conda(package="pytorch=1.4", envname="r-torch", conda="auto", conda_python_version = "3.6", pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))
 ```
-
-
-
 
 
 

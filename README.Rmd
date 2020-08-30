@@ -44,7 +44,11 @@ Installing from GitHub gives you the flexibility of experimenting with the lates
 
 
 ### Installing Python and PyTorch
-Although, Python and PyTorch can be installed directly from the R console, before start running `rTorch`, I would recommend installing a Python or Python-Anaconda environment and testing it working alright first. There are `rTorch` has functions that can install PyTorch from the R console.
+Although, Python and PyTorch can be installed directly from the R console, before start running `rTorch`, I would recommend installing **PyTorch** in a new Python or Python-Anaconda environment, and testing if it's working alright first. The advantage of doing it this way is that you define the base Python or Anaconda version to install.
+
+If you opt to install _PyTorch_ from _R_, `rTorch` has functions that could help you install _PyTorch_ from the _R_ console. 
+
+#### Manual install of _PyTorch_ in a _conda_ environment
 
 If you prefer do it manually, use this example:
 
@@ -52,11 +56,11 @@ If you prefer do it manually, use this example:
 
 2. Activate the new environment with `conda activate my-torch`
 
-3. Install PyTorch related packages with:  
+3. Inside the new environment, install _PyTorch_ and related packages with:  
 
 `conda install python=3.6 pytorch torchvision matplotlib pandas -c pytorch`
 
-> Note: If you you don't specify a version `conda` will install the latest `PyTorch`. As of this writing (August-September 2020), the latest PyTorch version is 1.6.
+> Note: If you you don't specify a version, `conda` will install the latest _PyTorch_. As of this writing (August-September 2020), the latest _PyTorch_ version is 1.6.
 
 Alternatively, you could create and install a *conda* environment a specific PyTorch version with:
 
@@ -64,11 +68,18 @@ Alternatively, you could create and install a *conda* environment a specific PyT
 
 `conda` will resolve the dependencies and versions of the other packages automatically, or let you know your options.
 
-
-
 **Note.** `matplotlib` and `pandas` are not really necessary, but I was asked if `matplotlib` or `pandas` would work in PyTorch. Then, I decided to put them for testing and experimentation. They both work.
 
 
+## Automatic Python detection 
+In rTorch there is an automatic detection of Python built in in the package that will ask you to install `Miniconda` first if you don't have any Python installed in your machine. For instance, in `MacOS`, Miniconda will be installed under `PREFIX=/Users/user_name/Library/r-miniconda`.
+
+After *Miniconda* is installed, you could proceed to install the flavor or *PyTorch* you wamt, and the packages you want, with a command like this:
+
+
+```
+rTorch:::install_conda(package="pytorch=1.4", envname="r-torch", conda="auto", conda_python_version = "3.6", pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))
+```
 
 ## Matrices and Linear Algebra
 
@@ -169,11 +180,15 @@ print(x + y)
 ### Add tensor element to another tensor
 
 ```{r}
-# add an element of tensor to a tensor
+# add an element of a tensor to another tensor
 mat1[1, 1] + mat2
 ```
+```{r}
+mat1
+indices <- torch$tensor(c(0L, 3L))
+torch$index_select(mat1, 1L, indices)   # rows = 0; columns = 1
+```
 
-> The expression `tensor.index(m)` is equivalent to `tensor[m]`.
 
 
 ### Add a scalar to a tensor
@@ -183,14 +198,15 @@ mat1[1, 1] + mat2
 mat0 + 0.1
 ```
 
-### Multiply tensor by scalar
+### Multiply a tensor by a scalar
 
 ```{r}
 # Multiply tensor by scalar
 tensor = torch$ones(4L, dtype=torch$float64)
 scalar = np$float64(4.321)
-print(scalar)
-print(torch$scalar_tensor(scalar))
+message("a numpy scalar: ", scalar)
+message("a PyTorch scalar: ", torch$scalar_tensor(scalar))
+message("\nResult")
 (prod = torch$mul(tensor, torch$scalar_tensor(scalar)))
 ```
 
@@ -200,9 +216,8 @@ print(torch$scalar_tensor(scalar))
 ```
 
 
-
 ## NumPy and PyTorch
-`numpy` has been made available as a module in `rTorch`. We can call functions from `numpy` refrerring to it as `np$_a_function`. Examples:
+`numpy` has been made available as a module inside `rTorch`. We could call functions from `numpy` refrerring to it as `np$any_function`. Examples:
 
 ```{r}
 # a 2D numpy array  
@@ -226,7 +241,7 @@ syn1
 
 ```{r}
 # in numpy a multidimensional array needs to be defined with a tuple
-# in R we do it with a vector
+# From R we use a vector to refer to a tuple in Python
 l1 <- np$ones(c(5L, 5L))
 l1
 ```
@@ -249,7 +264,7 @@ np$transpose(X)
 ```
 
 ## With newer PyTorch versions we should work with NumPy array copies
-There have been minor changes in the latest version of PyTorch that prevent a direct use of a NumPy array. You will get this warning:
+There have been minor changes in the latest versions of PyTorch that prevents a direct use of a NumPy array. You will get this warning:
 
     sys:1: UserWarning: The given NumPy array is not writeable, and PyTorch does 
     not support non-writeable tensors. This means you can write to the underlying
@@ -536,7 +551,7 @@ print(v)
 ```
 
 ```{r}
-# Initialize Tensor with a range of value
+# Initialize Tensor with a range of values
 v = torch$arange(10L)             # similar to range(5) but creating a Tensor
 (v = torch$arange(0L, 10L, step = 1L))  # Size 5. Similar to range(0, 5, 1)
 ```
@@ -558,6 +573,9 @@ v = torch$arange(10L)             # similar to range(5) but creating a Tensor
 ### Inplace / Out-of-place
 
 ```{r}
+a = torch$rand(5L, 4L)
+b = a$numpy()
+
 a$fill_(3.5)
 # a has now been filled with the value 3.5
 
