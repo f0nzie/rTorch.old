@@ -12,6 +12,6 @@ make_copy(object, ...)
 \item{...}{additional parameters}
 }
 \description{
-A copy o an array or tensor might be needed to prevent warnings
-by new PyTorch versions
+A copy of an array or tensor might be needed to prevent warnings
+by new PyTorch versions on overwriting the numpy object
 }
