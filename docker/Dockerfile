@@ -87,6 +87,10 @@ RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -
 # copy all the rTorch project to install, build and test in the Travis machine
 # it will automatically detect if files were modified
 COPY . /home/travis/f0nzie/rTorch/
+COPY .git /home/travis/f0nzie/rTorch/.git
+RUN ls /home/travis/f0nzie/rTorch/.git && \
+    cd f0nzie/rTorch && \
+    git status
 
 RUN sudo chown -R travis:travis /home/travis/f0nzie/ && \
     cd f0nzie/rTorch && \
@@ -112,12 +116,11 @@ RUN sudo rm /usr/lib/x86_64-linux-gnu/libstdc++.so.6 && \
     cd .. && \
     echo $PKGNAME_$PKGVERS.tar.gz && \
     R CMD build $PKGNAME && \
-    R CMD check ${PKGNAME}_${PKGVERS}.tar.gz --as-cran
-    # R CMD check rTorch_0.0.3.9004.tar.gz --as-cran && \
-    # # test
-    # cd rTorch && \
-    # Rscript -e 'devtools::check()' && \
-    # Rscript -e 'devtools::test(cran=TRUE, run_dont_test=TRUE)'
+    R CMD check ${PKGNAME}_${PKGVERS}.tar.gz --as-cran && \
+    # test
+    cd rTorch && \
+    Rscript -e 'devtools::check()' && \
+    Rscript -e 'devtools::test(cran=TRUE, run_dont_test=TRUE)'
 
 
 WORKDIR /home/travis/f0nzie/rTorch
