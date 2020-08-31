@@ -17,3 +17,5 @@ _pkgdown.yaml
 ^appveyor\.yml$
 ^cran-comments\.md$
 docker
+assets
+^INSTALL\.md$
