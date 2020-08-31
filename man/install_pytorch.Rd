@@ -13,7 +13,9 @@ install_pytorch(
   restart_session = TRUE,
   conda_python_version = "3.6",
   pip = FALSE,
-  channel = "pytorch",
+  channel = "stable",
+  cuda_version = NULL,
+  dry_run = FALSE,
   ...
 )
 }
@@ -52,6 +54,10 @@ environment. Python 3.6 is installed by default.}
 \item{pip}{logical}
 
 \item{channel}{conda channel}
+
+\item{cuda_version}{string for the cuda toolkit version}
+
+\item{dry_run}{logical, set to TRUE for unit tests, otherwise will run commands}
 
 \item{...}{other arguments passed to [reticulate::conda_install()] or
 [reticulate::virtualenv_install()].}
