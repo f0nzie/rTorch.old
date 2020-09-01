@@ -87,7 +87,10 @@ RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -
 # copy all the rTorch project to install, build and test in the Travis machine
 # it will automatically detect if files were modified
 COPY . /home/travis/f0nzie/rTorch/
-COPY .git /home/travis/f0nzie/rTorch/.git
+
+# copy .git folder files. will allow to checkout branches in the container
+COPY .git/ /home/travis/f0nzie/rTorch/.git/
+
 RUN ls /home/travis/f0nzie/rTorch/.git && \
     cd f0nzie/rTorch && \
     git status
