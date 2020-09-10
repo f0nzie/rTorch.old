@@ -1,6 +1,6 @@
 Package: rTorch
 Title: R Bindings to 'PyTorch'
-Version: 0.0.3.9006
+Version: 0.0.3.9007
 Authors@R: c(
     person("Alfonso R.", "Reyes", role = c("aut", "cre", "cph"), email = "alfonso.reyes@oilgainsanalytics.com"),
     person("Daniel", "Falbel", role = c("ctb", "cph"), email = "daniel@rstudio.com"),
