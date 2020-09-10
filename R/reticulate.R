@@ -143,7 +143,7 @@ condaenv_resolve <- function(envname = NULL) {
 python_environment_resolve <- function(envname = NULL, resolve = identity) {
 
   # use RETICULATE_PYTHON_ENV as default
-  envname <- envname %||% Sys.getenv("RETICULATE_PYTHON_ENV", unset = "r-reticulate")
+  envname <- envname %||% Sys.getenv("RETICULATE_PYTHON_ENV", unset = "r-torch")
 
   # treat environment 'names' containing slashes as full paths
   if (grepl("[/\\]", envname)) {
