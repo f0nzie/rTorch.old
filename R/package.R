@@ -163,10 +163,10 @@ torch_version <- function() {
 print.pytorch_config <- function(x, ...) {
     if (x$available) {
         aliased <- function(path) sub(Sys.getenv("HOME"), "~", path)
-        message("PyTorch v", x$version_str, " (", aliased(x$location), ")\n", sep = "")
-        message("Python v", x$python_version, " (", aliased(x$python), ")\n", sep = "")
+        cat("PyTorch v", x$version_str, " (", aliased(x$location), ")\n", sep = "")
+        cat("Python v", x$python_version, " (", aliased(x$python), ")\n", sep = "")
     } else {
-        warning(x$error_message, "\n")
+        cat(x$error_message, "\n")
     }
 }
 
