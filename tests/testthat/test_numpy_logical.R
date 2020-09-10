@@ -3,17 +3,23 @@ skip_on_cran()
 
 context("numpy logical operations")
 
-
 np <- import("numpy")
 
 as_vector <- function(...) as.vector(...)
 
-tensor_false <<- torch$BoolTensor(list(0L))
 tensor_true  <<- torch$BoolTensor(list(1L))
+tensor_false <<- torch$BoolTensor(list(0L))
 
 TRUE_TENSOR  <- torch$as_tensor(1L, dtype=torch$uint8)
 FALSE_TENSOR <- torch$as_tensor(0L, dtype=torch$uint8)
 
+test_that("sample tensors as logical", {
+    expect_equal(tensor_true$numpy(), array(TRUE))
+    expect_equal(tensor_false$numpy(), array(FALSE))
+
+    expect_equal(TRUE_TENSOR$numpy(), array(1))
+    expect_equal(FALSE_TENSOR$numpy(), array(0))
+})
 
 
 context("AND logical operations")
