@@ -1,15 +1,11 @@
-# rTorch 0.0.3.9005 TODOs
-* modify `pytorch_install` to include version
-* Modify `install_pytorch()` and remove `pytorch-cpu==1.1` way to specify `pytorch`. It is causing error because new PyTorch versions do not take the suffix `-cpu`.
-* add to `install_pytorch()` parameters for Python version, packages, and PyTorch version.
-* add Linear Algebra functions: _Gaussian Elimination_, Cholesky, LU
-* add unit tests for linear algebra functions
-* add examples for Gaussian Elimination
-* add examples for matrices operations.
-* find libraries for fast operations in matrices.
+
 
 ## TODOs-half-done
-* move some functions in *test utils* to R utils.
+* move some functions in `tests/testthat/utils.R` to `R/utils.R`
+
+# rTorch 0.0.3.9008
+* 20200910. Branch `0.0.3.9008-implement-todo-items`
+* 
 
 # rTorch 0.0.3.9007
 * 20200909. Branch `0.0.3.9007-fix-auto-load-torch`
