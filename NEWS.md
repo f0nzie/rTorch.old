@@ -11,6 +11,14 @@
 ## TODOs-half-done
 * move some functions in *test utils* to R utils.
 
+# rTorch 0.0.3.9006
+* 20200830. Fix `install_pytorch()` and `parse_torch_version()`.
+* Modify functions `install_pytorch()` and `parse_torch_version()`
+* add new unit tests for `install_pytorch()` and `parse_torch_version()`
+* add the `dry_run` option to `install_pytorch()` to use output values in unit tests
+* new unit tests file `test-install_commands.R`
+
+
 # rTorch 0.0.3.9005
 * 20200829
 * rename function in tests from `tensor_dim_` to `tensor_ndim`

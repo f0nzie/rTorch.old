@@ -9,7 +9,7 @@ is_unix <- function() {
 }
 
 is_osx <- function() {
-  Sys.info()["sysname"] == "Darwin"
+  Sys.info()[["sysname"]] == "Darwin"
 }
 
 is_linux <- function() {

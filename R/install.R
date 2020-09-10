@@ -32,6 +32,8 @@
 #'
 #' @param pip logical
 #' @param channel conda channel
+#' @param cuda_version string for the cuda toolkit version
+#' @param dry_run logical, set to TRUE for unit tests, otherwise will run commands
 #'
 #' @param ... other arguments passed to [reticulate::conda_install()] or
 #'   [reticulate::virtualenv_install()].
@@ -47,7 +49,9 @@ install_pytorch <- function(method = c("conda", "virtualenv", "auto"),
                                restart_session = TRUE,
                                conda_python_version = "3.6",
                                pip = FALSE,
-                               channel = "pytorch",
+                               channel = "stable",
+                               cuda_version = NULL,
+                               dry_run = FALSE,
                                ...) {
 
   # verify 64-bit
@@ -59,26 +63,38 @@ install_pytorch <- function(method = c("conda", "virtualenv", "auto"),
   method <- match.arg(method)
 
   # unroll version
-  ver <- parse_torch_version(version)
+  ver <- parse_torch_version(version, cuda_version, channel)
 
   version <- ver$version
   gpu <- ver$gpu
   package <- ver$package
+  cpu_gpu_packages <- ver$cpu_gpu_packages
+  channel <- ver$channel
 
   # Packages in this list should always be installed.
 
-  default_packages <- c("torchvision-cpu")
+  default_packages <- c("torchvision")
 
-  # Resolve TF probability version.
-  if (!is.na(version) && substr(version, 1, 4) %in% c("1.1.0", "1.1", "1.1.0")) {
-    default_packages <- c(default_packages, "pandas")
-    # install tfp-nightly
-  } else if (is.na(version) ||(substr(version, 1, 4) %in% c("2.0.") || version == "nightly")) {
-    default_packages <- c(default_packages, "numpy")
+  # # Resolve torch probability version.
+  # if (!is.na(version) && substr(version, 1, 4) %in% c("1.1.0", "1.1", "1.1.0")) {
+  #   default_packages <- c(default_packages, "pandas")
+  #   # install pytorch-nightly
+  # } else if (is.na(version) ||(substr(version, 1, 4) %in% c("2.0.") || version == "nightly")) {
+  #   default_packages <- c(default_packages, "numpy")
+  # }
+
+  extra_packages <- unique(c(cpu_gpu_packages, default_packages, extra_packages))
+
+  if (dry_run) {
+      os <- ifelse(is_osx(), "osx",
+                   ifelse(is_linux(), "linux",
+                          ifelse(is_windows(), "windows", "None")))
+      out <- list(package = package, extra_packages = extra_packages,
+                  envname = envname, conda = conda,
+                  conda_python_version = conda_python_version,
+                  channel = channel, pip = pip, os = os)
+      return(out)
   }
-
-  extra_packages <- unique(c(default_packages, extra_packages))
-
 
   # Main OS verification.
   if (is_osx() || is_linux()) {
@@ -136,8 +152,17 @@ install_pytorch <- function(method = c("conda", "virtualenv", "auto"),
   invisible(NULL)
 }
 
+
+
 install_conda <- function(package, extra_packages, envname, conda,
                           conda_python_version, channel, pip, ...) {
+
+  # Example:
+  # rTorch:::install_conda(package="pytorch=1.4",
+  # extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas")
+  # envname="r-torch", conda="auto", conda_python_version = "3.6",
+  # channel="pytorch", pip=FALSE
+  # )
 
   # find if environment exists
   envname_exists <- envname %in% reticulate::conda_list(conda = conda)$name
@@ -192,76 +217,46 @@ install_virtualenv <- function(package, extra_packages, envname, ...) {
 
 }
 
-parse_torch_version <- function(version) {
 
-  default_version <- "1.1"
+parse_torch_version <- function(version, cuda_version = NULL, channel = "stable") {
+  default_version <- "1.4"
+  # channel <- "pytorch"    # this is the channel
 
   ver <- list(
     version = default_version,
     gpu = FALSE,
-    package = NULL
+    package = NULL,
+    cuda_version = cuda_version,
+    cpu_gpu_packages = NULL,
+    channel = channel
   )
 
   if (version == "default") {
-
-    ver$package <- paste0("pytorch-cpu==", ver$version)
-
-    # default gpu version
-  } else if (version == "gpu") {
-
-    ver$gpu <- TRUE
-    ver$package <- paste0("pytorch-gpu==", ver$version)
-
-    # gpu qualifier provided
-  } else if (grepl("-gpu$", version)) {
-
-    split <- strsplit(version, "-")[[1]]
-    ver$version <- split[[1]]
-    ver$gpu <- TRUE
-
-    # full path to whl.
-  } else if (grepl("^.*\\.whl$", version)) {
-
-    ver$gpu <- NA
-    ver$version <- NA
-
-    if (grepl("^http", version))
-      ver$package <- version
-    else
-      ver$package <- normalizePath(version)
-
-    # another version
+    ver$package <- paste0("pytorch==", ver$version)
   } else {
-
     ver$version <- version
-
+    ver$package <- paste0("pytorch==", ver$version)
   }
 
-  # find the right package for nightly and other versions
-  if (is.null(ver$package)) {
 
-    if (ver$version == "nightly") {
+  if (is.null(ver$cuda_version)) {
+    ver$cpu_gpu_packages <- "cpuonly"
+  } else {
+    ver$cuda_version <- cuda_version
+    ver$cpu_gpu_packages <- paste0("cudatoolkit==", ver$cuda_version)
+  }
 
-      if (ver$gpu) {
-        ver$package <- "pytorch-nightly-gpu"
-      } else {
-        ver$package <- "pytorch-nightly"
-      }
-
-    } else {
-
-      if (ver$gpu) {
-        ver$package <- paste0("pytorch-gpu==", ver$version)
-      } else {
-        ver$package <- paste0("pytorch-cpu==", ver$version)
-      }
-
-    }
-
+  if (channel == "stable") {
+    ver$channel <- "pytorch"
+  } else if (channel == "nightly") {
+    ver$channel <- "pytorch-nightly"
+  } else {
+    stop("not a valid channel")
   }
 
   ver
 }
+
 
 
 #' Install additional Python packages alongside PyTorch

@@ -45,6 +45,8 @@ conda_install <- function(envname = NULL,
 {
   # rTorch::conda_install(envname="r-torch-37", packages="pytorch-cpu",
   #         channel = "pytorch", conda="auto", python_version = "3.7")
+  #
+  #
   # resolve conda binary
   conda <- conda_binary(conda)
 
