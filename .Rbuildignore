@@ -19,3 +19,4 @@ _pkgdown.yaml
 docker
 assets
 ^INSTALL\.md$
+^TODO\.md$
