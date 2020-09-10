@@ -34,6 +34,8 @@ packageStartupMessage("loading PyTorch")
         environment = "r-torch",       # this is a user generated environment
 
         on_load = function() {
+          # this warning handler will work only in TensorFlow
+          # PyTorch does not have an integrated logging module
 
           # # register warning suppression handler
           # register_suppress_warnings_handler(list(
@@ -63,20 +65,17 @@ packageStartupMessage("loading PyTorch")
           #   }
           # ))
 
-          # if we loaded pytorch then register tf help handler
+          # if we loaded PyTorch then register the help handler
           register_torch_help_handler()
 
           # workaround to silence crash-causing deprecation warnings
           tryCatch(torch$python$util$deprecation$silence()$`__enter__`(),
                    error = function(e) NULL)
-        }
-        ,
+        },   # end on_load()
 
         on_error = function(e) {
           stop(torch_config_error_message(), call. = FALSE)
         }
-
-
     ))
 
     torchvision <<- import("torchvision", delay_load = list(
@@ -119,13 +118,12 @@ torch_config <- function() {
     # first check if we found Torch
     have_torch <- py_module_available("torch")
 
-    # get py config
+    # get py_config from reticulate
     config <- py_config()
 
     # found it!
     if (have_torch) {
 
-      # OLD
       # get version
       if (reticulate::py_has_attr(torch, "version"))
         version_raw <- torch$version$`__version__`
@@ -139,18 +137,15 @@ torch_config <- function() {
       tfv <- strsplit(version_raw, ".", fixed = TRUE)[[1]]
       version <- package_version(paste(tfv[[1]], tfv[[2]], sep = "."))
 
-
         structure(class = "pytorch_config", list(
             available = TRUE,
             version = version,
-            # version_str = torch$"__version__",
             version_str = version_raw,
             location = config$required_module_path,
             python = config$python,
             python_version = config$version
         ))
-        # didn't find it
-    } else {
+    } else {  # didn't find it
         structure(class = "pytorch_config", list(
             available = FALSE,
             python_verisons = config$python_versions,
