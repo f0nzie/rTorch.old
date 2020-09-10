@@ -174,19 +174,19 @@ print.pytorch_config <- function(x, ...) {
 
 # Build error message for rTorch configuration errors
 torch_config_error_message <- function() {
-    message <- "Installation of Torch not found."
+    message <- "Installation of PyTorch not found.\n"
     config <- py_config()
     if (!is.null(config)) {
         if (length(config$python_versions) > 0) {
             message <- paste0(message,
-                              "\n\nPython environments searched for 'rTorch' package:\n")
+                              "\n\nPython environments searched for 'torch' package:\n")
             python_versions <- paste0(" ", normalizePath(config$python_versions, mustWork = FALSE),
                                       collapse = "\n")
             message <- paste0(message, python_versions, sep = "\n")
         }
     }
     message <- paste0(message,
-                      "\nYou can install PyTorch using the install_pytorch() function.\n")
+                      "\n You can install PyTorch using the install_pytorch() function.\n")
     message
 }
 
