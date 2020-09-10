@@ -1,11 +1,8 @@
 
-
-## TODOs-half-done
-* move some functions in `tests/testthat/utils.R` to `R/utils.R`
-
 # rTorch 0.0.3.9008
 * 20200910. Branch `0.0.3.9008-implement-todo-items`
-* 
+* add test in `test_numpy_logical.R` to check sample tensors
+* add test in `test_info.R` add test to check the version three components
 
 # rTorch 0.0.3.9007
 * 20200909. Branch `0.0.3.9007-fix-auto-load-torch`
