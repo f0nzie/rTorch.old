@@ -11,6 +11,16 @@
 ## TODOs-half-done
 * move some functions in *test utils* to R utils.
 
+# rTorch 0.0.3.9007
+* 20200909. Branch `0.0.3.9007-fix-auto-load-torch`
+* simplify imports in `package.R`
+* provide function for help handler after change in `on_load()`
+* fix function `make_copy()` to consider when an object have multiple classes. Use `any` for the logical selection
+* test o Travis for macOS and R-4.0.2, R-3.6.3 with pytorch=1.4. PASSED
+* test o Travis for Linux Xenial and R-4.0.2, R-3.6.3 with pytorch=1.4. PASSED
+
+
+
 # rTorch 0.0.3.9006
 * 20200830. Fix `install_pytorch()` and `parse_torch_version()`.
 * Modify functions `install_pytorch()` and `parse_torch_version()`
