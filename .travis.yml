@@ -4,7 +4,7 @@ language: R
 # cache: packages
 
 r:
- - 4.0.0
+ - 4.0.2
  - 3.6.3
  # - 3.5.3
  # - 3.4.3
@@ -12,13 +12,13 @@ r:
 warnings_are_errors: false
 
 os:
-# - linux
- - osx
+ - linux
+# - osx
 
 # environment variables global to the matrix
 env:
   global:
-    - PYTORCH_VERSION="1.1"
+    - PYTORCH_VERSION="1.4"
     - PYTHON_VERSION="3.6"
 
 r-packages:
