@@ -26,13 +26,16 @@ torch_size <- function(obj) {
 #' @param ... additional parameters
 #' @export
 make_copy <- function(object, ...) {
-    if (class(object) == "torch.Tensor") {
+    # the object could hold multiple classes
+    if (any(class(object) %in% "torch.Tensor")) {
         obj <- object$copy_(object)
     }
-    else if (class(object) == "numpy.ndarray") {
+    else if (any(class(object) %in% "numpy.ndarray")) {
         obj <- object$copy()
     } else {
-        obj <- r_to_py(object)$copy()
+        # it is an R object
+        rtp_obj <- r_to_py(object)
+        obj <- rtp_obj$copy()
     }
     return(obj)
 }
