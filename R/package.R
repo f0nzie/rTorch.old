@@ -124,14 +124,26 @@ torch_config <- function() {
     # found it!
     if (have_torch) {
 
-        # get version
-        tfv <- strsplit(torch$"__version__", ".", fixed = TRUE)[[1]]
-        version <- package_version(paste(tfv[[1]], tfv[[2]], sep = "."))
+      # OLD
+      # get version
+      if (reticulate::py_has_attr(torch, "version"))
+        version_raw <- torch$version$`__version__`
+      else
+        version_raw <- torch$`__version__`
+
+        #OLD
+        #tfv <- strsplit(torch$"__version__", ".", fixed = TRUE)[[1]]
+        #version <- package_version(paste(tfv[[1]], tfv[[2]], sep = "."))
+
+      tfv <- strsplit(version_raw, ".", fixed = TRUE)[[1]]
+      version <- package_version(paste(tfv[[1]], tfv[[2]], sep = "."))
+
 
         structure(class = "pytorch_config", list(
             available = TRUE,
             version = version,
-            version_str = torch$"__version__",
+            # version_str = torch$"__version__",
+            version_str = version_raw,
             location = config$required_module_path,
             python = config$python,
             python_version = config$version
