@@ -1,15 +1,10 @@
-# rTorch 0.0.3.9005 TODOs
-* modify `pytorch_install` to include version
-* Modify `install_pytorch()` and remove `pytorch-cpu==1.1` way to specify `pytorch`. It is causing error because new PyTorch versions do not take the suffix `-cpu`.
-* add to `install_pytorch()` parameters for Python version, packages, and PyTorch version.
-* add Linear Algebra functions: _Gaussian Elimination_, Cholesky, LU
-* add unit tests for linear algebra functions
-* add examples for Gaussian Elimination
-* add examples for matrices operations.
-* find libraries for fast operations in matrices.
 
-## TODOs-half-done
-* move some functions in *test utils* to R utils.
+# rTorch 0.0.3.9008
+* 20200910. Branch `0.0.3.9008-implement-todo-items`
+* add test in `test_numpy_logical.R` to check sample tensors
+* add test in `test_info.R` add test to check the version three components
+* regenerate pkgdown site. add `make_copy` function
+
 
 # rTorch 0.0.3.9007
 * 20200909. Branch `0.0.3.9007-fix-auto-load-torch`
@@ -64,20 +59,17 @@
 * Using _https://travis-ci.org/_
 * combine tensor_functions.R and utils.R
 * unit tests for transpose and permute
-* Merge to `develop`.
 * Getting this warning during check: `checkRd: (5) rTorch.Rd:0-7: Must have a \description`. Also stops in _travis-ci.org_.
 * Switching from PyTorch `1.6` to `1.1` to debug error in _rTorch.Rd_
 * Fixed problem with _rTorch.Rd_. Block in package.R needed description. Added this extra line below the title: `#' PyTorch bindings for R`. The problem originated by the new R version.
-* Reinstall PyTorch 1.6 with `rTorch:::install_conda(package="pytorch=1.6", envname="r-torch", conda="auto", conda_python_version = "3.6", pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))`. Run tests. Run devtools::check(). All passed.
+* Re-install PyTorch 1.6 with `rTorch:::install_conda(package="pytorch=1.6", envname="r-torch", conda="auto", conda_python_version = "3.6", pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))`. Run tests. Run devtools::check(). All passed.
 * Add `--run-donttest` option to check() arguments. Getting errors.
 * Fix `all_dims()` examples in _generics.R_.
 * Fix `logical_not()` examples in _generics.R_.
 * Fix ``[.torch.Tensor`` examples in _extract.R_.
 * Fix `torch_extract_opts` examples in _extract.R_.
-* All checks passed. Merge to `develop`. Testing on _Travis_.
 * Travis stopping on error in `dontrun` examples that passed in the local machine. What is different is the PyTorch version specified in `.travis.yml`. Changing variable from "1.1"" to `PYTORCH_VERSION="1.6"`.
 * Travis stopping on error related to suffix `pytorch-cpu==1.6` in command `'rTorch::install_pytorch(method="conda", version=Sys.getenv("PYTORCH_VERSION"), channel="pytorch", conda_python_version="3.6")'`. We need to modify function `install_pytorch()`.
-* check out and test from `develop` branch
 * tests to be performed with `R version 4.0.0 (2020-04-24) -- "Arbor Day"`
 * first, remove installation of gcc or libstdc++
 * remove `rTorch::pytorch_install()`. Use instead `rTorch:::conda_install()`.
@@ -86,13 +78,11 @@
 * export `LD_LIBRARY_PATH=${TRAVIS_HOME}/miniconda/lib`. 
 * install required packages with `Rscript -e 'install.packages(c("logging", "reticulate", "jsonlite", "R6", "rstudioapi", "data.table"))`
 * reduce size of tensor in `test_tensor_dim.R` because throwing error due to lack of memory.
-* after craeful revision no more errors. Only one NOTE: `* checking for future file timestamps ... NOTE. unable to verify current time`.
+* after careful revision no more errors in Linux. Only one NOTE: `* checking for future file timestamps ... NOTE. unable to verify current time`.
 * all tests running fine with R-4.0.0. Will change version to R-3.6.3.
 * all tests running fine with R-3.5.3. Multiple R versions through Travis.
 * all tests running fine with R-3.4.3. 
-* all tests passed in osx with versions 3.6.3, 3.5.3 and 3.4.3.
-
-
+* all tests passed in macOS with versions 3.6.3, 3.5.3 and 3.4.3.
 
 
 

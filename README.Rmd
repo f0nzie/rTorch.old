@@ -26,7 +26,7 @@ Besides the module `torch`, which directly provides `PyTorch` methods, classes a
 
 
 
-## Installation
+## rTorch installation
 
 ### From CRAN
 `rTorch` is available in via CRAN and GitHub.
@@ -43,6 +43,7 @@ Installing from GitHub gives you the flexibility of experimenting with the lates
 
 `devtools::install_github("f0nzie/rTorch", ref="develop")`
 
+## PyTorch installation
 
 ### Installing Python and PyTorch
 Although, Python and PyTorch can be installed directly from the R console, before start running `rTorch`, I would recommend installing **PyTorch** in a new Python or Python-Anaconda environment, and testing if it's working alright first. The advantage of doing it this way is that you define the base Python or Anaconda version to install.
@@ -82,7 +83,9 @@ After *Miniconda* is installed, you could proceed to install the flavor or *PyTo
 rTorch:::install_conda(package="pytorch=1.4", envname="r-torch", conda="auto", conda_python_version = "3.6", pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))
 ```
 
-## Matrices and Linear Algebra
+# Getting Started
+
+## Tensor types
 
 There are five major type of Tensors in PyTorch:
 * Byte
@@ -264,7 +267,8 @@ X
 np$transpose(X)
 ```
 
-## With newer PyTorch versions we should work with NumPy array copies
+## Copying a numpy object
+With newer PyTorch versions we should work with NumPy array copies
 There have been minor changes in the latest versions of PyTorch that prevents a direct use of a NumPy array. You will get this warning:
 
     sys:1: UserWarning: The given NumPy array is not writeable, and PyTorch does 
@@ -286,12 +290,8 @@ t[1L]$fill_(-1)
 print(a)
 ```
 
+
 while this other one -with some extra code- will not:
-
-```{r}
-
-```
-
 
 ```{r}
 a = np$array(list(1, 2, 3))
@@ -305,7 +305,31 @@ t[1L]$fill_(-1)
 print(a)
 ```
 
-## Create tensors
+## Function `make_copy()`
+To make easier to copy an object in `rTorch` we implemented the function `make_copy`, which makes a safe copy regardless if it is a torch, numpy or an R type object.
+
+```{r}
+a = np$array(list(1, 2, 3, 4, 5))
+
+a_copy <- make_copy(a)
+t <- torch$as_tensor(a_copy)
+t
+```
+
+
+### Convert a numpy array to a tensor
+
+```{r}
+# convert a numpy array to a tensor
+np_a = np$array(c(c(3, 4), c(3, 6)))
+t_a = torch$from_numpy(r_to_py(np_a)$copy())
+print(t_a)
+```
+
+
+## Creating tensors
+
+### Random tensor
 
 ```{r}
 # a random 1D tensor
@@ -321,20 +345,32 @@ ft2 <- torch$as_tensor(np_copy, dtype= torch$float64)
 ft2
 ```
 
+This is a very common operation in machine learning:
 
+```{r}
+# convert tensor to a numpy array
+a = torch$rand(5L, 4L)
+b = a$numpy()
+print(b)
+```
+
+### Change the type of a tensor
 ```{r}
 # convert tensor to float 16-bits
 ft2_dbl <- torch$as_tensor(ft2, dtype = torch$float16)
 ft2_dbl
 ```
 
-
+### Create an uninitialized tensor
 Create a tensor of size (5 x 7) with uninitialized memory:
 
 ```{r}
 a <- torch$FloatTensor(5L, 7L)
 print(a)
 ```
+
+
+### Create a tensor and then change its shape
 
 ```{r}
 # using arange to create tensor. starts from 0
@@ -406,40 +442,35 @@ m$sample()  # sample from a Weibull distribution with scale=1, concentration=1
 ```
 
 
-## Tensor data types
+## Tensor default data types
+Only floating-point types are supported as the default type.
 
+### float32
 ```{r}
 # Default data type
 torch$tensor(list(1.2, 3))$dtype  # default for floating point is torch.float32
 ```
 
+### float64
 ```{r}
 # change default data type to float64
 torch$set_default_dtype(torch$float64)
 torch$tensor(list(1.2, 3))$dtype         # a new floating point tensor
 ```
 
-
-
-This is a very common operation in machine learning:
-
+### double 
 ```{r}
-# convert tensor to a numpy array
-a = torch$rand(5L, 4L)
-b = a$numpy()
-print(b)
+torch$set_default_dtype(torch$double)
+torch$tensor(list(1.2, 3))$dtype
 ```
 
-```{r}
-# convert a numpy array to a tensor
-np_a = np$array(c(c(3, 4), c(3, 6)))
-t_a = torch$from_numpy(r_to_py(np_a)$copy())
-print(t_a)
-```
+
+
 
 
 ## Tensor resizing
 
+### Using *view*
 ```{r}
 x = torch$randn(2L, 3L)            # Size 2x3
 y = x$view(6L)                    # Resize x to size 6
@@ -448,7 +479,15 @@ print(y)
 print(z)
 ```
 
-### concatenate tensors
+```{r}
+# 0 1 2
+# 3 4 5
+# 6 7 8
+v = torch$arange(9L)
+(v = v$view(3L, 3L))
+```
+
+### Concatenating tensors
 
 ```{r}
 # concatenate tensors
@@ -460,15 +499,6 @@ torch$cat(list(x, x, x), 0L)
 
 # concatenate tensors by dim=1
 torch$cat(list(x, x, x), 1L)
-```
-
-
-```{r}
-# 0 1 2
-# 3 4 5
-# 6 7 8
-v = torch$arange(9L)
-(v = v$view(3L, 3L))
 ```
 
 
@@ -530,6 +560,7 @@ print(eye)
 
 ```
 
+### Eye
 ```{r}
 v = torch$ones_like(eye)     # A tensor with same shape as eye. Fill it with 1.
 v
@@ -571,7 +602,7 @@ v = torch$arange(10L)             # similar to range(5) but creating a Tensor
 ```
 
 
-### Inplace / Out-of-place
+### In-place / Not-in-place
 
 ```{r}
 a = torch$rand(5L, 4L)
@@ -714,6 +745,7 @@ print(xs)     # shape original tensor
 
 print(xps)    # shape permuted tensor
 ```
+
 ### permute a 3D tensor
 
 ```{r}
@@ -732,6 +764,7 @@ print(xps)     # permuted tensor size
 
 ## Logical operations
 
+### is it equal
 ```{r}
 m0 = torch$zeros(3L, 5L)
 m1 = torch$ones(3L, 5L)
@@ -740,6 +773,7 @@ m2 = torch$eye(3L, 5L)
 print(m1 == m0)
 ```
 
+### is it not equal
 ```{r}
 print(m1 != m1)
 ```
@@ -748,12 +782,13 @@ print(m1 != m1)
 print(m2 == m2)
 ```
 
-
+### AND
 ```{r}
 # AND
 m1 & m1
 ```
 
+### OR
 ```{r}
 # OR
 m0 | m2
@@ -764,6 +799,7 @@ m0 | m2
 m1 | m2
 ```
 
+### One logical result with *all*
 ```{r}
 # all_boolean <- function(x) {
 #   # convert tensor of 1s and 0s to a unique boolean
@@ -781,6 +817,7 @@ all(C < A)
 all(A < C)
 ```
 
+### greater than
 ```{r}
 # tensor is greater than
 A <- torch$ones(60000L, 1L, 28L, 28L)
@@ -790,6 +827,7 @@ all(torch$gt(A, D))
 ```
 
 
+### lower than
 ```{r}
 # tensor is less than or equal
 A1 <- torch$ones(60000L, 1L, 28L, 28L)
