@@ -8,21 +8,29 @@
 
 <title>Changelog • rTorch</title>
 
-<!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<!-- jquery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,7 +38,9 @@
 
 
 
+
 <meta property="og:title" content="Changelog" />
+
 
 
 
@@ -44,9 +54,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -60,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9008</span>
       </span>
     </div>
 
@@ -68,7 +79,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -79,11 +90,10 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/f0nzie/rTorch">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/f0nzie/rTorch/">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -94,26 +104,199 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small></small></h1>
+      <h1 data-toc-skip>Changelog <small></small></h1>
       <small>Source: <a href='https://github.com/f0nzie/rTorch/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="rtorch-0-0-3" class="section level1">
-<h1 class="page-header">
-<a href="#rtorch-0-0-3" class="anchor"></a>rTorch 0.0.3</h1>
+    <div id="rtorch-0039008" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.3.9008">
+<a href="#rtorch-0039008" class="anchor"></a>rTorch 0.0.3.9008<small> Unreleased </small>
+</h1>
+<ul>
+<li><ol>
+<li>Branch <code>0.0.3.9008-implement-todo-items</code>
+</li>
+</ol></li>
+<li>add test in <code>test_numpy_logical.R</code> to check sample tensors</li>
+<li>add test in <code>test_info.R</code> add test to check the version three components</li>
+</ul>
+</div>
+    <div id="rtorch-0039007" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.3.9007">
+<a href="#rtorch-0039007" class="anchor"></a>rTorch 0.0.3.9007<small> Unreleased </small>
+</h1>
+<ul>
+<li><ol>
+<li>Branch <code>0.0.3.9007-fix-auto-load-torch</code>
+</li>
+</ol></li>
+<li>simplify imports in <code>package.R</code>
+</li>
+<li>provide function for help handler after change in <code>on_load()</code>
+</li>
+<li>fix function <code><a href="../reference/make_copy.html">make_copy()</a></code> to consider when an object have multiple classes. Use <code>any</code> for the logical selection</li>
+<li>test o Travis for macOS and R-4.0.2, R-3.6.3 with pytorch=1.4. PASSED</li>
+<li>test o Travis for Linux Xenial and R-4.0.2, R-3.6.3 with pytorch=1.4. PASSED</li>
+</ul>
+</div>
+    <div id="rtorch-0039006" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.3.9006">
+<a href="#rtorch-0039006" class="anchor"></a>rTorch 0.0.3.9006<small> Unreleased </small>
+</h1>
+<ul>
+<li><ol>
+<li>Fix <code><a href="../reference/install_pytorch.html">install_pytorch()</a></code> and <code>parse_torch_version()</code>.</li>
+</ol></li>
+<li>Modify functions <code><a href="../reference/install_pytorch.html">install_pytorch()</a></code> and <code>parse_torch_version()</code>
+</li>
+<li>add new unit tests for <code><a href="../reference/install_pytorch.html">install_pytorch()</a></code> and <code>parse_torch_version()</code>
+</li>
+<li>add the <code>dry_run</code> option to <code><a href="../reference/install_pytorch.html">install_pytorch()</a></code> to use output values in unit tests</li>
+<li>new unit tests file <code>test-install_commands.R</code>
+</li>
+</ul>
+</div>
+    <div id="rtorch-0039005" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.3.9005">
+<a href="#rtorch-0039005" class="anchor"></a>rTorch 0.0.3.9005<small> Unreleased </small>
+</h1>
+<ul>
+<li>20200829</li>
+<li>rename function in tests from <code>tensor_dim_</code> to <code>tensor_ndim</code>
+</li>
+<li>Dockerfile now using environment variables for name and version of the package insaide the script.</li>
+<li>export function <code><a href="../reference/make_copy.html">make_copy()</a></code> moved from unit test utilities.</li>
+<li>Update README. Remove mention to <code>torch$index</code> (not applicable).</li>
+<li>Add more installation instructions for PyTorch.</li>
+<li>Clarify some examples in the README. Use <code><a href="https://rdrr.io/r/base/message.html">message()</a></code> instead of <code><a href="https://rdrr.io/r/base/print.html">print()</a></code>
+</li>
+</ul>
+</div>
+    <div id="rtorch-0039004" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.3.9004">
+<a href="#rtorch-0039004" class="anchor"></a>rTorch 0.0.3.9004<small> Unreleased </small>
+</h1>
+<ul>
+<li>20200828</li>
+<li>All tests are passing in Travis on R-4.0.0, R-3.6.3, R-3.5.3 and R-3.4.3.</li>
+<li>Tests that are failing are in the <code>examples</code>.</li>
+<li>Error is <code>RuntimeError: Expected object of scalar type Byte but got scalar type Long</code> in <code>[.torch.Tensor</code> at generics functions.</li>
+<li>Example causing error is a verification of the tensor <code>(all(y[all_dims(), 1] == y[,,,,1]) == torch$tensor(1L))$numpy()</code>. In older versions of R it works. We could change the test to something like <code>as.logical((all(y[all_dims(), 1] == y[,,,,1]))$numpy()) == TRUE</code>. Tested in R-3.6.3 locally and PASSED. Will test via Travis.</li>
+<li>All tests in Ubuntu xenial with PyTorch 1.1 using Travis passed.</li>
+<li>Testing R-4.0.0 with PyTorch 1.1 generates 28 warnings <code>test_torch_core.R:211: warning: narrow the condition has length &gt; 1 and only the first element will be used</code> but all test passed.</li>
+<li>integrating Docker with rTorch. The Docker container will create an equivalent Travis machine to save time during tests.</li>
+<li>Adding option <code>- if [ "$TRAVIS_OS_NAME" = "osx" ]; then conda install nomkl;fi</code> in <em>.travis.yml</em> to be able to get rid off an error related to <strong>OMP</strong>
+</li>
+<li>merging branch <code>003.9004-fix-examples-torch-byte-to-long</code> with <code>develop</code>.</li>
+<li>will start testing with <em>PyTorch 1.4</em> as the average version. Installing PyTorch 1.4 with</li>
+</ul>
+<pre><code>&gt; rTorch:::install_conda(package="pytorch=1.4", envname="r-torch", conda="auto", conda_python_version = "3.6", pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))</code></pre>
+</div>
+    <div id="rtorch-0039003" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.3.9003">
+<a href="#rtorch-0039003" class="anchor"></a>rTorch 0.0.3.9003<small> Unreleased </small>
+</h1>
+<ul>
+<li>20200814</li>
+<li>creating branch, make active <code>fix-readme-add-tests</code>.</li>
+<li>Using _<a href="https://travis-ci.org/_" class="uri">https://travis-ci.org/_</a>
+</li>
+<li>combine tensor_functions.R and utils.R</li>
+<li>unit tests for transpose and permute</li>
+<li>Merge to <code>develop</code>.</li>
+<li>Getting this warning during check: <code>checkRd: (5) rTorch.Rd:0-7: Must have a \description</code>. Also stops in <em>travis-ci.org</em>.</li>
+<li>Switching from PyTorch <code>1.6</code> to <code>1.1</code> to debug error in <em>rTorch.Rd</em>
+</li>
+<li>Fixed problem with <em>rTorch.Rd</em>. Block in package.R needed description. Added this extra line below the title: <code>#' PyTorch bindings for R</code>. The problem originated by the new R version.</li>
+<li>Reinstall PyTorch 1.6 with <code>rTorch:::install_conda(package="pytorch=1.6", envname="r-torch", conda="auto", conda_python_version = "3.6", pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))</code>. Run tests. Run devtools::check(). All passed.</li>
+<li>Add <code>--run-donttest</code> option to check() arguments. Getting errors.</li>
+<li>Fix <code><a href="../reference/all_dims.html">all_dims()</a></code> examples in <em>generics.R</em>.</li>
+<li>Fix <code><a href="../reference/logical_not.html">logical_not()</a></code> examples in <em>generics.R</em>.</li>
+<li>Fix <code>[.torch.Tensor</code> examples in <em>extract.R</em>.</li>
+<li>Fix <code>torch_extract_opts</code> examples in <em>extract.R</em>.</li>
+<li>All checks passed. Merge to <code>develop</code>. Testing on <em>Travis</em>.</li>
+<li>Travis stopping on error in <code>dontrun</code> examples that passed in the local machine. What is different is the PyTorch version specified in <code>.travis.yml</code>. Changing variable from “1.1”" to <code>PYTORCH_VERSION="1.6"</code>.</li>
+<li>Travis stopping on error related to suffix <code>pytorch-cpu==1.6</code> in command <code>'rTorch::install_pytorch(method="conda", version=Sys.getenv("PYTORCH_VERSION"), channel="pytorch", conda_python_version="3.6")'</code>. We need to modify function <code><a href="../reference/install_pytorch.html">install_pytorch()</a></code>.</li>
+<li>check out and test from <code>develop</code> branch</li>
+<li>tests to be performed with <code>R version 4.0.0 (2020-04-24) -- "Arbor Day"</code>
+</li>
+<li>first, remove installation of gcc or libstdc++</li>
+<li>remove <code>rTorch::pytorch_install()</code>. Use instead <code>rTorch:::conda_install()</code>.</li>
+<li>create environment variables for PYTORCH_VERSION, PYTHON_VERSION and LD_LIBRARY_PATH.</li>
+<li>remove symbolic link to <code>libstdc++.so.6</code> in the Linux installation. This is confusing Python.</li>
+<li>export <code>LD_LIBRARY_PATH=${TRAVIS_HOME}/miniconda/lib</code>.</li>
+<li>install required packages with <code>Rscript -e 'install.packages(c("logging", "reticulate", "jsonlite", "R6", "rstudioapi", "data.table"))</code>
+</li>
+<li>reduce size of tensor in <code>test_tensor_dim.R</code> because throwing error due to lack of memory.</li>
+<li>after craeful revision no more errors. Only one NOTE: <code>* checking for future file timestamps ... NOTE. unable to verify current time</code>.</li>
+<li>all tests running fine with R-4.0.0. Will change version to R-3.6.3.</li>
+<li>all tests running fine with R-3.5.3. Multiple R versions through Travis.</li>
+<li>all tests running fine with R-3.4.3.</li>
+<li>all tests passed in osx with versions 3.6.3, 3.5.3 and 3.4.3.</li>
+</ul>
+</div>
+    <div id="rtorch-0039002" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.3.9002">
+<a href="#rtorch-0039002" class="anchor"></a>rTorch 0.0.3.9002<small> Unreleased </small>
+</h1>
+<ul>
+<li>20200810</li>
+<li>creating branch <code>fix-elimination-cpu-suffix</code> to address removal of suffix by developer.</li>
+<li>Installed PyTorch 1.1 with <code>rTorch:::install_conda(package="pytorch=1.1", envname="r-torch", conda="auto", conda_python_version = "3.6", pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))</code>
+</li>
+<li>revise unit tests and fix version dependence. Two test failing since last release PyTorch 1.1. Four tests failing with PyTorch 1.6 installed. Related to versioning checks.</li>
+<li>All tests in README passing and running.</li>
+<li>fixed tests in <code>test_types.R</code>. Minor changes in <code>reticulate</code> makes it more sensitive.</li>
+<li>set aside check on <code>mnist</code> dataset until internal tests are resolved</li>
+<li>install PyTorch 1.6 on Python 3.6`. Restart RStudio.</li>
+<li>fix version test with <code>VERSIONS &lt;- c("1.1", "1.0", "1.2", "1.3", "1.4", "1.5", "1.6")</code> in <code>test_info.R</code>
+</li>
+<li>With PyTorch 1.6 we are getting the warning <code>extract syntaxsys:1: UserWarning: The given NumPy array is not writeable, and PyTorch does not support non-writeable tensors. This means you can write to the underlying (supposedly non-writeable) NumPy array using the tensor. You may want to copy the array to protect its data or make it writeable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at  /opt/conda/conda-bld/pytorch_1595629417679/work/torch/csrc/utils/tensor_numpy.cpp:141.)</code>.</li>
+<li>add test custom function <code>expect_all_true()</code> in <code>utils.R</code> that shortens a test with multiple TRUE returning from condition</li>
+<li>Fix overwriting warning by adding <code>r_to_py</code> to R array and then copying with <code>r_to_py(r_array)$copy()</code> before converting to tensor</li>
+<li>five test files giving NumPy overwrite warning test-generic-methods.R, test_generics.R, test_numpy_logical.R, test_tensor_slicing.R, test_torch_core.R</li>
+<li>change functions <code>tensor_logical_and()</code> and <code>tensor_logical_or()</code> in <code>generics.R</code> -which use NumPy logical functions - to make a copy before converting the numpy array to a tensor</li>
+<li>change <code>as_tensor()</code> function in tensor_functions.R with <code>torch$as_tensor()</code>. Use make_copy() to prevent PyTorch warning.</li>
+</ul>
+</div>
+    <div id="rtorch-0039001" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.3.9001">
+<a href="#rtorch-0039001" class="anchor"></a>rTorch 0.0.3.9001<small> Unreleased </small>
+</h1>
+<ul>
+<li>20190918</li>
+<li>Rename tensorflow old labels to pytorch</li>
+</ul>
+</div>
+    <div id="rtorch-0039000" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.3.9000">
+<a href="#rtorch-0039000" class="anchor"></a>rTorch 0.0.3.9000<small> Unreleased </small>
+</h1>
+<ul>
+<li>20190805</li>
+<li>Now in CRAN. 10:00</li>
+<li>Announce in LinkedIn and Twitter</li>
+</ul>
+</div>
+    <div id="rtorch-003" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.3">
+<a href="#rtorch-003" class="anchor"></a>rTorch 0.0.3<small> 2019-08-05 </small>
+</h1>
 <ul>
 <li>20190802</li>
 <li>Released to CRAN at 15:20</li>
 </ul>
 </div>
-    <div id="rtorch-0-0-2-9000" class="section level1">
-<h1 class="page-header">
-<a href="#rtorch-0-0-2-9000" class="anchor"></a>rTorch 0.0.2.9000</h1>
+    <div id="rtorch-0029000" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.2.9000">
+<a href="#rtorch-0029000" class="anchor"></a>rTorch 0.0.2.9000<small> Unreleased </small>
+</h1>
 <ul>
 <li>20190802</li>
 <li>Returned from CRAN with notes</li>
@@ -127,9 +310,10 @@
 </li>
 </ul>
 </div>
-    <div id="rtorch-0-0-2" class="section level1">
-<h1 class="page-header">
-<a href="#rtorch-0-0-2" class="anchor"></a>rTorch 0.0.2</h1>
+    <div id="rtorch-002" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.2">
+<a href="#rtorch-002" class="anchor"></a>rTorch 0.0.2<small> Unreleased </small>
+</h1>
 <ul>
 <li>July 31 2019</li>
 <li>Submitted to CRAN at 15:30. Received. Waiting manual inspection.</li>
@@ -145,9 +329,10 @@
 <li>Move out vignettes to reduce testing time. Will ship separately using <code>rsuite</code>.</li>
 </ul>
 </div>
-    <div id="rtorch-0-0-1-9013" class="section level1">
-<h1 class="page-header">
-<a href="#rtorch-0-0-1-9013" class="anchor"></a>rTorch 0.0.1.9013</h1>
+    <div id="rtorch-0019013" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.1.9013">
+<a href="#rtorch-0019013" class="anchor"></a>rTorch 0.0.1.9013<small> Unreleased </small>
+</h1>
 <ul>
 <li>July 26 2019</li>
 <li>Vignettes temporarily moved to inst/vignettes to reduce build time of package</li>
@@ -160,9 +345,10 @@
 <li>Change download folders for MNIST datasets under project folder</li>
 </ul>
 </div>
-    <div id="rtorch-0-0-1-9012" class="section level1">
-<h1 class="page-header">
-<a href="#rtorch-0-0-1-9012" class="anchor"></a>rTorch 0.0.1.9012</h1>
+    <div id="rtorch-0019012" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.1.9012">
+<a href="#rtorch-0019012" class="anchor"></a>rTorch 0.0.1.9012<small> Unreleased </small>
+</h1>
 <ul>
 <li>July 24 2019</li>
 <li>Change MNIST download folder to ~/raw_data instead of inst/</li>
@@ -172,9 +358,10 @@
 <li>Added/remove experimental code to replicate the Python function to visualize the image along with the bar plot. Unsuccessful because R (image) and Python image (plt.imshow) functions use different array dimensions.</li>
 </ul>
 </div>
-    <div id="rtorch-0-0-1-9011" class="section level1">
-<h1 class="page-header">
-<a href="#rtorch-0-0-1-9011" class="anchor"></a>rTorch 0.0.1.9011</h1>
+    <div id="rtorch-0019011" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.1.9011">
+<a href="#rtorch-0019011" class="anchor"></a>rTorch 0.0.1.9011<small> Unreleased </small>
+</h1>
 <ul>
 <li>July 22 2019</li>
 <li>Added vignette <code>mnist_fashion_inference.Rmd</code>.</li>
@@ -183,9 +370,10 @@
 <li>Fix generics any, all using as_tensor() instead of tensor()</li>
 </ul>
 </div>
-    <div id="rtorch-0-0-1-9010" class="section level1">
-<h1 class="page-header">
-<a href="#rtorch-0-0-1-9010" class="anchor"></a>rTorch 0.0.1.9010</h1>
+    <div id="rtorch-0019010" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.1.9010">
+<a href="#rtorch-0019010" class="anchor"></a>rTorch 0.0.1.9010<small> Unreleased </small>
+</h1>
 <ul>
 <li>July 22 2019</li>
 <li>New vignette using PyTorch builtin functions and classes. Rainfall dataset: <code>linear_regression_rainfall_builtins.Rmd</code>
@@ -194,60 +382,67 @@
 </li>
 </ul>
 </div>
-    <div id="rtorch-0-0-1-9009" class="section level1">
-<h1 class="page-header">
-<a href="#rtorch-0-0-1-9009" class="anchor"></a>rTorch 0.0.1.9009</h1>
+    <div id="rtorch-0019009" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.1.9009">
+<a href="#rtorch-0019009" class="anchor"></a>rTorch 0.0.1.9009<small> Unreleased </small>
+</h1>
 <ul>
 <li>July 22 2019</li>
 <li>Fix version numbers. Missing the number one.</li>
 </ul>
 </div>
-    <div id="rtorch-0-0-1-9008" class="section level1">
-<h1 class="page-header">
-<a href="#rtorch-0-0-1-9008" class="anchor"></a>rTorch 0.0.1.9008</h1>
+    <div id="rtorch-0019008" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.1.9008">
+<a href="#rtorch-0019008" class="anchor"></a>rTorch 0.0.1.9008<small> Unreleased </small>
+</h1>
 <ul>
 <li>July 22 2019</li>
 <li>Refresh pkgdown</li>
 <li>Export html files for pkgdown. Modify .gitignore.</li>
 </ul>
 </div>
-    <div id="rtorch-0-0-1-9006" class="section level1">
-<h1 class="page-header">
-<a href="#rtorch-0-0-1-9006" class="anchor"></a>rTorch 0.0.1.9006</h1>
+    <div id="rtorch-0019006" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.1.9006">
+<a href="#rtorch-0019006" class="anchor"></a>rTorch 0.0.1.9006<small> Unreleased </small>
+</h1>
 <ul>
 <li>July 22 2019</li>
 <li>Add pkgdown website</li>
 </ul>
 </div>
-    <div id="rtorch-0-0-1-9005" class="section level1">
-<h1 class="page-header">
-<a href="#rtorch-0-0-1-9005" class="anchor"></a>rTorch 0.0.1.9005</h1>
+    <div id="rtorch-0019005" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.1.9005">
+<a href="#rtorch-0019005" class="anchor"></a>rTorch 0.0.1.9005<small> Unreleased </small>
+</h1>
 <ul>
 <li>July 22 2019</li>
 <li>Add vignette <code>png_images_minist_digits.Rmd</code>. It uses PBG images in a local folder instead of downloading MNIST idx format images.</li>
 <li>Add logical operators to README.</li>
 </ul>
 </div>
-    <div id="rtorch-0-0-1-9004" class="section level1">
-<h1 class="page-header">
-<a href="#rtorch-0-0-1-9004" class="anchor"></a>rTorch 0.0.1.9004</h1>
+    <div id="rtorch-0019004" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.1.9004">
+<a href="#rtorch-0019004" class="anchor"></a>rTorch 0.0.1.9004<small> Unreleased </small>
+</h1>
 <ul>
 <li>July 22 2019</li>
 <li>Add vignette <code>idx_images_minist_digits.Rmd</code>
 </li>
 </ul>
 </div>
-    <div id="rtorch-0-0-1-9003" class="section level1">
-<h1 class="page-header">
-<a href="#rtorch-0-0-1-9003" class="anchor"></a>rTorch 0.0.1.9003</h1>
+    <div id="rtorch-0019003" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.1.9003">
+<a href="#rtorch-0019003" class="anchor"></a>rTorch 0.0.1.9003<small> Unreleased </small>
+</h1>
 <ul>
 <li>July 21 2019</li>
 <li>New vignette <code>two_layer_neural_network.Rmd</code>. Had some problem with the tensor types. Fixed by using shorter generic version of the tensor gradient operation.</li>
 </ul>
 </div>
-    <div id="rtorch-0-0-1-9002" class="section level1">
-<h1 class="page-header">
-<a href="#rtorch-0-0-1-9002" class="anchor"></a>rTorch 0.0.1.9002</h1>
+    <div id="rtorch-0019002" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.1.9002">
+<a href="#rtorch-0019002" class="anchor"></a>rTorch 0.0.1.9002<small> Unreleased </small>
+</h1>
 <ul>
 <li>July 21 2019</li>
 <li>Add two more vignettes.</li>
@@ -255,19 +450,21 @@
 <li>Remove old code from generics.R</li>
 </ul>
 </div>
-    <div id="rtorch-0-0-1-9001" class="section level1">
-<h1 class="page-header">
-<a href="#rtorch-0-0-1-9001" class="anchor"></a>rTorch 0.0.1.9001</h1>
+    <div id="rtorch-0019001" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.1.9001">
+<a href="#rtorch-0019001" class="anchor"></a>rTorch 0.0.1.9001<small> Unreleased </small>
+</h1>
 <ul>
 <li>July 21 2019</li>
 <li>Adding first example as a vignette.</li>
-<li>import Python torch with <code><a href="https://www.rdocumentation.org/packages/reticulate/topics/py_run">py_run_string("import torch")</a></code>
+<li>import Python torch with <code><a href="https://rdrr.io/pkg/reticulate/man/py_run.html">py_run_string("import torch")</a></code>
 </li>
 </ul>
 </div>
-    <div id="rtorch-0-0-1" class="section level1">
-<h1 class="page-header">
-<a href="#rtorch-0-0-1" class="anchor"></a>rTorch 0.0.1</h1>
+    <div id="rtorch-001" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.1">
+<a href="#rtorch-001" class="anchor"></a>rTorch 0.0.1<small> Unreleased </small>
+</h1>
 <ul>
 <li>July 21 2019</li>
 <li>alpha version</li>
@@ -277,41 +474,24 @@
 <li>still examples to be added</li>
 </ul>
 </div>
-    <div id="rtorch-0-0-0-9000" class="section level1">
-<h1 class="page-header">
-<a href="#rtorch-0-0-0-9000" class="anchor"></a>rTorch 0.0.0.9000</h1>
+    <div id="rtorch-0009000" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.0.9000">
+<a href="#rtorch-0009000" class="anchor"></a>rTorch 0.0.0.9000<small> Unreleased </small>
+</h1>
 <ul>
 <li>Added a <code>NEWS.md</code> file to track changes to the package.</li>
 </ul>
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#rtorch-0-0-3">0.0.3</a></li>
-        <li><a href="#rtorch-0-0-2-9000">0.0.2.9000</a></li>
-        <li><a href="#rtorch-0-0-2">0.0.2</a></li>
-        <li><a href="#rtorch-0-0-1-9013">0.0.1.9013</a></li>
-        <li><a href="#rtorch-0-0-1-9012">0.0.1.9012</a></li>
-        <li><a href="#rtorch-0-0-1-9011">0.0.1.9011</a></li>
-        <li><a href="#rtorch-0-0-1-9010">0.0.1.9010</a></li>
-        <li><a href="#rtorch-0-0-1-9009">0.0.1.9009</a></li>
-        <li><a href="#rtorch-0-0-1-9008">0.0.1.9008</a></li>
-        <li><a href="#rtorch-0-0-1-9006">0.0.1.9006</a></li>
-        <li><a href="#rtorch-0-0-1-9005">0.0.1.9005</a></li>
-        <li><a href="#rtorch-0-0-1-9004">0.0.1.9004</a></li>
-        <li><a href="#rtorch-0-0-1-9003">0.0.1.9003</a></li>
-        <li><a href="#rtorch-0-0-1-9002">0.0.1.9002</a></li>
-        <li><a href="#rtorch-0-0-1-9001">0.0.1.9001</a></li>
-        <li><a href="#rtorch-0-0-1">0.0.1</a></li>
-        <li><a href="#rtorch-0-0-0-9000">0.0.0.9000</a></li>
-      </ul>
-    </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -319,13 +499,16 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

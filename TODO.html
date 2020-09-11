@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>All dims — all_dims • rTorch</title>
+<title>TODO • rTorch</title>
 
 
 <!-- jquery -->
@@ -18,8 +18,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
 <!-- bootstrap-toc -->
-<link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script>
+<link rel="stylesheet" href="bootstrap-toc.css">
+<script src="bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
@@ -33,19 +33,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
-<link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script>
+<link href="pkgdown.css" rel="stylesheet">
+<script src="pkgdown.js"></script>
 
 
 
 
-<meta property="og:title" content="All dims — all_dims" />
-<meta property="og:description" content="This function returns an object that can be used when subsetting tensors with
-`[`. If you are familiar with Python, this is equivalent to the Python Ellipsis
-`...`, (not to be confused with `...` in `R`). In python, if `x` is a numpy
-array or torch tensor, x[..., i] the ellipsis means &quot;expand to match number of
-dimension of x&quot;.#' To translate the above Python expression to R, write:
-x[all_dims(), i]" />
+<meta property="og:title" content="TODO" />
 
 
 
@@ -64,7 +58,7 @@ x[all_dims(), i]" />
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-topic">
+    <div class="container template-title-body">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -76,7 +70,7 @@ x[all_dims(), i]" />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">rTorch</a>
+        <a class="navbar-link" href="index.html">rTorch</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9008</span>
       </span>
     </div>
@@ -84,16 +78,16 @@ x[all_dims(), i]" />
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
+  <a href="index.html">
     <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+  <a href="news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -114,52 +108,59 @@ x[all_dims(), i]" />
       </header>
 
 <div class="row">
-  <div class="col-md-9 contents">
+  <div class="contents col-md-9">
     <div class="page-header">
-    <h1>All dims</h1>
-    <small class="dont-index">Source: <a href='https://github.com/f0nzie/rTorch/blob/master/R/extract.R'><code>R/extract.R</code></a></small>
-    <div class="hidden name"><code>all_dims.Rd</code></div>
+      <h1>TODO</h1>
     </div>
 
-    <div class="ref-description">
-    <p>This function returns an object that can be used when subsetting tensors with
-`[`. If you are familiar with Python, this is equivalent to the Python Ellipsis
-`...`, (not to be confused with `...` in `R`). In python, if `x` is a numpy
-array or torch tensor, x[..., i] the ellipsis means "expand to match number of
-dimension of x".#' To translate the above Python expression to R, write:
-x[all_dims(), i]</p>
-    </div>
+<div id="todo" class="section level1">
 
-    <pre class="usage"><span class='fu'>all_dims</span>()</pre>
+<div id="rtorch-003x" class="section level2">
+<h2 class="hasAnchor">
+<a href="#rtorch-003x" class="anchor"></a>rTorch 0.0.3.x</h2>
+<div id="todo-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#todo-1" class="anchor"></a>TODO</h3>
+<ul>
+<li>Generate documentation with <code>pkgdown</code>
+</li>
+<li>add Linear Algebra functions: <em>Gaussian Elimination</em>, Cholesky, LU</li>
+<li>add unit tests for linear algebra functions</li>
+<li>add examples for Gaussian Elimination</li>
+<li>add examples for matrices operations.</li>
+<li>find libraries for fast operations in matrices.</li>
+</ul>
+</div>
+<div id="done" class="section level3">
+<h3 class="hasAnchor">
+<a href="#done" class="anchor"></a>DONE</h3>
+<ul>
+<li>modify <code>pytorch_install</code> to include version. DONE</li>
+<li>Modify <code><a href="reference/install_pytorch.html">install_pytorch()</a></code> and remove <code>pytorch-cpu==1.1</code> way to specify <code>pytorch</code>. It is causing error because new PyTorch versions do not take the suffix <code>-cpu</code>. DONE</li>
+<li>add to <code><a href="reference/install_pytorch.html">install_pytorch()</a></code> parameters for Python version, packages, and PyTorch version. DONE</li>
+</ul>
+</div>
+</div>
+<div id="half-done" class="section level2">
+<h2 class="hasAnchor">
+<a href="#half-done" class="anchor"></a>half-done</h2>
+<ul>
+<li>move some functions in <code>tests/testthat/utils.R</code> to <code>R/utils.R</code>
+</li>
+</ul>
+</div>
+</div>
 
-
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='co'># Run this</span>
-<span class='kw'>d</span> <span class='op'>&lt;-</span> <span class='kw'>torch</span><span class='op'>$</span><span class='fu'>tensor</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>0</span>, <span class='fl'>0</span>),
-                       <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>0</span>, <span class='fl'>0</span>),
-                       <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>),
-                       <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>)), dtype=<span class='kw'>torch</span><span class='op'>$</span><span class='kw'>uint8</span>)
-<span class='kw'>d</span>[<span class='fu'>all_dims</span>(), <span class='fl'>1</span>]
-</div><div class='output co'>#&gt; tensor([0, 0, 0, 1], dtype=torch.uint8)</div><div class='input'>
-<span class='kw'>f</span> <span class='op'>&lt;-</span> <span class='kw'>torch</span><span class='op'>$</span><span class='fu'>arange</span>(<span class='fl'>9L</span>)<span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/stats/reshape.html'>reshape</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3L</span>, <span class='fl'>3L</span>))
-<span class='kw'>f</span>
-</div><div class='output co'>#&gt; tensor([[0, 1, 2],
-#&gt;         [3, 4, 5],
-#&gt;         [6, 7, 8]])</div><div class='input'><span class='kw'>f</span>[<span class='fu'>all_dims</span>()]
-</div><div class='output co'>#&gt; tensor([[0, 1, 2],
-#&gt;         [3, 4, 5],
-#&gt;         [6, 7, 8]])</div><div class='input'><span class='kw'>f</span>[<span class='fu'>all_dims</span>(), <span class='fl'>1L</span>]
-</div><div class='output co'>#&gt; tensor([0, 3, 6])</div><div class='input'><span class='co'># }</span>
-</div></pre>
   </div>
+
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
+
 </div>
+
 
 
       <footer>
