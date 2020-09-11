@@ -1,3 +1,6 @@
+---
+output: html_document
+---
 
 
 # Install PyTorch from the *conda* console
