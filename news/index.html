@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9008</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9009</span>
       </span>
     </div>
 
@@ -85,6 +85,18 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/installation.html">Installation</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -119,12 +131,21 @@
 <a href="#rtorch-0039008" class="anchor"></a>rTorch 0.0.3.9008<small> Unreleased </small>
 </h1>
 <ul>
+<li>20200911</li>
+</ul>
+</div>
+    <div id="rtorch-0039008-1" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.3.9008">
+<a href="#rtorch-0039008-1" class="anchor"></a>rTorch 0.0.3.9008<small> Unreleased </small>
+</h1>
+<ul>
 <li><ol>
 <li>Branch <code>0.0.3.9008-implement-todo-items</code>
 </li>
 </ol></li>
 <li>add test in <code>test_numpy_logical.R</code> to check sample tensors</li>
 <li>add test in <code>test_info.R</code> add test to check the version three components</li>
+<li>regenerate pkgdown site. add <code>make_copy</code> function</li>
 </ul>
 </div>
     <div id="rtorch-0039007" class="section level1">
@@ -209,21 +230,18 @@
 </li>
 <li>combine tensor_functions.R and utils.R</li>
 <li>unit tests for transpose and permute</li>
-<li>Merge to <code>develop</code>.</li>
 <li>Getting this warning during check: <code>checkRd: (5) rTorch.Rd:0-7: Must have a \description</code>. Also stops in <em>travis-ci.org</em>.</li>
 <li>Switching from PyTorch <code>1.6</code> to <code>1.1</code> to debug error in <em>rTorch.Rd</em>
 </li>
 <li>Fixed problem with <em>rTorch.Rd</em>. Block in package.R needed description. Added this extra line below the title: <code>#' PyTorch bindings for R</code>. The problem originated by the new R version.</li>
-<li>Reinstall PyTorch 1.6 with <code>rTorch:::install_conda(package="pytorch=1.6", envname="r-torch", conda="auto", conda_python_version = "3.6", pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))</code>. Run tests. Run devtools::check(). All passed.</li>
+<li>Re-install PyTorch 1.6 with <code>rTorch:::install_conda(package="pytorch=1.6", envname="r-torch", conda="auto", conda_python_version = "3.6", pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))</code>. Run tests. Run devtools::check(). All passed.</li>
 <li>Add <code>--run-donttest</code> option to check() arguments. Getting errors.</li>
 <li>Fix <code><a href="../reference/all_dims.html">all_dims()</a></code> examples in <em>generics.R</em>.</li>
 <li>Fix <code><a href="../reference/logical_not.html">logical_not()</a></code> examples in <em>generics.R</em>.</li>
 <li>Fix <code>[.torch.Tensor</code> examples in <em>extract.R</em>.</li>
 <li>Fix <code>torch_extract_opts</code> examples in <em>extract.R</em>.</li>
-<li>All checks passed. Merge to <code>develop</code>. Testing on <em>Travis</em>.</li>
 <li>Travis stopping on error in <code>dontrun</code> examples that passed in the local machine. What is different is the PyTorch version specified in <code>.travis.yml</code>. Changing variable from “1.1”" to <code>PYTORCH_VERSION="1.6"</code>.</li>
 <li>Travis stopping on error related to suffix <code>pytorch-cpu==1.6</code> in command <code>'rTorch::install_pytorch(method="conda", version=Sys.getenv("PYTORCH_VERSION"), channel="pytorch", conda_python_version="3.6")'</code>. We need to modify function <code><a href="../reference/install_pytorch.html">install_pytorch()</a></code>.</li>
-<li>check out and test from <code>develop</code> branch</li>
 <li>tests to be performed with <code>R version 4.0.0 (2020-04-24) -- "Arbor Day"</code>
 </li>
 <li>first, remove installation of gcc or libstdc++</li>
@@ -234,11 +252,11 @@
 <li>install required packages with <code>Rscript -e 'install.packages(c("logging", "reticulate", "jsonlite", "R6", "rstudioapi", "data.table"))</code>
 </li>
 <li>reduce size of tensor in <code>test_tensor_dim.R</code> because throwing error due to lack of memory.</li>
-<li>after craeful revision no more errors. Only one NOTE: <code>* checking for future file timestamps ... NOTE. unable to verify current time</code>.</li>
+<li>after careful revision no more errors in Linux. Only one NOTE: <code>* checking for future file timestamps ... NOTE. unable to verify current time</code>.</li>
 <li>all tests running fine with R-4.0.0. Will change version to R-3.6.3.</li>
 <li>all tests running fine with R-3.5.3. Multiple R versions through Travis.</li>
 <li>all tests running fine with R-3.4.3.</li>
-<li>all tests passed in osx with versions 3.6.3, 3.5.3 and 3.4.3.</li>
+<li>all tests passed in macOS with versions 3.6.3, 3.5.3 and 3.4.3.</li>
 </ul>
 </div>
     <div id="rtorch-0039002" class="section level1">
