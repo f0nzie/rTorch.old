@@ -1,3 +1,7 @@
+# rTorch 0.0.3.9008
+* 20200911
+* add new vignette for PyTorch installation details
+
 
 # rTorch 0.0.3.9008
 * 20200910. Branch `0.0.3.9008-implement-todo-items`
