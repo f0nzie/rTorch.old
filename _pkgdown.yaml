@@ -23,7 +23,7 @@ reference:
       - '`%%.torch.Tensor`'
       - install_pytorch
       - install_torch_extras
-
+      - make_copy
 
   - title: Generics
     desc: ~
@@ -64,7 +64,6 @@ reference:
       - 'logical_and'
       - 'logical_or'
 
-
   - title: Get datasets
     desc: ~
     contents:
@@ -76,7 +75,5 @@ reference:
       - '`np`'
       - '`torch`'
       - '`torchvision`'
-
-
 
 
