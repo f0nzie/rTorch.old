@@ -1,6 +1,10 @@
-# rTorch 0.0.3.9008
+# rTorch 0.0.3.9009
 * 20200911
 * add new vignette for PyTorch installation details
+* clean up and imporve README
+* tested on PyTorch 1.4 on macOS and Linux. All passed
+* tested on PyTorch 1.6 on Linux. Passed.
+
 
 
 # rTorch 0.0.3.9008
