@@ -142,14 +142,20 @@ y = torch$rand(5L, 4L)
 print(x$add(y))
 print(x + y)
 ```
-### Add tensor element to another tensor
+
+### Add a tensor element to another tensor
 
 ```{r}
 # add an element of a tensor to another tensor
 mat1[1, 1] + mat2
 ```
+
 ```{r}
 mat1
+```
+
+```{r}
+# extract part of the tensor
 indices <- torch$tensor(c(0L, 3L))
 torch$index_select(mat1, 1L, indices)   # rows = 0; columns = 1
 ```
@@ -228,7 +234,7 @@ X
 np$transpose(X)
 ```
 
-## Copying a numpy object
+### Copying a numpy object
 With newer PyTorch versions we should work with NumPy array copies
 There have been minor changes in the latest versions of PyTorch that prevents a direct use of a NumPy array. You will get this warning:
 
@@ -266,7 +272,7 @@ t[1L]$fill_(-1)
 print(a)
 ```
 
-## Function `make_copy()`
+### Function `make_copy()`
 To make easier to copy an object in `rTorch` we implemented the function `make_copy`, which makes a safe copy regardless if it is a torch, numpy or an R type object.
 
 ```{r}
@@ -536,17 +542,53 @@ v
 
 ## Tensor fill
 
+### Fill with a unique value
+
 ```{r}
+# a tensor filled with ones
 (v = torch$ones(3L, 3L))
-v[1L, ]$fill_(2L)         # fill row 1 with 2s
-v[2L, ]$fill_(3L)         # fill row 2 with 3s
-print(v)
+```
+
+### Change the tensor values by rows
+```{r}
+# change two rows in the tensor
+# we are using 1-based index
+v[2L, ]$fill_(2L)         # fill row 1 with 2s
+v[3L, ]$fill_(3L)         # fill row 2 with 3s
 ```
 
 ```{r}
+print(v)
+```
+
+### Fill a tensor with a set increment
+
+```{r}
 # Initialize Tensor with a range of values
-v = torch$arange(10L)             # similar to range(5) but creating a Tensor
+(v = torch$arange(10L))             # similar to range(5) but creating a Tensor
+```
+
+```{r}
 (v = torch$arange(0L, 10L, step = 1L))  # Size 5. Similar to range(0, 5, 1)
+```
+
+### With decimal incrememets
+
+```{r}
+u <- torch$arange(0, 10, step = 0.5)
+u
+```
+
+
+### Including the ending value
+```{r}
+# range of values with increments including the end value
+start <- 0
+end   <- 10
+step  <- 0.25
+
+w <- torch$arange(start, end+step, step)
+w
 ```
 
 
