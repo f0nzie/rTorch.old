@@ -572,7 +572,7 @@ print(v)
 (v = torch$arange(0L, 10L, step = 1L))  # Size 5. Similar to range(0, 5, 1)
 ```
 
-### With decimal incrememets
+### With decimal increments
 
 ```{r}
 u <- torch$arange(0, 10, step = 0.5)
@@ -609,12 +609,22 @@ w
 
 ```{r}
 a = torch$rand(5L, 4L)
-b = a$numpy()
+print(class(a))
+```
 
+
+```{r}
+# converting the tensor to a numpy array, R automatically converts it
+b = a$numpy()
+print(class(b))
+```
+
+```{r}
 a$fill_(3.5)
 # a has now been filled with the value 3.5
 
-# add a scalar to a tensor
+# add a scalar to a tensor. 
+# notice that was auto-converted from an array to a tensor
 b <- a$add(4.0)
 
 # a is still filled with 3.5
@@ -624,6 +634,9 @@ print(a)
 print(b)
 ```
 
+
+### Tensor element assigment not implemented yet
+
 ```{r, eval=FALSE}
 # this will throw an error because we don't still have a function for assignment
 a[1, 1] <- 7.7
@@ -631,8 +644,18 @@ print(a)
 # Error in a[1, 1] <- 7.7 : object of type 'environment' is not subsettable
 ```
 
+```{r}
+# This would be the right wayy to assign a value to a tensor element
+a[1, 1]$fill_(7.7)
+```
 
-Some operations like`narrow` do not have in-place versions, and hence, `.narrow_` does not exist. Similarly, some operations like `fill_` do not have an out-of-place version, so `.fill` does not exist.
+```{r}
+# we can see that the first element has been changed
+a
+```
+
+
+> Some operations like`narrow` do not have in-place versions, and hence, `.narrow_` does not exist. Similarly, some operations like `fill_` do not have an out-of-place version, so `.fill` does not exist.
 
 ```{r}
 # a[[0L, 3L]]
@@ -641,31 +664,77 @@ a[1, 4]
 
 ## Access to tensor elements
 
+### Change a tensor element given its index
+
 ```{r}
 # replace an element at position 0, 0
 (new_tensor = torch$Tensor(list(list(1, 2), list(3, 4))))
-
-print(new_tensor[1L, 1L])
-new_tensor[1L, 1L]$fill_(5)
-print(new_tensor)   # tensor([[ 5.,  2.],[ 3.,  4.]])
 ```
 
 ```{r}
-# access an element at position 1, 0
+# first row, firt column
+print(new_tensor[1L, 1L])
+```
+
+```{r}
+# change row 1, col 1 with value of 5
+new_tensor[1L, 1L]$fill_(5)
+```
+
+```{r}
+# which is the same as doing this
+new_tensor[1, 1]$fill_(5)
+```
+
+
+> Notice that the element was changed in-place because of `fill_`.
+
+### In R the index is 1-based
+
+```{r}
+print(new_tensor)   # tensor([[ 5.,  2.],[ 3.,  4.]])
+```
+
+
+```{r}
+# access an element at position (1, 0), 0-based index
 print(new_tensor[2L, 1L])           # tensor([ 3.])
+```
+
+```{r}
+# convert it to a scalar value
 print(new_tensor[2L, 1L]$item())    # 3.
 ```
+
+
+```{r}
+# which is the same as
+print(new_tensor[2, 1])
+```
+
+```{r}
+# and the scalar
+print(new_tensor[2, 1]$item()) 
+```
+
+### Extract part of a tensor
 
 ```{r}
 # Select indices
 x = torch$randn(3L, 4L)
 print(x)
+```
 
+```{r}
+# extract first and third row
 # Select indices, dim=0
 indices = torch$tensor(list(0L, 2L))
 torch$index_select(x, 0L, indices)
+```
 
-# "Select indices, dim=1
+```{r}
+# extract first and third column
+# Select indices, dim=1
 torch$index_select(x, 1L, indices)
 ```
 
@@ -703,7 +772,7 @@ q <- torch$Tensor(list(3L, 1L))
 (r <- p %.*% q)
 ```
 
-## Transpose
+### Transpose
 
 ```{r}
 # two dimensions: 3x3
@@ -730,7 +799,7 @@ print(x$shape)    # original tensor
 print(t$shape)    # transposed
 ```
 
-## Permutation
+### Permutation
 
 ### permute a 2D tensor
 
@@ -752,7 +821,15 @@ print(xps)    # shape permuted tensor
 ### permute a 3D tensor
 
 ```{r}
+torch$manual_seed(1234)
+
 x <- torch$randn(10L, 480L, 640L, 3L)
+x[1:3, 1:2, 1:3, 1:2]
+```
+
+
+
+```{r}
 xs <- torch$as_tensor(x$size())     # torch$tensor(c(10L, 480L, 640L, 3L))
 xp <- x$permute(0L, 3L, 1L, 2L)     # specify dimensions order
 xps <- torch$as_tensor(xp$size())   # torch$tensor(c(10L, 3L, 480L, 640L))
@@ -760,19 +837,31 @@ xps <- torch$as_tensor(xp$size())   # torch$tensor(c(10L, 3L, 480L, 640L))
 print(xs)      # original tensor size
 
 print(xps)     # permuted tensor size
-
 ```
 
+```{r}
+xp[1:3, 1:2, 1:3, 1:2]
+```
 
 
 ## Logical operations
 
 ### is it equal
 ```{r}
-m0 = torch$zeros(3L, 5L)
-m1 = torch$ones(3L, 5L)
-m2 = torch$eye(3L, 5L)
+(m0 = torch$zeros(3L, 5L))
+```
 
+```{r}
+(m1 = torch$ones(3L, 5L))
+```
+
+```{r}
+(m2 = torch$eye(3L, 5L))
+```
+
+
+```{r}
+# is m1 equal to m0
 print(m1 == m0)
 ```
 
@@ -782,8 +871,20 @@ print(m1 != m1)
 ```
 
 ```{r}
+# are both equal
 print(m2 == m2)
 ```
+
+```{r}
+# some are equal, others don't
+m1 != m2
+```
+
+```{r}
+# some are equal, others don't
+m0 != m2
+```
+
 
 ### AND
 ```{r}
@@ -802,21 +903,19 @@ m0 | m2
 m1 | m2
 ```
 
-### One logical result with *all*
-```{r}
-# all_boolean <- function(x) {
-#   # convert tensor of 1s and 0s to a unique boolean
-#   as.logical(torch$all(x)$numpy())
-# }
 
+### Extract only one logical result with *all*
+
+
+```{r}
 # tensor is less than
 A <- torch$ones(60000L, 1L, 28L, 28L)
 C <- A * 0.5
 
-# is C < A
-all(torch$lt(C, A))
-all(C < A)
-# is A < C
+# is C < A = TRUE
+all(torch$lt(C, A)) 
+all(C < A) 
+# is A < C = FALSE
 all(A < C)
 ```
 
@@ -828,7 +927,6 @@ D <- A * 2.0
 all(torch$gt(D, A))
 all(torch$gt(A, D))
 ```
-
 
 ### lower than
 ```{r}
@@ -846,6 +944,24 @@ all(A1 >= A0)
 all(A1 <= A0)
 ```
 
+### As a R logical value
+```{r}
+# we implement this little function
+all_as_boolean <- function(x) {
+  # convert tensor of 1s and 0s to a unique boolean
+  as.logical(torch$all(x)$numpy())
+}
+```
+
+```{r}
+all_as_boolean(torch$gt(D, A))
+all_as_boolean(torch$gt(A, D))
+all_as_boolean(A1 <= A1)
+all_as_boolean(A1 >= A0)
+all_as_boolean(A1 <= A0)
+```
+
+
 ### Logical NOT
 
 ```{r}
@@ -859,12 +975,17 @@ not_all_true
 
 ```{r}
 diag <- torch$eye(5L)
-diag
+diag <- diag$to(dtype=torch$uint8)   # convert to unsigned integer
 
 # logical NOT
 not_diag <- !diag
 
-# convert to integer
-not_diag$to(dtype=torch$uint8)
+not_diag
 ```
+
+```{r}
+# and the negation
+!not_diag
+```
+
 
