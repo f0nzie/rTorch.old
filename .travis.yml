@@ -12,13 +12,13 @@ r:
 warnings_are_errors: false
 
 os:
-  #- linux
-  - osx
+  - linux
+  #- osx
 
 # environment variables global to the matrix
 env:
   global:
-    - PYTORCH_VERSION="1.4"
+    - PYTORCH_VERSION="1.6"
     - PYTHON_VERSION="3.6"
 
 r-packages:
