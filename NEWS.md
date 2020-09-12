@@ -4,6 +4,8 @@
 * clean up and imporve README
 * tested on PyTorch 1.4 on macOS and Linux. All passed
 * tested on PyTorch 1.6 on Linux. Passed.
+* tested on PyTorch 1.2 on Linux. Passed.
+* tested on PyTorch 1.2 on macOS. Passed but R-3.4.3.
 
 
 
