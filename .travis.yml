@@ -15,26 +15,18 @@ os:
   - linux
   #- osx
 
+python:
+  - '3.6'
+  - '3.7'
+  - '3.8'
+
 # environment variables global to the matrix
 env:
   global:
-    - PYTHON_VERSION="3.6"
-      PYTORCH_VERSION="1.1"
-      PYTORCH_VERSION="1.2"
-      PYTORCH_VERSION="1.4"
-      PYTORCH_VERSION="1.6"
-
-    - PYTHON_VERSION="3.7"
-      PYTORCH_VERSION="1.1"
-      PYTORCH_VERSION="1.2"
-      PYTORCH_VERSION="1.4"
-      PYTORCH_VERSION="1.6"
-
-    - PYTHON_VERSION="3.8"
-      PYTORCH_VERSION="1.1"
-      PYTORCH_VERSION="1.2"
-      PYTORCH_VERSION="1.4"
-      PYTORCH_VERSION="1.6"
+    - PYTORCH_VERSION="1.1"
+    - PYTORCH_VERSION="1.2"
+    - PYTORCH_VERSION="1.4"
+    - PYTORCH_VERSION="1.6"
 
 r-packages:
   - reticulate
