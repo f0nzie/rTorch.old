@@ -1,11 +1,31 @@
+
+# rTorch 0.0.3.9011
+* Because PyTorch 1.1 and 1.2 are failing on Python 3.8, we could install a custom pytorch with `install_pytorch(conda_python_version = "3.8", version = "1.2")`. Tests failed. But not because of PyTorch but conflict during the conda installation.
+* Other custom pytorch with `install_pytorch(conda_python_version = "3.8", version = "1.4")` with tests passed.
+* add `numpy` version to printout of `rtorch_config()`.
+
+
+
+
 # rTorch 0.0.3.9010
 * 20200913. branch `0.0.3.9010-fix-appveyor`
 * modify __appveyor__ script. currently failing
 * remove suffix `-cpu` from `pytorch` and `torchvision` packages from `appveyor.yml`. still failing because of python version is *3.6.1*.
-* change python version to *3.6*. __Passed__. 
+* change python version to *3.6* in  `appveyor.yml`. __Passed__. 
 * **appveyor** still failing with error  *package 'remotes' was installed before R 4.0.0: please re-install it*. repo `f0nzie/r-appveyor` requires some changes.
-* updating file `appveyor-tool.ps1 ` in `r-appveyor` repo.
+* updating file `appveyor-tool.ps1 ` in `r-appveyor` repo. changes related to Rtools4.
+* Windows tests with appveyor have been so far with `pytorch=1.1.0`. Will change to `pytorch=1.4`.
+* Testing Linux with `python=3.7` and `pytorch=1.4`. All R versions **passed**.
 * clean up `DESCRIPTION`. remove ctb. will credit them in README.
+* Testing Linux with `python=3.7` and `pytorch=1.6`. All R versions **passed**.
+* Windows tests with `pytorch=1.4` and R-4.0.2. Passed.
+* Windows tests (matrix) with `pytorch=1.2, 1.4, 1.6` and R-4.0.2. __Passed__.
+* Windows tests (matrix) with two version of `R`: 4.0.2 and 3.6.3 over `pytorch`, 1.1, 1.2, 1.4, and 1.6. using appveyor variable `R_VERSION`.
+* Linux tests at `python=3.8` and `pytorch=1.1` __failing__ for all `R` versions. Rest of tests __passed__.
+* Windows tests (matrix) with two version of `R`: `4.0.2`, `3.6.3` and `3.5.3` over `pytorch`, 1.1, 1.2, 1.4, and 1.6. using appveyor variable `R_VERSION`.
+
+
+
  
 # rTorch 0.0.3.9009
 * 20200911
@@ -15,7 +35,6 @@
 * tested on PyTorch 1.6 on Linux. Passed.
 * tested on PyTorch 1.2 on Linux. Passed.
 * tested on PyTorch 1.2 on macOS. Passed but R-3.4.3.
-
 
 
 # rTorch 0.0.3.9008
