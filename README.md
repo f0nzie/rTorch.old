@@ -42,65 +42,6 @@ the latest development version of `rTorch`. For instance, to install
 
 `devtools::install_github("f0nzie/rTorch", ref="develop")`
 
-## PyTorch installation
-
-### Installing Python and PyTorch
-
-Although, Python and PyTorch can be installed directly from the R
-console, before start running `rTorch`, I would recommend installing
-**PyTorch** in a new Python or Python-Anaconda environment, and testing
-if it’s working alright first. The advantage of doing it this way is
-that you define the base Python or Anaconda version to install.
-
-If you opt to install *PyTorch* from *R*, `rTorch` has functions that
-could help you install *PyTorch* from the *R* console.
-
-#### Manual install of *PyTorch* in a *conda* environment
-
-If you prefer do it manually, use this example:
-
-1.  Create a conda environment with `conda create -n my-torch python=3.7
-    -y`
-
-2.  Activate the new environment with `conda activate my-torch`
-
-3.  Inside the new environment, install *PyTorch* and related packages
-    with:
-
-`conda install python=3.6 pytorch torchvision matplotlib pandas -c
-pytorch`
-
-> Note: If you you don’t specify a version, `conda` will install the
-> latest *PyTorch*. As of this writing (August-September 2020), the
-> latest *PyTorch* version is 1.6.
-
-Alternatively, you could create and install a *conda* environment a
-specific PyTorch version with:
-
-`conda create -n my-torch python=3.6 pytorch=1.3 torchvision matplotlib
-pandas -c pytorch -y`
-
-`conda` will resolve the dependencies and versions of the other packages
-automatically, or let you know your options.
-
-**Note.** `matplotlib` and `pandas` are not really necessary, but I was
-asked if `matplotlib` or `pandas` would work in PyTorch. Then, I decided
-to put them for testing and experimentation. They both work.
-
-## Automatic Python detection
-
-In rTorch there is an automatic detection of Python built in in the
-package that will ask you to install `Miniconda` first if you don’t have
-any Python installed in your machine. For instance, in `MacOS`,
-Miniconda will be installed under
-`PREFIX=/Users/user_name/Library/r-miniconda`.
-
-After *Miniconda* is installed, you could proceed to install the flavor
-or *PyTorch* you wamt, and the packages you want, with a command like
-this:
-
-    rTorch:::install_conda(package="pytorch=1.4", envname="r-torch", conda="auto", conda_python_version = "3.6", pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))
-
 # Getting Started
 
 ## Tensor types
@@ -118,27 +59,27 @@ long_tensor   <- torch$LongTensor(3L, 3L)
 bool_tensor   <- torch$BoolTensor(5L, 5L)
 
 byte_tensor  
-#> tensor([[0, 0, 0],
-#>         [0, 0, 0],
-#>         [0, 0, 0]], dtype=torch.uint8)
+#> tensor([[ 32,  45, 236],
+#>         [ 18, 245, 127],
+#>         [  0,   0,  32]], dtype=torch.uint8)
 float_tensor  
-#> tensor([[ 0.0000e+00,  1.0842e-19,  2.0680e+21],
-#>         [-4.6577e-10,  8.0839e-07,  4.5836e-41],
-#>         [ 8.0908e-07,  4.5836e-41,  2.9272e-11]])
+#> tensor([[5.0850e+31, 4.9640e+28, 2.7946e+20],
+#>         [2.0535e-19, 1.7551e+32, 2.8179e+20],
+#>         [1.4609e-19, 4.5439e+30, 3.6002e+27]])
 double_tensor 
-#> tensor([[7.7511e+228, 8.7842e-313, 1.6304e-322],
-#>         [1.3834e-322, 6.9411e-310, 6.1678e+223],
-#>         [3.1711e+180, 5.2420e-320, 2.4209e-322]], dtype=torch.float64)
+#> tensor([[ 0.0000e+00,  0.0000e+00, 1.2095e-312],
+#>         [4.6402e-310, 9.8813e-324,  0.0000e+00],
+#>         [ 0.0000e+00,  0.0000e+00,  0.0000e+00]], dtype=torch.float64)
 long_tensor   
-#> tensor([[                  0,                   0,                   0],
-#>         [                  1,                   0, 5941499631361654784],
-#>         [                  0,                   0,                   0]])
+#> tensor([[             0,              0,              0],
+#>         [             0,              0, 93918523739536],
+#>         [             0, 93918540157984,              0]])
 bool_tensor   
-#> tensor([[ True, False,  True,  True,  True],
-#>         [ True, False, False,  True,  True],
-#>         [ True,  True,  True,  True,  True],
-#>         [ True,  True,  True,  True,  True],
-#>         [ True,  True,  True,  True,  True]])
+#> tensor([[False, False, False, False, False],
+#>         [False, False, False, False, False],
+#>         [False, False, False, False, False],
+#>         [False, False, False, False, False],
+#>         [False, False, False, False,  True]])
 ```
 
 A `4D` tensor like in MNIST hand-written digits recognition dataset:
@@ -168,19 +109,19 @@ A `3D` tensor:
 ``` r
 ft3d <- torch$FloatTensor(4L, 3L, 2L)
 ft3d
-#> tensor([[[0.0000e+00, 1.0842e-19],
-#>          [0.0000e+00, 1.0842e-19],
-#>          [4.9045e-44, 0.0000e+00]],
+#> tensor([[[1.3452e-43, 1.3452e-43],
+#>          [1.3452e-43, 1.7376e-43],
+#>          [4.4842e-44, 4.4842e-44]],
+#> 
+#>         [[4.4842e-44, 4.4842e-44],
+#>          [1.1210e-43, 0.0000e+00],
+#>          [2.0179e-43, 0.0000e+00]],
 #> 
 #>         [[0.0000e+00, 0.0000e+00],
-#>          [0.0000e+00, 0.0000e+00],
-#>          [0.0000e+00, 4.5918e-39]],
+#>          [3.2039e-21, 3.0642e-41],
+#>          [0.0000e+00, 0.0000e+00]],
 #> 
-#>         [[0.0000e+00, 1.0842e-19],
-#>          [0.0000e+00, 1.0842e-19],
-#>          [4.4842e-44, 0.0000e+00]],
-#> 
-#>         [[0.0000e+00, 0.0000e+00],
+#>         [[6.3393e-22, 3.0642e-41],
 #>          [0.0000e+00, 0.0000e+00],
 #>          [0.0000e+00, 0.0000e+00]]])
 ```
@@ -188,7 +129,7 @@ ft3d
 ``` r
 # get first element in a tensor
 ft3d[1, 1, 1]
-#> tensor(0.)
+#> tensor(1.3452e-43)
 ```
 
 ``` r
@@ -216,17 +157,17 @@ mat2 <- torch$FloatTensor(5L)$uniform_(1, 1)
 ``` r
 # add two tensors
 mat0 + mat1
-#> tensor([[0.3434, 0.1658, 0.5297, 0.5582, 0.8220],
-#>         [0.7805, 1.0958, 0.8083, 0.1800, 0.8738],
-#>         [0.8939, 0.8460, 0.8873, 0.5982, 0.4154]])
+#> tensor([[0.1834, 0.4709, 0.3275, 0.5122, 0.9837],
+#>         [0.5554, 0.6715, 1.0795, 0.2612, 1.0342],
+#>         [1.0385, 0.1966, 0.1411, 1.0913, 0.7267]])
 ```
 
 ``` r
 # add three tensors
 mat0 + mat1 + mat2
-#> tensor([[1.3434, 1.1658, 1.5297, 1.5582, 1.8220],
-#>         [1.7805, 2.0958, 1.8083, 1.1800, 1.8738],
-#>         [1.8939, 1.8460, 1.8873, 1.5982, 1.4154]])
+#> tensor([[1.1834, 1.4709, 1.3275, 1.5122, 1.9837],
+#>         [1.5554, 1.6715, 2.0795, 1.2612, 2.0342],
+#>         [2.0385, 1.1966, 1.1411, 2.0913, 1.7267]])
 ```
 
 ``` r
@@ -235,20 +176,20 @@ x = torch$rand(5L, 4L)
 y = torch$rand(5L, 4L)
 
 print(x$add(y))
-#> tensor([[0.8240, 0.8343, 1.7697, 0.5856],
-#>         [0.6616, 1.2035, 1.1473, 0.9020],
-#>         [0.8446, 0.9194, 1.3900, 1.0404],
-#>         [0.9081, 1.1339, 1.2768, 0.2243],
-#>         [0.7621, 1.6881, 0.5697, 0.5362]])
+#> tensor([[1.4177, 0.4553, 1.3585, 1.6545],
+#>         [0.9485, 1.0676, 1.2103, 1.1232],
+#>         [1.3534, 0.6921, 0.8122, 0.9260],
+#>         [0.9383, 1.3582, 0.5398, 1.0595],
+#>         [0.3462, 1.6539, 0.4160, 0.7053]])
 print(x + y)
-#> tensor([[0.8240, 0.8343, 1.7697, 0.5856],
-#>         [0.6616, 1.2035, 1.1473, 0.9020],
-#>         [0.8446, 0.9194, 1.3900, 1.0404],
-#>         [0.9081, 1.1339, 1.2768, 0.2243],
-#>         [0.7621, 1.6881, 0.5697, 0.5362]])
+#> tensor([[1.4177, 0.4553, 1.3585, 1.6545],
+#>         [0.9485, 1.0676, 1.2103, 1.1232],
+#>         [1.3534, 0.6921, 0.8122, 0.9260],
+#>         [0.9383, 1.3582, 0.5398, 1.0595],
+#>         [0.3462, 1.6539, 0.4160, 0.7053]])
 ```
 
-### Add tensor element to another tensor
+### Add a tensor element to another tensor
 
 ``` r
 # add an element of a tensor to another tensor
@@ -261,6 +202,10 @@ mat1
 #> tensor([[0.1000, 0.1000, 0.1000, 0.1000, 0.1000],
 #>         [0.1000, 0.1000, 0.1000, 0.1000, 0.1000],
 #>         [0.1000, 0.1000, 0.1000, 0.1000, 0.1000]])
+```
+
+``` r
+# extract part of the tensor
 indices <- torch$tensor(c(0L, 3L))
 torch$index_select(mat1, 1L, indices)   # rows = 0; columns = 1
 #> tensor([[0.1000, 0.1000],
@@ -273,9 +218,9 @@ torch$index_select(mat1, 1L, indices)   # rows = 0; columns = 1
 ``` r
 # add a scalar to a tensor
 mat0 + 0.1
-#> tensor([[0.3434, 0.1658, 0.5297, 0.5582, 0.8220],
-#>         [0.7805, 1.0958, 0.8083, 0.1800, 0.8738],
-#>         [0.8939, 0.8460, 0.8873, 0.5982, 0.4154]])
+#> tensor([[0.1834, 0.4709, 0.3275, 0.5122, 0.9837],
+#>         [0.5554, 0.6715, 1.0795, 0.2612, 1.0342],
+#>         [1.0385, 0.1966, 0.1411, 1.0913, 0.7267]])
 ```
 
 ### Multiply a tensor by a scalar
@@ -301,6 +246,266 @@ message("\nResult")
 #> tensor([4.3210, 4.3210, 4.3210, 4.3210], dtype=torch.float64)
 ```
 
+### Multiply two 1D tensors
+
+``` r
+t1 = torch$tensor(c(1, 2))
+t2 = torch$tensor(c(3, 2))
+
+t1
+#> tensor([1., 2.])
+t2
+#> tensor([3., 2.])
+```
+
+``` r
+t1 * t2
+#> tensor([3., 4.])
+```
+
+``` r
+t1 = torch$tensor(list(
+    c(1, 2, 3),
+    c(1, 2, 3)
+))
+
+t2 = torch$tensor(list(
+    c(1, 2),
+    c(1, 2),
+    c(1, 2)
+))
+
+t1
+#> tensor([[1., 2., 3.],
+#>         [1., 2., 3.]])
+t2
+#> tensor([[1., 2.],
+#>         [1., 2.],
+#>         [1., 2.]])
+```
+
+``` r
+torch$mm(t1, t2)
+#> tensor([[ 6., 12.],
+#>         [ 6., 12.]])
+```
+
+### Dot product for 1D tensors (vectors)
+
+``` r
+t1 = torch$tensor(c(1, 2))
+t2 = torch$tensor(c(3, 2))
+
+t1
+#> tensor([1., 2.])
+t2
+#> tensor([3., 2.])
+```
+
+``` r
+# dot product of two vectors
+torch$dot(t1, t2)
+#> tensor(7.)
+```
+
+``` r
+# Dot product of 1D tensors is a scalar
+
+p <- torch$Tensor(list(4L, 2L))
+q <- torch$Tensor(list(3L, 1L))                   
+
+(r = torch$dot(p, q)) # 14
+#> tensor(14.)
+(r <- p %.*% q)
+#> tensor(14.)
+```
+
+``` r
+# torch$dot product will work for vectors not matrices
+t1 = torch$tensor(list(
+    c(1, 2, 3),
+    c(1, 2, 3)
+))
+
+t2 = torch$tensor(list(
+    c(1, 2),
+    c(1, 2),
+    c(1, 2)
+))
+
+t1$shape
+#> torch.Size([2, 3])
+t2$shape
+#> torch.Size([3, 2])
+```
+
+``` r
+# RuntimeError: 1D tensors expected, got 2D, 2D tensors
+torch$dot(t1, t2)
+```
+
+### Dot product for 2D tensors (matrices)
+
+The number of columns of the first matrix must be equal to the number of
+rows of the second matrix.
+
+``` r
+# for the dot product of nD tensors we use torch$mm()
+t1 = torch$tensor(list(
+    c(1, 2, 3),
+    c(1, 2, 3)
+))
+
+t2 = torch$tensor(list(
+    c(1, 2),
+    c(1, 2),
+    c(1, 2)
+))
+
+torch$mm(t1, t2)
+#> tensor([[ 6., 12.],
+#>         [ 6., 12.]])
+```
+
+``` r
+torch$mm(t2, t1)
+#> tensor([[3., 6., 9.],
+#>         [3., 6., 9.],
+#>         [3., 6., 9.]])
+```
+
+``` r
+# for the dot product of 2D tensors we use torch$mm()
+t1 = torch$arange(1, 11)$view(c(2L,5L))
+t2 = torch$arange(11, 21)$view(c(5L,2L))
+
+t1
+#> tensor([[ 1.,  2.,  3.,  4.,  5.],
+#>         [ 6.,  7.,  8.,  9., 10.]])
+t2
+#> tensor([[11., 12.],
+#>         [13., 14.],
+#>         [15., 16.],
+#>         [17., 18.],
+#>         [19., 20.]])
+```
+
+``` r
+# result
+torch$mm(t1, t2)
+#> tensor([[245., 260.],
+#>         [620., 660.]])
+```
+
+### Multiplication for nD tensors
+
+``` r
+# 1D tensor
+t1 = torch$tensor(c(1, 2))
+t2 = torch$tensor(c(3, 2))
+
+torch$matmul(t1, t2)
+#> tensor(7.)
+```
+
+``` r
+# 2D tensor
+t1 = torch$tensor(list(
+    c(1, 2, 3),
+    c(1, 2, 3)
+))
+
+t2 = torch$tensor(list(
+    c(1, 2),
+    c(1, 2),
+    c(1, 2)
+))
+
+torch$matmul(t1, t2)
+#> tensor([[ 6., 12.],
+#>         [ 6., 12.]])
+```
+
+``` r
+# for the dot product of 3D tensors we use torch$matmul()
+t1 = torch$arange(1, 13)$view(c(2L, 2L, 3L))   # number of columns = 2
+t2 = torch$arange(0, 18)$view(c(2L, 3L, 3L))   # number of rows = 2
+
+t1
+#> tensor([[[ 1.,  2.,  3.],
+#>          [ 4.,  5.,  6.]],
+#> 
+#>         [[ 7.,  8.,  9.],
+#>          [10., 11., 12.]]])
+t2
+#> tensor([[[ 0.,  1.,  2.],
+#>          [ 3.,  4.,  5.],
+#>          [ 6.,  7.,  8.]],
+#> 
+#>         [[ 9., 10., 11.],
+#>          [12., 13., 14.],
+#>          [15., 16., 17.]]])
+
+message("result")
+#> result
+torch$matmul(t1, t2)
+#> tensor([[[ 24.,  30.,  36.],
+#>          [ 51.,  66.,  81.]],
+#> 
+#>         [[294., 318., 342.],
+#>          [402., 435., 468.]]])
+```
+
+``` r
+t1 = torch$arange(1, 13)$view(c(3L, 2L, 2L))   # number of columns = 3
+t2 = torch$arange(0, 12)$view(c(3L, 2L, 2L))   # number of rows = 3
+
+t1
+#> tensor([[[ 1.,  2.],
+#>          [ 3.,  4.]],
+#> 
+#>         [[ 5.,  6.],
+#>          [ 7.,  8.]],
+#> 
+#>         [[ 9., 10.],
+#>          [11., 12.]]])
+t2
+#> tensor([[[ 0.,  1.],
+#>          [ 2.,  3.]],
+#> 
+#>         [[ 4.,  5.],
+#>          [ 6.,  7.]],
+#> 
+#>         [[ 8.,  9.],
+#>          [10., 11.]]])
+
+message("result")
+#> result
+torch$matmul(t1, t2)
+#> tensor([[[  4.,   7.],
+#>          [  8.,  15.]],
+#> 
+#>         [[ 56.,  67.],
+#>          [ 76.,  91.]],
+#> 
+#>         [[172., 191.],
+#>          [208., 231.]]])
+```
+
+### cross product
+
+``` r
+m1 = torch$ones(3L, 5L)
+m2 = torch$ones(3L, 5L)
+v1 = torch$ones(3L)
+# Cross product
+# Size 3x5
+(r = torch$cross(m1, m2))
+#> tensor([[0., 0., 0., 0., 0.],
+#>         [0., 0., 0., 0., 0.],
+#>         [0., 0., 0., 0., 0.]])
+```
+
 ## NumPy and PyTorch
 
 `numpy` has been made available as a module inside `rTorch`. We could
@@ -311,10 +516,10 @@ Examples:
 # a 2D numpy array  
 syn0 <- np$random$rand(3L, 5L)
 syn0
-#>           [,1]       [,2]      [,3]      [,4]      [,5]
-#> [1,] 0.5789123 0.46885523 0.2536163 0.5011712 0.5968176
-#> [2,] 0.8413996 0.07960959 0.1987973 0.1863680 0.4487963
-#> [3,] 0.6649173 0.64386137 0.3077434 0.7869390 0.8456013
+#>            [,1]       [,2]      [,3]      [,4]      [,5]
+#> [1,] 0.17694231 0.36774015 0.5788208 0.8220346 0.3483016
+#> [2,] 0.05765691 0.61946527 0.9019284 0.8436755 0.8259746
+#> [3,] 0.84905024 0.03651167 0.4260108 0.6433624 0.3565110
 ```
 
 ``` r
@@ -358,13 +563,13 @@ l1
 # vector-matrix multiplication
 np$dot(syn0, syn1)
 #>           [,1]      [,2]      [,3]      [,4]      [,5]      [,6]      [,7]
-#> [1,] 0.2399373 0.2399373 0.2399373 0.2399373 0.2399373 0.2399373 0.2399373
-#> [2,] 0.1754971 0.1754971 0.1754971 0.1754971 0.1754971 0.1754971 0.1754971
-#> [3,] 0.3249062 0.3249062 0.3249062 0.3249062 0.3249062 0.3249062 0.3249062
+#> [1,] 0.2293839 0.2293839 0.2293839 0.2293839 0.2293839 0.2293839 0.2293839
+#> [2,] 0.3248701 0.3248701 0.3248701 0.3248701 0.3248701 0.3248701 0.3248701
+#> [3,] 0.2311446 0.2311446 0.2311446 0.2311446 0.2311446 0.2311446 0.2311446
 #>           [,8]      [,9]     [,10]
-#> [1,] 0.2399373 0.2399373 0.2399373
-#> [2,] 0.1754971 0.1754971 0.1754971
-#> [3,] 0.3249062 0.3249062 0.3249062
+#> [1,] 0.2293839 0.2293839 0.2293839
+#> [2,] 0.3248701 0.3248701 0.3248701
+#> [3,] 0.2311446 0.2311446 0.2311446
 ```
 
 ``` r
@@ -386,7 +591,7 @@ np$transpose(X)
 #> [3,]    3    6    9
 ```
 
-## Copying a numpy object
+### Copying a numpy object
 
 With newer PyTorch versions we should work with NumPy array copies There
 have been minor changes in the latest versions of PyTorch that prevents
@@ -429,7 +634,7 @@ print(a)
 #> [1] 1 2 3
 ```
 
-## Function `make_copy()`
+### Function `make_copy()`
 
 To make easier to copy an object in `rTorch` we implemented the function
 `make_copy`, which makes a safe copy regardless if it is a torch, numpy
@@ -463,7 +668,7 @@ print(t_a)
 np_arr <- np$random$rand(5L)
 ft1 <- torch$FloatTensor(r_to_py(np_arr)$copy())    # make a copy of numpy array
 ft1
-#> tensor([0.8280, 0.9224, 0.6644, 0.8170, 0.2628])
+#> tensor([0.6160, 0.9307, 0.4838, 0.5267, 0.1777])
 ```
 
 ``` r
@@ -471,7 +676,7 @@ ft1
 np_copy <- r_to_py(np$random$rand(5L))$copy()       # make a copy of numpy array
 ft2 <- torch$as_tensor(np_copy, dtype= torch$float64)
 ft2
-#> tensor([0.2910, 0.8262, 0.2934, 0.8858, 0.5675], dtype=torch.float64)
+#> tensor([0.1503, 0.7893, 0.5669, 0.4252, 0.6264], dtype=torch.float64)
 ```
 
 This is a very common operation in machine learning:
@@ -481,12 +686,12 @@ This is a very common operation in machine learning:
 a = torch$rand(5L, 4L)
 b = a$numpy()
 print(b)
-#>           [,1]       [,2]      [,3]      [,4]
-#> [1,] 0.1985927 0.63310844 0.4412199 0.8404958
-#> [2,] 0.8588938 0.53599423 0.8331507 0.4151703
-#> [3,] 0.1543611 0.01028997 0.5760526 0.4852294
-#> [4,] 0.3535277 0.57562637 0.3538360 0.8037492
-#> [5,] 0.5667542 0.88355994 0.8622022 0.8282594
+#>           [,1]      [,2]       [,3]       [,4]
+#> [1,] 0.3941820 0.8803654 0.24028385 0.39102972
+#> [2,] 0.5829976 0.8125189 0.05080026 0.08035553
+#> [3,] 0.2219107 0.9252259 0.47936702 0.19611293
+#> [4,] 0.7575352 0.8753265 0.46761113 0.08612192
+#> [5,] 0.7189492 0.4164748 0.96616375 0.11520994
 ```
 
 ### Change the type of a tensor
@@ -495,7 +700,7 @@ print(b)
 # convert tensor to float 16-bits
 ft2_dbl <- torch$as_tensor(ft2, dtype = torch$float16)
 ft2_dbl
-#> tensor([0.2910, 0.8262, 0.2935, 0.8857, 0.5674], dtype=torch.float16)
+#> tensor([0.1504, 0.7891, 0.5669, 0.4253, 0.6265], dtype=torch.float16)
 ```
 
 ### Create an uninitialized tensor
@@ -505,15 +710,15 @@ Create a tensor of size (5 x 7) with uninitialized memory:
 ``` r
 a <- torch$FloatTensor(5L, 7L)
 print(a)
-#> tensor([[1.3553e-19, 1.3563e-19, 1.3563e-19, 1.3563e-19, 1.3563e-19, 1.3563e-19,
-#>          6.4199e-10],
-#>         [6.4097e-10, 4.1023e-08, 5.3927e-05, 7.3888e+20, 2.8393e+20, 1.4495e-19,
-#>          1.0316e-08],
-#>         [7.2868e-44, 0.0000e+00, 0.0000e+00, 1.0842e-19, 0.0000e+00, 1.0842e-19,
-#>          1.3553e-19],
-#>         [1.3563e-19, 1.3563e-19, 1.3563e-19, 1.3563e-19, 1.3563e-19, 6.4199e-10,
-#>          6.4097e-10],
-#>         [4.1023e-08, 2.1155e+23, 1.7203e+11, 1.1631e+33, 5.6994e-13, 1.0622e-05,
+#> tensor([[0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,
+#>          0.0000e+00],
+#>         [0.0000e+00, 1.4013e-44, 1.4013e-44, 2.1647e-23, 3.0642e-41, 0.0000e+00,
+#>          0.0000e+00],
+#>         [0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,
+#>          0.0000e+00],
+#>         [0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,
+#>          0.0000e+00],
+#>         [0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,
 #>          0.0000e+00]])
 ```
 
@@ -536,11 +741,11 @@ var=1:
 ``` r
 a  <- torch$randn(5L, 7L)
 print(a)
-#> tensor([[-0.6390, -0.1594, -0.3184, -0.3792, -1.0405,  1.0235, -0.5368],
-#>         [ 0.7533, -0.2820,  0.6409,  0.5568, -0.6753, -0.6499,  0.5174],
-#>         [-0.1392,  0.7175, -0.3582, -0.3178, -0.1632,  0.2825, -1.1684],
-#>         [-0.8694, -0.2593, -0.3278,  1.1603,  1.1191, -1.5102, -0.2807],
-#>         [-1.8378,  0.1239, -1.1093, -0.3740,  0.6597, -0.4454,  0.6393]])
+#> tensor([[-0.3264, -0.9157,  0.8971, -2.7079, -1.9124,  2.9307,  2.0416],
+#>         [-1.8742, -0.7961,  0.7890, -2.3912,  1.5824, -1.5865, -0.5864],
+#>         [ 0.2821,  1.0414,  0.7079, -0.0214, -0.1066,  0.4503,  0.5949],
+#>         [ 2.0725,  1.4729,  1.1460,  0.3778,  1.0178, -0.2445, -0.6728],
+#>         [-0.1213, -0.4282, -0.1831,  0.2418, -0.5471, -1.3130, -0.3578]])
 print(a$size())
 #> torch.Size([5, 7])
 ```
@@ -560,9 +765,9 @@ mat1 <- torch$FloatTensor(3L, 5L)$uniform_(0.1, 0.1)
 mat2 <- torch$FloatTensor(5L)$uniform_(1, 1)
 
 mat0
-#> tensor([[0.8937, 0.7431, 0.8800, 0.9607, 0.0367],
-#>         [0.2148, 0.4822, 0.5873, 0.6996, 0.9806],
-#>         [0.4690, 0.2638, 0.6587, 0.0649, 0.3049]])
+#> tensor([[0.9866, 0.2191, 0.9138, 0.4056, 0.6276],
+#>         [0.6520, 0.1635, 0.0598, 0.5967, 0.1171],
+#>         [0.4075, 0.8533, 0.9191, 0.2455, 0.2374]])
 mat1
 #> tensor([[0.1000, 0.1000, 0.1000, 0.1000, 0.1000],
 #>         [0.1000, 0.1000, 0.1000, 0.1000, 0.1000],
@@ -576,15 +781,15 @@ Binomial <- torch$distributions$binomial$Binomial
 
 m = Binomial(100, torch$tensor(list(0 , .2, .8, 1)))
 (x = m$sample())
-#> tensor([  0.,  21.,  82., 100.])
+#> tensor([  0.,  20.,  80., 100.])
 ```
 
 ``` r
 m = Binomial(torch$tensor(list(list(5.), list(10.))), 
              torch$tensor(list(0.5, 0.8)))
 (x = m$sample())
-#> tensor([[2., 4.],
-#>         [5., 6.]])
+#> tensor([[4., 0.],
+#>         [5., 9.]])
 ```
 
 ### Exponential distribution
@@ -594,7 +799,7 @@ Exponential <- torch$distributions$exponential$Exponential
 
 m = Exponential(torch$tensor(list(1.0)))
 m$sample()  # Exponential distributed with rate=1
-#> tensor([1.2193])
+#> tensor([1.7100])
 ```
 
 ### Weibull distribution
@@ -604,7 +809,7 @@ Weibull <- torch$distributions$weibull$Weibull
 
 m = Weibull(torch$tensor(list(1.0)), torch$tensor(list(1.0)))
 m$sample()  # sample from a Weibull distribution with scale=1, concentration=1
-#> tensor([2.0584])
+#> tensor([0.0828])
 ```
 
 ## Tensor default data types
@@ -645,11 +850,11 @@ x = torch$randn(2L, 3L)            # Size 2x3
 y = x$view(6L)                    # Resize x to size 6
 z = x$view(-1L, 2L)                # Size 3x2
 print(y)
-#> tensor([ 1.3999,  0.5589, -0.5159, -0.1805, -0.2173, -0.3026])
+#> tensor([-0.0924,  0.3654,  0.0455, -0.1369, -1.2787, -1.0189])
 print(z)
-#> tensor([[ 1.3999,  0.5589],
-#>         [-0.5159, -0.1805],
-#>         [-0.2173, -0.3026]])
+#> tensor([[-0.0924,  0.3654],
+#>         [ 0.0455, -0.1369],
+#>         [-1.2787, -1.0189]])
 ```
 
 ``` r
@@ -669,24 +874,24 @@ v = torch$arange(9L)
 # concatenate tensors
 x = torch$randn(2L, 3L)
 print(x)
-#> tensor([[-0.7855,  0.2509,  0.0498],
-#>         [ 0.8093,  1.0397, -0.2614]])
+#> tensor([[ 0.7338, -0.4001, -0.7332],
+#>         [ 0.6072, -0.0047,  0.9516]])
 
 # concatenate tensors by dim=0"
 torch$cat(list(x, x, x), 0L)
-#> tensor([[-0.7855,  0.2509,  0.0498],
-#>         [ 0.8093,  1.0397, -0.2614],
-#>         [-0.7855,  0.2509,  0.0498],
-#>         [ 0.8093,  1.0397, -0.2614],
-#>         [-0.7855,  0.2509,  0.0498],
-#>         [ 0.8093,  1.0397, -0.2614]])
+#> tensor([[ 0.7338, -0.4001, -0.7332],
+#>         [ 0.6072, -0.0047,  0.9516],
+#>         [ 0.7338, -0.4001, -0.7332],
+#>         [ 0.6072, -0.0047,  0.9516],
+#>         [ 0.7338, -0.4001, -0.7332],
+#>         [ 0.6072, -0.0047,  0.9516]])
 
 # concatenate tensors by dim=1
 torch$cat(list(x, x, x), 1L)
-#> tensor([[-0.7855,  0.2509,  0.0498, -0.7855,  0.2509,  0.0498, -0.7855,  0.2509,
-#>           0.0498],
-#>         [ 0.8093,  1.0397, -0.2614,  0.8093,  1.0397, -0.2614,  0.8093,  1.0397,
-#>          -0.2614]])
+#> tensor([[ 0.7338, -0.4001, -0.7332,  0.7338, -0.4001, -0.7332,  0.7338, -0.4001,
+#>          -0.7332],
+#>         [ 0.6072, -0.0047,  0.9516,  0.6072, -0.0047,  0.9516,  0.6072, -0.0047,
+#>           0.9516]])
 ```
 
 ### Reshape tensors
@@ -787,26 +992,73 @@ v
 
 ## Tensor fill
 
+### Fill with a unique value
+
 ``` r
+# a tensor filled with ones
 (v = torch$ones(3L, 3L))
 #> tensor([[1., 1., 1.],
 #>         [1., 1., 1.],
 #>         [1., 1., 1.]])
-v[1L, ]$fill_(2L)         # fill row 1 with 2s
+```
+
+### Change the tensor values by rows
+
+``` r
+# change two rows in the tensor
+# we are using 1-based index
+v[2L, ]$fill_(2L)         # fill row 1 with 2s
 #> tensor([2., 2., 2.])
-v[2L, ]$fill_(3L)         # fill row 2 with 3s
+v[3L, ]$fill_(3L)         # fill row 2 with 3s
 #> tensor([3., 3., 3.])
-print(v)
-#> tensor([[2., 2., 2.],
-#>         [3., 3., 3.],
-#>         [1., 1., 1.]])
 ```
 
 ``` r
+print(v)
+#> tensor([[1., 1., 1.],
+#>         [2., 2., 2.],
+#>         [3., 3., 3.]])
+```
+
+### Fill a tensor with a set increment
+
+``` r
 # Initialize Tensor with a range of values
-v = torch$arange(10L)             # similar to range(5) but creating a Tensor
+(v = torch$arange(10L))             # similar to range(5) but creating a Tensor
+#> tensor([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+```
+
+``` r
 (v = torch$arange(0L, 10L, step = 1L))  # Size 5. Similar to range(0, 5, 1)
 #> tensor([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+```
+
+### With decimal increments
+
+``` r
+u <- torch$arange(0, 10, step = 0.5)
+u
+#> tensor([0.0000, 0.5000, 1.0000, 1.5000, 2.0000, 2.5000, 3.0000, 3.5000, 4.0000,
+#>         4.5000, 5.0000, 5.5000, 6.0000, 6.5000, 7.0000, 7.5000, 8.0000, 8.5000,
+#>         9.0000, 9.5000])
+```
+
+### Including the ending value
+
+``` r
+# range of values with increments including the end value
+start <- 0
+end   <- 10
+step  <- 0.25
+
+w <- torch$arange(start, end+step, step)
+w
+#> tensor([ 0.0000,  0.2500,  0.5000,  0.7500,  1.0000,  1.2500,  1.5000,  1.7500,
+#>          2.0000,  2.2500,  2.5000,  2.7500,  3.0000,  3.2500,  3.5000,  3.7500,
+#>          4.0000,  4.2500,  4.5000,  4.7500,  5.0000,  5.2500,  5.5000,  5.7500,
+#>          6.0000,  6.2500,  6.5000,  6.7500,  7.0000,  7.2500,  7.5000,  7.7500,
+#>          8.0000,  8.2500,  8.5000,  8.7500,  9.0000,  9.2500,  9.5000,  9.7500,
+#>         10.0000])
 ```
 
 ### Initialize a linear or log scale Tensor
@@ -827,8 +1079,18 @@ v = torch$arange(10L)             # similar to range(5) but creating a Tensor
 
 ``` r
 a = torch$rand(5L, 4L)
-b = a$numpy()
+print(class(a))
+#> [1] "torch.Tensor"          "torch._C._TensorBase"  "python.builtin.object"
+```
 
+``` r
+# converting the tensor to a numpy array, R automatically converts it
+b = a$numpy()
+print(class(b))
+#> [1] "matrix"
+```
+
+``` r
 a$fill_(3.5)
 #> tensor([[3.5000, 3.5000, 3.5000, 3.5000],
 #>         [3.5000, 3.5000, 3.5000, 3.5000],
@@ -837,7 +1099,8 @@ a$fill_(3.5)
 #>         [3.5000, 3.5000, 3.5000, 3.5000]])
 # a has now been filled with the value 3.5
 
-# add a scalar to a tensor
+# add a scalar to a tensor. 
+# notice that was auto-converted from an array to a tensor
 b <- a$add(4.0)
 
 # a is still filled with 3.5
@@ -857,6 +1120,8 @@ print(b)
 #>         [7.5000, 7.5000, 7.5000, 7.5000]])
 ```
 
+### Tensor element assigment not implemented yet
+
 ``` r
 # this will throw an error because we don't still have a function for assignment
 a[1, 1] <- 7.7
@@ -864,9 +1129,25 @@ print(a)
 # Error in a[1, 1] <- 7.7 : object of type 'environment' is not subsettable
 ```
 
-Some operations like`narrow` do not have in-place versions, and hence,
-`.narrow_` does not exist. Similarly, some operations like `fill_` do
-not have an out-of-place version, so `.fill` does not exist.
+``` r
+# This would be the right wayy to assign a value to a tensor element
+a[1, 1]$fill_(7.7)
+#> tensor(7.7000)
+```
+
+``` r
+# we can see that the first element has been changed
+a
+#> tensor([[7.7000, 3.5000, 3.5000, 3.5000],
+#>         [3.5000, 3.5000, 3.5000, 3.5000],
+#>         [3.5000, 3.5000, 3.5000, 3.5000],
+#>         [3.5000, 3.5000, 3.5000, 3.5000],
+#>         [3.5000, 3.5000, 3.5000, 3.5000]])
+```
+
+> Some operations like`narrow` do not have in-place versions, and hence,
+> `.narrow_` does not exist. Similarly, some operations like `fill_` do
+> not have an out-of-place version, so `.fill` does not exist.
 
 ``` r
 # a[[0L, 3L]]
@@ -876,48 +1157,94 @@ a[1, 4]
 
 ## Access to tensor elements
 
+### Change a tensor element given its index
+
 ``` r
 # replace an element at position 0, 0
 (new_tensor = torch$Tensor(list(list(1, 2), list(3, 4))))
 #> tensor([[1., 2.],
 #>         [3., 4.]])
+```
 
+``` r
+# first row, firt column
 print(new_tensor[1L, 1L])
 #> tensor(1.)
+```
+
+``` r
+# change row 1, col 1 with value of 5
 new_tensor[1L, 1L]$fill_(5)
 #> tensor(5.)
+```
+
+``` r
+# which is the same as doing this
+new_tensor[1, 1]$fill_(5)
+#> tensor(5.)
+```
+
+> Notice that the element was changed in-place because of `fill_`.
+
+### In R the index is 1-based
+
+``` r
 print(new_tensor)   # tensor([[ 5.,  2.],[ 3.,  4.]])
 #> tensor([[5., 2.],
 #>         [3., 4.]])
 ```
 
 ``` r
-# access an element at position 1, 0
+# access an element at position (1, 0), 0-based index
 print(new_tensor[2L, 1L])           # tensor([ 3.])
 #> tensor(3.)
+```
+
+``` r
+# convert it to a scalar value
 print(new_tensor[2L, 1L]$item())    # 3.
 #> [1] 3
 ```
 
 ``` r
+# which is the same as
+print(new_tensor[2, 1])
+#> tensor(3.)
+```
+
+``` r
+# and the scalar
+print(new_tensor[2, 1]$item()) 
+#> [1] 3
+```
+
+### Extract part of a tensor
+
+``` r
 # Select indices
 x = torch$randn(3L, 4L)
 print(x)
-#> tensor([[ 0.8122,  0.1222,  0.4523,  0.1110],
-#>         [-0.7818, -0.6561,  0.0894, -0.0543],
-#>         [-0.8612,  0.0760, -1.2868, -0.6230]])
+#> tensor([[ 0.2777, -0.0244, -1.4496,  0.7053],
+#>         [ 1.5374, -0.5697, -0.9257, -0.6530],
+#>         [-0.0825,  0.4572,  0.1645, -0.4213]])
+```
 
+``` r
+# extract first and third row
 # Select indices, dim=0
 indices = torch$tensor(list(0L, 2L))
 torch$index_select(x, 0L, indices)
-#> tensor([[ 0.8122,  0.1222,  0.4523,  0.1110],
-#>         [-0.8612,  0.0760, -1.2868, -0.6230]])
+#> tensor([[ 0.2777, -0.0244, -1.4496,  0.7053],
+#>         [-0.0825,  0.4572,  0.1645, -0.4213]])
+```
 
-# "Select indices, dim=1
+``` r
+# extract first and third column
+# Select indices, dim=1
 torch$index_select(x, 1L, indices)
-#> tensor([[ 0.8122,  0.4523],
-#>         [-0.7818,  0.0894],
-#>         [-0.8612, -1.2868]])
+#> tensor([[ 0.2777, -1.4496],
+#>         [ 1.5374, -0.9257],
+#>         [-0.0825,  0.1645]])
 ```
 
 ``` r
@@ -933,36 +1260,7 @@ print( torch$take(src, torch$tensor(list(0L, 2L, 5L))) )
 
 ## Tensor operations
 
-### cross product
-
-``` r
-m1 = torch$ones(3L, 5L)
-m2 = torch$ones(3L, 5L)
-v1 = torch$ones(3L)
-# Cross product
-# Size 3x5
-(r = torch$cross(m1, m2))
-#> tensor([[0., 0., 0., 0., 0.],
-#>         [0., 0., 0., 0., 0.],
-#>         [0., 0., 0., 0., 0.]])
-```
-
-### Dot product
-
-``` r
-# Dot product of 2 tensors
-# Dot product of 2 tensors
-
-p <- torch$Tensor(list(4L, 2L))
-q <- torch$Tensor(list(3L, 1L))                   
-
-(r = torch$dot(p, q)) # 14
-#> tensor(14.)
-(r <- p %.*% q)
-#> tensor(14.)
-```
-
-## Transpose
+### Transpose
 
 ``` r
 # two dimensions: 3x3
@@ -1002,7 +1300,7 @@ print(t$shape)    # transposed
 #> torch.Size([2, 1, 3])
 ```
 
-## Permutation
+### Permutation
 
 ### permute a 2D tensor
 
@@ -1033,7 +1331,39 @@ print(xps)    # shape permuted tensor
 ### permute a 3D tensor
 
 ``` r
+torch$manual_seed(1234)
+#> <torch._C.Generator>
+
 x <- torch$randn(10L, 480L, 640L, 3L)
+x[1:3, 1:2, 1:3, 1:2]
+#> tensor([[[[-0.0883,  0.3420],
+#>           [ 1.0051, -0.1117],
+#>           [-0.0982, -0.3511]],
+#> 
+#>          [[-0.1465,  0.3960],
+#>           [-1.6878,  0.5720],
+#>           [ 0.9426,  2.1187]]],
+#> 
+#> 
+#>         [[[ 0.8107,  0.9289],
+#>           [ 0.4210, -1.5109],
+#>           [-1.8483, -0.4636]],
+#> 
+#>          [[-1.8324, -1.9304],
+#>           [-2.7020,  0.3491],
+#>           [ 0.9180, -1.9872]]],
+#> 
+#> 
+#>         [[[ 1.6555, -0.3531],
+#>           [ 0.4763,  0.8037],
+#>           [-0.2171, -0.0839]],
+#> 
+#>          [[-0.0886, -1.3389],
+#>           [ 0.7163, -0.9050],
+#>           [-0.8144, -1.4922]]]])
+```
+
+``` r
 xs <- torch$as_tensor(x$size())     # torch$tensor(c(10L, 480L, 640L, 3L))
 xp <- x$permute(0L, 3L, 1L, 2L)     # specify dimensions order
 xps <- torch$as_tensor(xp$size())   # torch$tensor(c(10L, 3L, 480L, 640L))
@@ -1045,15 +1375,62 @@ print(xps)     # permuted tensor size
 #> tensor([ 10,   3, 480, 640])
 ```
 
+``` r
+xp[1:3, 1:2, 1:3, 1:2]
+#> tensor([[[[-0.0883,  1.0051],
+#>           [-0.1465, -1.6878],
+#>           [-0.6429,  0.5577]],
+#> 
+#>          [[ 0.3420, -0.1117],
+#>           [ 0.3960,  0.5720],
+#>           [ 0.3014,  0.7813]]],
+#> 
+#> 
+#>         [[[ 0.8107,  0.4210],
+#>           [-1.8324, -2.7020],
+#>           [ 1.1724,  0.4434]],
+#> 
+#>          [[ 0.9289, -1.5109],
+#>           [-1.9304,  0.3491],
+#>           [ 0.9901, -1.3630]]],
+#> 
+#> 
+#>         [[[ 1.6555,  0.4763],
+#>           [-0.0886,  0.7163],
+#>           [-0.7774, -0.6281]],
+#> 
+#>          [[-0.3531,  0.8037],
+#>           [-1.3389, -0.9050],
+#>           [-0.7920,  1.3634]]]])
+```
+
 ## Logical operations
 
 ### is it equal
 
 ``` r
-m0 = torch$zeros(3L, 5L)
-m1 = torch$ones(3L, 5L)
-m2 = torch$eye(3L, 5L)
+(m0 = torch$zeros(3L, 5L))
+#> tensor([[0., 0., 0., 0., 0.],
+#>         [0., 0., 0., 0., 0.],
+#>         [0., 0., 0., 0., 0.]])
+```
 
+``` r
+(m1 = torch$ones(3L, 5L))
+#> tensor([[1., 1., 1., 1., 1.],
+#>         [1., 1., 1., 1., 1.],
+#>         [1., 1., 1., 1., 1.]])
+```
+
+``` r
+(m2 = torch$eye(3L, 5L))
+#> tensor([[1., 0., 0., 0., 0.],
+#>         [0., 1., 0., 0., 0.],
+#>         [0., 0., 1., 0., 0.]])
+```
+
+``` r
+# is m1 equal to m0
 print(m1 == m0)
 #> tensor([[False, False, False, False, False],
 #>         [False, False, False, False, False],
@@ -1070,10 +1447,27 @@ print(m1 != m1)
 ```
 
 ``` r
+# are both equal
 print(m2 == m2)
 #> tensor([[True, True, True, True, True],
 #>         [True, True, True, True, True],
 #>         [True, True, True, True, True]])
+```
+
+``` r
+# some are equal, others don't
+m1 != m2
+#> tensor([[False,  True,  True,  True,  True],
+#>         [ True, False,  True,  True,  True],
+#>         [ True,  True, False,  True,  True]])
+```
+
+``` r
+# some are equal, others don't
+m0 != m2
+#> tensor([[ True, False, False, False, False],
+#>         [False,  True, False, False, False],
+#>         [False, False,  True, False, False]])
 ```
 
 ### AND
@@ -1104,24 +1498,19 @@ m1 | m2
 #>         [True, True, True, True, True]])
 ```
 
-### One logical result with *all*
+### Extract only one logical result with *all*
 
 ``` r
-# all_boolean <- function(x) {
-#   # convert tensor of 1s and 0s to a unique boolean
-#   as.logical(torch$all(x)$numpy())
-# }
-
 # tensor is less than
 A <- torch$ones(60000L, 1L, 28L, 28L)
 C <- A * 0.5
 
-# is C < A
-all(torch$lt(C, A))
+# is C < A = TRUE
+all(torch$lt(C, A)) 
 #> tensor(1, dtype=torch.uint8)
-all(C < A)
+all(C < A) 
 #> tensor(1, dtype=torch.uint8)
-# is A < C
+# is A < C = FALSE
 all(A < C)
 #> tensor(0, dtype=torch.uint8)
 ```
@@ -1161,6 +1550,29 @@ all(A1 <= A0)
 #> tensor(0, dtype=torch.uint8)
 ```
 
+### As a R logical value
+
+``` r
+# we implement this little function
+all_as_boolean <- function(x) {
+  # convert tensor of 1s and 0s to a unique boolean
+  as.logical(torch$all(x)$numpy())
+}
+```
+
+``` r
+all_as_boolean(torch$gt(D, A))
+#> [1] TRUE
+all_as_boolean(torch$gt(A, D))
+#> [1] FALSE
+all_as_boolean(A1 <= A1)
+#> [1] TRUE
+all_as_boolean(A1 >= A0)
+#> [1] TRUE
+all_as_boolean(A1 <= A0)
+#> [1] FALSE
+```
+
 ### Logical NOT
 
 ``` r
@@ -1176,21 +1588,25 @@ not_all_true
 
 ``` r
 diag <- torch$eye(5L)
-diag
-#> tensor([[1., 0., 0., 0., 0.],
-#>         [0., 1., 0., 0., 0.],
-#>         [0., 0., 1., 0., 0.],
-#>         [0., 0., 0., 1., 0.],
-#>         [0., 0., 0., 0., 1.]])
+diag <- diag$to(dtype=torch$uint8)   # convert to unsigned integer
 
 # logical NOT
 not_diag <- !diag
 
-# convert to integer
-not_diag$to(dtype=torch$uint8)
-#> tensor([[0, 1, 1, 1, 1],
-#>         [1, 0, 1, 1, 1],
-#>         [1, 1, 0, 1, 1],
-#>         [1, 1, 1, 0, 1],
-#>         [1, 1, 1, 1, 0]], dtype=torch.uint8)
+not_diag
+#> tensor([[False,  True,  True,  True,  True],
+#>         [ True, False,  True,  True,  True],
+#>         [ True,  True, False,  True,  True],
+#>         [ True,  True,  True, False,  True],
+#>         [ True,  True,  True,  True, False]])
+```
+
+``` r
+# and the negation
+!not_diag
+#> tensor([[ True, False, False, False, False],
+#>         [False,  True, False, False, False],
+#>         [False, False,  True, False, False],
+#>         [False, False, False,  True, False],
+#>         [False, False, False, False,  True]])
 ```

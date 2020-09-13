@@ -16,3 +16,8 @@
 
 ## half-done
 * move some functions in `tests/testthat/utils.R` to `R/utils.R`
+
+
+
+## rTorch 0.0.3.9009
+* add vignette for PyTorch installation

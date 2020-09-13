@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9008</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9009</span>
       </span>
     </div>
 
@@ -85,6 +85,18 @@
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="articles/installation.html">Installation</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="news/index.html">Changelog</a>
@@ -122,13 +134,14 @@
 <h3 class="hasAnchor">
 <a href="#todo-1" class="anchor"></a>TODO</h3>
 <ul>
-<li>Generate documentation with <code>pkgdown</code>
-</li>
-<li>add Linear Algebra functions: <em>Gaussian Elimination</em>, Cholesky, LU</li>
-<li>add unit tests for linear algebra functions</li>
+<li>add Linear Algebra functions: <em>Gaussian Elimination</em>, Cholesky, LU
+<ul>
 <li>add examples for Gaussian Elimination</li>
-<li>add examples for matrices operations.</li>
-<li>find libraries for fast operations in matrices.</li>
+<li>add unit tests for linear algebra functions</li>
+</ul>
+</li>
+<li>add examples for matrix operations.</li>
+<li>find stable libraries for fast operations in matrices.</li>
 </ul>
 </div>
 <div id="done" class="section level3">
@@ -138,6 +151,7 @@
 <li>modify <code>pytorch_install</code> to include version. DONE</li>
 <li>Modify <code><a href="reference/install_pytorch.html">install_pytorch()</a></code> and remove <code>pytorch-cpu==1.1</code> way to specify <code>pytorch</code>. It is causing error because new PyTorch versions do not take the suffix <code>-cpu</code>. DONE</li>
 <li>add to <code><a href="reference/install_pytorch.html">install_pytorch()</a></code> parameters for Python version, packages, and PyTorch version. DONE</li>
+<li>Generate documentation with <code>pkgdown</code>. DONE</li>
 </ul>
 </div>
 </div>

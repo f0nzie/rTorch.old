@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9008</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9009</span>
       </span>
     </div>
 
@@ -86,6 +86,18 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/installation.html">Installation</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -146,11 +158,11 @@ False to represent 0, and True to represent 1 in a tensor of data type <code>tor
 <span class='kw'>A</span> <span class='op'>&lt;-</span> <span class='kw'>torch</span><span class='op'>$</span><span class='fu'>ones</span>(<span class='fl'>5L</span>, <span class='fl'>5L</span>)
 <span class='kw'>C</span> <span class='op'>&lt;-</span> <span class='kw'>torch</span><span class='op'>$</span><span class='fu'>as_tensor</span>(<span class='kw'>np</span><span class='op'>$</span><span class='kw'>random</span><span class='op'>$</span><span class='fu'>randint</span>(<span class='fl'>2L</span>, size=<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5L</span>, <span class='fl'>5L</span>)), dtype=<span class='kw'>torch</span><span class='op'>$</span><span class='kw'>float32</span>)
 <span class='kw'>A</span> <span class='op'>&gt;</span> <span class='kw'>C</span>
-</div><div class='output co'>#&gt; tensor([[ True,  True, False, False,  True],
-#&gt;         [ True, False,  True, False,  True],
-#&gt;         [ True, False, False, False,  True],
-#&gt;         [False, False,  True, False, False],
-#&gt;         [ True,  True, False, False, False]])</div><div class='input'><span class='kw'>C</span> <span class='op'>&gt;</span> <span class='kw'>A</span>
+</div><div class='output co'>#&gt; tensor([[False, False,  True,  True, False],
+#&gt;         [ True, False, False, False, False],
+#&gt;         [ True, False, False,  True,  True],
+#&gt;         [ True,  True,  True, False, False],
+#&gt;         [False, False,  True, False, False]])</div><div class='input'><span class='kw'>C</span> <span class='op'>&gt;</span> <span class='kw'>A</span>
 </div><div class='output co'>#&gt; tensor([[False, False, False, False, False],
 #&gt;         [False, False, False, False, False],
 #&gt;         [False, False, False, False, False],
