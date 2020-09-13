@@ -1,11 +1,11 @@
 # rTorch 0.0.3.9010
 * 20200913. branch `0.0.3.9010-fix-appveyor`
-* modify appveyor script. currently failing
-* remove suffix `-cpu` from `pytorch` and `torchvision` packages. still failing because of python version is *3.6.1*
-* change python version to *3.6*. Passed. 
-* appveyor still failing with **Error: package 'remotes' was installed before R 4.0.0: please re-install it**. repo `f0nzie/r-appveyor` requires some changes.
+* modify __appveyor__ script. currently failing
+* remove suffix `-cpu` from `pytorch` and `torchvision` packages from `appveyor.yml`. still failing because of python version is *3.6.1*.
+* change python version to *3.6*. __Passed__. 
+* **appveyor** still failing with error  *package 'remotes' was installed before R 4.0.0: please re-install it*. repo `f0nzie/r-appveyor` requires some changes.
 * updating file `appveyor-tool.ps1 ` in `r-appveyor` repo.
-* remove ctb. will credit them in README.
+* clean up `DESCRIPTION`. remove ctb. will credit them in README.
  
 # rTorch 0.0.3.9009
 * 20200911

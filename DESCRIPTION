@@ -3,6 +3,7 @@ Title: R Bindings to 'PyTorch'
 Version: 0.0.3.9010
 Authors@R: c(
     person("Alfonso R.", "Reyes", role = c("aut", "cre", "cph"), email = "alfonso.reyes@oilgainsanalytics.com")
+    )
 Description: 'R' implementation and interface of the Machine Learning platform 
     'PyTorch' <https://pytorch.org/> developed in 'Python'. It requires a 'conda'
     environment with 'torch' and 'torchvision' to provide 'PyTorch' functions, 
@@ -13,8 +14,8 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends: R (>= 3.1)
-Imports: logging,
-    reticulate,
+Imports: 
+    reticulate (>= 1.10),
     jsonlite (>= 1.2),
     utils,
     methods,
@@ -28,4 +29,5 @@ Suggests:
 SystemRequirements: PyTorch (https://pytorch.org/)
 RoxygenNote: 7.1.1
 URL: https://github.com/f0nzie/rTorch
+BugReports: https://github.com/f0nzie/rTorch/issues
 VignetteBuilder: knitr
