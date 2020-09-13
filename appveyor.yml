@@ -9,14 +9,27 @@ environment:
   matrix:
     - R_VERSION: 3.6.3
       TORCH_VERSION: 1.1
+
+    - R_VERSION: 3.6.3
       TORCH_VERSION: 1.2
+
+    - R_VERSION: 3.6.3
       TORCH_VERSION: 1.4
+
+    - R_VERSION: 3.6.3
       TORCH_VERSION: 1.6
+
 
     - R_VERSION: 4.0.2
       TORCH_VERSION: 1.1
+
+    - R_VERSION: 4.0.2
       TORCH_VERSION: 1.2
+
+    - R_VERSION: 4.0.2
       TORCH_VERSION: 1.4
+
+    - R_VERSION: 4.0.2
       TORCH_VERSION: 1.6
 
 
