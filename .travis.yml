@@ -22,6 +22,8 @@ os:
 #   - PYTHON_VERSION="3.8" PYTORCH_VERSION="1.1"
 # # ----------------------------------------------
 
+
+# this matrix generates 48 jobs
 env:
   matrix:
     - PYTHON_VERSION="3.6" PYTORCH_VERSION="1.1"
