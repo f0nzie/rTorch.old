@@ -186,6 +186,186 @@ message("\nResult")
 (prod = tensor * scalar)
 ```
 
+### Multiply two 1D tensors
+
+```{r}
+t1 = torch$tensor(c(1, 2))
+t2 = torch$tensor(c(3, 2))
+
+t1
+t2
+```
+```{r}
+t1 * t2
+```
+
+```{r}
+t1 = torch$tensor(list(
+    c(1, 2, 3),
+    c(1, 2, 3)
+))
+
+t2 = torch$tensor(list(
+    c(1, 2),
+    c(1, 2),
+    c(1, 2)
+))
+
+t1
+t2
+```
+
+```{r}
+torch$mm(t1, t2)
+```
+
+
+
+### Dot product for 1D tensors (vectors)
+
+```{r}
+t1 = torch$tensor(c(1, 2))
+t2 = torch$tensor(c(3, 2))
+
+t1
+t2
+```
+```{r}
+# dot product of two vectors
+torch$dot(t1, t2)
+```
+
+```{r}
+# Dot product of 1D tensors is a scalar
+
+p <- torch$Tensor(list(4L, 2L))
+q <- torch$Tensor(list(3L, 1L))                   
+
+(r = torch$dot(p, q)) # 14
+(r <- p %.*% q)
+```
+
+
+```{r}
+# torch$dot product will work for vectors not matrices
+t1 = torch$tensor(list(
+    c(1, 2, 3),
+    c(1, 2, 3)
+))
+
+t2 = torch$tensor(list(
+    c(1, 2),
+    c(1, 2),
+    c(1, 2)
+))
+
+t1$shape
+t2$shape
+```
+
+```{r invalid-dot-product-1, eval=FALSE}
+# RuntimeError: 1D tensors expected, got 2D, 2D tensors
+torch$dot(t1, t2)
+```
+
+### Dot product for 2D tensors (matrices)
+The number of columns of the first matrix must be equal to the number of rows of the second matrix. 
+
+```{r}
+# for the dot product of nD tensors we use torch$mm()
+t1 = torch$tensor(list(
+    c(1, 2, 3),
+    c(1, 2, 3)
+))
+
+t2 = torch$tensor(list(
+    c(1, 2),
+    c(1, 2),
+    c(1, 2)
+))
+
+torch$mm(t1, t2)
+```
+
+```{r}
+torch$mm(t2, t1)
+```
+
+```{r}
+# for the dot product of 2D tensors we use torch$mm()
+t1 = torch$arange(1, 11)$view(c(2L,5L))
+t2 = torch$arange(11, 21)$view(c(5L,2L))
+
+t1
+t2
+```
+
+```{r}
+# result
+torch$mm(t1, t2)
+```
+
+### Multiplication for nD tensors
+
+```{r}
+# 1D tensor
+t1 = torch$tensor(c(1, 2))
+t2 = torch$tensor(c(3, 2))
+
+torch$matmul(t1, t2)
+```
+```{r}
+# 2D tensor
+t1 = torch$tensor(list(
+    c(1, 2, 3),
+    c(1, 2, 3)
+))
+
+t2 = torch$tensor(list(
+    c(1, 2),
+    c(1, 2),
+    c(1, 2)
+))
+
+torch$matmul(t1, t2)
+```
+
+
+
+```{r}
+# for the dot product of 3D tensors we use torch$matmul()
+t1 = torch$arange(1, 13)$view(c(2L, 2L, 3L))   # number of columns = 2
+t2 = torch$arange(0, 18)$view(c(2L, 3L, 3L))   # number of rows = 2
+
+t1
+t2
+
+message("result")
+torch$matmul(t1, t2)
+```
+```{r}
+t1 = torch$arange(1, 13)$view(c(3L, 2L, 2L))   # number of columns = 3
+t2 = torch$arange(0, 12)$view(c(3L, 2L, 2L))   # number of rows = 3
+
+t1
+t2
+
+message("result")
+torch$matmul(t1, t2)
+
+```
+
+
+
+### cross product
+```{r}
+m1 = torch$ones(3L, 5L)
+m2 = torch$ones(3L, 5L)
+v1 = torch$ones(3L)
+# Cross product
+# Size 3x5
+(r = torch$cross(m1, m2))
+```
 
 ## NumPy and PyTorch
 `numpy` has been made available as a module inside `rTorch`. We could call functions from `numpy` refrerring to it as `np$any_function`. Examples:
@@ -749,28 +929,7 @@ print( torch$take(src, torch$tensor(list(0L, 2L, 5L))) )
 
 ## Tensor operations
 
-### cross product
-```{r}
-m1 = torch$ones(3L, 5L)
-m2 = torch$ones(3L, 5L)
-v1 = torch$ones(3L)
-# Cross product
-# Size 3x5
-(r = torch$cross(m1, m2))
-```
 
-### Dot product
-
-```{r}
-# Dot product of 2 tensors
-# Dot product of 2 tensors
-
-p <- torch$Tensor(list(4L, 2L))
-q <- torch$Tensor(list(3L, 1L))                   
-
-(r = torch$dot(p, q)) # 14
-(r <- p %.*% q)
-```
 
 ### Transpose
 
