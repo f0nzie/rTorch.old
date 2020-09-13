@@ -7,7 +7,9 @@ environment:
   APPVEYOR_RDP_PASSWORD: rTorch%package
   R_ARCH: x64
   matrix:
+    - TORCH_VERSION: 1.2
     - TORCH_VERSION: 1.4
+    - TORCH_VERSION: 1.6
 
 # Download script file from GitHub
 init:
