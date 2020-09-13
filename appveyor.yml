@@ -25,7 +25,7 @@ cache:
 # Adapt as necessary starting from here
 
 build_script:
-  - C:\Miniconda3-x64\Scripts\conda create -y --name r-torch pytorch=%TORCH_VERSION% torchvision python=3.6.1 -c pytorch
+  - C:\Miniconda3-x64\Scripts\conda create -y --name r-torch pytorch=%TORCH_VERSION% torchvision python=3.6 -c pytorch
   - travis-tool.sh install_deps
 
 test_script:
