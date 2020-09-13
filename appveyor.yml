@@ -7,6 +7,8 @@ environment:
   APPVEYOR_RDP_PASSWORD: rTorch%package
   R_ARCH: x64
   matrix:
+    - R_VERSION: 3.6.3
+    - R_VERSION: 4.0.2
     - TORCH_VERSION: 1.1
     - TORCH_VERSION: 1.2
     - TORCH_VERSION: 1.4
