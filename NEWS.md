@@ -1,3 +1,6 @@
+# rTorch 0.0.3.9012
+* Finding a problem when using PyTorch 1.1 in logical operations.
+* 
 
 # rTorch 0.0.3.9011
 * Because PyTorch 1.1 and 1.2 are failing on Python 3.8, we could install a custom pytorch with `install_pytorch(conda_python_version = "3.8", version = "1.2")`. Tests failed. But not because of PyTorch but conflict during the conda installation.
@@ -8,6 +11,7 @@
 * add environment variable `PYTHON_VERSION` to conda in build_script of __appveyor__. Twelve (12) passed.
 * Duplicate matrix for __Travis__ tests. Now we have tests for `Python 3.6` and `Python 3.7`, and `3.8` for only `PyTorch 1.6`, a total of 36 tests. All passed.
 * Duplicate matrix for __Appveyor__ tests. Now we have tests for `Python 3.6` and `Python 3.7`, a total of 36 tests. All passed.
+* Testing `develop` branch with Travis and Appveyor.
 
 
 
