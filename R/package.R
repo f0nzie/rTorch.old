@@ -143,12 +143,13 @@ torch_config <- function() {
             version_str = version_raw,
             location = config$required_module_path,
             python = config$python,
-            python_version = config$version
+            python_version = config$version,
+            numpy_version = as.character(config$numpy$version)
         ))
     } else {  # didn't find it
         structure(class = "pytorch_config", list(
             available = FALSE,
-            python_verisons = config$python_versions,
+            python_versions = config$python_versions,
             error_message = torch_config_error_message()
         ))
     }
@@ -169,10 +170,12 @@ torch_version <- function() {
 
 #' @export
 print.pytorch_config <- function(x, ...) {
+    # this is what will print when calling torch_config()
     if (x$available) {
         aliased <- function(path) sub(Sys.getenv("HOME"), "~", path)
         cat("PyTorch v", x$version_str, " (", aliased(x$location), ")\n", sep = "")
         cat("Python v", x$python_version, " (", aliased(x$python), ")\n", sep = "")
+        cat("NumPy v", x$numpy_version, ")\n", sep = "")
     } else {
         cat(x$error_message, "\n")
     }
