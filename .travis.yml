@@ -23,7 +23,7 @@ os:
 # # ----------------------------------------------
 
 
-# this matrix generates 48 jobs
+# this matrix generates 36 jobs
 env:
   matrix:
     # Python 3.6
