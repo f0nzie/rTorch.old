@@ -1,6 +1,8 @@
 # rTorch 0.0.3.9012
 * Finding a problem when using PyTorch 1.1 in logical operations.
-* 
+* logical generic functions should return `uint8` types as original PyTorch functions in `generics.R`.
+* new unit tests for `torch$all`, `torch$any` and some generic logicals in `test-tensor_comparison.R`.
+* switch to a couple of Travis and Appveyor tests to save time.
 
 # rTorch 0.0.3.9011
 * Because PyTorch 1.1 and 1.2 are failing on Python 3.8, we could install a custom pytorch with `install_pytorch(conda_python_version = "3.8", version = "1.2")`. Tests failed. But not because of PyTorch but conflict during the conda installation.
@@ -11,7 +13,7 @@
 * add environment variable `PYTHON_VERSION` to conda in build_script of __appveyor__. Twelve (12) passed.
 * Duplicate matrix for __Travis__ tests. Now we have tests for `Python 3.6` and `Python 3.7`, and `3.8` for only `PyTorch 1.6`, a total of 36 tests. All passed.
 * Duplicate matrix for __Appveyor__ tests. Now we have tests for `Python 3.6` and `Python 3.7`, a total of 36 tests. All passed.
-* Testing `develop` branch with Travis and Appveyor.
+* Testing `develop` branch with Travis and Appveyor. All tests passed.
 
 
 
