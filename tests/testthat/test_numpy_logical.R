@@ -43,8 +43,11 @@ test_that("tensor+numpy AND yields logical arrays", {
   A <- torch$BoolTensor(make_copy(list(0L)))
   B <- torch$BoolTensor(make_copy(list(0L)))
 
+  expect_output(print(tensor_logical_and(A, B)$data$type()), "torch.BoolTensor")
+  expect_output(print(tensor_true$data$type()), "torch.BoolTensor")
+
   expect_tensor_equal(tensor_logical_and(A, B), tensor_false)
-  expect_tensor_equal(tensor_logical_and(A, B), !tensor_true)
+  expect_tensor_equal(tensor_logical_and(A, B), !tensor_true)   # RuntimeExpected object of scalar type Bool but got scalar type Byte for argument #2 'other'
   expect_tensor_equal(tensor_logical_and(p, q), torch$BoolTensor(make_copy(list(FALSE, FALSE))))
 })
 
@@ -88,7 +91,7 @@ test_that("tensor_logical_or", {
 
   expect_tensor_equal((A|A),  torch$tensor(c(FALSE, FALSE), dtype=torch$bool))
   expect_tensor_equal((A|B),  torch$tensor(c(FALSE, TRUE), dtype=torch$bool))
-  expect_tensor_equal((A|C), !torch$tensor(c(FALSE, TRUE), dtype=torch$bool))
+  expect_tensor_equal((A|C), !torch$tensor(c(FALSE, TRUE), dtype=torch$bool)) # RuntimeExpected object of scalar type Bool but got scalar type Byte for argument #2 'other'
   expect_tensor_equal((A|D),  torch$tensor(c(TRUE, TRUE), dtype=torch$bool))
   expect_tensor_equal((B|C),  torch$tensor(c(TRUE, TRUE), dtype=torch$bool))
   expect_tensor_equal((B|D),  torch$tensor(c(TRUE, TRUE), dtype=torch$bool))
