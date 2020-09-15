@@ -12,3 +12,8 @@
 \description{
 Logarithm of a tensor in base 2
 }
+\examples{
+\donttest{
+x <- torch$tensor(c(512, 1024, 2048, 4096))   # tensor([ 9., 10., 11., 12.])
+}
+}

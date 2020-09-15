@@ -59,6 +59,12 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #'
 #' @return a vector of integers with the dimensions of the tensor
 #' @export
+#' @examples
+#' \donttest{
+#' uo = torch$ones(3L, 5L)  # it is a 3x5 tensor
+#' dim(uo)
+#' }
+#'
 "dim.torch.Tensor" <- function(x) {        # change .tensor to .Tensor
     if (py_is_null_xptr(x))
         NULL
@@ -80,6 +86,12 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #'
 #' @return the number of elements of a tensor as an integer
 #' @export
+#' @examples
+#' \donttest{
+#' uo = torch$ones(3L, 5L)   # tensor with 15 elements
+#' length(uo)
+#' }
+#'
 "length.torch.Tensor" <- function(x) {
     if (py_is_null_xptr(x))
         length(NULL)
@@ -338,8 +350,8 @@ tensor_ops <- function(a, b) UseMethod("tensor_ops")
 #' difference that the generic returns a tensor of booleans instead of
 #' a tensor of data type \code{torch$uint8}.
 #'
-#' @param a tensor
-#' @param b tensor
+#' @param x tensor
+#' @param y tensor
 #' @return A tensor of booleans, where False corresponds to 0, and 1 to True
 #' in a tensor of data type \code{torch$bool}.
 #'
@@ -373,8 +385,8 @@ tensor_not_equal <- function(x, y) {
 #' difference that the generic returns a tensor of booleans instead of
 #' a tensor of data type \code{torch$uint8}.
 #'
-#' @param a tensor
-#' @param b tensor
+#' @param x tensor
+#' @param y tensor
 #' @return A tensor of booleans, where False corresponds to 0, and 1 to True
 #' in a tensor of data type \code{torch$bool}.
 #'
@@ -450,8 +462,8 @@ tensor_logical_or <- function(x, y) {
 #' There is not equivalent function in PyTorch for this generic.
 #' To generate this generic we use the function \code{np$logical_and()}.
 #'
-#' @param a tensor
-#' @param b tensor
+#' @param x tensor
+#' @param y tensor
 #'
 #' @return A tensor of booleans representing the logical result of the comparison.
 #' False to represent 0, and True to represent 1 in a tensor of data type \code{torch$uint8}.
@@ -482,8 +494,8 @@ tensor_logical_or <- function(x, y) {
 #' There is not equivalent function in PyTorch for this generic.
 #' To generate this generic we use the function \code{np$logical_or()}.
 #'
-#' @param a tensor
-#' @param b tensor
+#' @param x tensor
+#' @param y tensor
 #'
 #' @return A tensor of booleans representing the logical result of the comparison.
 #' False to represent 0, and True to represent 1 in a tensor of data type \code{torch$uint8}.
@@ -658,6 +670,13 @@ tensor_logical_or <- function(x, y) {
 
 #' @describeIn tensor_ops A tensor 'a' to the power of 'b'
 #' @export
+#' @examples
+#' \donttest{
+#' x <- torch$arange(1,11)
+#' torch$pow(x, 2)      #     x^(2)
+#' torch$pow(x, -2)     #     x^(1/2)
+#' }
+#'
 "^.torch.Tensor" <- function(a, b) {
     torch$pow(a, b)
 }
@@ -674,6 +693,15 @@ tensor_logical_or <- function(x, y) {
 #' @param x a tensor
 #' @param base the base of the logarithm
 #' @export
+#' @examples
+#' \donttest{
+#' x <- torch$tensor(c(512, 1024, 2048, 4096))   # tensor([ 9., 10., 11., 12.])
+#' base <- 2
+#' log(x, base)
+#'
+#' x <- torch$tensor(c(1, 10, 100, 1000))         # tensor([0., 1., 2., 3.])
+#' log(x, 10)
+#' }
 "log.torch.Tensor" <- function(x, base = exp(1L)) {
     if (is_tensor(base) || base != exp(1L)) {
         # print("base IS a tensor")
@@ -688,14 +716,23 @@ tensor_logical_or <- function(x, y) {
 #' Logarithm of a tensor in base 2
 #' @param x a tensor
 #' @export
+#' @examples
+#' \donttest{
+#' x <- torch$tensor(c(512, 1024, 2048, 4096))   # tensor([ 9., 10., 11., 12.])
+#' }
 #' @method log2 torch.Tensor
 "log2.torch.Tensor" <- function(x) {
     torch$log2(x)
 }
 
+
 #' Logarithm of a tensor in base 10
 #' @param x a tensor
 #' @export
+#' @examples
+#' \donttest{
+#' x <- torch$tensor(c(1, 10, 100, 1000))     # tensor([0., 1., 2., 3.])
+#' }
 #' @method log10 torch.Tensor
 "log10.torch.Tensor" <- function(x) {
     torch$log10(x)

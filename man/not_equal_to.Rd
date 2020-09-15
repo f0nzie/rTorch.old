@@ -8,9 +8,9 @@
 \method{!=}{torch.Tensor}(x, y)
 }
 \arguments{
-\item{a}{tensor}
+\item{x}{tensor}
 
-\item{b}{tensor}
+\item{y}{tensor}
 }
 \value{
 A tensor of booleans, where False corresponds to 0, and 1 to True
