@@ -180,12 +180,17 @@ test_that("numpy logical-not works as !", {
   E <- torch$eye(3L)
   expect_true_tensor(all(torch$diag(E)))
 
-  # torch$diag does not work on boolean tensors when diag are all zeros
-  # the tensor has to be converted first to uint8 dtype
+  # get the diagonal
+  E_diag <- E$diag()
+  expect_equal(E_diag, torch$Tensor(list(1, 1, 1)))
+
   NE <- torch$as_tensor(!E, dtype = torch$uint8)
+  NE_diag <- NE$diag()
+  expect_equal(E_diag, torch$Tensor(list(0, 0, 0)))
+
+  expect_true_tensor(all(E$diag()))
   expect_false_tensor(all(NE$diag()))
 
-  expect_error(torch$diag(!E))    # this will throw an error
 })
 
 
