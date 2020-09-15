@@ -1,3 +1,9 @@
+# rTorch 0.0.3.9013
+* change logical `and`, `or` and `not` to be boolean or uint8 as their inputs.
+* do the same for `equal` and `not equal`.
+* add a parameter to force to return boolean values instead of `uint8` types. Currently, AND ("!") and OR ("|") return booleans while NOT and others don't; they return `uint8`. We should fix this lack of consistency.
+
+
 # rTorch 0.0.3.9012
 * Finding a problem when using PyTorch 1.1 in logical operations.
 * logical generic functions should return `uint8` types as original PyTorch functions in `generics.R`.

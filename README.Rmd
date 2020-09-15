@@ -929,8 +929,6 @@ print( torch$take(src, torch$tensor(list(0L, 2L, 5L))) )
 
 ## Tensor operations
 
-
-
 ### Transpose
 
 ```{r}
@@ -1002,7 +1000,6 @@ print(xps)     # permuted tensor size
 xp[1:3, 1:2, 1:3, 1:2]
 ```
 
-
 ## Logical operations
 
 ### is it equal
@@ -1026,6 +1023,7 @@ print(m1 == m0)
 
 ### is it not equal
 ```{r}
+# is it not equal
 print(m1 != m1)
 ```
 
