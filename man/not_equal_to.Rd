@@ -5,7 +5,7 @@
 \alias{!=.torch.Tensor}
 \title{Compare two tensors if not equal}
 \usage{
-\method{!=}{torch.Tensor}(a, b)
+\method{!=}{torch.Tensor}(x, y)
 }
 \arguments{
 \item{a}{tensor}

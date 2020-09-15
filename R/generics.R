@@ -351,10 +351,12 @@ tensor_ops <- function(a, b) UseMethod("tensor_ops")
 #' }
 #'
 #' @export
-"==.torch.Tensor" <- function(a, b) {
-    # torch$as_tensor(torch$eq(a, b), dtype = torch$bool)
-    torch$eq(a, b)
-    # torch$BoolTensor(torch$eq(a, b))
+"==.torch.Tensor" <- function(x, y) {
+    if (x$data$type() == "torch.BoolTensor" & y$data$type() == "torch.BoolTensor") {
+        torch$as_tensor(torch$eq(x, y), dtype = torch$bool)
+    } else {
+        torch$eq(x, y)
+    }
 }
 
 
@@ -384,12 +386,13 @@ tensor_not_equal <- function(x, y) {
 #' }
 #' @export
 #' @name not_equal_to
-"!=.torch.Tensor" <- function(a, b) {
+"!=.torch.Tensor" <- function(x, y) {
     # there is not not_equal function in PyTorch
-    # tensor_not_equal(a, b)
-    # torch$ne(a, b)
-    # torch$as_tensor(torch$ne(a, b), dtype = torch$bool)
-    torch$ne(a, b)
+    if (x$data$type() == "torch.BoolTensor" & y$data$type() == "torch.BoolTensor") {
+        torch$as_tensor(torch$ne(x, y), dtype = torch$bool)
+    } else {
+        torch$ne(x, y)
+    }
 }
 
 

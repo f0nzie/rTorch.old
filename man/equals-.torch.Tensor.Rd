@@ -4,7 +4,7 @@
 \alias{==.torch.Tensor}
 \title{Compares two tensors if equal}
 \usage{
-\method{==}{torch.Tensor}(a, b)
+\method{==}{torch.Tensor}(x, y)
 }
 \arguments{
 \item{a}{tensor}
