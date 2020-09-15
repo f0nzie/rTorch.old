@@ -5,9 +5,9 @@ language: R
 
 r:
  - 4.0.2
- - 3.6.3
- - 3.5.3
- - 3.4.3
+ # - 3.6.3
+ # - 3.5.3
+ # - 3.4.3
 
 warnings_are_errors: false
 
@@ -23,22 +23,30 @@ os:
 # # ----------------------------------------------
 
 
-# this matrix generates 36 jobs
+# # this matrix generates 36 jobs
+# env:
+#   matrix:
+#     # Python 3.6
+#     - PYTHON_VERSION="3.6" PYTORCH_VERSION="1.1"
+#     - PYTHON_VERSION="3.6" PYTORCH_VERSION="1.2"
+#     - PYTHON_VERSION="3.6" PYTORCH_VERSION="1.4"
+#     - PYTHON_VERSION="3.6" PYTORCH_VERSION="1.6"
+#     # Python 3.7
+#     - PYTHON_VERSION="3.7" PYTORCH_VERSION="1.1"
+#     - PYTHON_VERSION="3.7" PYTORCH_VERSION="1.2"
+#     - PYTHON_VERSION="3.7" PYTORCH_VERSION="1.4"
+#     - PYTHON_VERSION="3.7" PYTORCH_VERSION="1.6"
+#     # Python 3.8
+#     - PYTHON_VERSION="3.8" PYTORCH_VERSION="1.6"
+
+
+# this matrix generates 2 jobs
 env:
   matrix:
-    # Python 3.6
-    - PYTHON_VERSION="3.6" PYTORCH_VERSION="1.1"
-    - PYTHON_VERSION="3.6" PYTORCH_VERSION="1.2"
-    - PYTHON_VERSION="3.6" PYTORCH_VERSION="1.4"
-    - PYTHON_VERSION="3.6" PYTORCH_VERSION="1.6"
-    # Python 3.7
     - PYTHON_VERSION="3.7" PYTORCH_VERSION="1.1"
     - PYTHON_VERSION="3.7" PYTORCH_VERSION="1.2"
     - PYTHON_VERSION="3.7" PYTORCH_VERSION="1.4"
     - PYTHON_VERSION="3.7" PYTORCH_VERSION="1.6"
-    # Python 3.8
-    - PYTHON_VERSION="3.8" PYTORCH_VERSION="1.6"
-
 
 r-packages:
   - reticulate
