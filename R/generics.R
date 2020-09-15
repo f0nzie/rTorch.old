@@ -415,9 +415,15 @@ tensor_not_equal <- function(x, y) {
 #' @export
 #' @name logical_not
 "!.torch.Tensor" <- function(x) {
-    # there is not logical not in torch
+    # there is not logical not in PyTorch
     # torch$BoolTensor(np$logical_not(a))
-    torch$as_tensor(np$logical_not(x), dtype = torch$bool)
+    # torch$as_tensor(np$logical_not(x), dtype = torch$bool)
+    if (x$data$type() == "torch.BoolTensor") {
+        torch$as_tensor(np$logical_not(x), dtype = torch$bool)
+    } else {
+        torch$as_tensor(np$logical_not(x))
+    }
+
 }
 
 
@@ -518,7 +524,6 @@ tensor_not_equal <- function(x, y) {
     # torch$as_tensor(torch$ge(a, b), dtype = torch$bool)
     torch$ge(a, b)
 }
-
 
 
 
