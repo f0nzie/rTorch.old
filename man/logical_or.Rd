@@ -5,7 +5,7 @@
 \alias{|.torch.Tensor}
 \title{Logical OR of two tensors}
 \usage{
-\method{|}{torch.Tensor}(a, b)
+\method{|}{torch.Tensor}(x, y)
 }
 \arguments{
 \item{a}{tensor}
