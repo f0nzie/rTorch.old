@@ -3,6 +3,9 @@
 * logical generic functions should return `uint8` types as original PyTorch functions in `generics.R`.
 * new unit tests for `torch$all`, `torch$any` and some generic logicals in `test-tensor_comparison.R`.
 * switch to a couple of Travis and Appveyor tests to save time.
+* modify generic `!.torch.Tensor` to return boolean if input is boolean, otherwise return opriginal type. Fix tests in `test_generics.R` and `test_numpy_logical.R`.
+* tests for 4 PyTorch versions in `R-4.0.2` and `Python 3.7`,
+
 
 # rTorch 0.0.3.9011
 * Because PyTorch 1.1 and 1.2 are failing on Python 3.8, we could install a custom pytorch with `install_pytorch(conda_python_version = "3.8", version = "1.2")`. Tests failed. But not because of PyTorch but conflict during the conda installation.
