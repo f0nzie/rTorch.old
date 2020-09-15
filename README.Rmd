@@ -1124,21 +1124,28 @@ all_as_boolean(A1 <= A0)
 ### Logical NOT
 
 ```{r}
+# vector of booleans
 all_true <- torch$BoolTensor(list(TRUE, TRUE, TRUE, TRUE))
 all_true
-
-# logical NOT
-not_all_true <- !all_true
-not_all_true
 ```
 
 ```{r}
+# logical NOT
+# negate vector with "!"
+not_all_true <- !all_true
+not_all_true
+```
+```{r}
+# a diagonal matrix
 diag <- torch$eye(5L)
 diag <- diag$to(dtype=torch$uint8)   # convert to unsigned integer
+diag
+```
 
+
+```{r}
 # logical NOT
 not_diag <- !diag
-
 not_diag
 ```
 
