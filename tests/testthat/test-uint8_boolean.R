@@ -10,9 +10,14 @@ UINT8_FALSE_TENSOR <- torch$as_tensor(0L, dtype=torch$uint8)
 BOOL_TRUE_TENSOR  <- torch$as_tensor(1L, dtype=torch$bool)
 BOOL_FALSE_TENSOR <- torch$as_tensor(0L, dtype=torch$bool)
 
-m0 = torch$zeros(3L, 5L)
-m1 = torch$ones(3L, 5L)
-m2 = torch$eye(3L, 5L)
+uz = torch$zeros(3L, 5L)
+uo = torch$ones(3L, 5L)
+ue = torch$eye(3L, 5L)
+
+bz = torch$as_tensor(uz, dtype = torch$bool)
+bo = torch$as_tensor(uo, dtype = torch$bool)
+be = torch$as_tensor(ue, dtype = torch$bool)
+
 
 
 context("tensor_logical_and")
