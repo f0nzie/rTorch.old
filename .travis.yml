@@ -12,8 +12,8 @@ r:
 warnings_are_errors: false
 
 os:
-  - linux
-  #- osx
+  # - linux
+  - osx
 
 # # -- this worked before --
 # env:
