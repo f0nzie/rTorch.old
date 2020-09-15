@@ -97,14 +97,25 @@ context("equal")
 
 test_that("equal UINT8 tensors", {
     # these are the original conditions without converting to boolean
-    expect_output(print((UINT8_TRUE_TENSOR == UINT8_TRUE_TENSOR)), "tensor(1, dtype=torch.uint8)", fixed = TRUE)
-    expect_output(print((UINT8_TRUE_TENSOR == UINT8_FALSE_TENSOR)), "tensor(0, dtype=torch.uint8)", fixed = TRUE)
+    if (package_version(torch_version()) <= "1.1") {
+        expect_output(print((UINT8_TRUE_TENSOR == UINT8_TRUE_TENSOR)), "tensor(1, dtype=torch.uint8)", fixed = TRUE)
+        expect_output(print((UINT8_TRUE_TENSOR == UINT8_FALSE_TENSOR)), "tensor(0, dtype=torch.uint8)", fixed = TRUE)
+    } else {
+        expect_output(print((UINT8_TRUE_TENSOR == UINT8_TRUE_TENSOR)), "tensor(True)", fixed = TRUE)
+    }
+
 })
 
 test_that("equal BOOL tensors", {
     # these are the original conditions without converting to boolean
-    expect_output(print((BOOL_TRUE_TENSOR == BOOL_TRUE_TENSOR)), "tensor(1, dtype=torch.uint8)", fixed = TRUE)
-    expect_output(print((BOOL_TRUE_TENSOR == BOOL_FALSE_TENSOR)), "tensor(0, dtype=torch.uint8)", fixed = TRUE)
+    if (package_version(torch_version()) <= "1.1") {
+        expect_output(print((BOOL_TRUE_TENSOR == BOOL_TRUE_TENSOR)), "tensor(1, dtype=torch.uint8)", fixed = TRUE)
+        expect_output(print((BOOL_TRUE_TENSOR == BOOL_FALSE_TENSOR)), "tensor(0, dtype=torch.uint8)", fixed = TRUE)
+    } else {
+        expect_output(print((BOOL_TRUE_TENSOR == BOOL_TRUE_TENSOR)), "tensor(True)", fixed = TRUE)
+        expect_output(print((BOOL_TRUE_TENSOR == BOOL_FALSE_TENSOR)), "tensor(False)", fixed = TRUE)
+    }
+
 })
 
 
@@ -112,12 +123,24 @@ context("not equal")
 
 test_that("not equal UINT8 tensors", {
     # these are the original conditions without converting to boolean
-    expect_output(print((UINT8_TRUE_TENSOR != UINT8_TRUE_TENSOR)), "tensor(0, dtype=torch.uint8)", fixed = TRUE)
-    expect_output(print((UINT8_TRUE_TENSOR != UINT8_FALSE_TENSOR)), "tensor(1, dtype=torch.uint8)", fixed = TRUE)
+    if (package_version(torch_version()) <= "1.1") {
+        expect_output(print((UINT8_TRUE_TENSOR != UINT8_TRUE_TENSOR)), "tensor(0, dtype=torch.uint8)", fixed = TRUE)
+        expect_output(print((UINT8_TRUE_TENSOR != UINT8_FALSE_TENSOR)), "tensor(1, dtype=torch.uint8)", fixed = TRUE)
+    } else {
+        expect_output(print((UINT8_TRUE_TENSOR != UINT8_TRUE_TENSOR)), "tensor(False)", fixed = TRUE)
+        expect_output(print((UINT8_TRUE_TENSOR != UINT8_FALSE_TENSOR)), "tensor(True)", fixed = TRUE)
+    }
+
 })
 
 test_that("not equal BOOL tensors", {
     # these are the original conditions without converting to boolean
-    expect_output(print((BOOL_TRUE_TENSOR != BOOL_TRUE_TENSOR)), "tensor(0, dtype=torch.uint8)", fixed = TRUE)
-    expect_output(print((BOOL_TRUE_TENSOR != BOOL_FALSE_TENSOR)), "tensor(1, dtype=torch.uint8)", fixed = TRUE)
+    if (package_version(torch_version()) <= "1.1") {
+        expect_output(print((BOOL_TRUE_TENSOR != BOOL_TRUE_TENSOR)), "tensor(0, dtype=torch.uint8)", fixed = TRUE)
+        expect_output(print((BOOL_TRUE_TENSOR != BOOL_FALSE_TENSOR)), "tensor(1, dtype=torch.uint8)", fixed = TRUE)
+    } else {
+        expect_output(print((BOOL_TRUE_TENSOR != BOOL_TRUE_TENSOR)), "tensor(False)", fixed = TRUE)
+        expect_output(print((BOOL_TRUE_TENSOR != BOOL_FALSE_TENSOR)), "tensor(True)", fixed = TRUE)
+    }
+
 })
