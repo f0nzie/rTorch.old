@@ -1,7 +1,12 @@
 # rTorch 0.0.3.9013
 * change logical `and`, `or` and `not` to be boolean or uint8 as their inputs.
 * do the same for `equal` and `not equal`.
-* add a parameter to force to return boolean values instead of `uint8` types. Currently, AND ("!") and OR ("|") return booleans while NOT and others don't; they return `uint8`. We should fix this lack of consistency.
+* add a parameter to force to return boolean values instead of `uint8` types. Currently, AND ("!") and OR ("|") return booleans while `NOT` and others don't; they return `uint8`. We should fix this lack of consistency.
+* testing on macOS in Travis.
+* add condition when PyTorch is 1.1 or lower to compare against `uint8`. Newer PyTorch versions make the conversion of the comparison and return boolean values. In 1.1 they return `uint8`.
+* modify functions `torch$eq()`  and `torch$ne()` to validate boolean inputs.
+* modify tests for `eq()` and `ne()` in PyTorch 1.1. They return `tensor(True, dtype=torch.bool)` or `tensor(False, dtype=torch.bool)`. 
+* add more examples in `generics.R` and `properties.R`
 
 
 # rTorch 0.0.3.9012
