@@ -28,6 +28,7 @@ Suggests:
     rmarkdown
 SystemRequirements: PyTorch (https://pytorch.org/)
 RoxygenNote: 7.1.1
+Roxygen: list(markdown = TRUE)
 URL: https://github.com/f0nzie/rTorch
 BugReports: https://github.com/f0nzie/rTorch/issues
 VignetteBuilder: knitr
