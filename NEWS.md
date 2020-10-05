@@ -1,5 +1,6 @@
 # rTorch 0.0.3.9013
-* Travis test passing with test with Python 3.8.
+* Fixed `travis.yml` by bringing `- PYTHON_V="3.7" PYTORCH_V="1.6"` near `env: metrix`. Maybe some space or alignment was preventing ennvronment variables being passed to Travis containers.
+* Travis test passing with Python 3.8 in Linux and macOS. Environment variables are not being passed.
 * add function `is_rtorch_env_name()` and ` env_name` object to ` torch_config()` to live unit test `install_pytorch()`
 * add function `install_pytorch()` to vignette
 * add parameter `python_version` to function `conda_install()`

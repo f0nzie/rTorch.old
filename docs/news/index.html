@@ -131,6 +131,17 @@
 <a href="#rtorch-0039013" class="anchor"></a>rTorch 0.0.3.9013<small> Unreleased </small>
 </h1>
 <ul>
+<li>Fixed <code>travis.yml</code> by bringing <code>- PYTHON_V="3.7" PYTORCH_V="1.6"</code> near <code>env: metrix</code>. Maybe some space or alignment was preventing ennvronment variables being passed to Travis containers.</li>
+<li>Travis test passing with test with Python 3.8.</li>
+<li>add function <code>is_rtorch_env_name()</code> and <code>env_name</code> object to <code><a href="../reference/torch_config.html">torch_config()</a></code> to live unit test <code><a href="../reference/install_pytorch.html">install_pytorch()</a></code>
+</li>
+<li>add function <code><a href="../reference/install_pytorch.html">install_pytorch()</a></code> to vignette</li>
+<li>add parameter <code>python_version</code> to function <code><a href="../reference/conda-tools.html">conda_install()</a></code>
+</li>
+<li>add backticks to roxygen text since now we are using Markdown in <code>Roxygen: list(markdown = TRUE)</code>
+</li>
+<li>new pkgdown section for Installation. Add two logical functions</li>
+<li>use markdown in roxygen help text</li>
 <li>Travis test PyTorch 1.5 in R-4.0.2 for Linux and macOS with variable shortened.</li>
 <li>Appveyor test <strong>PyTorch 1.6</strong> in R-4.0.2 for Windows.</li>
 <li>New Appveyor test with <strong>PyTorch 1.5</strong> in R-4.0.2 for Windows. Failing. Definitely PyTorch 1.5 failing in most of the tests.</li>

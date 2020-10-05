@@ -157,15 +157,15 @@ False to represent 0, and True to represent 1 in a tensor of data type <code>tor
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='no'>A</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>ones</span>(<span class='fl'>5L</span>, <span class='fl'>5L</span>)
 <span class='no'>C</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>as_tensor</span>(<span class='no'>np</span>$<span class='no'>random</span>$<span class='fu'>randint</span>(<span class='fl'>2L</span>, <span class='kw'>size</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5L</span>, <span class='fl'>5L</span>)), <span class='kw'>dtype</span><span class='kw'>=</span><span class='no'>torch</span>$<span class='no'>float32</span>)
-<span class='no'>A</span> <span class='kw'>&lt;=</span> <span class='no'>C</span></div><div class='output co'>#&gt; tensor([[1, 1, 0, 0, 0],
-#&gt;         [1, 0, 0, 0, 0],
-#&gt;         [1, 0, 1, 0, 1],
-#&gt;         [1, 1, 1, 1, 0],
-#&gt;         [0, 1, 0, 1, 0]], dtype=torch.uint8)</div><div class='input'><span class='no'>C</span> <span class='kw'>&lt;=</span> <span class='no'>A</span></div><div class='output co'>#&gt; tensor([[1, 1, 1, 1, 1],
-#&gt;         [1, 1, 1, 1, 1],
-#&gt;         [1, 1, 1, 1, 1],
-#&gt;         [1, 1, 1, 1, 1],
-#&gt;         [1, 1, 1, 1, 1]], dtype=torch.uint8)</div><div class='input'># }
+<span class='no'>A</span> <span class='kw'>&lt;=</span> <span class='no'>C</span></div><div class='output co'>#&gt; tensor([[ True, False, False,  True, False],
+#&gt;         [ True,  True,  True, False,  True],
+#&gt;         [ True,  True, False, False,  True],
+#&gt;         [ True,  True,  True,  True,  True],
+#&gt;         [ True, False, False,  True,  True]])</div><div class='input'><span class='no'>C</span> <span class='kw'>&lt;=</span> <span class='no'>A</span></div><div class='output co'>#&gt; tensor([[True, True, True, True, True],
+#&gt;         [True, True, True, True, True],
+#&gt;         [True, True, True, True, True],
+#&gt;         [True, True, True, True, True],
+#&gt;         [True, True, True, True, True]])</div><div class='input'># }
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
