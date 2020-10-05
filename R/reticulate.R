@@ -26,11 +26,7 @@
 #'   `conda_binary()` returns the location of the main conda binary or `NULL`
 #'   if none can be found.
 #'
-
-#'
-#' @name conda-tools
-#'
-#' @keywords internal
+#' @rdname conda-tools
 #'
 #' @export
 conda_install <- function(envname = NULL,
