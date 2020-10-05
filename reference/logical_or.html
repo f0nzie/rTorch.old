@@ -73,7 +73,7 @@ To generate this generic we use the function np$logical_or()." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9009</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9013</span>
       </span>
     </div>
 
@@ -135,17 +135,17 @@ To generate this generic we use the function <code>np$logical_or()</code>.</p>
     </div>
 
     <pre class="usage"># S3 method for torch.Tensor
-|(a, b)</pre>
+|(x, y)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>a</th>
+      <th>x</th>
       <td><p>tensor</p></td>
     </tr>
     <tr>
-      <th>b</th>
+      <th>y</th>
       <td><p>tensor</p></td>
     </tr>
     </table>
@@ -157,13 +157,10 @@ False to represent 0, and True to represent 1 in a tensor of data type <code>tor
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'>A</span> <span class='op'>&lt;-</span> <span class='kw'>torch</span><span class='op'>$</span><span class='fu'>BoolTensor</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>0L</span>, <span class='fl'>1L</span>))
-<span class='kw'>B</span> <span class='op'>&lt;-</span> <span class='kw'>torch</span><span class='op'>$</span><span class='fu'>BoolTensor</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>1L</span>, <span class='fl'>0L</span>))
-<span class='kw'>C</span> <span class='op'>&lt;-</span> <span class='kw'>torch</span><span class='op'>$</span><span class='fu'>BoolTensor</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>1L</span>, <span class='fl'>1L</span>))
-<span class='kw'>A</span> <span class='op'>|</span> <span class='kw'>B</span>
-</div><div class='output co'>#&gt; tensor([True, True])</div><div class='input'><span class='kw'>C</span> <span class='op'>|</span> <span class='kw'>A</span>
-</div><div class='output co'>#&gt; tensor([True, True])</div><div class='input'><span class='kw'>B</span> <span class='op'>|</span> <span class='kw'>C</span>
-</div><div class='output co'>#&gt; tensor([True, True])</div><div class='input'><span class='co'># }</span>
+<span class='no'>A</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>BoolTensor</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>0L</span>, <span class='fl'>1L</span>))
+<span class='no'>B</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>BoolTensor</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>1L</span>, <span class='fl'>0L</span>))
+<span class='no'>C</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>BoolTensor</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>1L</span>, <span class='fl'>1L</span>))
+<span class='no'>A</span> <span class='kw'>|</span> <span class='no'>B</span></div><div class='output co'>#&gt; tensor([True, True], dtype=torch.bool)</div><div class='input'><span class='no'>C</span> <span class='kw'>|</span> <span class='no'>A</span></div><div class='output co'>#&gt; tensor([True, True], dtype=torch.bool)</div><div class='input'><span class='no'>B</span> <span class='kw'>|</span> <span class='no'>C</span></div><div class='output co'>#&gt; tensor([True, True], dtype=torch.bool)</div><div class='input'># }
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -180,7 +177,7 @@ False to represent 0, and True to represent 1 in a tensor of data type <code>tor
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

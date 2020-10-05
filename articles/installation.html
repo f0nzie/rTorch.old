@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9009</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9013</span>
       </span>
     </div>
 
@@ -92,20 +92,44 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/f0nzie/rTorch">rTorch</a></span>)
-</pre></div>
 <div id="pytorch-installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pytorch-installation" class="anchor"></a>PyTorch installation</h2>
 <div id="installing-python-and-pytorch" class="section level3">
 <h3 class="hasAnchor">
 <a href="#installing-python-and-pytorch" class="anchor"></a>Installing Python and PyTorch</h3>
-<p>Although, Python and PyTorch can be installed directly from the R console, before start running <code>rTorch</code>, I would recommend installing <strong>PyTorch</strong> in a new Python or Python-Anaconda environment, and testing if it’s working alright first. The advantage of doing it this way is that you define the base Python or Anaconda version to install.</p>
-<p>If you opt to install <em>PyTorch</em> from <em>R</em>, <code>rTorch</code> has functions that could help you install <em>PyTorch</em> from the <em>R</em> console.</p>
-<div id="manual-install-of-pytorch-in-a-conda-environment" class="section level4">
+<p>Although, <em>Python</em> and <em>PyTorch</em> can be installed directly from the <em>R</em> console, before start running <code>rTorch</code>, I would recommend installing <strong>PyTorch</strong> first in a new Python or Python-Anaconda environment. Then, testing if PyTorch and Torchvision packages are imported alright. The advantage of doing it this way is that you define in advanced the base Python or Anaconda version to install. Although the same can be done from <strong>rTorch</strong> you will need to get familiar passing parameters through one its functions.</p>
+<p>If you opt to install <em>PyTorch</em> from <em>R</em>, <strong>rTorch</strong> has functions that could help you install <em>PyTorch</em> from the <em>R</em> console.</p>
+</div>
+<div id="rtorch-functions-to-install-pytorch" class="section level3">
+<h3 class="hasAnchor">
+<a href="#rtorch-functions-to-install-pytorch" class="anchor"></a>rTorch functions to install PyTorch</h3>
+<div id="install_pytorch" class="section level4">
 <h4 class="hasAnchor">
-<a href="#manual-install-of-pytorch-in-a-conda-environment" class="anchor"></a>Manual install of <em>PyTorch</em> in a <em>conda</em> environment</h4>
+<a href="#install_pytorch" class="anchor"></a>install_pytorch</h4>
+<p>This function is public and can be invoked with <code><a href="../reference/install_pytorch.html">rTorch::install_pytorch()</a></code>.</p>
+<p>This function will allow you to indicate (i) the Python version; (ii) the PyTorch version; (iii) the name of the conda environment; (iv) which channel (<code>stable</code> or <code>nightly</code>); (v) if you require CUDA (GPU) computation; (vi) additional packages such as <code>matplotlib</code>, <code>pandas</code>; (vii) more.</p>
+<pre><code><a href="../reference/install_pytorch.html">install_pytorch(
+  method = c("conda", "virtualenv", "auto"),
+  conda = "auto",
+  version = "default",
+  envname = "r-torch",
+  extra_packages = NULL,
+  restart_session = TRUE,
+  conda_python_version = "3.6",
+  pip = FALSE,
+  channel = "stable",
+  cuda_version = NULL,
+  dry_run = FALSE,
+  ...
+)
+</a></code></pre>
+</div>
+</div>
+</div>
+<div id="manual-installation-of-pytorch-in-a-conda-environment" class="section level2">
+<h2 class="hasAnchor">
+<a href="#manual-installation-of-pytorch-in-a-conda-environment" class="anchor"></a>Manual installation of <em>PyTorch</em> in a <em>conda</em> environment</h2>
 <p>If you prefer do it manually, use this example:</p>
 <ol style="list-style-type: decimal">
 <li><p>Create a conda environment with <code>conda create -n my-torch python=3.7 -y</code></p></li>
@@ -116,19 +140,20 @@
 <blockquote>
 <p>Note: If you you don’t specify a version, <code>conda</code> will install the latest <em>PyTorch</em>. As of this writing (August-September 2020), the latest <em>PyTorch</em> version is 1.6.</p>
 </blockquote>
-<p>Alternatively, you could create and install a <em>conda</em> environment a specific PyTorch version with:</p>
+<p>Alternatively, you could create and install a <em>conda</em> environment a specific <strong>PyTorch</strong> version with:</p>
 <p><code>conda create -n my-torch python=3.6 pytorch=1.3 torchvision matplotlib pandas -c pytorch -y</code></p>
 <p><code>conda</code> will resolve the dependencies and versions of the other packages automatically, or let you know your options.</p>
 <p><strong>Note.</strong> <code>matplotlib</code> and <code>pandas</code> are not really necessary, but I was asked if <code>matplotlib</code> or <code>pandas</code> would work in PyTorch. Then, I decided to put them for testing and experimentation. They both work.</p>
 </div>
-</div>
-</div>
 <div id="automatic-python-detection" class="section level2">
 <h2 class="hasAnchor">
 <a href="#automatic-python-detection" class="anchor"></a>Automatic Python detection</h2>
-<p>In rTorch there is an automatic detection of Python built in in the package that will ask you to install <code>Miniconda</code> first if you don’t have any Python installed in your machine. For instance, in <code>MacOS</code>, Miniconda will be installed under <code>PREFIX=/Users/user_name/Library/r-miniconda</code>.</p>
-<p>After <em>Miniconda</em> is installed, you could proceed to install the flavor or <em>PyTorch</em> you wamt, and the packages you want, with a command like this:</p>
+<p>In <strong>rTorch</strong> there is an automatic detection of <em>Python</em> built in in the package that will ask you to install <code>Miniconda</code> first if you don’t have any Python installed in your machine. For instance, in <code>macOS</code>, Miniconda will be installed under <code>PREFIX=/Users/user_name/Library/r-miniconda</code>.</p>
+<p>After <em>Miniconda</em> is installed, you could proceed to install the flavor or <em>PyTorch</em> you want, and the packages you want, with a command like this:</p>
 <pre><code>rTorch:::install_conda(package="pytorch=1.4", envname="r-torch", conda="auto", conda_python_version = "3.6", pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))</code></pre>
+<blockquote>
+<p>NOTE. My experience with <code>Miniconda</code> is spotty and not 100% reliable, specially in <em>macOS</em>. I would strongly recommend using full <em>conda</em> for your PyTorch installation.</p>
+</blockquote>
 </div>
   </div>
 
@@ -147,7 +172,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
