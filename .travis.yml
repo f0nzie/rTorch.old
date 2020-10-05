@@ -44,10 +44,11 @@ os:
 # this matrix generates 2 jobs
 env:
   matrix:
+    - PYTHON_V="3.7" PYTORCH_V="1.6"
     # - PYTHON_V="3.7" PYTORCH_V="1.1"
     # - PYTHON_V="3.7" PYTORCH_V="1.2"
     # - PYTHON_V="3.7" PYTORCH_V="1.4"
-    - PYTHON_V="3.7" PYTORCH_V="1.5""
+    # - PYTHON_V="3.7" PYTORCH_V="1.5""
     # - PYTHON_V="3.7" PYTORCH_V="1.6"
 
 r-packages:

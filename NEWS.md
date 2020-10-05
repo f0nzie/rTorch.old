@@ -1,4 +1,5 @@
 # rTorch 0.0.3.9013
+* Travis test passing with test with Python 3.8.
 * add function `is_rtorch_env_name()` and ` env_name` object to ` torch_config()` to live unit test `install_pytorch()`
 * add function `install_pytorch()` to vignette
 * add parameter `python_version` to function `conda_install()`
