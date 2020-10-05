@@ -2,7 +2,7 @@
 title: "Installation"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{installation}
+  %\VignetteIndexEntry{Installation}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
