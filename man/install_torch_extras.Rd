@@ -14,6 +14,7 @@ and other conventional install locations). Only used when PyTorch is
 installed within a conda environment.}
 }
 \description{
-This function is deprecated. Use the `extra_packages` argument to
-`install_pytorch()` to install additional packages.
+This function is deprecated. Use the \code{extra_packages} argument in function
+\code{install_pytorch()} to install additional packages.
 }
+\keyword{internal}

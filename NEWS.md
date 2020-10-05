@@ -1,3 +1,29 @@
+# rTorch 0.0.3.9013
+* Fixed `travis.yml` by bringing `- PYTHON_V="3.7" PYTORCH_V="1.6"` near `env: metrix`. Maybe some space or alignment was preventing ennvronment variables being passed to Travis containers.
+* Travis test passing with Python 3.8 in Linux and macOS. Environment variables are not being passed.
+* add function `is_rtorch_env_name()` and ` env_name` object to ` torch_config()` to live unit test `install_pytorch()`
+* add function `install_pytorch()` to vignette
+* add parameter `python_version` to function `conda_install()`
+* add backticks to roxygen text since now we are using Markdown in `Roxygen: list(markdown = TRUE)`
+* new pkgdown section for Installation. Add two logical functions
+* use markdown in roxygen help text
+* Travis test PyTorch 1.5 in R-4.0.2 for Linux and macOS with variable shortened.
+* Appveyor test **PyTorch 1.6** in R-4.0.2 for Windows. 
+* New Appveyor test with **PyTorch 1.5** in R-4.0.2 for Windows. Failing. Definitely PyTorch 1.5 failing in most of the tests.
+* Shorten the variable names `PYTORCH_VERSION` and `PYTHON_VERSION` in Travis.
+* Appveyor test **PyTorch 1.6** in R-4.0.2 for Windows. Passed.
+* Appveyor test PyTorch 1.5 in R-4.0.2 for Windows. Failed. 
+* Travis test PyTorch 1.5 in R-4.0.2 for Linux and macOS
+* change logical `and`, `or` and `not` to be boolean or uint8 as their inputs.
+* do the same for `equal` and `not equal`.
+* add a parameter to force to return boolean values instead of `uint8` types. Currently, AND ("!") and OR ("|") return booleans while `NOT` and others don't; they return `uint8`. We should fix this lack of consistency.
+* testing on macOS in Travis.
+* add condition when PyTorch is 1.1 or lower to compare against `uint8`. Newer PyTorch versions make the conversion of the comparison and return boolean values. In 1.1 they return `uint8`.
+* modify functions `torch$eq()`  and `torch$ne()` to validate boolean inputs.
+* modify tests for `eq()` and `ne()` in PyTorch 1.1. They return `tensor(True, dtype=torch.bool)` or `tensor(False, dtype=torch.bool)`. 
+* add more examples in `generics.R` and `properties.R`
+
+
 # rTorch 0.0.3.9012
 * Finding a problem when using PyTorch 1.1 in logical operations.
 * logical generic functions should return `uint8` types as original PyTorch functions in `generics.R`.

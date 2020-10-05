@@ -13,7 +13,6 @@ reference:
       - '`rTorch`'
       - '`shape`'
       - '`torch_extract_opts`'
-      - '`torch_getLogger`'
       - '`torch_size`'
       - all.torch.Tensor
       - any.torch.Tensor
@@ -21,9 +20,6 @@ reference:
       - log10.torch.Tensor
       - log2.torch.Tensor
       - '`%%.torch.Tensor`'
-      - install_pytorch
-      - install_torch_extras
-      - make_copy
 
   - title: Generics
     desc: ~
@@ -37,11 +33,12 @@ reference:
       - '`dim.torch.Tensor`'
       - '`length.torch.Tensor`'
       - '`exp.torch.Tensor`'
+      - 'make_copy'
 
   - title: Two tensor operations
     decs: ~
     contents:
-      tensor_ops
+      - tensor_ops
 
   - title: Basic arithmetic
     decs: ~
@@ -63,6 +60,8 @@ reference:
       - '<=.torch.Tensor'
       - 'logical_and'
       - 'logical_or'
+      - 'as_boolean'
+      - 'is_tensor'
 
   - title: Get datasets
     desc: ~
@@ -76,4 +75,9 @@ reference:
       - '`torch`'
       - '`torchvision`'
 
+  - title: Installation
+    desc: ~
+    contents:
+      - 'install_pytorch'
+      - 'conda_install'
 

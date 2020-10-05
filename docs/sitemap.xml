@@ -13,6 +13,9 @@
     <loc>https://github.com/f0nzie/rTorch/reference/any.torch.Tensor.html</loc>
   </url>
   <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/as_boolean.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/f0nzie/rTorch/reference/conda-tools.html</loc>
   </url>
   <url>
@@ -47,6 +50,9 @@
   </url>
   <url>
     <loc>https://github.com/f0nzie/rTorch/reference/install_torch_extras.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/is_tensor.html</loc>
   </url>
   <url>
     <loc>https://github.com/f0nzie/rTorch/reference/length.torch.Tensor.html</loc>

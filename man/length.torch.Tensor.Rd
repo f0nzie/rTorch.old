@@ -15,3 +15,10 @@ the number of elements of a tensor as an integer
 \description{
 This function is equivalent to torch$numel()
 }
+\examples{
+\donttest{
+uo = torch$ones(3L, 5L)   # tensor with 15 elements
+length(uo)
+}
+
+}

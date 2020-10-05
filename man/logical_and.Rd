@@ -5,12 +5,12 @@
 \alias{&.torch.Tensor}
 \title{Logical AND of two tensors}
 \usage{
-\method{&}{torch.Tensor}(a, b)
+\method{&}{torch.Tensor}(x, y)
 }
 \arguments{
-\item{a}{tensor}
+\item{x}{tensor}
 
-\item{b}{tensor}
+\item{y}{tensor}
 }
 \value{
 A tensor of booleans representing the logical result of the comparison.

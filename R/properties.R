@@ -39,3 +39,28 @@ make_copy <- function(object, ...) {
     }
     return(obj)
 }
+
+
+
+#' @title Convert tensor to boolean type
+#' @description Convert a tensor to a boolean equivalent tensor
+#'
+#' @param x a torch tensor
+#' @export
+#' @examples
+#' \donttest{
+#' uo <- torch$ones(3L)
+#' as_boolean(uo)              # tensor([True, True, True], dtype=torch.bool)
+#' }
+as_boolean <- function(x) {
+    torch$as_tensor(x, dtype = torch$bool)
+}
+
+
+#' @title Is the object a tensor
+#' @description Determine if the object is a tensor by looking inheritance
+#'
+#' @param obj an object
+#' @export
+is_tensor <- function(obj) inherits(obj, "torch.Tensor")  # do not use torch.tensor
+

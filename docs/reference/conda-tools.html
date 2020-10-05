@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Conda install function (modified from reticulate) — conda-tools • rTorch</title>
+<title>Conda install function (modified from reticulate) — conda_install • rTorch</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,8 @@
 
 
 
-<meta property="og:title" content="Conda install function (modified from reticulate) — conda-tools" />
-<meta property="og:description" content="R functions for managing Python [conda
-environments](https://conda.io/docs/user-guide/tasks/manage-environments.html)." />
+<meta property="og:title" content="Conda install function (modified from reticulate) — conda_install" />
+<meta property="og:description" content="R functions for managing Python conda environments." />
 
 
 
@@ -73,7 +72,7 @@ environments](https://conda.io/docs/user-guide/tasks/manage-environments.html)."
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9009</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9013</span>
       </span>
     </div>
 
@@ -130,23 +129,22 @@ environments](https://conda.io/docs/user-guide/tasks/manage-environments.html)."
     </div>
 
     <div class="ref-description">
-    <p>R functions for managing Python [conda
-environments](https://conda.io/docs/user-guide/tasks/manage-environments.html).</p>
+    <p>R functions for managing Python <a href='https://conda.io/docs/user-guide/tasks/manage-environments.html'>conda environments</a>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>conda_install</span>(
-  envname = <span class='kw'>NULL</span>,
-  <span class='kw'>packages</span>,
-  forge = <span class='fl'>FALSE</span>,
-  pip = <span class='fl'>FALSE</span>,
-  pip_ignore_installed = <span class='fl'>TRUE</span>,
-  conda = <span class='st'>"auto"</span>,
-  python_version = <span class='kw'>NULL</span>,
-  channel = <span class='kw'>NULL</span>,
-  <span class='kw'>...</span>
+  <span class='kw'>envname</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>packages</span>,
+  <span class='kw'>forge</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>pip</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>pip_ignore_installed</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>conda</span> <span class='kw'>=</span> <span class='st'>"auto"</span>,
+  <span class='kw'>python_version</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>channel</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>...</span>
 )
 
-<span class='fu'>conda_python</span>(envname = <span class='kw'>NULL</span>, conda = <span class='st'>"auto"</span>)</pre>
+<span class='fu'>conda_python</span>(<span class='kw'>envname</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>conda</span> <span class='kw'>=</span> <span class='st'>"auto"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -161,24 +159,30 @@ environments](https://conda.io/docs/user-guide/tasks/manage-environments.html).<
     </tr>
     <tr>
       <th>forge</th>
-      <td><p>Include the [Conda Forge](https://conda-forge.org/) repository.</p></td>
+      <td><p>Include the  <a href='https://conda-forge.org/'>Conda Forge</a> repository.</p></td>
     </tr>
     <tr>
       <th>pip</th>
-      <td><p>`TRUE` to use pip (defaults to `FALSE`)</p></td>
+      <td><p><code>TRUE</code> to use pip (defaults to <code>FALSE</code>)</p></td>
     </tr>
     <tr>
       <th>pip_ignore_installed</th>
-      <td><p>Ignore installed versions when using pip. This is `TRUE` by default
-so that specific package versions can be installed even if they are downgrades. The `FALSE`
+      <td><p>Ignore installed versions when using pip. This is <code>TRUE</code> by default
+so that specific package versions can be installed even if they are downgrades. The <code>FALSE</code>
 option is useful for situations where you don't want a pip install to attempt an overwrite
-of a conda binary package (e.g. SciPy on Windows which is very difficult to install via
-pip due to compilation requirements).</p></td>
+of a conda binary package (e.g. <em>SciPy</em> on <em>Windows</em> which is very difficult to install via
+<code>pip</code> due to compilation requirements).</p></td>
     </tr>
     <tr>
       <th>conda</th>
       <td><p>Path to conda executable (or "auto" to find conda using the
 PATH and other conventional install locations).</p></td>
+    </tr>
+    <tr>
+      <th>python_version</th>
+      <td><p>is the <em>Python</em> version to install. Python <strong>3.4</strong> is
+installed by default. But you could specify for instance:
+<code>python_version="3.7"</code>.</p></td>
     </tr>
     <tr>
       <th>channel</th>
@@ -192,11 +196,11 @@ PATH and other conventional install locations).</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>`conda_list()` returns a data frame with the names and paths to the
-  respective python binaries of available environments. `conda_create()`
-  returns the Path to the python binary of the created environment.
-  `conda_binary()` returns the location of the main conda binary or `NULL`
-  if none can be found.</p>
+    <p><code>conda_list()</code> returns a data frame with the names and paths to the
+respective python binaries of available environments. <code>conda_create()</code>
+returns the Path to the python binary of the created environment.
+<code>conda_binary()</code> returns the location of the main conda binary or <code>NULL</code>
+if none can be found.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -213,7 +217,7 @@ PATH and other conventional install locations).</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

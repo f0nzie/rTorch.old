@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9009</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9013</span>
       </span>
     </div>
 
@@ -126,17 +126,112 @@
       <small>Source: <a href='https://github.com/f0nzie/rTorch/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="rtorch-0039008" class="section level1">
-<h1 class="page-header" data-toc-text="0.0.3.9008">
-<a href="#rtorch-0039008" class="anchor"></a>rTorch 0.0.3.9008<small> Unreleased </small>
+    <div id="rtorch-0039013" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.3.9013">
+<a href="#rtorch-0039013" class="anchor"></a>rTorch 0.0.3.9013<small> Unreleased </small>
+</h1>
+<ul>
+<li>Fixed <code>travis.yml</code> by bringing <code>- PYTHON_V="3.7" PYTORCH_V="1.6"</code> near <code>env: metrix</code>. Maybe some space or alignment was preventing ennvronment variables being passed to Travis containers.</li>
+<li>Travis test passing with test with Python 3.8.</li>
+<li>add function <code>is_rtorch_env_name()</code> and <code>env_name</code> object to <code><a href="../reference/torch_config.html">torch_config()</a></code> to live unit test <code><a href="../reference/install_pytorch.html">install_pytorch()</a></code>
+</li>
+<li>add function <code><a href="../reference/install_pytorch.html">install_pytorch()</a></code> to vignette</li>
+<li>add parameter <code>python_version</code> to function <code><a href="../reference/conda-tools.html">conda_install()</a></code>
+</li>
+<li>add backticks to roxygen text since now we are using Markdown in <code>Roxygen: list(markdown = TRUE)</code>
+</li>
+<li>new pkgdown section for Installation. Add two logical functions</li>
+<li>use markdown in roxygen help text</li>
+<li>Travis test PyTorch 1.5 in R-4.0.2 for Linux and macOS with variable shortened.</li>
+<li>Appveyor test <strong>PyTorch 1.6</strong> in R-4.0.2 for Windows.</li>
+<li>New Appveyor test with <strong>PyTorch 1.5</strong> in R-4.0.2 for Windows. Failing. Definitely PyTorch 1.5 failing in most of the tests.</li>
+<li>Shorten the variable names <code>PYTORCH_VERSION</code> and <code>PYTHON_VERSION</code> in Travis.</li>
+<li>Appveyor test <strong>PyTorch 1.6</strong> in R-4.0.2 for Windows. Passed.</li>
+<li>Appveyor test PyTorch 1.5 in R-4.0.2 for Windows. Failed.</li>
+<li>Travis test PyTorch 1.5 in R-4.0.2 for Linux and macOS</li>
+<li>change logical <code>and</code>, <code>or</code> and <code>not</code> to be boolean or uint8 as their inputs.</li>
+<li>do the same for <code>equal</code> and <code>not equal</code>.</li>
+<li>add a parameter to force to return boolean values instead of <code>uint8</code> types. Currently, AND (“!”) and OR (“|”) return booleans while <code>NOT</code> and others don’t; they return <code>uint8</code>. We should fix this lack of consistency.</li>
+<li>testing on macOS in Travis.</li>
+<li>add condition when PyTorch is 1.1 or lower to compare against <code>uint8</code>. Newer PyTorch versions make the conversion of the comparison and return boolean values. In 1.1 they return <code>uint8</code>.</li>
+<li>modify functions <code>torch$eq()</code> and <code>torch$ne()</code> to validate boolean inputs.</li>
+<li>modify tests for <code>eq()</code> and <code>ne()</code> in PyTorch 1.1. They return <code>tensor(True, dtype=torch.bool)</code> or <code>tensor(False, dtype=torch.bool)</code>.</li>
+<li>add more examples in <code>generics.R</code> and <code>properties.R</code>
+</li>
+</ul>
+</div>
+    <div id="rtorch-0039012" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.3.9012">
+<a href="#rtorch-0039012" class="anchor"></a>rTorch 0.0.3.9012<small> Unreleased </small>
+</h1>
+<ul>
+<li>Finding a problem when using PyTorch 1.1 in logical operations.</li>
+<li>logical generic functions should return <code>uint8</code> types as original PyTorch functions in <code>generics.R</code>.</li>
+<li>new unit tests for <code>torch$all</code>, <code>torch$any</code> and some generic logicals in <code>test-tensor_comparison.R</code>.</li>
+<li>switch to a couple of Travis and Appveyor tests to save time.</li>
+<li>modify generic <code>!.torch.Tensor</code> to return boolean if input is boolean, otherwise return opriginal type. Fix tests in <code>test_generics.R</code> and <code>test_numpy_logical.R</code>.</li>
+<li>tests for 4 PyTorch versions in <code>R-4.0.2</code> and <code>Python 3.7</code>,</li>
+</ul>
+</div>
+    <div id="rtorch-0039011" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.3.9011">
+<a href="#rtorch-0039011" class="anchor"></a>rTorch 0.0.3.9011<small> Unreleased </small>
+</h1>
+<ul>
+<li>Because PyTorch 1.1 and 1.2 are failing on Python 3.8, we could install a custom pytorch with <code><a href="../reference/install_pytorch.html">install_pytorch(conda_python_version = "3.8", version = "1.2")</a></code>. Tests failed. But not because of PyTorch but conflict during the conda installation.</li>
+<li>Other custom pytorch with <code><a href="../reference/install_pytorch.html">install_pytorch(conda_python_version = "3.8", version = "1.4")</a></code> with tests passed.</li>
+<li>add <code>numpy</code> version to printout of <code>rtorch_config()</code>.</li>
+<li>perform rebase to get rid off wrong settings for matrix jobs in travis. Keep only those settings that worked.</li>
+<li>maybe a good idea to remove tests with <code>Python 3.8</code> because they fail with all PyTorch versions.</li>
+<li>add environment variable <code>PYTHON_VERSION</code> to conda in build_script of <strong>appveyor</strong>. Twelve (12) passed.</li>
+<li>Duplicate matrix for <strong>Travis</strong> tests. Now we have tests for <code>Python 3.6</code> and <code>Python 3.7</code>, and <code>3.8</code> for only <code>PyTorch 1.6</code>, a total of 36 tests. All passed.</li>
+<li>Duplicate matrix for <strong>Appveyor</strong> tests. Now we have tests for <code>Python 3.6</code> and <code>Python 3.7</code>, a total of 36 tests. All passed.</li>
+<li>Testing <code>develop</code> branch with Travis and Appveyor. All tests passed.</li>
+</ul>
+</div>
+    <div id="rtorch-0039010" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.3.9010">
+<a href="#rtorch-0039010" class="anchor"></a>rTorch 0.0.3.9010<small> Unreleased </small>
+</h1>
+<ul>
+<li><ol>
+<li>branch <code>0.0.3.9010-fix-appveyor</code>
+</li>
+</ol></li>
+<li>modify <strong>appveyor</strong> script. currently failing</li>
+<li>remove suffix <code>-cpu</code> from <code>pytorch</code> and <code>torchvision</code> packages from <code>appveyor.yml</code>. still failing because of python version is <em>3.6.1</em>.</li>
+<li>change python version to <em>3.6</em> in <code>appveyor.yml</code>. <strong>Passed</strong>.</li>
+<li>
+<strong>appveyor</strong> still failing with error <em>package ‘remotes’ was installed before R 4.0.0: please re-install it</em>. repo <code>f0nzie/r-appveyor</code> requires some changes.</li>
+<li>updating file <code>appveyor-tool.ps1</code> in <code>r-appveyor</code> repo. changes related to Rtools4.</li>
+<li>Windows tests with appveyor have been so far with <code>pytorch=1.1.0</code>. Will change to <code>pytorch=1.4</code>.</li>
+<li>Testing Linux with <code>python=3.7</code> and <code>pytorch=1.4</code>. All R versions <strong>passed</strong>.</li>
+<li>clean up <code>DESCRIPTION</code>. remove ctb. will credit them in README.</li>
+<li>Testing Linux with <code>python=3.7</code> and <code>pytorch=1.6</code>. All R versions <strong>passed</strong>.</li>
+<li>Windows tests with <code>pytorch=1.4</code> and R-4.0.2. Passed.</li>
+<li>Windows tests (matrix) with <code>pytorch=1.2, 1.4, 1.6</code> and R-4.0.2. <strong>Passed</strong>.</li>
+<li>Windows tests (matrix) with two version of <code>R</code>: 4.0.2 and 3.6.3 over <code>pytorch</code>, 1.1, 1.2, 1.4, and 1.6. using appveyor variable <code>R_VERSION</code>.</li>
+<li>Linux tests at <code>python=3.8</code> and <code>pytorch=1.1</code> <strong>failing</strong> for all <code>R</code> versions. Rest of tests <strong>passed</strong>.</li>
+<li>Windows tests (matrix) with two version of <code>R</code>: <code>4.0.2</code>, <code>3.6.3</code> and <code>3.5.3</code> over <code>pytorch</code>, 1.1, 1.2, 1.4, and 1.6. using appveyor variable <code>R_VERSION</code>.</li>
+</ul>
+</div>
+    <div id="rtorch-0039009" class="section level1">
+<h1 class="page-header" data-toc-text="0.0.3.9009">
+<a href="#rtorch-0039009" class="anchor"></a>rTorch 0.0.3.9009<small> Unreleased </small>
 </h1>
 <ul>
 <li>20200911</li>
+<li>add new vignette for PyTorch installation details</li>
+<li>clean up and imporve README</li>
+<li>tested on PyTorch 1.4 on macOS and Linux. All passed</li>
+<li>tested on PyTorch 1.6 on Linux. Passed.</li>
+<li>tested on PyTorch 1.2 on Linux. Passed.</li>
+<li>tested on PyTorch 1.2 on macOS. Passed but R-3.4.3.</li>
 </ul>
 </div>
-    <div id="rtorch-0039008-1" class="section level1">
+    <div id="rtorch-0039008" class="section level1">
 <h1 class="page-header" data-toc-text="0.0.3.9008">
-<a href="#rtorch-0039008-1" class="anchor"></a>rTorch 0.0.3.9008<small> Unreleased </small>
+<a href="#rtorch-0039008" class="anchor"></a>rTorch 0.0.3.9008<small> Unreleased </small>
 </h1>
 <ul>
 <li><ol>
@@ -517,7 +612,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

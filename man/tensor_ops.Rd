@@ -50,4 +50,10 @@ zeros & zeros
 diag & zeros
 diag | zeros
 }
+\donttest{
+x <- torch$arange(1,11)
+torch$pow(x, 2)      #     x^(2)
+torch$pow(x, -2)     #     x^(1/2)
+}
+
 }

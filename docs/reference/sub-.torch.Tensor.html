@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Subset tensors with `[` — [.torch.Tensor • rTorch</title>
+<title>Subset tensors with <code>[</code> — [.torch.Tensor • rTorch</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Subset tensors with `[` — [.torch.Tensor" />
-<meta property="og:description" content="Subset tensors with `[`" />
+<meta property="og:title" content="Subset tensors with <code>[</code> — [.torch.Tensor" />
+<meta property="og:description" content="Subset tensors with [" />
 
 
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9009</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9013</span>
       </span>
     </div>
 
@@ -123,13 +123,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Subset tensors with `[`</h1>
+    <h1>Subset tensors with <code>[</code></h1>
     <small class="dont-index">Source: <a href='https://github.com/f0nzie/rTorch/blob/master/R/extract.R'><code>R/extract.R</code></a></small>
     <div class="hidden name"><code>sub-.torch.Tensor.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Subset tensors with `[`</p>
+    <p>Subset tensors with <code>[</code></p>
     </div>
 
     <pre class="usage"># S3 method for torch.Tensor
@@ -158,11 +158,11 @@
     </tr>
     <tr>
       <th>style</th>
-      <td><p>One of `"python"` or `"R"`.</p></td>
+      <td><p>One of <code>"python"</code> or <code>"R"</code>.</p></td>
     </tr>
     <tr>
       <th>options</th>
-      <td><p>An object returned by `torch_extract_opts()`</p></td>
+      <td><p>An object returned by <code><a href='torch_extract_opts.html'>torch_extract_opts()</a></code></p></td>
     </tr>
     </table>
 
@@ -170,22 +170,17 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 
-<span class='kw'>x</span> <span class='op'>&lt;-</span> <span class='kw'>torch</span><span class='op'>$</span><span class='fu'>arange</span>(<span class='fl'>0L</span>, <span class='fl'>15L</span>)<span class='op'>$</span><span class='fu'>view</span>(<span class='fl'>3L</span>, <span class='fl'>5L</span>)
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>arange</span>(<span class='fl'>0L</span>, <span class='fl'>15L</span>)$<span class='fu'>view</span>(<span class='fl'>3L</span>, <span class='fl'>5L</span>)
 
 <span class='co'># by default, numerics supplied to `...` are interpreted R style</span>
-<span class='kw'>x</span>[,<span class='fl'>1</span>]    <span class='co'># first column</span>
-</div><div class='output co'>#&gt; tensor([ 0,  5, 10])</div><div class='input'><span class='kw'>x</span>[<span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>,]  <span class='co'># first two rows</span>
-</div><div class='output co'>#&gt; tensor([[0, 1, 2, 3, 4],
-#&gt;         [5, 6, 7, 8, 9]])</div><div class='input'><span class='kw'>x</span>[,<span class='fl'>1</span>, drop = <span class='fl'>FALSE</span>]
-</div><div class='output co'>#&gt; tensor([[ 0],
+<span class='no'>x</span>[,<span class='fl'>1</span>]    <span class='co'># first column</span></div><div class='output co'>#&gt; tensor([ 0,  5, 10])</div><div class='input'><span class='no'>x</span>[<span class='fl'>1</span>:<span class='fl'>2</span>,]  <span class='co'># first two rows</span></div><div class='output co'>#&gt; tensor([[0, 1, 2, 3, 4],
+#&gt;         [5, 6, 7, 8, 9]])</div><div class='input'><span class='no'>x</span>[,<span class='fl'>1</span>, <span class='kw'>drop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>]</div><div class='output co'>#&gt; tensor([[ 0],
 #&gt;         [ 5],
 #&gt;         [10]])</div><div class='input'>
 <span class='co'># strided steps can be specified in R syntax or python syntax</span>
-<span class='kw'>x</span>[, <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>1</span>, <span class='fl'>5</span>, by = <span class='fl'>2</span>)]
-</div><div class='output co'>#&gt; tensor([[ 0,  2,  4],
+<span class='no'>x</span>[, <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>1</span>, <span class='fl'>5</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='fl'>2</span>)]</div><div class='output co'>#&gt; tensor([[ 0,  2,  4],
 #&gt;         [ 5,  7,  9],
-#&gt;         [10, 12, 14]])</div><div class='input'><span class='kw'>x</span>[, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>:</span><span class='fl'>2</span>]
-</div><div class='output co'>#&gt; tensor([[ 0,  2,  4],
+#&gt;         [10, 12, 14]])</div><div class='input'><span class='no'>x</span>[, <span class='fl'>1</span>:<span class='fl'>5</span>:<span class='fl'>2</span>]</div><div class='output co'>#&gt; tensor([[ 0,  2,  4],
 #&gt;         [ 5,  7,  9],
 #&gt;         [10, 12, 14]])</div><div class='input'>
 <span class='co'># if you are unfamiliar with python-style strided steps, see:</span>
@@ -193,31 +188,25 @@
 
 <span class='co'># missing arguments for python syntax are valid, but they must by backticked</span>
 <span class='co'># or supplied as NULL</span>
-<span class='kw'>x</span>[, <span class='kw'>`::2`</span>]
-</div><div class='output co'>#&gt; tensor([[ 0,  2,  4],
+<span class='no'>x</span>[, <span class='no'>`::2`</span>]</div><div class='output co'>#&gt; tensor([[ 0,  2,  4],
 #&gt;         [ 5,  7,  9],
-#&gt;         [10, 12, 14]])</div><div class='input'><span class='kw'>x</span>[, <span class='kw'>NULL</span><span class='op'>:</span><span class='kw'>NULL</span><span class='op'>:</span><span class='fl'>2</span>]
-</div><div class='output co'>#&gt; tensor([[ 0,  2,  4],
+#&gt;         [10, 12, 14]])</div><div class='input'><span class='no'>x</span>[, <span class='kw'>NULL</span>:<span class='kw'>NULL</span>:<span class='fl'>2</span>]</div><div class='output co'>#&gt; tensor([[ 0,  2,  4],
 #&gt;         [ 5,  7,  9],
-#&gt;         [10, 12, 14]])</div><div class='input'><span class='kw'>x</span>[, <span class='kw'>`2:`</span>]
-</div><div class='output co'>#&gt; tensor([[ 1,  2,  3,  4],
+#&gt;         [10, 12, 14]])</div><div class='input'><span class='no'>x</span>[, <span class='no'>`2:`</span>]</div><div class='output co'>#&gt; tensor([[ 1,  2,  3,  4],
 #&gt;         [ 6,  7,  8,  9],
 #&gt;         [11, 12, 13, 14]])</div><div class='input'>
 <span class='co'># Another Python feature that is available is a Python style ellipsis `...`</span>
 <span class='co'># (not to be confused with R dots `...`), that in R has been defined as</span>
 <span class='co'># all_dims() expands to the shape of the tensor</span>
 
-<span class='kw'>y</span> <span class='op'>&lt;-</span> <span class='kw'>torch</span><span class='op'>$</span><span class='fu'>arange</span>(<span class='fl'>0L</span>, <span class='fl'>3L</span><span class='op'>^</span><span class='fl'>5L</span>)<span class='op'>$</span><span class='fu'>view</span>(<span class='fl'>3L</span>, <span class='fl'>3L</span>, <span class='fl'>3L</span>, <span class='fl'>3L</span>, <span class='fl'>3L</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/logical.html'>as.logical</a></span>((<span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span>(<span class='kw'>y</span>[<span class='fu'><a href='all_dims.html'>all_dims</a></span>(), <span class='fl'>1</span>] <span class='op'>==</span> <span class='kw'>y</span>[,,,,<span class='fl'>1</span>]))<span class='op'>$</span><span class='fu'>numpy</span>()) <span class='op'>==</span> <span class='fl'>TRUE</span>
-</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
+<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>arange</span>(<span class='fl'>0L</span>, <span class='fl'>3L</span>^<span class='fl'>5L</span>)$<span class='fu'>view</span>(<span class='fl'>3L</span>, <span class='fl'>3L</span>, <span class='fl'>3L</span>, <span class='fl'>3L</span>, <span class='fl'>3L</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/logical.html'>as.logical</a></span>((<span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span>(<span class='no'>y</span>[<span class='fu'><a href='all_dims.html'>all_dims</a></span>(), <span class='fl'>1</span>] <span class='kw'>==</span> <span class='no'>y</span>[,,,,<span class='fl'>1</span>]))$<span class='fu'>numpy</span>()) <span class='kw'>==</span> <span class='fl'>TRUE</span></div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
 
 <span class='co'># negative numbers are always interpreted Python style</span>
 <span class='co'># The first time a negative number is supplied to `[`, a warning is issued</span>
 <span class='co'># about the non-standard behavior.</span>
-<span class='kw'>x</span>[<span class='op'>-</span><span class='fl'>1</span>,] <span class='co'># last row, with a warning</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Negative numbers are interpreted python-style when subsetting rTorch tensors.(they select items by counting from the back). For more details, see: https://docs.scipy.org/doc/numpy-1.13.0/reference/arrays.indexing.html#basic-slicing-and-indexing</span>
-#&gt; <span class='warning'>To turn off this warning, set 'options(torch.extract.warn_negatives_pythonic = FALSE)'</span></div><div class='output co'>#&gt; tensor([10, 11, 12, 13, 14])</div><div class='input'><span class='kw'>x</span>[<span class='op'>-</span><span class='fl'>1</span>,] <span class='co'># the warning is only issued once</span>
-</div><div class='output co'>#&gt; tensor([10, 11, 12, 13, 14])</div><div class='input'>
+<span class='no'>x</span>[-<span class='fl'>1</span>,] <span class='co'># last row, with a warning</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Negative numbers are interpreted python-style when subsetting rTorch tensors.(they select items by counting from the back). For more details, see: https://docs.scipy.org/doc/numpy-1.13.0/reference/arrays.indexing.html#basic-slicing-and-indexing</span>
+#&gt; <span class='warning'>To turn off this warning, set 'options(torch.extract.warn_negatives_pythonic = FALSE)'</span></div><div class='output co'>#&gt; tensor([10, 11, 12, 13, 14])</div><div class='input'><span class='no'>x</span>[-<span class='fl'>1</span>,] <span class='co'># the warning is only issued once</span></div><div class='output co'>#&gt; tensor([10, 11, 12, 13, 14])</div><div class='input'>
 <span class='co'># specifying `style = 'python'` changes the following:</span>
 <span class='co'># +  zero-based indexing is used</span>
 <span class='co'># +  slice sequences in the form of `start:stop` do not include `stop`</span>
@@ -228,25 +217,20 @@
 <span class='co'># as a global option</span>
 
 <span class='co'># example of zero based  indexing</span>
-<span class='kw'>x</span>[<span class='fl'>0</span>, , style = <span class='st'>'python'</span>]   <span class='co'># first row</span>
-</div><div class='output co'>#&gt; tensor([0, 1, 2, 3, 4])</div><div class='input'><span class='kw'>x</span>[<span class='fl'>1</span>, , style = <span class='st'>'python'</span>]   <span class='co'># second row</span>
-</div><div class='output co'>#&gt; tensor([5, 6, 7, 8, 9])</div><div class='input'>
+<span class='no'>x</span>[<span class='fl'>0</span>, , <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>'python'</span>]   <span class='co'># first row</span></div><div class='output co'>#&gt; tensor([0, 1, 2, 3, 4])</div><div class='input'><span class='no'>x</span>[<span class='fl'>1</span>, , <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>'python'</span>]   <span class='co'># second row</span></div><div class='output co'>#&gt; tensor([5, 6, 7, 8, 9])</div><div class='input'>
 <span class='co'># example of slices with exclusive stop</span>
 <span class='co'># run the next options() line before the tensor operations</span>
 
-<span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span>(torch.extract.style = <span class='st'>'python'</span>)
-<span class='kw'>x</span>[, <span class='fl'>0</span><span class='op'>:</span><span class='fl'>1</span>]   <span class='co'># just the first column</span>
-</div><div class='output co'>#&gt; tensor([[ 0],
+<span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span>(<span class='kw'>torch.extract.style</span> <span class='kw'>=</span> <span class='st'>'python'</span>)
+<span class='no'>x</span>[, <span class='fl'>0</span>:<span class='fl'>1</span>]   <span class='co'># just the first column</span></div><div class='output co'>#&gt; tensor([[ 0],
 #&gt;         [ 5],
-#&gt;         [10]])</div><div class='input'><span class='kw'>x</span>[, <span class='fl'>0</span><span class='op'>:</span><span class='fl'>2</span>]   <span class='co'># first and second column</span>
-</div><div class='output co'>#&gt; tensor([[ 0,  1],
+#&gt;         [10]])</div><div class='input'><span class='no'>x</span>[, <span class='fl'>0</span>:<span class='fl'>2</span>]   <span class='co'># first and second column</span></div><div class='output co'>#&gt; tensor([[ 0,  1],
 #&gt;         [ 5,  6],
 #&gt;         [10, 11]])</div><div class='input'>
 <span class='co'># example of out-of-bounds index</span>
-<span class='kw'>x</span>[, <span class='fl'>0</span><span class='op'>:</span><span class='fl'>10</span>]
-</div><div class='output co'>#&gt; tensor([[ 0,  1,  2,  3,  4],
+<span class='no'>x</span>[, <span class='fl'>0</span>:<span class='fl'>10</span>]</div><div class='output co'>#&gt; tensor([[ 0,  1,  2,  3,  4],
 #&gt;         [ 5,  6,  7,  8,  9],
-#&gt;         [10, 11, 12, 13, 14]])</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span>(torch.extract.style = <span class='kw'>NULL</span>)
+#&gt;         [10, 11, 12, 13, 14]])</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span>(<span class='kw'>torch.extract.style</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
 
 <span class='co'># slicing with tensors is valid too, but note that tensors are never</span>
 <span class='co'># translated and are always interpreted Python-style.</span>
@@ -255,12 +239,11 @@
 
 <span class='co'># To silence the warnings about tensors being passed as-is and negative numbers</span>
 <span class='co'># being interpreted python-style, set</span>
-<span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span>(torch.extract.style = <span class='st'>'R'</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span>(<span class='kw'>torch.extract.style</span> <span class='kw'>=</span> <span class='st'>'R'</span>)
 
 <span class='co'># clean up from examples</span>
-<span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span>(torch.extract.style = <span class='kw'>NULL</span>)
-<span class='co'># }</span>
-</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span>(<span class='kw'>torch.extract.style</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='co'># }</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -276,7 +259,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

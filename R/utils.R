@@ -61,3 +61,8 @@ call_hook <- function(name, ...) {
   response
 }
 
+
+is_rtorch_env_name <- function(default_env_name = "r-torch") {
+    grep(pattern = default_env_name, reticulate::conda_list()[["name"]], value = TRUE) == "r-torch"
+
+}

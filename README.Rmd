@@ -929,8 +929,6 @@ print( torch$take(src, torch$tensor(list(0L, 2L, 5L))) )
 
 ## Tensor operations
 
-
-
 ### Transpose
 
 ```{r}
@@ -1002,7 +1000,6 @@ print(xps)     # permuted tensor size
 xp[1:3, 1:2, 1:3, 1:2]
 ```
 
-
 ## Logical operations
 
 ### is it equal
@@ -1024,8 +1021,14 @@ xp[1:3, 1:2, 1:3, 1:2]
 print(m1 == m0)
 ```
 
+```{r}
+print(as_boolean(m1 == m0))
+```
+
+
 ### is it not equal
 ```{r}
+# is it not equal
 print(m1 != m1)
 ```
 
@@ -1033,6 +1036,11 @@ print(m1 != m1)
 # are both equal
 print(m2 == m2)
 ```
+
+```{r}
+print(as_boolean(m2 == m2))
+```
+
 
 ```{r}
 # some are equal, others don't
@@ -1043,6 +1051,9 @@ m1 != m2
 # some are equal, others don't
 m0 != m2
 ```
+```{r}
+as_boolean(m0 != m2)
+```
 
 
 ### AND
@@ -1050,6 +1061,11 @@ m0 != m2
 # AND
 m1 & m1
 ```
+
+```{r}
+as_boolean(m1 & m1)
+```
+
 
 ### OR
 ```{r}
@@ -1060,6 +1076,9 @@ m0 | m2
 ```{r}
 # OR
 m1 | m2
+```
+```{r}
+as_boolean(m1 | m2)
 ```
 
 
@@ -1141,6 +1160,9 @@ diag <- torch$eye(5L)
 diag <- diag$to(dtype=torch$uint8)   # convert to unsigned integer
 diag
 ```
+```{r}
+as_boolean(diag)
+```
 
 
 ```{r}
@@ -1152,6 +1174,9 @@ not_diag
 ```{r}
 # and the negation
 !not_diag
+```
+```{r}
+as_boolean(!not_diag)
 ```
 
 

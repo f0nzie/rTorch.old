@@ -5,35 +5,38 @@
 #' @param method Installation method. By default, "auto" automatically finds a
 #'   method that will work in the local environment. Change the default to force
 #'   a specific installation method. Note that the "virtualenv" method is not
-#'   available on Windows (as this isn't supported by PyTorch). Note also
+#'   available on _Windows_ (as this isn't supported by _PyTorch_). Note also
 #'   that since this command runs without privillege the "system" method is
-#'   available only on Windows.
+#'   available only on _Windows_.
 #'
-#' @param version PyTorch version to install. Specify "default" to install
-#'   the CPU version of the latest release. Specify "gpu" to install the GPU
-#'   version of the latest release.
+#' @param version PyTorch version to install. The "default" version is __1.4__.
+#'   You can specify a specific __PyTorch__ version with `version="1.2"`,
+#'   or `version="1.6"`.
 #'
-#'   You can also provide a full major.minor.patch specification (e.g. "1.1.0"),
-#'   appending "-gpu" if you want the GPU version (e.g. "1.1.0-gpu").
-#'
-#'   Alternatively, you can provide the full URL to an installer binary (e.g.
-#'   for a nightly binary).
-#'
-#' @param envname Name of Python environment to install within
+#' @param envname Name of Python or conda environment to install within.
+#'   The default environment name is `r-torch`.
 #'
 #' @param extra_packages Additional Python packages to install along with
-#'   PyTorch.
+#'   PyTorch. If more than one package use a character vector:
+#'   `c("pandas", "matplotlib")`.
 #'
 #' @param restart_session Restart R session after installing (note this will
 #'   only occur within RStudio).
 #'
-#' @param conda_python_version the python version installed in the created conda
-#'   environment. Python 3.6 is installed by default.
+#' @param conda_python_version the _Python_ version installed in the created _conda_
+#'   environment. Python __3.4__ is installed by default. But you could specify for instance:
+#'   `conda_python_version="3.7"`.
 #'
 #' @param pip logical
-#' @param channel conda channel
-#' @param cuda_version string for the cuda toolkit version
-#' @param dry_run logical, set to TRUE for unit tests, otherwise will run commands
+#'
+#' @param channel conda channel. The default channel is `stable`.
+#'   The alternative channel is `nightly`.
+#'
+#' @param cuda_version string for the cuda toolkit version to install. For example,
+#'   to install a specific CUDA version use `cuda_version="10.2"`.
+#'
+#' @param dry_run logical, set to TRUE for unit tests, otherwise will execute
+#'   the command.
 #'
 #' @param ... other arguments passed to [reticulate::conda_install()] or
 #'   [reticulate::virtualenv_install()].
@@ -261,7 +264,7 @@ parse_torch_version <- function(version, cuda_version = NULL, channel = "stable"
 
 #' Install additional Python packages alongside PyTorch
 #'
-#' This function is deprecated. Use the `extra_packages` argument to
+#' This function is deprecated. Use the `extra_packages` argument in function
 #' `install_pytorch()` to install additional packages.
 #'
 #' @param packages Python packages to install
@@ -269,7 +272,8 @@ parse_torch_version <- function(version, cuda_version = NULL, channel = "stable"
 #'   and other conventional install locations). Only used when PyTorch is
 #'   installed within a conda environment.
 #'
-#' @export
+#' @keywords internal
+#'
 install_torch_extras <- function(packages, conda = "auto") {
   message("Extra packages not installed (this function is deprecated). \n",
           "Use the extra_packages argument to install_pytorch() to ",
