@@ -20,9 +20,18 @@ knitr::opts_chunk$set(
 
 # rTorch
 
-The goal of `rTorch` is providing an R wrapper to [PyTorch](https://pytorch.org/). We have borrowed ideas and code used in R [tensorflow](https://github.com/rstudio/tensorflow) to implement `rTorch`.
+The goal of `rTorch` is providing an R wrapper to [PyTorch](https://pytorch.org/). `rTorch` provides all the functionality of  PyTorch plus all the features that R provides.  We have borrowed ideas and code used in R [tensorflow](https://github.com/rstudio/tensorflow) to implement `rTorch`.
 
-Besides the module `torch`, which directly provides `PyTorch` methods, classes and functions, the package also provides the modules `numpy` as a method called `np`, and `torchvision`, as well. The dollar sign `$` after the module will provide you access to all their sub-objects.
+Besides the module `torch`, which directly provides `PyTorch` methods, classes and functions, the package also provides the modules `numpy` as a method called `np`, and `torchvision`, as well. The dollar sign `$` after the module will provide you access to all their sub-objects. Example: 
+
+
+```{r}
+tv <- rTorch::torchvision
+tv
+
+np <- rTorch::np
+np
+```
 
 
 ## rTorch installation
