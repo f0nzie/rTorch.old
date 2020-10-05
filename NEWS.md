@@ -1,5 +1,7 @@
 # rTorch 0.0.3.9013
-*
+* Travis test PyTorch 1.5 in R-4.0.2 for Linux and macOS with variable shortened.
+* Appveyor test **PyTorch 1.6** in R-4.0.2 for Windows. 
+* New Appveyor test with **PyTorch 1.5** in R-4.0.2 for Windows. Failing. Definitely PyTorch 1.5 failing in most of the tests.
 * Shorten the variable names `PYTORCH_VERSION` and `PYTHON_VERSION` in Travis.
 * Appveyor test **PyTorch 1.6** in R-4.0.2 for Windows. Passed.
 * Appveyor test PyTorch 1.5 in R-4.0.2 for Windows. Failed. 

@@ -17,9 +17,9 @@ os:
 
 # # -- this worked before --
 # env:
-#   - PYTHON_VER="3.6" PYTORCH_VER="1.1"
-#   - PYTHON_VER="3.7" PYTORCH_VER="1.1"
-#   - PYTHON_VER="3.8" PYTORCH_VER="1.1"
+#   - PYTHON_V="3.6" PYTORCH_V="1.1"
+#   - PYTHON_V="3.7" PYTORCH_V="1.1"
+#   - PYTHON_V="3.8" PYTORCH_V="1.1"
 # # ----------------------------------------------
 
 
@@ -27,27 +27,27 @@ os:
 # env:
 #   matrix:
 #     # Python 3.6
-#     - PYTHON_VER="3.6" PYTORCH_VER="1.1"
-#     - PYTHON_VER="3.6" PYTORCH_VER="1.2"
-#     - PYTHON_VER="3.6" PYTORCH_VER="1.4"
-#     - PYTHON_VER="3.6" PYTORCH_VER="1.6"
+#     - PYTHON_V="3.6" PYTORCH_V="1.1"
+#     - PYTHON_V="3.6" PYTORCH_V="1.2"
+#     - PYTHON_V="3.6" PYTORCH_V="1.4"
+#     - PYTHON_V="3.6" PYTORCH_V="1.6"
 #     # Python 3.7
-#     - PYTHON_VER="3.7" PYTORCH_VER="1.1"
-#     - PYTHON_VER="3.7" PYTORCH_VER="1.2"
-#     - PYTHON_VER="3.7" PYTORCH_VER="1.4"
-#     - PYTHON_VER="3.7" PYTORCH_VER="1.6"
+#     - PYTHON_V="3.7" PYTORCH_V="1.1"
+#     - PYTHON_V="3.7" PYTORCH_V="1.2"
+#     - PYTHON_V="3.7" PYTORCH_V="1.4"
+#     - PYTHON_V="3.7" PYTORCH_V="1.6"
 #     # Python 3.8
-#     - PYTHON_VER="3.8" PYTORCH_VER="1.6"
+#     - PYTHON_V="3.8" PYTORCH_V="1.6"
 
 
 # this matrix generates 2 jobs
 env:
   matrix:
-#    - PYTHON_VER="3.7" PYTORCH_VER="1.1"
-#    - PYTHON_VER="3.7" PYTORCH_VER="1.2"
-#    - PYTHON_VER="3.7" PYTORCH_VER="1.4"
-    - PYTHON_VER="3.7" PYTORCH_VER="1.5"
-#    - PYTHON_VER="3.7" PYTORCH_VER="1.6"
+    # - PYTHON_V="3.7" PYTORCH_V="1.1"
+    # - PYTHON_V="3.7" PYTORCH_V="1.2"
+    # - PYTHON_V="3.7" PYTORCH_V="1.4"
+    - PYTHON_V="3.7" PYTORCH_V="1.5""
+    # - PYTHON_V="3.7" PYTORCH_V="1.6"
 
 r-packages:
   - reticulate
@@ -85,12 +85,12 @@ before_script:
   - # new lines without breaks using >
   - >
     R -e 'rTorch:::install_conda(
-    package=paste0("pytorch=", Sys.getenv("PYTORCH_VER")),
+    package=paste0("pytorch=", Sys.getenv("PYTORCH_V")),
     envname="r-torch", conda="auto",
-    conda_PYTHON_VER=Sys.getenv("PYTHON_VER"),
+    conda_python_version=Sys.getenv("PYTHON_V"),
     pip=FALSE, channel="pytorch",
     extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))'
 
-  # - R -e 'rTorch:::install_conda(package="pytorch=1.6", envname="r-torch", conda="auto", conda_PYTHON_VER="3.6", pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))'
+  # - R -e 'rTorch:::install_conda(package="pytorch=1.6", envname="r-torch", conda="auto", conda_python_version="3.6", pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))'
 
 

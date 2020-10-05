@@ -24,7 +24,7 @@ environment:
     #   PYTHON_VERSION: 3.7
 
     - R_VERSION: 4.0.2
-      TORCH_VERSION: 1.5
+      TORCH_VERSION: 1.6
       PYTHON_VERSION: 3.7
 
   # matrix:
