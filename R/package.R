@@ -136,6 +136,7 @@ torch_config <- function() {
 
       tfv <- strsplit(version_raw, ".", fixed = TRUE)[[1]]
       version <- package_version(paste(tfv[[1]], tfv[[2]], sep = "."))
+      env_name <- ifelse(is_rtorch_env_name(), "r-torch", "other")
 
         structure(class = "pytorch_config", list(
             available = TRUE,
@@ -144,7 +145,8 @@ torch_config <- function() {
             location = config$required_module_path,
             python = config$python,
             python_version = config$version,
-            numpy_version = as.character(config$numpy$version)
+            numpy_version = as.character(config$numpy$version),
+            env_name = env_name
         ))
     } else {  # didn't find it
         structure(class = "pytorch_config", list(

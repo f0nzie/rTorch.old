@@ -1,4 +1,10 @@
 # rTorch 0.0.3.9013
+* add function `is_rtorch_env_name()` and ` env_name` object to ` torch_config()` to live unit test `install_pytorch()`
+* add function `install_pytorch()` to vignette
+* add parameter `python_version` to function `conda_install()`
+* add backticks to roxygen text since now we are using Markdown in `Roxygen: list(markdown = TRUE)`
+* new pkgdown section for Installation. Add two logical functions
+* use markdown in roxygen help text
 * Travis test PyTorch 1.5 in R-4.0.2 for Linux and macOS with variable shortened.
 * Appveyor test **PyTorch 1.6** in R-4.0.2 for Windows. 
 * New Appveyor test with **PyTorch 1.5** in R-4.0.2 for Windows. Failing. Definitely PyTorch 1.5 failing in most of the tests.
