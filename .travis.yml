@@ -83,7 +83,7 @@ before_script:
     if [ "$TRAVIS_OS_NAME" = "linux" ];
       then sudo rm /usr/lib/x86_64-linux-gnu/libstdc++.so.6;
     fi
-  - # new lines without breaks using >
+  - # new lines without hard breaks using >
   - >
     R -e 'rTorch:::install_conda(
     package=paste0("pytorch=", Sys.getenv("PYTORCH_V")),
