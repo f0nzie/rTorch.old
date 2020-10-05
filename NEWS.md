@@ -1,6 +1,7 @@
 # rTorch 0.0.3.9013
 *
-* Appveyor test PyTorch 1.6 in R-4.0.2 for Windows.
+* Shorten the variable names `PYTORCH_VERSION` and `PYTHON_VERSION` in Travis.
+* Appveyor test **PyTorch 1.6** in R-4.0.2 for Windows. Passed.
 * Appveyor test PyTorch 1.5 in R-4.0.2 for Windows. Failed. 
 * Travis test PyTorch 1.5 in R-4.0.2 for Linux and macOS
 * change logical `and`, `or` and `not` to be boolean or uint8 as their inputs.
