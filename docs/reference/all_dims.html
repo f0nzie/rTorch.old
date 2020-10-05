@@ -41,11 +41,12 @@
 
 <meta property="og:title" content="All dims — all_dims" />
 <meta property="og:description" content="This function returns an object that can be used when subsetting tensors with
-`[`. If you are familiar with Python, this is equivalent to the Python Ellipsis
-`...`, (not to be confused with `...` in `R`). In python, if `x` is a numpy
-array or torch tensor, x[..., i] the ellipsis means &quot;expand to match number of
-dimension of x&quot;.#' To translate the above Python expression to R, write:
-x[all_dims(), i]" />
+[. If you are familiar with Python, this is equivalent to the Python Ellipsis
+..., (not to be confused with ... in R). In Python, if x is a numpy
+array or a torch tensor, in x[..., i] the ellipsis means &quot;expand to match number of
+dimension of x&quot;.
+To translate the above Python expression to R, write:
+x[all_dims(), i]." />
 
 
 
@@ -77,7 +78,7 @@ x[all_dims(), i]" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9009</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9013</span>
       </span>
     </div>
 
@@ -135,11 +136,12 @@ x[all_dims(), i]" />
 
     <div class="ref-description">
     <p>This function returns an object that can be used when subsetting tensors with
-`[`. If you are familiar with Python, this is equivalent to the Python Ellipsis
-`...`, (not to be confused with `...` in `R`). In python, if `x` is a numpy
-array or torch tensor, x[..., i] the ellipsis means "expand to match number of
-dimension of x".#' To translate the above Python expression to R, write:
-x[all_dims(), i]</p>
+<code>[</code>. If you are familiar with Python, this is equivalent to the Python Ellipsis
+<code>...</code>, (not to be confused with <code>...</code> in <code>R</code>). In Python, if <code>x</code> is a numpy
+array or a torch tensor, in <code>x[..., i]</code> the ellipsis means "expand to match number of
+dimension of x".
+To translate the above Python expression to R, write:
+<code>x[all_dims(), i]</code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>all_dims</span>()</pre>
@@ -149,21 +151,17 @@ x[all_dims(), i]</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='co'># Run this</span>
-<span class='kw'>d</span> <span class='op'>&lt;-</span> <span class='kw'>torch</span><span class='op'>$</span><span class='fu'>tensor</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>0</span>, <span class='fl'>0</span>),
+<span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>tensor</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>0</span>, <span class='fl'>0</span>),
                        <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>0</span>, <span class='fl'>0</span>),
                        <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>),
-                       <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>)), dtype=<span class='kw'>torch</span><span class='op'>$</span><span class='kw'>uint8</span>)
-<span class='kw'>d</span>[<span class='fu'>all_dims</span>(), <span class='fl'>1</span>]
-</div><div class='output co'>#&gt; tensor([0, 0, 0, 1], dtype=torch.uint8)</div><div class='input'>
-<span class='kw'>f</span> <span class='op'>&lt;-</span> <span class='kw'>torch</span><span class='op'>$</span><span class='fu'>arange</span>(<span class='fl'>9L</span>)<span class='op'>$</span><span class='fu'><a href='https://rdrr.io/r/stats/reshape.html'>reshape</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3L</span>, <span class='fl'>3L</span>))
-<span class='kw'>f</span>
-</div><div class='output co'>#&gt; tensor([[0, 1, 2],
+                       <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>)), <span class='kw'>dtype</span><span class='kw'>=</span><span class='no'>torch</span>$<span class='no'>uint8</span>)
+<span class='no'>d</span>[<span class='fu'>all_dims</span>(), <span class='fl'>1</span>]</div><div class='output co'>#&gt; tensor([0, 0, 0, 1], dtype=torch.uint8)</div><div class='input'>
+<span class='no'>f</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>arange</span>(<span class='fl'>9L</span>)$<span class='fu'><a href='https://rdrr.io/r/stats/reshape.html'>reshape</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3L</span>, <span class='fl'>3L</span>))
+<span class='no'>f</span></div><div class='output co'>#&gt; tensor([[0, 1, 2],
 #&gt;         [3, 4, 5],
-#&gt;         [6, 7, 8]])</div><div class='input'><span class='kw'>f</span>[<span class='fu'>all_dims</span>()]
-</div><div class='output co'>#&gt; tensor([[0, 1, 2],
+#&gt;         [6, 7, 8]])</div><div class='input'><span class='no'>f</span>[<span class='fu'>all_dims</span>()]</div><div class='output co'>#&gt; tensor([[0, 1, 2],
 #&gt;         [3, 4, 5],
-#&gt;         [6, 7, 8]])</div><div class='input'><span class='kw'>f</span>[<span class='fu'>all_dims</span>(), <span class='fl'>1L</span>]
-</div><div class='output co'>#&gt; tensor([0, 3, 6])</div><div class='input'><span class='co'># }</span>
+#&gt;         [6, 7, 8]])</div><div class='input'><span class='no'>f</span>[<span class='fu'>all_dims</span>(), <span class='fl'>1L</span>]</div><div class='output co'>#&gt; tensor([0, 3, 6])</div><div class='input'># }
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -180,7 +178,7 @@ x[all_dims(), i]</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

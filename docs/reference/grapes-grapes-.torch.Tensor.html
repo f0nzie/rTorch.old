@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9009</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9013</span>
       </span>
     </div>
 
@@ -154,14 +154,10 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'>x</span> <span class='op'>&lt;-</span> <span class='kw'>torch</span><span class='op'>$</span><span class='fu'>Tensor</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='op'>-</span><span class='fl'>3.</span>, <span class='op'>-</span><span class='fl'>2</span>, <span class='op'>-</span><span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>))
-<span class='kw'>y</span> <span class='op'>&lt;-</span> <span class='kw'>torch</span><span class='op'>$</span><span class='fu'>Tensor</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>1.</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>4</span>, <span class='fl'>5</span>))
-<span class='kw'>torch</span><span class='op'>$</span><span class='fu'>remainder</span>(<span class='kw'>x</span>, <span class='fl'>2</span>)
-</div><div class='output co'>#&gt; tensor([1., 0., 1., 1., 0., 1.])</div><div class='input'><span class='kw'>torch</span><span class='op'>$</span><span class='fu'>remainder</span>(<span class='kw'>y</span>, <span class='fl'>1.5</span>)
-</div><div class='output co'>#&gt; tensor([1.0000, 0.5000, 0.0000, 1.0000, 0.5000])</div><div class='input'>
-<span class='kw'>x</span> <span class='op'>%%</span> <span class='fl'>2</span>
-</div><div class='output co'>#&gt; tensor([1., 0., 1., 1., 0., 1.])</div><div class='input'><span class='kw'>y</span> <span class='op'>%%</span> <span class='fl'>1.5</span>
-</div><div class='output co'>#&gt; tensor([1.0000, 0.5000, 0.0000, 1.0000, 0.5000])</div><div class='input'><span class='co'># }</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>Tensor</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(-<span class='fl'>3.</span>, -<span class='fl'>2</span>, -<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>))
+<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>Tensor</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>1.</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>4</span>, <span class='fl'>5</span>))
+<span class='no'>torch</span>$<span class='fu'>remainder</span>(<span class='no'>x</span>, <span class='fl'>2</span>)</div><div class='output co'>#&gt; tensor([1., 0., 1., 1., 0., 1.])</div><div class='input'><span class='no'>torch</span>$<span class='fu'>remainder</span>(<span class='no'>y</span>, <span class='fl'>1.5</span>)</div><div class='output co'>#&gt; tensor([1.0000, 0.5000, 0.0000, 1.0000, 0.5000])</div><div class='input'>
+<span class='no'>x</span> <span class='kw'>%%</span> <span class='fl'>2</span></div><div class='output co'>#&gt; tensor([1., 0., 1., 1., 0., 1.])</div><div class='input'><span class='no'>y</span> <span class='kw'>%%</span> <span class='fl'>1.5</span></div><div class='output co'>#&gt; tensor([1.0000, 0.5000, 0.0000, 1.0000, 0.5000])</div><div class='input'># }
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -178,7 +174,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

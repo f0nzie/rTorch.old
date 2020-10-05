@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Is a tensor greater or equal than another tensor — &gt;=.torch.Tensor • rTorch</title>
+<title>Conda install function (modified from reticulate) — conda_install • rTorch</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,9 @@
 
 
 
-<meta property="og:title" content="Is a tensor greater or equal than another tensor — &gt;=.torch.Tensor" />
-<meta property="og:description" content="This generic is similar to torch$ge(a, b)" />
+<meta property="og:title" content="Conda install function (modified from reticulate) — conda_install" />
+<meta property="og:description" content="R functions for managing Python [conda
+environments](https://conda.io/docs/user-guide/tasks/manage-environments.html)." />
 
 
 
@@ -123,50 +124,78 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Is a tensor greater or equal than another tensor</h1>
-    <small class="dont-index">Source: <a href='https://github.com/f0nzie/rTorch/blob/master/R/generics.R'><code>R/generics.R</code></a></small>
-    <div class="hidden name"><code>greater-than-equals-.torch.Tensor.Rd</code></div>
+    <h1>Conda install function (modified from reticulate)</h1>
+    <small class="dont-index">Source: <a href='https://github.com/f0nzie/rTorch/blob/master/R/reticulate.R'><code>R/reticulate.R</code></a></small>
+    <div class="hidden name"><code>conda_install.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This generic is similar to <code>torch$ge(a, b)</code></p>
+    <p>R functions for managing Python [conda
+environments](https://conda.io/docs/user-guide/tasks/manage-environments.html).</p>
     </div>
 
-    <pre class="usage"># S3 method for torch.Tensor
-&amp;gt;=(a, b)</pre>
+    <pre class="usage"><span class='fu'>conda_install</span>(
+  <span class='kw'>envname</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>packages</span>,
+  <span class='kw'>forge</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>pip</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>pip_ignore_installed</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>conda</span> <span class='kw'>=</span> <span class='st'>"auto"</span>,
+  <span class='kw'>python_version</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>channel</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>...</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>a</th>
-      <td><p>tensor</p></td>
+      <th>envname</th>
+      <td><p>Name of conda environment</p></td>
     </tr>
     <tr>
-      <th>b</th>
-      <td><p>tensor</p></td>
+      <th>packages</th>
+      <td><p>Character vector with package names to install or remove.</p></td>
+    </tr>
+    <tr>
+      <th>forge</th>
+      <td><p>Include the [Conda Forge](https://conda-forge.org/) repository.</p></td>
+    </tr>
+    <tr>
+      <th>pip</th>
+      <td><p>`TRUE` to use pip (defaults to `FALSE`)</p></td>
+    </tr>
+    <tr>
+      <th>pip_ignore_installed</th>
+      <td><p>Ignore installed versions when using pip. This is `TRUE` by default
+so that specific package versions can be installed even if they are downgrades. The `FALSE`
+option is useful for situations where you don't want a pip install to attempt an overwrite
+of a conda binary package (e.g. SciPy on Windows which is very difficult to install via
+pip due to compilation requirements).</p></td>
+    </tr>
+    <tr>
+      <th>conda</th>
+      <td><p>Path to conda executable (or "auto" to find conda using the
+PATH and other conventional install locations).</p></td>
+    </tr>
+    <tr>
+      <th>channel</th>
+      <td><p>conda channel for pytorch</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Optional arguments, reserved for future expansion.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tensor of booleans representing the logical result of the comparison.
-False to represent 0, and True to represent 1 in a tensor of data type <code>torch$uint8</code>.</p>
+    <p>`conda_list()` returns a data frame with the names and paths to the
+  respective python binaries of available environments. `conda_create()`
+  returns the Path to the python binary of the created environment.
+  `conda_binary()` returns the location of the main conda binary or `NULL`
+  if none can be found.</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='no'>A</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>ones</span>(<span class='fl'>5L</span>, <span class='fl'>5L</span>)
-<span class='no'>C</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>as_tensor</span>(<span class='no'>np</span>$<span class='no'>random</span>$<span class='fu'>randint</span>(<span class='fl'>2L</span>, <span class='kw'>size</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5L</span>, <span class='fl'>5L</span>)), <span class='kw'>dtype</span><span class='kw'>=</span><span class='no'>torch</span>$<span class='no'>float32</span>)
-<span class='no'>A</span> <span class='kw'>&gt;=</span> <span class='no'>C</span></div><div class='output co'>#&gt; tensor([[1, 1, 1, 1, 1],
-#&gt;         [1, 1, 1, 1, 1],
-#&gt;         [1, 1, 1, 1, 1],
-#&gt;         [1, 1, 1, 1, 1],
-#&gt;         [1, 1, 1, 1, 1]], dtype=torch.uint8)</div><div class='input'><span class='no'>C</span> <span class='kw'>&gt;=</span> <span class='no'>A</span></div><div class='output co'>#&gt; tensor([[1, 0, 1, 1, 0],
-#&gt;         [1, 1, 0, 1, 0],
-#&gt;         [0, 0, 0, 1, 1],
-#&gt;         [1, 0, 0, 1, 1],
-#&gt;         [0, 0, 0, 0, 0]], dtype=torch.uint8)</div><div class='input'># }
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

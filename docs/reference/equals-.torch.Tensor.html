@@ -74,7 +74,7 @@ a tensor of data type torch$uint8." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9009</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9013</span>
       </span>
     </div>
 
@@ -137,17 +137,17 @@ a tensor of data type <code>torch$uint8</code>.</p>
     </div>
 
     <pre class="usage"># S3 method for torch.Tensor
-==(a, b)</pre>
+==(x, y)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>a</th>
+      <th>x</th>
       <td><p>tensor</p></td>
     </tr>
     <tr>
-      <th>b</th>
+      <th>y</th>
       <td><p>tensor</p></td>
     </tr>
     </table>
@@ -159,10 +159,9 @@ in a tensor of data type <code>torch$bool</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='kw'>a</span> <span class='op'>&lt;-</span> <span class='kw'>torch</span><span class='op'>$</span><span class='fu'>Tensor</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>))
-<span class='kw'>b</span> <span class='op'>&lt;-</span> <span class='kw'>torch</span><span class='op'>$</span><span class='fu'>Tensor</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>2</span>))
-<span class='kw'>a</span> <span class='op'>==</span> <span class='kw'>b</span>
-</div><div class='output co'>#&gt; tensor([False, False, False])</div><div class='input'><span class='co'># }</span>
+<span class='no'>a</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>Tensor</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>))
+<span class='no'>b</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>Tensor</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>2</span>))
+<span class='no'>a</span> <span class='kw'>==</span> <span class='no'>b</span></div><div class='output co'>#&gt; tensor([0, 0, 0], dtype=torch.uint8)</div><div class='input'># }
 
 </div></pre>
   </div>
@@ -180,7 +179,7 @@ in a tensor of data type <code>torch$bool</code>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

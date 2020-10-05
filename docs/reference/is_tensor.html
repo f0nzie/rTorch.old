@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Is a tensor greater or equal than another tensor — &gt;=.torch.Tensor • rTorch</title>
+<title>Is the object a tensor — is_tensor • rTorch</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Is a tensor greater or equal than another tensor — &gt;=.torch.Tensor" />
-<meta property="og:description" content="This generic is similar to torch$ge(a, b)" />
+<meta property="og:title" content="Is the object a tensor — is_tensor" />
+<meta property="og:description" content="Determine if the object is a tensor by looking inheritance" />
 
 
 
@@ -123,50 +123,27 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Is a tensor greater or equal than another tensor</h1>
-    <small class="dont-index">Source: <a href='https://github.com/f0nzie/rTorch/blob/master/R/generics.R'><code>R/generics.R</code></a></small>
-    <div class="hidden name"><code>greater-than-equals-.torch.Tensor.Rd</code></div>
+    <h1>Is the object a tensor</h1>
+    <small class="dont-index">Source: <a href='https://github.com/f0nzie/rTorch/blob/master/R/properties.R'><code>R/properties.R</code></a></small>
+    <div class="hidden name"><code>is_tensor.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This generic is similar to <code>torch$ge(a, b)</code></p>
+    <p>Determine if the object is a tensor by looking inheritance</p>
     </div>
 
-    <pre class="usage"># S3 method for torch.Tensor
-&amp;gt;=(a, b)</pre>
+    <pre class="usage"><span class='fu'>is_tensor</span>(<span class='no'>obj</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>a</th>
-      <td><p>tensor</p></td>
-    </tr>
-    <tr>
-      <th>b</th>
-      <td><p>tensor</p></td>
+      <th>obj</th>
+      <td><p>an object</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tensor of booleans representing the logical result of the comparison.
-False to represent 0, and True to represent 1 in a tensor of data type <code>torch$uint8</code>.</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='no'>A</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>ones</span>(<span class='fl'>5L</span>, <span class='fl'>5L</span>)
-<span class='no'>C</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>as_tensor</span>(<span class='no'>np</span>$<span class='no'>random</span>$<span class='fu'>randint</span>(<span class='fl'>2L</span>, <span class='kw'>size</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5L</span>, <span class='fl'>5L</span>)), <span class='kw'>dtype</span><span class='kw'>=</span><span class='no'>torch</span>$<span class='no'>float32</span>)
-<span class='no'>A</span> <span class='kw'>&gt;=</span> <span class='no'>C</span></div><div class='output co'>#&gt; tensor([[1, 1, 1, 1, 1],
-#&gt;         [1, 1, 1, 1, 1],
-#&gt;         [1, 1, 1, 1, 1],
-#&gt;         [1, 1, 1, 1, 1],
-#&gt;         [1, 1, 1, 1, 1]], dtype=torch.uint8)</div><div class='input'><span class='no'>C</span> <span class='kw'>&gt;=</span> <span class='no'>A</span></div><div class='output co'>#&gt; tensor([[1, 0, 1, 1, 0],
-#&gt;         [1, 1, 0, 1, 0],
-#&gt;         [0, 0, 0, 1, 1],
-#&gt;         [1, 0, 0, 1, 1],
-#&gt;         [0, 0, 0, 0, 0]], dtype=torch.uint8)</div><div class='input'># }
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

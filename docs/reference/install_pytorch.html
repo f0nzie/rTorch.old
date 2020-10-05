@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9009</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9013</span>
       </span>
     </div>
 
@@ -133,18 +133,18 @@
     </div>
 
     <pre class="usage"><span class='fu'>install_pytorch</span>(
-  method = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"conda"</span>, <span class='st'>"virtualenv"</span>, <span class='st'>"auto"</span>),
-  conda = <span class='st'>"auto"</span>,
-  version = <span class='st'>"default"</span>,
-  envname = <span class='st'>"r-torch"</span>,
-  extra_packages = <span class='kw'>NULL</span>,
-  restart_session = <span class='fl'>TRUE</span>,
-  conda_python_version = <span class='st'>"3.6"</span>,
-  pip = <span class='fl'>FALSE</span>,
-  channel = <span class='st'>"stable"</span>,
-  cuda_version = <span class='kw'>NULL</span>,
-  dry_run = <span class='fl'>FALSE</span>,
-  <span class='kw'>...</span>
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"conda"</span>, <span class='st'>"virtualenv"</span>, <span class='st'>"auto"</span>),
+  <span class='kw'>conda</span> <span class='kw'>=</span> <span class='st'>"auto"</span>,
+  <span class='kw'>version</span> <span class='kw'>=</span> <span class='st'>"default"</span>,
+  <span class='kw'>envname</span> <span class='kw'>=</span> <span class='st'>"r-torch"</span>,
+  <span class='kw'>extra_packages</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>restart_session</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>conda_python_version</span> <span class='kw'>=</span> <span class='st'>"3.6"</span>,
+  <span class='kw'>pip</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>channel</span> <span class='kw'>=</span> <span class='st'>"stable"</span>,
+  <span class='kw'>cuda_version</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>dry_run</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='no'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -155,9 +155,9 @@
       <td><p>Installation method. By default, "auto" automatically finds a
 method that will work in the local environment. Change the default to force
 a specific installation method. Note that the "virtualenv" method is not
-available on Windows (as this isn't supported by PyTorch). Note also
+available on <em>Windows</em> (as this isn't supported by <em>PyTorch</em>). Note also
 that since this command runs without privillege the "system" method is
-available only on Windows.</p></td>
+available only on <em>Windows</em>.</p></td>
     </tr>
     <tr>
       <th>conda</th>
@@ -166,22 +166,20 @@ automatically find an appropriate <code>conda</code> binary. See <strong>Finding
     </tr>
     <tr>
       <th>version</th>
-      <td><p>PyTorch version to install. Specify "default" to install
-  the CPU version of the latest release. Specify "gpu" to install the GPU
-  version of the latest release.</p>
-<p>You can also provide a full major.minor.patch specification (e.g. "1.1.0"),
-  appending "-gpu" if you want the GPU version (e.g. "1.1.0-gpu").</p>
-<p>Alternatively, you can provide the full URL to an installer binary (e.g.
-  for a nightly binary).</p></td>
+      <td><p>PyTorch version to install. The "default" version is <strong>1.4</strong>.
+You can specify a specific <strong>PyTorch</strong> version with <code>version="1.2"</code>,
+or <code>version="1.6"</code>.</p></td>
     </tr>
     <tr>
       <th>envname</th>
-      <td><p>Name of Python environment to install within</p></td>
+      <td><p>Name of Python or conda environment to install within.
+The default environment name is <code>r-torch</code>.</p></td>
     </tr>
     <tr>
       <th>extra_packages</th>
       <td><p>Additional Python packages to install along with
-PyTorch.</p></td>
+PyTorch. If more than one package use a character vector:
+<code><a href='https://rdrr.io/r/base/c.html'>c("pandas", "matplotlib")</a></code>.</p></td>
     </tr>
     <tr>
       <th>restart_session</th>
@@ -190,8 +188,9 @@ only occur within RStudio).</p></td>
     </tr>
     <tr>
       <th>conda_python_version</th>
-      <td><p>the python version installed in the created conda
-environment. Python 3.6 is installed by default.</p></td>
+      <td><p>the <em>Python</em> version installed in the created <em>conda</em>
+environment. Python <strong>3.4</strong> is installed by default. But you could specify for instance:
+<code>conda_python_version="3.7"</code>.</p></td>
     </tr>
     <tr>
       <th>pip</th>
@@ -199,20 +198,23 @@ environment. Python 3.6 is installed by default.</p></td>
     </tr>
     <tr>
       <th>channel</th>
-      <td><p>conda channel</p></td>
+      <td><p>conda channel. The default channel is <code>stable</code>.
+The alternative channel is <code>nightly</code>.</p></td>
     </tr>
     <tr>
       <th>cuda_version</th>
-      <td><p>string for the cuda toolkit version</p></td>
+      <td><p>string for the cuda toolkit version to install. For example,
+to install a specific CUDA version use <code>cuda_version="10.2"</code>.</p></td>
     </tr>
     <tr>
       <th>dry_run</th>
-      <td><p>logical, set to TRUE for unit tests, otherwise will run commands</p></td>
+      <td><p>logical, set to TRUE for unit tests, otherwise will execute
+the command.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>other arguments passed to [reticulate::conda_install()] or
-[reticulate::virtualenv_install()].</p></td>
+      <td><p>other arguments passed to <code><a href='https://rdrr.io/pkg/reticulate/man/conda-tools.html'>reticulate::conda_install()</a></code> or
+<code><a href='https://rdrr.io/pkg/reticulate/man/virtualenv-tools.html'>reticulate::virtualenv_install()</a></code>.</p></td>
     </tr>
     </table>
 
@@ -232,7 +234,7 @@ environment. Python 3.6 is installed by default.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
