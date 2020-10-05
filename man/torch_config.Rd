@@ -11,9 +11,9 @@ torch_version()
 }
 \value{
 List with information on the current configuration of PyTorch.
-  You can determine whether PyTorch was found using the `available`
-  member (other members vary depending on whether `available` is `TRUE`
-  or `FALSE`)
+You can determine whether PyTorch was found using the \code{available}
+member (other members vary depending on whether \code{available} is \code{TRUE}
+or \code{FALSE})
 }
 \description{
 Torch configuration information

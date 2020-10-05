@@ -2,7 +2,7 @@
 % Please edit documentation in R/extract.R
 \name{[.torch.Tensor}
 \alias{[.torch.Tensor}
-\title{Subset tensors with `[`}
+\title{Subset tensors with \code{[}}
 \usage{
 \method{[}{torch.Tensor}(
   x,
@@ -19,12 +19,12 @@
 
 \item{drop}{whether to drop scalar dimensions}
 
-\item{style}{One of `"python"` or `"R"`.}
+\item{style}{One of \code{"python"} or \code{"R"}.}
 
-\item{options}{An object returned by `torch_extract_opts()`}
+\item{options}{An object returned by \code{torch_extract_opts()}}
 }
 \description{
-Subset tensors with `[`
+Subset tensors with \code{[}
 }
 \examples{
 \donttest{

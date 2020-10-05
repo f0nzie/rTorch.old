@@ -23,44 +23,44 @@ install_pytorch(
 \item{method}{Installation method. By default, "auto" automatically finds a
 method that will work in the local environment. Change the default to force
 a specific installation method. Note that the "virtualenv" method is not
-available on Windows (as this isn't supported by PyTorch). Note also
+available on \emph{Windows} (as this isn't supported by \emph{PyTorch}). Note also
 that since this command runs without privillege the "system" method is
-available only on Windows.}
+available only on \emph{Windows}.}
 
 \item{conda}{The path to a \code{conda} executable. Use \code{"auto"} to allow \code{reticulate} to
 automatically find an appropriate \code{conda} binary. See \strong{Finding Conda} for more details.}
 
-\item{version}{PyTorch version to install. Specify "default" to install
-  the CPU version of the latest release. Specify "gpu" to install the GPU
-  version of the latest release.
+\item{version}{PyTorch version to install. The "default" version is \strong{1.4}.
+You can specify a specific \strong{PyTorch} version with \code{version="1.2"},
+or \code{version="1.6"}.}
 
-  You can also provide a full major.minor.patch specification (e.g. "1.1.0"),
-  appending "-gpu" if you want the GPU version (e.g. "1.1.0-gpu").
-
-  Alternatively, you can provide the full URL to an installer binary (e.g.
-  for a nightly binary).}
-
-\item{envname}{Name of Python environment to install within}
+\item{envname}{Name of Python or conda environment to install within.
+The default environment name is \code{r-torch}.}
 
 \item{extra_packages}{Additional Python packages to install along with
-PyTorch.}
+PyTorch. If more than one package use a character vector:
+\code{c("pandas", "matplotlib")}.}
 
 \item{restart_session}{Restart R session after installing (note this will
 only occur within RStudio).}
 
-\item{conda_python_version}{the python version installed in the created conda
-environment. Python 3.6 is installed by default.}
+\item{conda_python_version}{the \emph{Python} version installed in the created \emph{conda}
+environment. Python \strong{3.4} is installed by default. But you could specify for instance:
+\code{conda_python_version="3.7"}.}
 
 \item{pip}{logical}
 
-\item{channel}{conda channel}
+\item{channel}{conda channel. The default channel is \code{stable}.
+The alternative channel is \code{nightly}.}
 
-\item{cuda_version}{string for the cuda toolkit version}
+\item{cuda_version}{string for the cuda toolkit version to install. For example,
+to install a specific CUDA version use \code{cuda_version="10.2"}.}
 
-\item{dry_run}{logical, set to TRUE for unit tests, otherwise will run commands}
+\item{dry_run}{logical, set to TRUE for unit tests, otherwise will execute
+the command.}
 
-\item{...}{other arguments passed to [reticulate::conda_install()] or
-[reticulate::virtualenv_install()].}
+\item{...}{other arguments passed to \code{\link[reticulate:conda-tools]{reticulate::conda_install()}} or
+\code{\link[reticulate:virtualenv-tools]{reticulate::virtualenv_install()}}.}
 }
 \description{
 Install PyTorch and its dependencies
