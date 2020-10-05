@@ -53,7 +53,8 @@ test_that("default, gpu=9.2, nightly", {
 
 
 test_that("1.2, gpu=10.1, stable", {
-    ver <- parse_torch_version(version = "1.2", cuda_version = "10.1", channel = "stable")
+    ver <- parse_torch_version(version = "1.2", cuda_version = "10.1",
+                               channel = "stable")
     expect_equal(ver$version, "1.2")
     expect_equal(ver$package, "pytorch==1.2")
     expect_equal(ver$cpu_gpu_packages, "cudatoolkit==10.1")
@@ -61,7 +62,8 @@ test_that("1.2, gpu=10.1, stable", {
 })
 
 test_that("1.3, gpu=10.2, nightly", {
-    ver <- parse_torch_version(version = "1.3", cuda_version = "10.2", channel = "nightly")
+    ver <- parse_torch_version(version = "1.3", cuda_version = "10.2",
+                               channel = "nightly")
     expect_equal(ver$version, "1.3")
     expect_equal(ver$package, "pytorch==1.3")
     expect_equal(ver$cpu_gpu_packages, "cudatoolkit==10.2")
@@ -84,7 +86,8 @@ test_that("default", {
 })
 
 test_that("1.2, Python 3.7", {
-    res <- install_pytorch(version = "1.2", conda_python_version = "3.7", dry_run = TRUE)
+    res <- install_pytorch(version = "1.2", conda_python_version = "3.7",
+                           dry_run = TRUE)
     expect_equal(res$package, "pytorch==1.2")
     expect_equal(res$extra_packages, c("cpuonly", "torchvision"))
     expect_equal(res$envname, "r-torch")
