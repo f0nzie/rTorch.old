@@ -1,3 +1,8 @@
+# 0.4.0.9000
+* 
+*
+* create branch `0.4.0-fix_examples_problem_in_cran`
+ 
 # rTorch 0.4.0
 * Modify `tests/testthat/utils.R` to include `skip_on_cran()`
 * change version numbering so it is easier to renumber when back to CRAN for fixes.
