@@ -43,7 +43,7 @@ py_str.torch.python.ops.variables.Variable <- function(object, ...) {
 #' @param x tensor
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' A <- torch$ones(c(60000L, 1L, 28L, 28L))
 #' dim(A)
 #' }
@@ -60,7 +60,7 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #' @return a vector of integers with the dimensions of the tensor
 #' @export
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' uo = torch$ones(3L, 5L)  # it is a 3x5 tensor
 #' dim(uo)
 #' }
@@ -87,7 +87,7 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #' @return the number of elements of a tensor as an integer
 #' @export
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' uo = torch$ones(3L, 5L)   # tensor with 15 elements
 #' length(uo)
 #' }
@@ -107,7 +107,7 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #' @param b a scalar or a tensor
 #' @export
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' x <- torch$Tensor(list(-3., -2, -1, 1, 2, 3))
 #' y <- torch$Tensor(list(1., 2, 3, 4, 5))
 #' torch$remainder(x, 2)
@@ -138,7 +138,7 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #'
 #' @export
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' a <- torch$BoolTensor(list(TRUE, TRUE, TRUE, TRUE))
 #' b <- torch$BoolTensor(list(FALSE, TRUE, TRUE, TRUE))
 #' c <- torch$BoolTensor(list(TRUE, TRUE, TRUE, FALSE))
@@ -177,7 +177,7 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #'
 #' @export
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' a <- torch$BoolTensor(list(TRUE, TRUE, TRUE, TRUE))
 #' b <- torch$BoolTensor(list(FALSE, TRUE, TRUE, TRUE))
 #' c <- torch$BoolTensor(list(TRUE, TRUE, TRUE, FALSE))
@@ -209,7 +209,7 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
 #' @param a tensor
 #' @param b tensor
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' a <- torch$Tensor(list(1, 1, 1))
 #' b <- torch$Tensor(list(2, 2, 2))
 #' s <- 2.0
@@ -249,7 +249,7 @@ tensor_ops <- function(a, b) UseMethod("tensor_ops")
 #' @return Another tensor representing the addition of two tensors.
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' a <- torch$Tensor(list(1, 1, 1))
 #' b <- torch$Tensor(list(2, 2, 2))
 #' s <- 2.0
@@ -273,7 +273,7 @@ tensor_ops <- function(a, b) UseMethod("tensor_ops")
 #' @return Another tensor representing the subtraction of two tensors.
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' a <- torch$Tensor(list(1, 1, 1))
 #' b <- torch$Tensor(list(2, 2, 2))
 #' s <- 2.0
@@ -305,7 +305,7 @@ tensor_ops <- function(a, b) UseMethod("tensor_ops")
 #' @return Another tensor representing the multiplication of two tensors.
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' a <- torch$Tensor(list(1, 1, 1))
 #' b <- torch$Tensor(list(2, 2, 2))
 #' s <- 2.0
@@ -330,7 +330,7 @@ tensor_ops <- function(a, b) UseMethod("tensor_ops")
 #' @return Another tensor representing the division of two tensors.
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' a <- torch$Tensor(list(1, 1, 1))
 #' b <- torch$Tensor(list(2, 2, 2))
 #' s <- 2.0
@@ -356,7 +356,7 @@ tensor_ops <- function(a, b) UseMethod("tensor_ops")
 #' in a tensor of data type \code{torch$bool}.
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' a <- torch$Tensor(list(1, 1, 1))
 #' b <- torch$Tensor(list(2, 2, 2))
 #' a == b
@@ -391,7 +391,7 @@ tensor_not_equal <- function(x, y) {
 #' in a tensor of data type \code{torch$bool}.
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' a <- torch$Tensor(list(1, 1, 1))
 #' b <- torch$Tensor(list(2, 2, 2))
 #' a != b
@@ -420,7 +420,7 @@ tensor_not_equal <- function(x, y) {
 #' in a tensor of data type \code{torch$bool}.
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' A <- torch$ones(5L)
 #' !A
 #'
@@ -469,7 +469,7 @@ tensor_logical_or <- function(x, y) {
 #' False to represent 0, and True to represent 1 in a tensor of data type \code{torch$uint8}.
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' A <- torch$BoolTensor(list(0L, 1L))
 #' B <- torch$BoolTensor(list(1L, 0L))
 #' C <- torch$BoolTensor(list(1L, 1L))
@@ -501,7 +501,7 @@ tensor_logical_or <- function(x, y) {
 #' False to represent 0, and True to represent 1 in a tensor of data type \code{torch$uint8}.
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' A <- torch$BoolTensor(list(0L, 1L))
 #' B <- torch$BoolTensor(list(1L, 0L))
 #' C <- torch$BoolTensor(list(1L, 1L))
@@ -533,7 +533,7 @@ tensor_logical_or <- function(x, y) {
 #' False to represent 0, and True to represent 1 in a tensor of data type \code{torch$uint8}.
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' A <- torch$ones(28L, 28L)
 #' C <- A * 0.5
 #' A < C
@@ -558,7 +558,7 @@ tensor_logical_or <- function(x, y) {
 #' False to represent 0, and True to represent 1 in a tensor of data type \code{torch$uint8}.
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' A <- torch$ones(5L, 5L)
 #' C <- torch$as_tensor(np$random$randint(2L, size=c(5L, 5L)), dtype=torch$float32)
 #' A <= C
@@ -583,7 +583,7 @@ tensor_logical_or <- function(x, y) {
 #' False to represent 0, and True to represent 1 in a tensor of data type \code{torch$uint8}.
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' A <- torch$ones(5L, 5L)
 #' C <- torch$as_tensor(np$random$randint(2L, size=c(5L, 5L)), dtype=torch$float32)
 #' A > C
@@ -607,7 +607,7 @@ tensor_logical_or <- function(x, y) {
 #' False to represent 0, and True to represent 1 in a tensor of data type \code{torch$uint8}.
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' A <- torch$ones(5L, 5L)
 #' C <- torch$as_tensor(np$random$randint(2L, size=c(5L, 5L)), dtype=torch$float32)
 #' A >= C
@@ -631,7 +631,7 @@ tensor_logical_or <- function(x, y) {
 #' @param b tensor
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' p <- torch$Tensor(list(2, 3))
 #' q <- torch$Tensor(list(2, 1))
 #' p %.*% q
@@ -654,7 +654,7 @@ tensor_logical_or <- function(x, y) {
 #' @return a scalar or a tensor
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' p <- torch$randn(3L)
 #' q <- torch$randn(3L)
 #' p %**% q
@@ -671,7 +671,7 @@ tensor_logical_or <- function(x, y) {
 #' @describeIn tensor_ops A tensor 'a' to the power of 'b'
 #' @export
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' x <- torch$arange(1,11)
 #' torch$pow(x, 2)      #     x^(2)
 #' torch$pow(x, -2)     #     x^(1/2)
@@ -694,7 +694,7 @@ tensor_logical_or <- function(x, y) {
 #' @param base the base of the logarithm
 #' @export
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' x <- torch$tensor(c(512, 1024, 2048, 4096))   # tensor([ 9., 10., 11., 12.])
 #' base <- 2
 #' log(x, base)
@@ -717,7 +717,7 @@ tensor_logical_or <- function(x, y) {
 #' @param x a tensor
 #' @export
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' x <- torch$tensor(c(512, 1024, 2048, 4096))   # tensor([ 9., 10., 11., 12.])
 #' }
 #' @method log2 torch.Tensor
@@ -730,7 +730,7 @@ tensor_logical_or <- function(x, y) {
 #' @param x a tensor
 #' @export
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' x <- torch$tensor(c(1, 10, 100, 1000))     # tensor([0., 1., 2., 3.])
 #' }
 #' @method log10 torch.Tensor
