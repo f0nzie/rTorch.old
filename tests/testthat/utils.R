@@ -94,6 +94,13 @@ skip_if_no_torch <- function() {
     skip("Torch not available for testing")
 }
 
+
+skip_if_no_python <- function() {
+  if (!reticulate::py_available())
+    skip("Python not available for testing")
+}
+
+
 expect_all_true <- function(obj, ...) {
     testthat::expect_true(all(object = obj), ...)
 }
