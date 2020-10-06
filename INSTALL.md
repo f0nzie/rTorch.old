@@ -6,7 +6,6 @@ output: html_document
 # Install PyTorch from the *conda* console
 
 
-
 # Install PyTorch from the *R* console
 
 
@@ -55,7 +54,7 @@ conda install pytorch torchvision cudatoolkit=9.2 -c pytorch-nightly
 
 
 
-## MacOS
+## macOS
 
 ### CPU, stable
 
