@@ -1,7 +1,5 @@
 library(testthat)
 
-skip_on_cran()
-
 source("utils.R")
 
 
