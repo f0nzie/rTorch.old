@@ -2,7 +2,7 @@
 
 source("utils.R")
 
-skip_on_cran()
+skip_if_no_torch()
 
 
 context("_select")

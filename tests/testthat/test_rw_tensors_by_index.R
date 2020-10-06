@@ -1,6 +1,7 @@
 library(testthat)
+source("utils.R")
 
-skip_on_cran()
+skip_if_no_torch()
 
 # read, write by index ---------------------------------------------------------
 context("read, write tensors by index")

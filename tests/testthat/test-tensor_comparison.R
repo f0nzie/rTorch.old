@@ -1,5 +1,5 @@
 source("utils.R")
-skip_on_cran()
+
 
 # torch$all: Returns True if all elements in the tensor are True, False otherwise.
 # torch$any: Returns True if any elements in the tensor are True, False otherwise.
@@ -7,6 +7,8 @@ skip_on_cran()
 context("torch all of ones and zeros")
 
 test_that("check if torch$all of all ones returns TRUE", {
+    skip_if_no_torch()
+
     a <- torch$ones(3L, 3L)
     a_uint8 <- torch$as_tensor(a, dtype = torch$uint8)
     a_torch_all <- torch$all(a_uint8)
@@ -15,6 +17,8 @@ test_that("check if torch$all of all ones returns TRUE", {
 })
 
 test_that("check if torch$all of all zeros returns FALSE", {
+    skip_if_no_torch()
+
     a <- torch$zeros(3L, 3L)
     a_uint8 <- torch$as_tensor(a, dtype = torch$uint8)
     a_torch_all <- torch$all(a_uint8)
@@ -27,6 +31,8 @@ test_that("check if torch$all of all zeros returns FALSE", {
 context("torch any of ones and zeros")
 
 test_that("check if torch$any of all ones returns TRUE", {
+    skip_if_no_torch()
+
     a <- torch$ones(3L, 3L)
     a_uint8 <- torch$as_tensor(a, dtype = torch$uint8)
     a_torch_all <- torch$any(a_uint8)
@@ -35,6 +41,8 @@ test_that("check if torch$any of all ones returns TRUE", {
 })
 
 test_that("check if torch$any of all zeros returns FALSE", {
+    skip_if_no_torch()
+
     a <- torch$zeros(3L, 3L)
     a_uint8 <- torch$as_tensor(a, dtype = torch$uint8)
     a_torch <- torch$any(a_uint8)
@@ -46,6 +54,8 @@ test_that("check if torch$any of all zeros returns FALSE", {
 context("torch all/any of 3x3 eye tensor")
 
 test_that("check if torch$any of 3x3 eye tensor returns FALSE", {
+    skip_if_no_torch()
+
     a <- torch$eye(3L, 3L)
     a_uint8 <- torch$as_tensor(a, dtype = torch$uint8)
     a_torch <- torch$all(a_uint8)
@@ -54,6 +64,8 @@ test_that("check if torch$any of 3x3 eye tensor returns FALSE", {
 })
 
 test_that("check if torch$all of all zeros returns TRUE", {
+    skip_if_no_torch()
+
     a <- torch$eye(3L, 3L)
     a_uint8 <- torch$as_tensor(a, dtype = torch$uint8)
     a_torch <- torch$any(a_uint8)
@@ -64,8 +76,9 @@ test_that("check if torch$all of all zeros returns TRUE", {
 
 context("torch$all on dimensions: by rows and by columns")
 
-
 test_that("torch$all on rows", {
+    skip_if_no_torch()
+
     r1 <- torch$ones(1L, 3L)
     r2 <- torch$zeros(1L, 3L)
     r3 <- torch$ones(1L, 3L)
@@ -79,6 +92,8 @@ test_that("torch$all on rows", {
 })
 
 test_that("torch$all on columns", {
+    skip_if_no_torch()
+
     r1 <- torch$ones(1L, 3L)
     r2 <- torch$zeros(1L, 3L)
     r3 <- torch$ones(1L, 3L)
@@ -93,6 +108,7 @@ test_that("torch$all on columns", {
 
 
 context("Lower than, lt <")
+skip_if_no_torch()
 
 A <- torch$ones(60000L, 1L, 28L, 28L)
 C <- A * 0.5
@@ -122,6 +138,7 @@ test_that("A < C", {
 
 
 context("Greater than, gt >")
+skip_if_no_torch()
 
 A <- torch$ones(60000L, 1L, 28L, 28L)
 C <- A * 0.5
@@ -151,6 +168,7 @@ test_that("A > C", {
 
 
 context("Lower than or equal, lt <=")
+skip_if_no_torch()
 
 A <- torch$ones(60000L, 1L, 28L, 28L)
 C <- A * 0.5
@@ -180,6 +198,7 @@ test_that("A <= C", {
 
 
 context("Greater or equal than, ge >=")
+skip_if_no_torch()
 
 A <- torch$ones(60000L, 1L, 28L, 28L)
 C <- A * 0.5
@@ -208,6 +227,7 @@ test_that("A >= C", {
 
 
 context("return of logical comparisons")
+skip_if_no_torch()
 
 test_that("one", {
     cond_torch_letters <- all(torch$gt(C, A))

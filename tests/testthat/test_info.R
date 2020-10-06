@@ -1,8 +1,9 @@
 library(testthat)
 
-skip_on_cran()
-
 source("utils.R")
+
+skip_if_no_torch()
+
 
 context("PyTorch version")
 

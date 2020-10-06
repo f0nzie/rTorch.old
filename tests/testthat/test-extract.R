@@ -54,7 +54,6 @@ reset_warnings <- function() {
 
 
 test_that("scalar indexing works", {
-
   skip_if_no_torch()
   oopt <- options(torch.extract.style = "R")
   # set up arrays
