@@ -19,7 +19,7 @@ False to represent 0, and True to represent 1 in a tensor of data type \code{tor
 This generic is similar to \code{torch$lt(a, b)}
 }
 \examples{
-\donttest{
+\dontrun{
 A <- torch$ones(28L, 28L)
 C <- A * 0.5
 A < C

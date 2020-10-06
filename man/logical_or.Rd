@@ -21,7 +21,7 @@ There is not equivalent function in PyTorch for this generic.
 To generate this generic we use the function \code{np$logical_or()}.
 }
 \examples{
-\donttest{
+\dontrun{
 A <- torch$BoolTensor(list(0L, 1L))
 B <- torch$BoolTensor(list(1L, 0L))
 C <- torch$BoolTensor(list(1L, 1L))

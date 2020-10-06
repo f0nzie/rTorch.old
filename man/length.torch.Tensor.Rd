@@ -16,7 +16,7 @@ the number of elements of a tensor as an integer
 This function is equivalent to torch$numel()
 }
 \examples{
-\donttest{
+\dontrun{
 uo = torch$ones(3L, 5L)   # tensor with 15 elements
 length(uo)
 }

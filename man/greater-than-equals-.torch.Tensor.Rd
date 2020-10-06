@@ -19,7 +19,7 @@ False to represent 0, and True to represent 1 in a tensor of data type \code{tor
 This generic is similar to \code{torch$ge(a, b)}
 }
 \examples{
-\donttest{
+\dontrun{
 A <- torch$ones(5L, 5L)
 C <- torch$as_tensor(np$random$randint(2L, size=c(5L, 5L)), dtype=torch$float32)
 A >= C

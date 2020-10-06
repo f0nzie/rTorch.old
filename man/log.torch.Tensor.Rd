@@ -15,7 +15,7 @@
 Logarithm of a tensor given the tensor and the base
 }
 \examples{
-\donttest{
+\dontrun{
 x <- torch$tensor(c(512, 1024, 2048, 4096))   # tensor([ 9., 10., 11., 12.])
 base <- 2
 log(x, base)

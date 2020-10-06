@@ -21,7 +21,7 @@ difference that the generic returns a tensor of booleans instead of
 a tensor of data type \code{torch$uint8}.
 }
 \examples{
-\donttest{
+\dontrun{
 a <- torch$Tensor(list(1, 1, 1))
 b <- torch$Tensor(list(2, 2, 2))
 a == b

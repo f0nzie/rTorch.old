@@ -47,7 +47,7 @@ an object with class "torch_extract_opts", suitable for passing to
 Tensor extract options
 }
 \examples{
-\donttest{
+\dontrun{
 
 x <- torch$arange(1L, 10L)
 
