@@ -1,12 +1,18 @@
 # TODO
 
-## rTorch 0.0.3.x
-### TODO
+## rTorch 0.0.4.x
 * add Linear Algebra functions: _Gaussian Elimination_, Cholesky, LU
-    * add examples for Gaussian Elimination
-    * add unit tests for linear algebra functions
+* add examples for Gaussian Elimination
+* add unit tests for linear algebra functions
 * add examples for matrix operations.
 * find stable libraries for fast operations in matrices.
+
+## rTorch 0.0.3.x
+### TODO
+* Update appveyor for unit tests in Windows
+* Logical operations should return booleans
+* Matrix for parallel Travis testing
+* Add new function to `pkgdown`
 
 ### DONE
 * modify `pytorch_install` to include version. DONE

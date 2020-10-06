@@ -1,3 +1,9 @@
+# rTorch 0.0.4
+* Release to CRAN
+* Updated version of rTorch to adapt to new PyTorch versions 1.4, 1.5, 1.6.
+* This rTorch release has been tested against Travis Linux, macOs, and Appveyor for Windows. All tests passed successfully. Furthermore, the package has been tested under Python 3.6, 3.7 and 3.8. A testing matrix was implemented in Travis and Appveyor to test version combinations of Python, PyTorch and R. The R versions tested were R-3.4.3, R-3.5.3, R-3.6.3, and R-4.0.2.
+
+
 # rTorch 0.0.3.9013
 * Fixed `travis.yml` by bringing `- PYTHON_V="3.7" PYTORCH_V="1.6"` near `env: metrix`. Maybe some space or alignment was preventing ennvronment variables being passed to Travis containers.
 * Travis test passing with Python 3.8 in Linux and macOS. Environment variables are not being passed.
