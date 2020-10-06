@@ -1,6 +1,8 @@
 # 0.4.0.9000
-* 
-*
+* use `skip_if_no_torch()`
+* add function `skip_if_no_python()`
+* move live torch example to a separate file
+* change dontest to dontrun in examples
 * create branch `0.4.0-fix_examples_problem_in_cran`
  
 # rTorch 0.4.0
