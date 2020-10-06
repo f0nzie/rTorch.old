@@ -1,18 +1,20 @@
 library(reticulate)
 
+if (reticulate::py_module_available("torch")) {
+  torch       <- import("torch")
+  torchvision <- import("torchvision")
+  nn          <- import("torch.nn")
+  transforms  <- import("torchvision.transforms")
+  dsets       <- import("torchvision.datasets")
+  builtins    <- import_builtins()
+  np          <- import("numpy", convert = TRUE, delay_load = FALSE)
+  # default setting is converting automatically to R objects
 
-torch       <- import("torch")
-torchvision <- import("torchvision")
-nn          <- import("torch.nn")
-transforms  <- import("torchvision.transforms")
-dsets       <- import("torchvision.datasets")
-builtins    <- import_builtins()
-np          <- import("numpy", convert = TRUE, delay_load = FALSE)
-            # default setting is converting automatically to R objects
+  # https://stackoverflow.com/a/59337065/5270873
+  # filter_warnings <- import("warnings.filterwarnings")
+  # filter_warnings("ignore")
+}
 
-# https://stackoverflow.com/a/59337065/5270873
-# filter_warnings <- import("warnings.filterwarnings")
-# filter_warnings("ignore")
 
 
 tensor_logical_and <- function(x, y) {
