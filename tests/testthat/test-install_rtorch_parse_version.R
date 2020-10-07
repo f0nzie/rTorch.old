@@ -1,4 +1,4 @@
-context("parse_torch_version()")
+# context("parse_torch_version()")
 
 test_that("default, cpu, stable", {
     version <- "default"

@@ -1,7 +1,4 @@
-library(testthat)
-
-
-context("install_pytorch, dry-run")
+# context("install_pytorch, dry-run")
 
 test_that("default", {
     res <- install_pytorch(dry_run = TRUE)
