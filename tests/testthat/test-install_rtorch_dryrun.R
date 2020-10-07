@@ -1,6 +1,9 @@
 # context("install_pytorch, dry-run")
 
+
+
 test_that("default", {
+    skip_if_no_python()
     res <- install_pytorch(dry_run = TRUE)
     expect_equal(res$package, "pytorch==1.4")
     expect_equal(res$extra_packages, c("cpuonly", "torchvision"))
@@ -12,6 +15,7 @@ test_that("default", {
 })
 
 test_that("1.2, Python 3.7", {
+    skip_if_no_python()
     res <- install_pytorch(version = "1.2", conda_python_version = "3.7",
                            dry_run = TRUE)
     expect_equal(res$package, "pytorch==1.2")
@@ -24,6 +28,7 @@ test_that("1.2, Python 3.7", {
 })
 
 test_that("1.2, Python 3.7, Nightly", {
+    skip_if_no_python()
     res <- install_pytorch(version = "1.2", conda_python_version = "3.7",
                            channel = "nightly",
                            dry_run = TRUE)
@@ -38,6 +43,7 @@ test_that("1.2, Python 3.7, Nightly", {
 })
 
 test_that("1.6, Python 3.6, pandas", {
+    skip_if_no_python()
     res <- install_pytorch(version = "1.6", conda_python_version = "3.6",
                            extra_packages = "pandas",
                            dry_run = TRUE)
@@ -53,6 +59,7 @@ test_that("1.6, Python 3.6, pandas", {
 
 
 test_that("1.3, Python 3.6, pandas+matplotlib, gpu=9.2", {
+    skip_if_no_python()
     res <- install_pytorch(version = "1.3", conda_python_version = "3.6",
                            extra_packages = c("pandas", "matplotlib"),
                            cuda_version = "9.2",
