@@ -1,6 +1,6 @@
 library(testthat)
 
-source("utils.R")
+source("helper_utils.R")
 skip_if_no_torch()
 
 

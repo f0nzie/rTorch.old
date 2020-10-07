@@ -1,6 +1,6 @@
 # using function make_copy() to get rid off PyTorch warnings
 
-source("utils.R")
+source("helper_utils.R")
 
 skip_if_no_torch()
 
