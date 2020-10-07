@@ -2,7 +2,7 @@ library(testthat)
 
 source("utils.R")
 
-
+skip_if_no_python()
 
 # function narrow() extracts part of a tensor ----------------------------------
 #

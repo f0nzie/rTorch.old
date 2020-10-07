@@ -2,6 +2,7 @@ library(testthat)
 
 source("utils.R")
 
+skip_if_no_python()
 
 context("print R values from within Python")
 
