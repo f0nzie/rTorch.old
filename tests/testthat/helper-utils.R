@@ -91,14 +91,17 @@ py_has_length <- function(object) {
 
 
 
-skip_if_no_torch <- function() {
+skip_if_no_torch <- function(verbose = FALSE) {
   if (!reticulate::py_module_available("torch"))
-    skip("Torch not available for testing")
+    #if (verbose) skip("PyTorch not available for testing") else skip()
+    skip("PyTorch not available for testing")
+
 }
 
 
-skip_if_no_python <- function() {
+skip_if_no_python <- function(verbose = FALSE) {
   if (!reticulate::py_available())
+    #if (verbose) skip("Python not available for testing") else skip()
     skip("Python not available for testing")
 }
 
