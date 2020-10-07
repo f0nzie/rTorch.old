@@ -1,4 +1,11 @@
+# 0.4.0.9002
+* 
+* 
+* 
+
+
 # 0.4.0.9001
+* split test `test-install_rtorch_dryrun.R` in two files. The second one `test-install_rtorch_parse_version.R` will only perform the parsing of what is being sent to `install_pytorch()`.
 * use `skip_if_no_python()` in case there is no way Python is installed at the testing point.
 * using package `rhub` for testing before releasing to __CRAN__.
 
