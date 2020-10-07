@@ -1,7 +1,9 @@
+# 0.4.0.9003
+* Add conda to `SystemRequirements` because CRAN is not passing.
+
 # 0.4.0.9002
-* 
-* 
-* 
+* add skip_if_no_python() so CRAN doesn't throw error in test `test-install_rtorch_dryrun.R`
+* replace function name utils.R by helper_utils.R
 
 
 # 0.4.0.9001
