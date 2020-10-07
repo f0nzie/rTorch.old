@@ -1,3 +1,8 @@
+# 0.4.0.9001
+* use `skip_if_no_python()` in case there is no way Python is installed at the testing point.
+* using package `rhub` for testing before releasing to __CRAN__.
+
+
 # 0.4.0.9000
 * use `skip_if_no_torch()`
 * add function `skip_if_no_python()`
