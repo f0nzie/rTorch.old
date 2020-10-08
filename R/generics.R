@@ -1,4 +1,3 @@
-# np <- import("numpy")
 
 #' @importFrom utils str
 #' @export
@@ -121,9 +120,6 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
     torch$remainder(a, b)
 }
 
-
-# all <- function(x, ...) UseMethod("all")
-# any <- function(x, ...) UseMethod("any")
 
 
 #' all
