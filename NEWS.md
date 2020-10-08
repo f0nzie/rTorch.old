@@ -1,4 +1,5 @@
 # 0.4.0.9004
+* add file `tests/testthat/rhub-tests.R` that send rTorch for testing on three different platforms. Use it as well in addition to Travis and Appveyor.
 * removing `data.table` and `R6` from `Imports`. Not used yet.
 * add more live tests. They work but `torch_config` does not update after issuing a `install_pytorch` command; they returned the previous installed PyTorch info. The purpose of these test was initially see if the installation performed as
 initially planned. It works. But we cannot enable this test for CRAN because it will take some time and may not work due to the PyTorch installation process.
