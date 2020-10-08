@@ -1,4 +1,12 @@
+# 0.4.0.9004
+* add more live tests. They work but `torch_config` does not update after issuing a `install_pytorch` command; they returned the previous installed PyTorch info. The purpose of these test was initially see if the installation performed as
+initially planned. It works. But we cannot enable this test for CRAN because it will take some time and may not work due to the PyTorch installation process.
+The major problem I found with these tests is that the `torch_config` objects do not update after issuing a new `install_pytorch`.
+* Links to tutorials added to README.
+* Remove `reticulate.R`. Some functions were customized to accept `channel`.
+
 # 0.4.0.9003
+* Now CRAN WinBuilder tests are passing.
 * Add conda to `SystemRequirements` because CRAN is not passing.
 
 # 0.4.0.9002
