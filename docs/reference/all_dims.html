@@ -78,7 +78,7 @@ x[all_dims(), i]." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9013</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9004</span>
       </span>
     </div>
 
@@ -149,20 +149,19 @@ To translate the above Python expression to R, write:
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'># Run this</span>
 <span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>tensor</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>0</span>, <span class='fl'>0</span>),
                        <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>0</span>, <span class='fl'>0</span>),
                        <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>),
                        <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>)), <span class='kw'>dtype</span><span class='kw'>=</span><span class='no'>torch</span>$<span class='no'>uint8</span>)
-<span class='no'>d</span>[<span class='fu'>all_dims</span>(), <span class='fl'>1</span>]</div><div class='output co'>#&gt; tensor([0, 0, 0, 1], dtype=torch.uint8)</div><div class='input'>
+<span class='no'>d</span>[<span class='fu'>all_dims</span>(), <span class='fl'>1</span>]
+
 <span class='no'>f</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>arange</span>(<span class='fl'>9L</span>)$<span class='fu'><a href='https://rdrr.io/r/stats/reshape.html'>reshape</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3L</span>, <span class='fl'>3L</span>))
-<span class='no'>f</span></div><div class='output co'>#&gt; tensor([[0, 1, 2],
-#&gt;         [3, 4, 5],
-#&gt;         [6, 7, 8]])</div><div class='input'><span class='no'>f</span>[<span class='fu'>all_dims</span>()]</div><div class='output co'>#&gt; tensor([[0, 1, 2],
-#&gt;         [3, 4, 5],
-#&gt;         [6, 7, 8]])</div><div class='input'><span class='no'>f</span>[<span class='fu'>all_dims</span>(), <span class='fl'>1L</span>]</div><div class='output co'>#&gt; tensor([0, 3, 6])</div><div class='input'># }
-</div></pre>
+<span class='no'>f</span>
+<span class='no'>f</span>[<span class='fu'>all_dims</span>()]
+<span class='no'>f</span>[<span class='fu'>all_dims</span>(), <span class='fl'>1L</span>]
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
