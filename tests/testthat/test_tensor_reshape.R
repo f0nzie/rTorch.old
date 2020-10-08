@@ -1,9 +1,8 @@
 library(testthat)
 
-skip_on_cran()
+source("helper_utils.R")
 
-source("utils.R")
-
+skip_if_no_torch()
 
 # reshape tensor ---------------------------------------------------------------
 context("reshape tensor")

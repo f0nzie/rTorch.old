@@ -1,3 +1,34 @@
+# 0.4.0.9004
+* add file `tests/testthat/rhub-tests.R` that send rTorch for testing on three different platforms. Use it as well in addition to Travis and Appveyor.
+* removing `data.table` and `R6` from `Imports`. Not used yet.
+* add more live tests. They work but `torch_config` does not update after issuing a `install_pytorch` command; they returned the previous installed PyTorch info. The purpose of these test was initially see if the installation performed as
+initially planned. It works. But we cannot enable this test for CRAN because it will take some time and may not work due to the PyTorch installation process.
+The major problem I found with these tests is that the `torch_config` objects do not update after issuing a new `install_pytorch`.
+* Links to tutorials added to README.
+* Remove `reticulate.R`. Some functions were customized to accept `channel`.
+
+# 0.4.0.9003
+* Now CRAN WinBuilder tests are passing.
+* Add conda to `SystemRequirements` because CRAN is not passing.
+
+# 0.4.0.9002
+* add skip_if_no_python() so CRAN doesn't throw error in test `test-install_rtorch_dryrun.R`
+* replace function name utils.R by helper_utils.R
+
+
+# 0.4.0.9001
+* split test `test-install_rtorch_dryrun.R` in two files. The second one `test-install_rtorch_parse_version.R` will only perform the parsing of what is being sent to `install_pytorch()`.
+* use `skip_if_no_python()` in case there is no way Python is installed at the testing point.
+* using package `rhub` for testing before releasing to __CRAN__.
+
+
+# 0.4.0.9000
+* use `skip_if_no_torch()`
+* add function `skip_if_no_python()`
+* move live torch example to a separate file
+* change dontest to dontrun in examples
+* create branch `0.4.0-fix_examples_problem_in_cran`
+ 
 # rTorch 0.4.0
 * Modify `tests/testthat/utils.R` to include `skip_on_cran()`
 * change version numbering so it is easier to renumber when back to CRAN for fixes.

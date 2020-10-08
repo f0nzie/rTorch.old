@@ -16,7 +16,7 @@ To translate the above Python expression to R, write:
 \code{x[all_dims(), i]}.
 }
 \examples{
-\donttest{
+\dontrun{
 # Run this
 d <- torch$tensor(list(list(0, 0),
                        list(0, 0),

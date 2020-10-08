@@ -16,7 +16,7 @@ a vector of integers with the dimensions of the tensor
 Get the dimensions of a tensor displaying it as a vector.
 }
 \examples{
-\donttest{
+\dontrun{
 uo = torch$ones(3L, 5L)  # it is a 3x5 tensor
 dim(uo)
 }

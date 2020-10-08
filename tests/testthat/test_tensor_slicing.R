@@ -1,8 +1,8 @@
 library(testthat)
 
-skip_on_cran()
+source("helper_utils.R")
 
-source("utils.R")
+skip_if_no_torch()
 
 # test slicing with chunk() and select_index() ---------------------------------
 context("test slicing with chunk() and select_index()")

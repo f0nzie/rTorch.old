@@ -79,5 +79,4 @@ reference:
     desc: ~
     contents:
       - 'install_pytorch'
-      - 'conda_install'
 

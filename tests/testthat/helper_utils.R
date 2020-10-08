@@ -1,18 +1,20 @@
 library(reticulate)
 
+if (reticulate::py_module_available("torch")) {
+  torch       <- import("torch")
+  torchvision <- import("torchvision")
+  nn          <- import("torch.nn")
+  transforms  <- import("torchvision.transforms")
+  dsets       <- import("torchvision.datasets")
+  builtins    <- import_builtins()
+  np          <- import("numpy", convert = TRUE, delay_load = FALSE)
+  # default setting is converting automatically to R objects
 
-torch       <- import("torch")
-torchvision <- import("torchvision")
-nn          <- import("torch.nn")
-transforms  <- import("torchvision.transforms")
-dsets       <- import("torchvision.datasets")
-builtins    <- import_builtins()
-np          <- import("numpy", convert = TRUE, delay_load = FALSE)
-            # default setting is converting automatically to R objects
+  # https://stackoverflow.com/a/59337065/5270873
+  # filter_warnings <- import("warnings.filterwarnings")
+  # filter_warnings("ignore")
+}
 
-# https://stackoverflow.com/a/59337065/5270873
-# filter_warnings <- import("warnings.filterwarnings")
-# filter_warnings("ignore")
 
 
 tensor_logical_and <- function(x, y) {
@@ -89,10 +91,20 @@ py_has_length <- function(object) {
 
 
 
-skip_if_no_torch <- function() {
+skip_if_no_torch <- function(verbose = FALSE) {
   if (!reticulate::py_module_available("torch"))
-    skip("Torch not available for testing")
+    #if (verbose) skip("PyTorch not available for testing") else skip()
+    skip("PyTorch not available for testing")
+
 }
+
+
+skip_if_no_python <- function(verbose = FALSE) {
+  if (!reticulate::py_available())
+    #if (verbose) skip("Python not available for testing") else skip()
+    skip("Python not available for testing")
+}
+
 
 expect_all_true <- function(obj, ...) {
     testthat::expect_true(all(object = obj), ...)

@@ -1,6 +1,6 @@
 Package: rTorch
 Title: R Bindings to 'PyTorch'
-Version: 0.4.0
+Version: 0.4.0-9004
 Authors@R: c(
     person("Alfonso R.", "Reyes", role = c("aut", "cre", "cph"), email = "alfonso.reyes@oilgainsanalytics.com")
     )
@@ -19,14 +19,13 @@ Imports:
     jsonlite (>= 1.2),
     utils,
     methods,
-    R6,
     rstudioapi (>= 0.7),
-    data.table
 Suggests: 
     testthat,
     knitr,
     rmarkdown
-SystemRequirements: PyTorch (https://pytorch.org/)
+SystemRequirements: conda (python=3.6 pytorch torchvision cpuonly matplotlib 
+    pandas -c pytorch)
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 URL: https://github.com/f0nzie/rTorch

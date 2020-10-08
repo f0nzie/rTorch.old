@@ -1,8 +1,8 @@
 library(testthat)
 
-skip_on_cran()
+source("helper_utils.R")
 
-source("utils.R")
+skip_if_no_python()
 
 # function narrow() extracts part of a tensor ----------------------------------
 #
@@ -22,6 +22,8 @@ test_that("extract a slice from a list", {
 
 context("extract parts of a Python object 2")
 test_that("tensor dimension is 4D: 60000x3x28x28", {
+    skip_if_no_torch()
+
     img <<- torch$ones(60000L, 3L, 28L, 28L)
     expect_equal(tensor_dim(img), c(60000, 3, 28, 28))
     expect_equal(tensor_ndim(img), 4)

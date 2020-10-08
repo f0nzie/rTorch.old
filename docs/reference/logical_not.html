@@ -73,7 +73,7 @@ To generate This generic we use the function np$logical_not(x)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9013</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0-9004</span>
       </span>
     </div>
 
@@ -152,12 +152,13 @@ To generate This generic we use the function <code>np$logical_not(x)</code>.</p>
 in a tensor of data type <code>torch$bool</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='no'>A</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>ones</span>(<span class='fl'>5L</span>)
-!<span class='no'>A</span></div><div class='output co'>#&gt; tensor([0, 0, 0, 0, 0], dtype=torch.uint8)</div><div class='input'>
+!<span class='no'>A</span>
+
 <span class='no'>Z</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>zeros</span>(<span class='fl'>5L</span>)
-!<span class='no'>Z</span></div><div class='output co'>#&gt; tensor([1, 1, 1, 1, 1], dtype=torch.uint8)</div><div class='input'># }
-</div></pre>
+!<span class='no'>Z</span>
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

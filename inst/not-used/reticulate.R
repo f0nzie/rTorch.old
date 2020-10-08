@@ -1,4 +1,5 @@
-#' Conda install function (modified from reticulate)
+#' Conda install function (modified from reticulate). Necessary to add `channel`
+#' to list of parameters
 #'
 #' R functions for managing Python \href{https://conda.io/docs/user-guide/tasks/manage-environments.html}{conda environments}.
 #'

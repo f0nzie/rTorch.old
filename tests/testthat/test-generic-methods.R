@@ -1,11 +1,10 @@
-source("utils.R")
-
-skip_if_no_torch()
+source("helper_utils.R")
 
 context("generic methods")
 
-
 test_that("logical operations", {
+  skip_if_no_torch()
+
   a = torch$ByteTensor(list(0, 1, 1, 0))
   b = torch$ByteTensor(list(1, 1, 0, 0))
 
@@ -16,6 +15,8 @@ test_that("logical operations", {
 
 
 test_that("base or", {
+  skip_if_no_torch()
+
   base <- exp(1L)
   expect_false(base != exp(1L))
   expect_false(is_tensor(base))
@@ -26,6 +27,8 @@ test_that("base or", {
 context("log of number with a base")
 
 test_that("log with base", {
+  skip_if_no_torch()
+
   r <- array(as.double(1:5))
   t <- torch$as_tensor(make_copy(r), dtype = torch$float32)
   # print(log(t, base = torch$as_tensor(list(3L))))

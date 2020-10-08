@@ -13,7 +13,7 @@
 Logarithm of a tensor in base 10
 }
 \examples{
-\donttest{
+\dontrun{
 x <- torch$tensor(c(1, 10, 100, 1000))     # tensor([0., 1., 2., 3.])
 }
 }

@@ -80,5 +80,7 @@ After *Miniconda* is installed, you could proceed to install the flavor or *PyTo
 rTorch:::install_conda(package="pytorch=1.4", envname="r-torch", conda="auto", conda_python_version = "3.6", pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))
 ```
 
+The command above will install the __stable__ __PyTorch 1.4__ version on __Python 3.6__, including three additional packages: `torchvision`, `cpuonly`, `matplotlib` and `pandas.`
+
 > NOTE. My experience with `Miniconda` is spotty and not 100% reliable, specially in _macOS_. I would strongly recommend using full _conda_ for your PyTorch installation.
 

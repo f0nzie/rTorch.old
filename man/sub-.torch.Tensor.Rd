@@ -27,7 +27,7 @@
 Subset tensors with \code{[}
 }
 \examples{
-\donttest{
+\dontrun{
 
 x <- torch$arange(0L, 15L)$view(3L, 5L)
 

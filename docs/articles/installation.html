@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9013</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0-9004</span>
       </span>
     </div>
 
@@ -151,6 +151,7 @@
 <p>In <strong>rTorch</strong> there is an automatic detection of <em>Python</em> built in in the package that will ask you to install <code>Miniconda</code> first if you don’t have any Python installed in your machine. For instance, in <code>macOS</code>, Miniconda will be installed under <code>PREFIX=/Users/user_name/Library/r-miniconda</code>.</p>
 <p>After <em>Miniconda</em> is installed, you could proceed to install the flavor or <em>PyTorch</em> you want, and the packages you want, with a command like this:</p>
 <pre><code>rTorch:::install_conda(package="pytorch=1.4", envname="r-torch", conda="auto", conda_python_version = "3.6", pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))</code></pre>
+<p>The command above will install the <strong>stable</strong> <strong>PyTorch 1.4</strong> version on <strong>Python 3.6</strong>, including three additional packages: <code>torchvision</code>, <code>cpuonly</code>, <code>matplotlib</code> and <code>pandas.</code></p>
 <blockquote>
 <p>NOTE. My experience with <code>Miniconda</code> is spotty and not 100% reliable, specially in <em>macOS</em>. I would strongly recommend using full <em>conda</em> for your PyTorch installation.</p>
 </blockquote>

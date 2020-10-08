@@ -21,7 +21,7 @@ One tensor operation
 }}
 
 \examples{
-\donttest{
+\dontrun{
 A <- torch$ones(c(60000L, 1L, 28L, 28L))
 dim(A)
 }

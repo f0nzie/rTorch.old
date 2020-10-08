@@ -1,8 +1,8 @@
 library(testthat)
 
-skip_on_cran()
+source("helper_utils.R")
+skip_if_no_torch()
 
-source("utils.R")
 
 # test function tensor_dim ----
 context("test function tensor_dim")

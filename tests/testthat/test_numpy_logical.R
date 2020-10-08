@@ -1,5 +1,6 @@
-source("utils.R")
-skip_on_cran()
+source("helper_utils.R")
+
+skip_if_no_torch()
 
 context("numpy logical operations")
 

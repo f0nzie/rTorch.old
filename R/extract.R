@@ -10,7 +10,7 @@
 #' @export
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'
 #' x <- torch$arange(0L, 15L)$view(3L, 5L)
 #'
@@ -157,7 +157,7 @@
 #' @export
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'
 #' x <- torch$arange(1L, 10L)
 #'
@@ -255,7 +255,7 @@ torch_extract_opts <- function(
 #'
 #' @export
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' # Run this
 #' d <- torch$tensor(list(list(0, 0),
 #'                        list(0, 0),

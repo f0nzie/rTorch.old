@@ -13,7 +13,7 @@ as_boolean(x)
 Convert a tensor to a boolean equivalent tensor
 }
 \examples{
-\donttest{
+\dontrun{
 uo <- torch$ones(3L)
 as_boolean(uo)              # tensor([True, True, True], dtype=torch.bool)
 }

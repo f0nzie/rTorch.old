@@ -18,7 +18,7 @@ Another tensor representing the division of two tensors.
 This generic is similar to \code{torch$div(a, b)}
 }
 \examples{
-\donttest{
+\dontrun{
 a <- torch$Tensor(list(1, 1, 1))
 b <- torch$Tensor(list(2, 2, 2))
 s <- 2.0

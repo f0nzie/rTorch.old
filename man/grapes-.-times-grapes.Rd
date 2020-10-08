@@ -18,7 +18,7 @@ a scalar
 This generic is similar to \code{torch$dot(a, b)}
 }
 \examples{
-\donttest{
+\dontrun{
 p <- torch$Tensor(list(2, 3))
 q <- torch$Tensor(list(2, 1))
 p \%.*\% q

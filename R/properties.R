@@ -48,7 +48,7 @@ make_copy <- function(object, ...) {
 #' @param x a torch tensor
 #' @export
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' uo <- torch$ones(3L)
 #' as_boolean(uo)              # tensor([True, True, True], dtype=torch.bool)
 #' }
