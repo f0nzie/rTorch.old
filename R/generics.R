@@ -368,13 +368,6 @@ tensor_ops <- function(a, b) UseMethod("tensor_ops")
 }
 
 
-tensor_not_equal <- function(x, y) {
-    # there is not not_equal function in PyTorch
-    x <- r_to_py(x$numpy())
-    y <- r_to_py(y$numpy())
-    torch$BoolTensor(np$not_equal(x, y))
-}
-
 #' Compare two tensors if not equal
 #'
 #' This generic is approximately similar to \code{torch$ne(a, b)}, with the
