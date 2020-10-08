@@ -41,7 +41,7 @@ torch_module
 To lighten up the time in building this `rTorch` package, we moved the examples that use tensor operations and neural bnetworks to separate repositories. There are two sets of examples:
 
 * _The rTorch Minimal Book_ at https://f0nzie.github.io/rtorch-minimal-book/
-* _rTorch Advanced Examples_ at https://github.com/f0nzie/rTorch.examples/tree/master/packages/rTorch.examples
+* _rTorch Advanced Examples_ at https://github.com/f0nzie/rTorch.examples
 
 
 
