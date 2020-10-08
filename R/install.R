@@ -186,7 +186,7 @@ install_conda <- function(package, extra_packages, envname, conda,
   message("Installing python modules...\n")
   # rTorch::conda_install(envname="r-torch-37", packages="pytorch-cpu",
   #         channel = "pytorch", conda="auto", python_version = "3.7")
-  rTorch::conda_install(
+  conda_install(
     envname = envname,
     packages = c(package, extra_packages),
     conda = conda,
