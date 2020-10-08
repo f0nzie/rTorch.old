@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9013</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9004</span>
       </span>
     </div>
 
@@ -158,16 +158,21 @@
 1 for TRUE and 0 for FALSE.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='no'>a</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>BoolTensor</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>TRUE</span>, <span class='fl'>TRUE</span>, <span class='fl'>TRUE</span>, <span class='fl'>TRUE</span>))
 <span class='no'>b</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>BoolTensor</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>FALSE</span>, <span class='fl'>TRUE</span>, <span class='fl'>TRUE</span>, <span class='fl'>TRUE</span>))
 <span class='no'>c</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>BoolTensor</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>TRUE</span>, <span class='fl'>TRUE</span>, <span class='fl'>TRUE</span>, <span class='fl'>FALSE</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span>(<span class='no'>a</span>)</div><div class='output co'>#&gt; tensor(1, dtype=torch.uint8)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span>(<span class='no'>b</span>)</div><div class='output co'>#&gt; tensor(0, dtype=torch.uint8)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span>(<span class='no'>c</span>)</div><div class='output co'>#&gt; tensor(0, dtype=torch.uint8)</div><div class='input'><span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>tensor</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>0</span>, <span class='fl'>0</span>),
+<span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span>(<span class='no'>a</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span>(<span class='no'>b</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span>(<span class='no'>c</span>)
+<span class='no'>d</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>tensor</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>0</span>, <span class='fl'>0</span>),
                        <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>0</span>, <span class='fl'>0</span>),
                        <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>),
                        <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>)), <span class='kw'>dtype</span><span class='kw'>=</span><span class='no'>torch</span>$<span class='no'>uint8</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span>(<span class='no'>d</span>)</div><div class='output co'>#&gt; tensor(0, dtype=torch.uint8)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span>(<span class='no'>d</span>, <span class='kw'>dim</span><span class='kw'>=</span><span class='fl'>0L</span>)</div><div class='output co'>#&gt; tensor([0, 0], dtype=torch.uint8)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span>(<span class='no'>d</span>, <span class='kw'>dim</span><span class='kw'>=</span><span class='fl'>1L</span>)</div><div class='output co'>#&gt; tensor([0, 0, 0, 1], dtype=torch.uint8)</div><div class='input'># }
-</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span>(<span class='no'>d</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span>(<span class='no'>d</span>, <span class='kw'>dim</span><span class='kw'>=</span><span class='fl'>0L</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span>(<span class='no'>d</span>, <span class='kw'>dim</span><span class='kw'>=</span><span class='fl'>1L</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

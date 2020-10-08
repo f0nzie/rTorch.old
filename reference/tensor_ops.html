@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9013</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9004</span>
       </span>
     </div>
 
@@ -158,39 +158,38 @@
 </ul>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='no'>a</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>Tensor</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>))
 <span class='no'>b</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>Tensor</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>2</span>))
 <span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fl'>2.0</span>
-<span class='no'>a</span> + <span class='no'>b</span></div><div class='output co'>#&gt; tensor([3., 3., 3.])</div><div class='input'><span class='no'>b</span> - <span class='no'>a</span></div><div class='output co'>#&gt; tensor([1., 1., 1.])</div><div class='input'><span class='no'>a</span> * <span class='no'>b</span></div><div class='output co'>#&gt; tensor([2., 2., 2.])</div><div class='input'><span class='no'>a</span> / <span class='no'>s</span></div><div class='output co'>#&gt; tensor([0.5000, 0.5000, 0.5000])</div><div class='input'><span class='no'>a</span> <span class='kw'>==</span> <span class='no'>b</span></div><div class='output co'>#&gt; tensor([False, False, False])</div><div class='input'><span class='no'>a</span> <span class='kw'>==</span> <span class='no'>a</span></div><div class='output co'>#&gt; tensor([True, True, True])</div><div class='input'><span class='no'>a</span> <span class='kw'>!=</span> <span class='no'>a</span></div><div class='output co'>#&gt; tensor([False, False, False])</div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>Tensor</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>2</span>), <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>4</span>, <span class='fl'>4</span>, <span class='fl'>4</span>)))
+<span class='no'>a</span> + <span class='no'>b</span>
+<span class='no'>b</span> - <span class='no'>a</span>
+<span class='no'>a</span> * <span class='no'>b</span>
+<span class='no'>a</span> / <span class='no'>s</span>
+<span class='no'>a</span> <span class='kw'>==</span> <span class='no'>b</span>
+<span class='no'>a</span> <span class='kw'>==</span> <span class='no'>a</span>
+<span class='no'>a</span> <span class='kw'>!=</span> <span class='no'>a</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>Tensor</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>2</span>, <span class='fl'>2</span>, <span class='fl'>2</span>), <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>4</span>, <span class='fl'>4</span>, <span class='fl'>4</span>)))
 <span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>Tensor</span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>1</span>), <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>3</span>, <span class='fl'>4</span>, <span class='fl'>5</span>)))
-<span class='no'>x</span> <span class='kw'>&gt;</span> <span class='no'>y</span></div><div class='output co'>#&gt; tensor([[ True, False,  True],
-#&gt;         [ True, False, False]])</div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;</span> <span class='no'>y</span></div><div class='output co'>#&gt; tensor([[False, False, False],
-#&gt;         [False, False,  True]])</div><div class='input'><span class='no'>x</span> <span class='kw'>&gt;=</span> <span class='no'>y</span></div><div class='output co'>#&gt; tensor([[ True,  True,  True],
-#&gt;         [ True,  True, False]])</div><div class='input'><span class='no'>y</span> <span class='kw'>&lt;=</span> <span class='no'>x</span></div><div class='output co'>#&gt; tensor([[ True,  True,  True],
-#&gt;         [ True,  True, False]])</div><div class='input'><span class='no'>diag</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>eye</span>(<span class='fl'>3L</span>)
+<span class='no'>x</span> <span class='kw'>&gt;</span> <span class='no'>y</span>
+<span class='no'>x</span> <span class='kw'>&lt;</span> <span class='no'>y</span>
+<span class='no'>x</span> <span class='kw'>&gt;=</span> <span class='no'>y</span>
+<span class='no'>y</span> <span class='kw'>&lt;=</span> <span class='no'>x</span>
+<span class='no'>diag</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>eye</span>(<span class='fl'>3L</span>)
 <span class='no'>zeros</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>zeros</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3L</span>, <span class='fl'>3L</span>))
-<span class='no'>diag</span> <span class='kw'>&amp;</span> <span class='no'>zeros</span></div><div class='output co'>#&gt; tensor([[0, 0, 0],
-#&gt;         [0, 0, 0],
-#&gt;         [0, 0, 0]], dtype=torch.uint8)</div><div class='input'><span class='no'>diag</span> <span class='kw'>&amp;</span> <span class='no'>diag</span></div><div class='output co'>#&gt; tensor([[1, 0, 0],
-#&gt;         [0, 1, 0],
-#&gt;         [0, 0, 1]], dtype=torch.uint8)</div><div class='input'><span class='no'>diag</span> <span class='kw'>|</span> <span class='no'>diag</span></div><div class='output co'>#&gt; tensor([[1, 0, 0],
-#&gt;         [0, 1, 0],
-#&gt;         [0, 0, 1]], dtype=torch.uint8)</div><div class='input'><span class='no'>zeros</span> <span class='kw'>|</span> <span class='no'>zeros</span></div><div class='output co'>#&gt; tensor([[0, 0, 0],
-#&gt;         [0, 0, 0],
-#&gt;         [0, 0, 0]], dtype=torch.uint8)</div><div class='input'><span class='no'>zeros</span> <span class='kw'>&amp;</span> <span class='no'>zeros</span></div><div class='output co'>#&gt; tensor([[0, 0, 0],
-#&gt;         [0, 0, 0],
-#&gt;         [0, 0, 0]], dtype=torch.uint8)</div><div class='input'><span class='no'>diag</span> <span class='kw'>&amp;</span> <span class='no'>zeros</span></div><div class='output co'>#&gt; tensor([[0, 0, 0],
-#&gt;         [0, 0, 0],
-#&gt;         [0, 0, 0]], dtype=torch.uint8)</div><div class='input'><span class='no'>diag</span> <span class='kw'>|</span> <span class='no'>zeros</span></div><div class='output co'>#&gt; tensor([[1, 0, 0],
-#&gt;         [0, 1, 0],
-#&gt;         [0, 0, 1]], dtype=torch.uint8)</div><div class='input'><span class='co'># }</span>
-<span class='co'># \donttest{</span>
+<span class='no'>diag</span> <span class='kw'>&amp;</span> <span class='no'>zeros</span>
+<span class='no'>diag</span> <span class='kw'>&amp;</span> <span class='no'>diag</span>
+<span class='no'>diag</span> <span class='kw'>|</span> <span class='no'>diag</span>
+<span class='no'>zeros</span> <span class='kw'>|</span> <span class='no'>zeros</span>
+<span class='no'>zeros</span> <span class='kw'>&amp;</span> <span class='no'>zeros</span>
+<span class='no'>diag</span> <span class='kw'>&amp;</span> <span class='no'>zeros</span>
+<span class='no'>diag</span> <span class='kw'>|</span> <span class='no'>zeros</span>
+}
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>arange</span>(<span class='fl'>1</span>,<span class='fl'>11</span>)
-<span class='no'>torch</span>$<span class='fu'>pow</span>(<span class='no'>x</span>, <span class='fl'>2</span>)      <span class='co'>#     x^(2)</span></div><div class='output co'>#&gt; tensor([  1.,   4.,   9.,  16.,  25.,  36.,  49.,  64.,  81., 100.])</div><div class='input'><span class='no'>torch</span>$<span class='fu'>pow</span>(<span class='no'>x</span>, -<span class='fl'>2</span>)     <span class='co'>#     x^(1/2)</span></div><div class='output co'>#&gt; tensor([1.0000, 0.2500, 0.1111, 0.0625, 0.0400, 0.0278, 0.0204, 0.0156, 0.0123,
-#&gt;         0.0100])</div><div class='input'># }
-
-</div></pre>
+<span class='no'>torch</span>$<span class='fu'>pow</span>(<span class='no'>x</span>, <span class='fl'>2</span>)      <span class='co'>#     x^(2)</span>
+<span class='no'>torch</span>$<span class='fu'>pow</span>(<span class='no'>x</span>, -<span class='fl'>2</span>)     <span class='co'>#     x^(1/2)</span>
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

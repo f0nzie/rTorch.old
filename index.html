@@ -36,7 +36,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3.9013</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9004</span>
       </span>
     </div>
 
@@ -91,8 +91,32 @@
 <div id="rtorch" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#rtorch" class="anchor"></a>rTorch</h1></div>
-<p>The goal of <code>rTorch</code> is providing an R wrapper to <a href="https://pytorch.org/">PyTorch</a>. We have borrowed ideas and code used in R <a href="https://github.com/rstudio/tensorflow">tensorflow</a> to implement <code>rTorch</code>.</p>
-<p>Besides the module <code>torch</code>, which directly provides <code>PyTorch</code> methods, classes and functions, the package also provides the modules <code>numpy</code> as a method called <code>np</code>, and <code>torchvision</code>, as well. The dollar sign <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> after the module will provide you access to all their sub-objects.</p>
+<p>The goal of <code>rTorch</code> is providing an R wrapper to <a href="https://pytorch.org/">PyTorch</a>. <code>rTorch</code> provides all the functionality of PyTorch plus all the features that R provides. We have borrowed ideas and code used in R <a href="https://github.com/rstudio/tensorflow">tensorflow</a> to implement <code>rTorch</code>.</p>
+<p>Besides the module <code>torch</code>, which directly provides <code>PyTorch</code> methods, classes and functions, the package also provides the modules <code>numpy</code> as a method called <code>np</code>, and <code>torchvision</code>, as well. The dollar sign <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> after the module will provide you access to all their sub-objects. Example:</p>
+<div class="sourceCode" id="cb1"><pre class="r"><span class="no">tv</span> <span class="kw">&lt;-</span> <span class="kw pkg">rTorch</span><span class="kw ns">::</span><span class="no"><a href="reference/modules.html">torchvision</a></span>
+<span class="no">tv</span>
+<span class="co">#&gt; Module(torchvision)</span>
+
+<span class="no">np</span> <span class="kw">&lt;-</span> <span class="kw pkg">rTorch</span><span class="kw ns">::</span><span class="no"><a href="reference/modules.html">np</a></span>
+<span class="no">np</span>
+<span class="co">#&gt; Module(numpy)</span>
+
+<span class="no">torch_module</span> <span class="kw">&lt;-</span> <span class="kw pkg">rTorch</span><span class="kw ns">::</span><span class="no"><a href="reference/modules.html">torch</a></span>
+<span class="no">torch_module</span>
+<span class="co">#&gt; Module(torch)</span></pre></div>
+<div id="rtorch-examples" class="section level2">
+<h2 class="hasAnchor">
+<a href="#rtorch-examples" class="anchor"></a>rTorch Examples</h2>
+<p>To lighten up the time in building this <code>rTorch</code> package, we moved the examples that use tensor operations and neural bnetworks to separate repositories. There are two sets of examples:</p>
+<ul>
+<li>
+<em>The rTorch Minimal Book</em> at <a href="https://f0nzie.github.io/rtorch-minimal-book/" class="uri">https://f0nzie.github.io/rtorch-minimal-book/</a>
+</li>
+<li>
+<em>rTorch Advanced Examples</em> at <a href="https://github.com/f0nzie/rTorch.examples" class="uri">https://github.com/f0nzie/rTorch.examples</a>
+</li>
+</ul>
+</div>
 <div id="rtorch-installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#rtorch-installation" class="anchor"></a>rTorch installation</h2>
@@ -119,7 +143,7 @@
 <h2 class="hasAnchor">
 <a href="#tensor-types" class="anchor"></a>Tensor types</h2>
 <p>There are five major type of Tensors in PyTorch: * Byte * Float * Double * Long * Bool</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">rTorch</span>)
+<div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">rTorch</span>)
 
 <span class="no">byte_tensor</span>   <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">ByteTensor</span>(<span class="fl">3L</span>, <span class="fl">3L</span>)
 <span class="no">float_tensor</span>  <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">FloatTensor</span>(<span class="fl">3L</span>, <span class="fl">3L</span>)
@@ -128,29 +152,29 @@
 <span class="no">bool_tensor</span>   <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">BoolTensor</span>(<span class="fl">5L</span>, <span class="fl">5L</span>)
 
 <span class="no">byte_tensor</span>
-<span class="co">#&gt; tensor([[ 53,  53,  99],</span>
-<span class="co">#&gt;         [ 52, 102,  99],</span>
-<span class="co">#&gt;         [ 57,  56,  17]], dtype=torch.uint8)</span>
+<span class="co">#&gt; tensor([[240, 190,  27],</span>
+<span class="co">#&gt;         [  5,  10, 127],</span>
+<span class="co">#&gt;         [  0,   0, 240]], dtype=torch.uint8)</span>
 <span class="no">float_tensor</span>
-<span class="co">#&gt; tensor([[0., 0., 0.],</span>
-<span class="co">#&gt;         [0., 0., 0.],</span>
-<span class="co">#&gt;         [0., 0., 0.]])</span>
+<span class="co">#&gt; tensor([[7.0369e+28, 2.5765e+20, 1.4574e-42],</span>
+<span class="co">#&gt;         [1.7592e+22, 4.1223e+21, 1.7974e+19],</span>
+<span class="co">#&gt;         [4.5144e+27, 1.8037e+28, 3.5299e-12]])</span>
 <span class="no">double_tensor</span>
-<span class="co">#&gt; tensor([[0., 0., 0.],</span>
-<span class="co">#&gt;         [0., 0., 0.],</span>
-<span class="co">#&gt;         [0., 0., 0.]], dtype=torch.float64)</span>
+<span class="co">#&gt; tensor([[4.6814e-310,  0.0000e+00, 4.2440e-314],</span>
+<span class="co">#&gt;         [4.6814e-310, 4.6814e-310, 1.4822e-323],</span>
+<span class="co">#&gt;         [4.2440e-314, 4.9407e-324,  0.0000e+00]], dtype=torch.float64)</span>
 <span class="no">long_tensor</span>
-<span class="co">#&gt; tensor([[0, 0, 0],</span>
-<span class="co">#&gt;         [0, 0, 0],</span>
-<span class="co">#&gt;         [0, 0, 0]])</span>
+<span class="co">#&gt; tensor([[             0,              0,   193273528365],</span>
+<span class="co">#&gt;         [94753347266448,              1, 94753347394848],</span>
+<span class="co">#&gt;         [             0,              0,              0]])</span>
 <span class="no">bool_tensor</span>
-<span class="co">#&gt; tensor([[ True,  True,  True,  True,  True],</span>
+<span class="co">#&gt; tensor([[False, False, False, False, False],</span>
 <span class="co">#&gt;         [False, False, False, False, False],</span>
 <span class="co">#&gt;         [False, False, False, False, False],</span>
-<span class="co">#&gt;         [False, False, False, False, False],</span>
-<span class="co">#&gt;         [False, False, False, False, False]], dtype=torch.bool)</span></pre></div>
+<span class="co">#&gt;         [False,  True, False, False, False],</span>
+<span class="co">#&gt;         [ True, False, False, False,  True]])</span></pre></div>
 <p>A <code>4D</code> tensor like in MNIST hand-written digits recognition dataset:</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="no">mnist_4d</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">FloatTensor</span>(<span class="fl">60000L</span>, <span class="fl">3L</span>, <span class="fl">28L</span>, <span class="fl">28L</span>)
+<div class="sourceCode" id="cb3"><pre class="r"><span class="no">mnist_4d</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">FloatTensor</span>(<span class="fl">60000L</span>, <span class="fl">3L</span>, <span class="fl">28L</span>, <span class="fl">28L</span>)
 
 <span class="co"># size</span>
 <span class="no">mnist_4d</span>$<span class="fu">size</span>()
@@ -168,10 +192,10 @@
 <span class="no">mnist_4d</span>$<span class="fu">numel</span>()
 <span class="co">#&gt; [1] 141120000</span></pre></div>
 <p>A <code>3D</code> tensor:</p>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="no">ft3d</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">FloatTensor</span>(<span class="fl">4L</span>, <span class="fl">3L</span>, <span class="fl">2L</span>)
+<div class="sourceCode" id="cb4"><pre class="r"><span class="no">ft3d</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">FloatTensor</span>(<span class="fl">4L</span>, <span class="fl">3L</span>, <span class="fl">2L</span>)
 <span class="no">ft3d</span>
-<span class="co">#&gt; tensor([[[2.0575e+17, 4.5835e-41],</span>
-<span class="co">#&gt;          [2.0575e+17, 4.5835e-41],</span>
+<span class="co">#&gt; tensor([[[7.3229e-36, 4.5573e-41],</span>
+<span class="co">#&gt;          [7.3229e-36, 4.5573e-41],</span>
 <span class="co">#&gt;          [0.0000e+00, 0.0000e+00]],</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;         [[0.0000e+00, 0.0000e+00],</span>
@@ -185,10 +209,10 @@
 <span class="co">#&gt;         [[0.0000e+00, 0.0000e+00],</span>
 <span class="co">#&gt;          [0.0000e+00, 0.0000e+00],</span>
 <span class="co">#&gt;          [0.0000e+00, 0.0000e+00]]])</span></pre></div>
-<div class="sourceCode" id="cb4"><pre class="r"><span class="co"># get first element in a tensor</span>
+<div class="sourceCode" id="cb5"><pre class="r"><span class="co"># get first element in a tensor</span>
 <span class="no">ft3d</span>[<span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>]
-<span class="co">#&gt; tensor(2.0575e+17)</span></pre></div>
-<div class="sourceCode" id="cb5"><pre class="r"><span class="co"># create a tensor with a value</span>
+<span class="co">#&gt; tensor(7.3229e-36)</span></pre></div>
+<div class="sourceCode" id="cb6"><pre class="r"><span class="co"># create a tensor with a value</span>
 <span class="no">torch</span>$<span class="fu">full</span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">2L</span>, <span class="fl">3L</span>), <span class="fl">3.141592</span>)
 <span class="co">#&gt; tensor([[3.1416, 3.1416, 3.1416],</span>
 <span class="co">#&gt;         [3.1416, 3.1416, 3.1416]])</span></pre></div>
@@ -199,7 +223,7 @@
 <div id="add-tensors" class="section level3">
 <h3 class="hasAnchor">
 <a href="#add-tensors" class="anchor"></a>Add tensors</h3>
-<div class="sourceCode" id="cb6"><pre class="r"><span class="co"># 3x5 matrix uniformly distributed between 0 and 1</span>
+<div class="sourceCode" id="cb7"><pre class="r"><span class="co"># 3x5 matrix uniformly distributed between 0 and 1</span>
 <span class="no">mat0</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">FloatTensor</span>(<span class="fl">3L</span>, <span class="fl">5L</span>)$<span class="fu">uniform_</span>(<span class="fl">0L</span>, <span class="fl">1L</span>)
 
 <span class="co"># fill a 3x5 matrix with 0.1</span>
@@ -207,44 +231,44 @@
 
 <span class="co"># a vector with all ones</span>
 <span class="no">mat2</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">FloatTensor</span>(<span class="fl">5L</span>)$<span class="fu">uniform_</span>(<span class="fl">1</span>, <span class="fl">1</span>)</pre></div>
-<div class="sourceCode" id="cb7"><pre class="r"><span class="co"># add two tensors</span>
+<div class="sourceCode" id="cb8"><pre class="r"><span class="co"># add two tensors</span>
 <span class="no">mat0</span> + <span class="no">mat1</span>
-<span class="co">#&gt; tensor([[0.6095, 0.1118, 0.4892, 0.7036, 1.0265],</span>
-<span class="co">#&gt;         [0.3486, 1.0574, 0.1216, 0.1564, 0.5951],</span>
-<span class="co">#&gt;         [0.5269, 0.5849, 0.7942, 0.4035, 0.1118]])</span></pre></div>
-<div class="sourceCode" id="cb8"><pre class="r"><span class="co"># add three tensors</span>
+<span class="co">#&gt; tensor([[0.7093, 0.4444, 0.8215, 0.8182, 0.5245],</span>
+<span class="co">#&gt;         [0.3967, 1.0147, 0.1733, 1.0824, 0.9728],</span>
+<span class="co">#&gt;         [0.8896, 0.3875, 0.3256, 0.9434, 0.4727]])</span></pre></div>
+<div class="sourceCode" id="cb9"><pre class="r"><span class="co"># add three tensors</span>
 <span class="no">mat0</span> + <span class="no">mat1</span> + <span class="no">mat2</span>
-<span class="co">#&gt; tensor([[1.6095, 1.1118, 1.4892, 1.7036, 2.0265],</span>
-<span class="co">#&gt;         [1.3486, 2.0574, 1.1216, 1.1564, 1.5951],</span>
-<span class="co">#&gt;         [1.5269, 1.5849, 1.7942, 1.4035, 1.1118]])</span></pre></div>
-<div class="sourceCode" id="cb9"><pre class="r"><span class="co"># PyTorch add two tensors using add() function</span>
+<span class="co">#&gt; tensor([[1.7093, 1.4444, 1.8215, 1.8182, 1.5245],</span>
+<span class="co">#&gt;         [1.3967, 2.0147, 1.1733, 2.0824, 1.9728],</span>
+<span class="co">#&gt;         [1.8896, 1.3875, 1.3256, 1.9434, 1.4727]])</span></pre></div>
+<div class="sourceCode" id="cb10"><pre class="r"><span class="co"># PyTorch add two tensors using add() function</span>
 <span class="no">x</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">rand</span>(<span class="fl">5L</span>, <span class="fl">4L</span>)
 <span class="no">y</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">rand</span>(<span class="fl">5L</span>, <span class="fl">4L</span>)
 
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">x</span>$<span class="fu">add</span>(<span class="no">y</span>))
-<span class="co">#&gt; tensor([[1.1071, 0.9720, 0.5346, 0.9654],</span>
-<span class="co">#&gt;         [0.3647, 1.0413, 0.2093, 0.9770],</span>
-<span class="co">#&gt;         [1.0641, 0.5679, 0.4336, 0.8378],</span>
-<span class="co">#&gt;         [1.0626, 0.3056, 1.4330, 1.6877],</span>
-<span class="co">#&gt;         [0.5763, 0.8797, 1.2694, 1.1525]])</span>
+<span class="co">#&gt; tensor([[1.2452, 1.0134, 0.9126, 1.2348],</span>
+<span class="co">#&gt;         [0.6204, 0.9854, 1.4460, 0.7932],</span>
+<span class="co">#&gt;         [1.0837, 0.8847, 1.6957, 0.7928],</span>
+<span class="co">#&gt;         [0.9172, 1.1348, 1.0800, 0.9794],</span>
+<span class="co">#&gt;         [1.0683, 0.3943, 0.3635, 1.3794]])</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">x</span> + <span class="no">y</span>)
-<span class="co">#&gt; tensor([[1.1071, 0.9720, 0.5346, 0.9654],</span>
-<span class="co">#&gt;         [0.3647, 1.0413, 0.2093, 0.9770],</span>
-<span class="co">#&gt;         [1.0641, 0.5679, 0.4336, 0.8378],</span>
-<span class="co">#&gt;         [1.0626, 0.3056, 1.4330, 1.6877],</span>
-<span class="co">#&gt;         [0.5763, 0.8797, 1.2694, 1.1525]])</span></pre></div>
+<span class="co">#&gt; tensor([[1.2452, 1.0134, 0.9126, 1.2348],</span>
+<span class="co">#&gt;         [0.6204, 0.9854, 1.4460, 0.7932],</span>
+<span class="co">#&gt;         [1.0837, 0.8847, 1.6957, 0.7928],</span>
+<span class="co">#&gt;         [0.9172, 1.1348, 1.0800, 0.9794],</span>
+<span class="co">#&gt;         [1.0683, 0.3943, 0.3635, 1.3794]])</span></pre></div>
 </div>
 <div id="add-a-tensor-element-to-another-tensor" class="section level3">
 <h3 class="hasAnchor">
 <a href="#add-a-tensor-element-to-another-tensor" class="anchor"></a>Add a tensor element to another tensor</h3>
-<div class="sourceCode" id="cb10"><pre class="r"><span class="co"># add an element of a tensor to another tensor</span>
+<div class="sourceCode" id="cb11"><pre class="r"><span class="co"># add an element of a tensor to another tensor</span>
 <span class="no">mat1</span>[<span class="fl">1</span>, <span class="fl">1</span>] + <span class="no">mat2</span>
 <span class="co">#&gt; tensor([1.1000, 1.1000, 1.1000, 1.1000, 1.1000])</span></pre></div>
-<div class="sourceCode" id="cb11"><pre class="r"><span class="no">mat1</span>
+<div class="sourceCode" id="cb12"><pre class="r"><span class="no">mat1</span>
 <span class="co">#&gt; tensor([[0.1000, 0.1000, 0.1000, 0.1000, 0.1000],</span>
 <span class="co">#&gt;         [0.1000, 0.1000, 0.1000, 0.1000, 0.1000],</span>
 <span class="co">#&gt;         [0.1000, 0.1000, 0.1000, 0.1000, 0.1000]])</span></pre></div>
-<div class="sourceCode" id="cb12"><pre class="r"><span class="co"># extract part of the tensor</span>
+<div class="sourceCode" id="cb13"><pre class="r"><span class="co"># extract part of the tensor</span>
 <span class="no">indices</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0L</span>, <span class="fl">3L</span>))
 <span class="no">torch</span>$<span class="fu">index_select</span>(<span class="no">mat1</span>, <span class="fl">1L</span>, <span class="no">indices</span>)   <span class="co"># rows = 0; columns = 1</span>
 <span class="co">#&gt; tensor([[0.1000, 0.1000],</span>
@@ -254,16 +278,16 @@
 <div id="add-a-scalar-to-a-tensor" class="section level3">
 <h3 class="hasAnchor">
 <a href="#add-a-scalar-to-a-tensor" class="anchor"></a>Add a scalar to a tensor</h3>
-<div class="sourceCode" id="cb13"><pre class="r"><span class="co"># add a scalar to a tensor</span>
+<div class="sourceCode" id="cb14"><pre class="r"><span class="co"># add a scalar to a tensor</span>
 <span class="no">mat0</span> + <span class="fl">0.1</span>
-<span class="co">#&gt; tensor([[0.6095, 0.1118, 0.4892, 0.7036, 1.0265],</span>
-<span class="co">#&gt;         [0.3486, 1.0574, 0.1216, 0.1564, 0.5951],</span>
-<span class="co">#&gt;         [0.5269, 0.5849, 0.7942, 0.4035, 0.1118]])</span></pre></div>
+<span class="co">#&gt; tensor([[0.7093, 0.4444, 0.8215, 0.8182, 0.5245],</span>
+<span class="co">#&gt;         [0.3967, 1.0147, 0.1733, 1.0824, 0.9728],</span>
+<span class="co">#&gt;         [0.8896, 0.3875, 0.3256, 0.9434, 0.4727]])</span></pre></div>
 </div>
 <div id="multiply-a-tensor-by-a-scalar" class="section level3">
 <h3 class="hasAnchor">
 <a href="#multiply-a-tensor-by-a-scalar" class="anchor"></a>Multiply a tensor by a scalar</h3>
-<div class="sourceCode" id="cb14"><pre class="r"><span class="co"># Multiply tensor by scalar</span>
+<div class="sourceCode" id="cb15"><pre class="r"><span class="co"># Multiply tensor by scalar</span>
 <span class="no">tensor</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">ones</span>(<span class="fl">4L</span>, <span class="kw">dtype</span><span class="kw">=</span><span class="no">torch</span>$<span class="no">float64</span>)
 <span class="no">scalar</span> <span class="kw">=</span> <span class="no">np</span>$<span class="fu">float64</span>(<span class="fl">4.321</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/message.html">message</a></span>(<span class="st">"a numpy scalar: "</span>, <span class="no">scalar</span>)
@@ -275,23 +299,23 @@
 <span class="co">#&gt; Result</span>
 (<span class="no">prod</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">mul</span>(<span class="no">tensor</span>, <span class="no">torch</span>$<span class="fu">scalar_tensor</span>(<span class="no">scalar</span>)))
 <span class="co">#&gt; tensor([4.3210, 4.3210, 4.3210, 4.3210], dtype=torch.float64)</span></pre></div>
-<div class="sourceCode" id="cb15"><pre class="r"><span class="co"># short version using generics</span>
+<div class="sourceCode" id="cb16"><pre class="r"><span class="co"># short version using generics</span>
 (<span class="no">prod</span> <span class="kw">=</span> <span class="no">tensor</span> * <span class="no">scalar</span>)
 <span class="co">#&gt; tensor([4.3210, 4.3210, 4.3210, 4.3210], dtype=torch.float64)</span></pre></div>
 </div>
 <div id="multiply-two-1d-tensors" class="section level3">
 <h3 class="hasAnchor">
 <a href="#multiply-two-1d-tensors" class="anchor"></a>Multiply two 1D tensors</h3>
-<div class="sourceCode" id="cb16"><pre class="r"><span class="no">t1</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>))
+<div class="sourceCode" id="cb17"><pre class="r"><span class="no">t1</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>))
 <span class="no">t2</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">3</span>, <span class="fl">2</span>))
 
 <span class="no">t1</span>
 <span class="co">#&gt; tensor([1., 2.])</span>
 <span class="no">t2</span>
 <span class="co">#&gt; tensor([3., 2.])</span></pre></div>
-<div class="sourceCode" id="cb17"><pre class="r"><span class="no">t1</span> * <span class="no">t2</span>
+<div class="sourceCode" id="cb18"><pre class="r"><span class="no">t1</span> * <span class="no">t2</span>
 <span class="co">#&gt; tensor([3., 4.])</span></pre></div>
-<div class="sourceCode" id="cb18"><pre class="r"><span class="no">t1</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+<div class="sourceCode" id="cb19"><pre class="r"><span class="no">t1</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
     <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>),
     <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>)
 ))
@@ -309,24 +333,24 @@
 <span class="co">#&gt; tensor([[1., 2.],</span>
 <span class="co">#&gt;         [1., 2.],</span>
 <span class="co">#&gt;         [1., 2.]])</span></pre></div>
-<div class="sourceCode" id="cb19"><pre class="r"><span class="no">torch</span>$<span class="fu">mm</span>(<span class="no">t1</span>, <span class="no">t2</span>)
+<div class="sourceCode" id="cb20"><pre class="r"><span class="no">torch</span>$<span class="fu">mm</span>(<span class="no">t1</span>, <span class="no">t2</span>)
 <span class="co">#&gt; tensor([[ 6., 12.],</span>
 <span class="co">#&gt;         [ 6., 12.]])</span></pre></div>
 </div>
 <div id="dot-product-for-1d-tensors-vectors" class="section level3">
 <h3 class="hasAnchor">
 <a href="#dot-product-for-1d-tensors-vectors" class="anchor"></a>Dot product for 1D tensors (vectors)</h3>
-<div class="sourceCode" id="cb20"><pre class="r"><span class="no">t1</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>))
+<div class="sourceCode" id="cb21"><pre class="r"><span class="no">t1</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>))
 <span class="no">t2</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">3</span>, <span class="fl">2</span>))
 
 <span class="no">t1</span>
 <span class="co">#&gt; tensor([1., 2.])</span>
 <span class="no">t2</span>
 <span class="co">#&gt; tensor([3., 2.])</span></pre></div>
-<div class="sourceCode" id="cb21"><pre class="r"><span class="co"># dot product of two vectors</span>
+<div class="sourceCode" id="cb22"><pre class="r"><span class="co"># dot product of two vectors</span>
 <span class="no">torch</span>$<span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">dot</a></span>(<span class="no">t1</span>, <span class="no">t2</span>)
 <span class="co">#&gt; tensor(7.)</span></pre></div>
-<div class="sourceCode" id="cb22"><pre class="r"><span class="co"># Dot product of 1D tensors is a scalar</span>
+<div class="sourceCode" id="cb23"><pre class="r"><span class="co"># Dot product of 1D tensors is a scalar</span>
 
 <span class="no">p</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">Tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">4L</span>, <span class="fl">2L</span>))
 <span class="no">q</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">Tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">3L</span>, <span class="fl">1L</span>))
@@ -335,7 +359,7 @@
 <span class="co">#&gt; tensor(14.)</span>
 (<span class="no">r</span> <span class="kw">&lt;-</span> <span class="no">p</span> <span class="kw">%.*%</span> <span class="no">q</span>)
 <span class="co">#&gt; tensor(14.)</span></pre></div>
-<div class="sourceCode" id="cb23"><pre class="r"><span class="co"># torch$dot product will work for vectors not matrices</span>
+<div class="sourceCode" id="cb24"><pre class="r"><span class="co"># torch$dot product will work for vectors not matrices</span>
 <span class="no">t1</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
     <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>),
     <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>)
@@ -351,14 +375,14 @@
 <span class="co">#&gt; torch.Size([2, 3])</span>
 <span class="no">t2</span>$<span class="no">shape</span>
 <span class="co">#&gt; torch.Size([3, 2])</span></pre></div>
-<div class="sourceCode" id="cb24"><pre class="r"><span class="co"># RuntimeError: 1D tensors expected, got 2D, 2D tensors</span>
+<div class="sourceCode" id="cb25"><pre class="r"><span class="co"># RuntimeError: 1D tensors expected, got 2D, 2D tensors</span>
 <span class="no">torch</span>$<span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">dot</a></span>(<span class="no">t1</span>, <span class="no">t2</span>)</pre></div>
 </div>
 <div id="dot-product-for-2d-tensors-matrices" class="section level3">
 <h3 class="hasAnchor">
 <a href="#dot-product-for-2d-tensors-matrices" class="anchor"></a>Dot product for 2D tensors (matrices)</h3>
 <p>The number of columns of the first matrix must be equal to the number of rows of the second matrix.</p>
-<div class="sourceCode" id="cb25"><pre class="r"><span class="co"># for the dot product of nD tensors we use torch$mm()</span>
+<div class="sourceCode" id="cb26"><pre class="r"><span class="co"># for the dot product of nD tensors we use torch$mm()</span>
 <span class="no">t1</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
     <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>),
     <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>)
@@ -373,11 +397,11 @@
 <span class="no">torch</span>$<span class="fu">mm</span>(<span class="no">t1</span>, <span class="no">t2</span>)
 <span class="co">#&gt; tensor([[ 6., 12.],</span>
 <span class="co">#&gt;         [ 6., 12.]])</span></pre></div>
-<div class="sourceCode" id="cb26"><pre class="r"><span class="no">torch</span>$<span class="fu">mm</span>(<span class="no">t2</span>, <span class="no">t1</span>)
+<div class="sourceCode" id="cb27"><pre class="r"><span class="no">torch</span>$<span class="fu">mm</span>(<span class="no">t2</span>, <span class="no">t1</span>)
 <span class="co">#&gt; tensor([[3., 6., 9.],</span>
 <span class="co">#&gt;         [3., 6., 9.],</span>
 <span class="co">#&gt;         [3., 6., 9.]])</span></pre></div>
-<div class="sourceCode" id="cb27"><pre class="r"><span class="co"># for the dot product of 2D tensors we use torch$mm()</span>
+<div class="sourceCode" id="cb28"><pre class="r"><span class="co"># for the dot product of 2D tensors we use torch$mm()</span>
 <span class="no">t1</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">arange</span>(<span class="fl">1</span>, <span class="fl">11</span>)$<span class="fu">view</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2L</span>,<span class="fl">5L</span>))
 <span class="no">t2</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">arange</span>(<span class="fl">11</span>, <span class="fl">21</span>)$<span class="fu">view</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">5L</span>,<span class="fl">2L</span>))
 
@@ -390,7 +414,7 @@
 <span class="co">#&gt;         [15., 16.],</span>
 <span class="co">#&gt;         [17., 18.],</span>
 <span class="co">#&gt;         [19., 20.]])</span></pre></div>
-<div class="sourceCode" id="cb28"><pre class="r"><span class="co"># result</span>
+<div class="sourceCode" id="cb29"><pre class="r"><span class="co"># result</span>
 <span class="no">torch</span>$<span class="fu">mm</span>(<span class="no">t1</span>, <span class="no">t2</span>)
 <span class="co">#&gt; tensor([[245., 260.],</span>
 <span class="co">#&gt;         [620., 660.]])</span></pre></div>
@@ -398,13 +422,13 @@
 <div id="multiplication-for-nd-tensors" class="section level3">
 <h3 class="hasAnchor">
 <a href="#multiplication-for-nd-tensors" class="anchor"></a>Multiplication for nD tensors</h3>
-<div class="sourceCode" id="cb29"><pre class="r"><span class="co"># 1D tensor</span>
+<div class="sourceCode" id="cb30"><pre class="r"><span class="co"># 1D tensor</span>
 <span class="no">t1</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>))
 <span class="no">t2</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">3</span>, <span class="fl">2</span>))
 
 <span class="no">torch</span>$<span class="fu">matmul</span>(<span class="no">t1</span>, <span class="no">t2</span>)
 <span class="co">#&gt; tensor(7.)</span></pre></div>
-<div class="sourceCode" id="cb30"><pre class="r"><span class="co"># 2D tensor</span>
+<div class="sourceCode" id="cb31"><pre class="r"><span class="co"># 2D tensor</span>
 <span class="no">t1</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
     <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>),
     <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>)
@@ -419,7 +443,7 @@
 <span class="no">torch</span>$<span class="fu">matmul</span>(<span class="no">t1</span>, <span class="no">t2</span>)
 <span class="co">#&gt; tensor([[ 6., 12.],</span>
 <span class="co">#&gt;         [ 6., 12.]])</span></pre></div>
-<div class="sourceCode" id="cb31"><pre class="r"><span class="co"># for the dot product of 3D tensors we use torch$matmul()</span>
+<div class="sourceCode" id="cb32"><pre class="r"><span class="co"># for the dot product of 3D tensors we use torch$matmul()</span>
 <span class="no">t1</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">arange</span>(<span class="fl">1</span>, <span class="fl">13</span>)$<span class="fu">view</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2L</span>, <span class="fl">2L</span>, <span class="fl">3L</span>))   <span class="co"># number of columns = 2</span>
 <span class="no">t2</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">arange</span>(<span class="fl">0</span>, <span class="fl">18</span>)$<span class="fu">view</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2L</span>, <span class="fl">3L</span>, <span class="fl">3L</span>))   <span class="co"># number of rows = 2</span>
 
@@ -446,7 +470,7 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt;         [[294., 318., 342.],</span>
 <span class="co">#&gt;          [402., 435., 468.]]])</span></pre></div>
-<div class="sourceCode" id="cb32"><pre class="r"><span class="no">t1</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">arange</span>(<span class="fl">1</span>, <span class="fl">13</span>)$<span class="fu">view</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">3L</span>, <span class="fl">2L</span>, <span class="fl">2L</span>))   <span class="co"># number of columns = 3</span>
+<div class="sourceCode" id="cb33"><pre class="r"><span class="no">t1</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">arange</span>(<span class="fl">1</span>, <span class="fl">13</span>)$<span class="fu">view</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">3L</span>, <span class="fl">2L</span>, <span class="fl">2L</span>))   <span class="co"># number of columns = 3</span>
 <span class="no">t2</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">arange</span>(<span class="fl">0</span>, <span class="fl">12</span>)$<span class="fu">view</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">3L</span>, <span class="fl">2L</span>, <span class="fl">2L</span>))   <span class="co"># number of rows = 3</span>
 
 <span class="no">t1</span>
@@ -483,7 +507,7 @@
 <div id="cross-product" class="section level3">
 <h3 class="hasAnchor">
 <a href="#cross-product" class="anchor"></a>cross product</h3>
-<div class="sourceCode" id="cb33"><pre class="r"><span class="no">m1</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">ones</span>(<span class="fl">3L</span>, <span class="fl">5L</span>)
+<div class="sourceCode" id="cb34"><pre class="r"><span class="no">m1</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">ones</span>(<span class="fl">3L</span>, <span class="fl">5L</span>)
 <span class="no">m2</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">ones</span>(<span class="fl">3L</span>, <span class="fl">5L</span>)
 <span class="no">v1</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">ones</span>(<span class="fl">3L</span>)
 <span class="co"># Cross product</span>
@@ -498,14 +522,14 @@
 <h2 class="hasAnchor">
 <a href="#numpy-and-pytorch" class="anchor"></a>NumPy and PyTorch</h2>
 <p><code>numpy</code> has been made available as a module inside <code>rTorch</code>. We could call functions from <code>numpy</code> refrerring to it as <code>np$any_function</code>. Examples:</p>
-<div class="sourceCode" id="cb34"><pre class="r"><span class="co"># a 2D numpy array  </span>
+<div class="sourceCode" id="cb35"><pre class="r"><span class="co"># a 2D numpy array  </span>
 <span class="no">syn0</span> <span class="kw">&lt;-</span> <span class="no">np</span>$<span class="no">random</span>$<span class="fu">rand</span>(<span class="fl">3L</span>, <span class="fl">5L</span>)
 <span class="no">syn0</span>
 <span class="co">#&gt;           [,1]      [,2]      [,3]      [,4]      [,5]</span>
-<span class="co">#&gt; [1,] 0.5751479 0.4823268 0.3256930 0.6192045 0.5529414</span>
-<span class="co">#&gt; [2,] 0.2968177 0.4395543 0.7438010 0.4775822 0.3672221</span>
-<span class="co">#&gt; [3,] 0.4437408 0.4285402 0.8964816 0.7590744 0.7366369</span></pre></div>
-<div class="sourceCode" id="cb35"><pre class="r"><span class="co"># numpy arrays of zeros</span>
+<span class="co">#&gt; [1,] 0.4046579 0.1401575 0.8097526 0.9431603 0.2137045</span>
+<span class="co">#&gt; [2,] 0.5218389 0.4591476 0.8561432 0.5316923 0.2874700</span>
+<span class="co">#&gt; [3,] 0.1661139 0.3031005 0.5534232 0.3109273 0.1460536</span></pre></div>
+<div class="sourceCode" id="cb36"><pre class="r"><span class="co"># numpy arrays of zeros</span>
 <span class="no">syn1</span> <span class="kw">&lt;-</span> <span class="no">np</span>$<span class="fu">zeros</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">5L</span>, <span class="fl">10L</span>))
 <span class="no">syn1</span>
 <span class="co">#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]</span>
@@ -514,7 +538,7 @@
 <span class="co">#&gt; [3,]    0    0    0    0    0    0    0    0    0     0</span>
 <span class="co">#&gt; [4,]    0    0    0    0    0    0    0    0    0     0</span>
 <span class="co">#&gt; [5,]    0    0    0    0    0    0    0    0    0     0</span></pre></div>
-<div class="sourceCode" id="cb36"><pre class="r"><span class="co"># add a scalar to a numpy array</span>
+<div class="sourceCode" id="cb37"><pre class="r"><span class="co"># add a scalar to a numpy array</span>
 <span class="no">syn1</span> <span class="kw">=</span> <span class="no">syn1</span> + <span class="fl">0.1</span>
 <span class="no">syn1</span>
 <span class="co">#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]</span>
@@ -523,7 +547,7 @@
 <span class="co">#&gt; [3,]  0.1  0.1  0.1  0.1  0.1  0.1  0.1  0.1  0.1   0.1</span>
 <span class="co">#&gt; [4,]  0.1  0.1  0.1  0.1  0.1  0.1  0.1  0.1  0.1   0.1</span>
 <span class="co">#&gt; [5,]  0.1  0.1  0.1  0.1  0.1  0.1  0.1  0.1  0.1   0.1</span></pre></div>
-<div class="sourceCode" id="cb37"><pre class="r"><span class="co"># in numpy a multidimensional array needs to be defined with a tuple</span>
+<div class="sourceCode" id="cb38"><pre class="r"><span class="co"># in numpy a multidimensional array needs to be defined with a tuple</span>
 <span class="co"># From R we use a vector to refer to a tuple in Python</span>
 <span class="no">l1</span> <span class="kw">&lt;-</span> <span class="no">np</span>$<span class="fu">ones</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">5L</span>, <span class="fl">5L</span>))
 <span class="no">l1</span>
@@ -533,24 +557,24 @@
 <span class="co">#&gt; [3,]    1    1    1    1    1</span>
 <span class="co">#&gt; [4,]    1    1    1    1    1</span>
 <span class="co">#&gt; [5,]    1    1    1    1    1</span></pre></div>
-<div class="sourceCode" id="cb38"><pre class="r"><span class="co"># vector-matrix multiplication</span>
+<div class="sourceCode" id="cb39"><pre class="r"><span class="co"># vector-matrix multiplication</span>
 <span class="no">np</span>$<span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html">dot</a></span>(<span class="no">syn0</span>, <span class="no">syn1</span>)
 <span class="co">#&gt;           [,1]      [,2]      [,3]      [,4]      [,5]      [,6]      [,7]</span>
-<span class="co">#&gt; [1,] 0.2555314 0.2555314 0.2555314 0.2555314 0.2555314 0.2555314 0.2555314</span>
-<span class="co">#&gt; [2,] 0.2324977 0.2324977 0.2324977 0.2324977 0.2324977 0.2324977 0.2324977</span>
-<span class="co">#&gt; [3,] 0.3264474 0.3264474 0.3264474 0.3264474 0.3264474 0.3264474 0.3264474</span>
+<span class="co">#&gt; [1,] 0.2511433 0.2511433 0.2511433 0.2511433 0.2511433 0.2511433 0.2511433</span>
+<span class="co">#&gt; [2,] 0.2656292 0.2656292 0.2656292 0.2656292 0.2656292 0.2656292 0.2656292</span>
+<span class="co">#&gt; [3,] 0.1479618 0.1479618 0.1479618 0.1479618 0.1479618 0.1479618 0.1479618</span>
 <span class="co">#&gt;           [,8]      [,9]     [,10]</span>
-<span class="co">#&gt; [1,] 0.2555314 0.2555314 0.2555314</span>
-<span class="co">#&gt; [2,] 0.2324977 0.2324977 0.2324977</span>
-<span class="co">#&gt; [3,] 0.3264474 0.3264474 0.3264474</span></pre></div>
-<div class="sourceCode" id="cb39"><pre class="r"><span class="co"># build a numpy array from three R vectors</span>
+<span class="co">#&gt; [1,] 0.2511433 0.2511433 0.2511433</span>
+<span class="co">#&gt; [2,] 0.2656292 0.2656292 0.2656292</span>
+<span class="co">#&gt; [3,] 0.1479618 0.1479618 0.1479618</span></pre></div>
+<div class="sourceCode" id="cb40"><pre class="r"><span class="co"># build a numpy array from three R vectors</span>
 <span class="no">X</span> <span class="kw">&lt;-</span> <span class="no">np</span>$<span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>), <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span>), <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span>)))
 <span class="no">X</span>
 <span class="co">#&gt;      [,1] [,2] [,3]</span>
 <span class="co">#&gt; [1,]    1    2    3</span>
 <span class="co">#&gt; [2,]    4    5    6</span>
 <span class="co">#&gt; [3,]    7    8    9</span></pre></div>
-<div class="sourceCode" id="cb40"><pre class="r"><span class="co"># transpose the array</span>
+<div class="sourceCode" id="cb41"><pre class="r"><span class="co"># transpose the array</span>
 <span class="no">np</span>$<span class="fu">transpose</span>(<span class="no">X</span>)
 <span class="co">#&gt;      [,1] [,2] [,3]</span>
 <span class="co">#&gt; [1,]    1    4    7</span>
@@ -560,13 +584,13 @@
 <h3 class="hasAnchor">
 <a href="#copying-a-numpy-object" class="anchor"></a>Copying a numpy object</h3>
 <p>With newer PyTorch versions we should work with NumPy array copies There have been minor changes in the latest versions of PyTorch that prevents a direct use of a NumPy array. You will get this warning:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a>sys<span class="op">:</span><span class="dv">1</span><span class="op">:</span><span class="st"> </span>UserWarning<span class="op">:</span><span class="st"> </span>The given NumPy array is not writeable, and PyTorch does </span>
-<span id="cb41-2"><a href="#cb41-2"></a>not support non<span class="op">-</span>writeable tensors. This means you can write to the underlying</span>
-<span id="cb41-3"><a href="#cb41-3"></a>(supposedly non<span class="op">-</span>writeable) NumPy array using the tensor. You may want to copy </span>
-<span id="cb41-4"><a href="#cb41-4"></a>the array to protect its data or make it writeable before converting it to a </span>
-<span id="cb41-5"><a href="#cb41-5"></a>tensor. This type of warning will be suppressed <span class="cf">for</span> the rest of this program.</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>sys<span class="op">:</span><span class="dv">1</span><span class="op">:</span><span class="st"> </span>UserWarning<span class="op">:</span><span class="st"> </span>The given NumPy array is not writeable, and PyTorch does </span>
+<span id="cb42-2"><a href="#cb42-2"></a>not support non<span class="op">-</span>writeable tensors. This means you can write to the underlying</span>
+<span id="cb42-3"><a href="#cb42-3"></a>(supposedly non<span class="op">-</span>writeable) NumPy array using the tensor. You may want to copy </span>
+<span id="cb42-4"><a href="#cb42-4"></a>the array to protect its data or make it writeable before converting it to a </span>
+<span id="cb42-5"><a href="#cb42-5"></a>tensor. This type of warning will be suppressed <span class="cf">for</span> the rest of this program.</span></code></pre></div>
 <p>For instance, this code will produce the warning:</p>
-<div class="sourceCode" id="cb42"><pre class="r"><span class="co"># as_tensor. Modifying tensor modifies numpy object as well</span>
+<div class="sourceCode" id="cb43"><pre class="r"><span class="co"># as_tensor. Modifying tensor modifies numpy object as well</span>
 <span class="no">a</span> <span class="kw">=</span> <span class="no">np</span>$<span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>))
 <span class="no">t</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">as_tensor</span>(<span class="no">a</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">t</span>)
@@ -575,7 +599,7 @@
 <span class="no">t</span>[<span class="fl">1L</span>]$<span class="fu">fill_</span>(-<span class="fl">1</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">a</span>)</pre></div>
 <p>while this other one -with some extra code- will not:</p>
-<div class="sourceCode" id="cb43"><pre class="r"><span class="no">a</span> <span class="kw">=</span> <span class="no">np</span>$<span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>))
+<div class="sourceCode" id="cb44"><pre class="r"><span class="no">a</span> <span class="kw">=</span> <span class="no">np</span>$<span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>))
 <span class="no">a_copy</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/reticulate/man/r-py-conversion.html">r_to_py</a></span>(<span class="no">a</span>)$<span class="fu">copy</span>()             <span class="co"># we make a copy of the numpy array first</span>
 
 <span class="no">t</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">as_tensor</span>(<span class="no">a_copy</span>)
@@ -594,7 +618,7 @@
 <a href="#function-make_copy" class="anchor"></a>Function <code>make_copy()</code>
 </h3>
 <p>To make easier to copy an object in <code>rTorch</code> we implemented the function <code>make_copy</code>, which makes a safe copy regardless if it is a torch, numpy or an R type object.</p>
-<div class="sourceCode" id="cb44"><pre class="r"><span class="no">a</span> <span class="kw">=</span> <span class="no">np</span>$<span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>))
+<div class="sourceCode" id="cb45"><pre class="r"><span class="no">a</span> <span class="kw">=</span> <span class="no">np</span>$<span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>))
 
 <span class="no">a_copy</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/make_copy.html">make_copy</a></span>(<span class="no">a</span>)
 <span class="no">t</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">as_tensor</span>(<span class="no">a_copy</span>)
@@ -604,7 +628,7 @@
 <div id="convert-a-numpy-array-to-a-tensor" class="section level3">
 <h3 class="hasAnchor">
 <a href="#convert-a-numpy-array-to-a-tensor" class="anchor"></a>Convert a numpy array to a tensor</h3>
-<div class="sourceCode" id="cb45"><pre class="r"><span class="co"># convert a numpy array to a tensor</span>
+<div class="sourceCode" id="cb46"><pre class="r"><span class="co"># convert a numpy array to a tensor</span>
 <span class="no">np_a</span> <span class="kw">=</span> <span class="no">np</span>$<span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">3</span>, <span class="fl">4</span>), <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">3</span>, <span class="fl">6</span>)))
 <span class="no">t_a</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">from_numpy</span>(<span class="fu"><a href="https://rdrr.io/pkg/reticulate/man/r-py-conversion.html">r_to_py</a></span>(<span class="no">np_a</span>)$<span class="fu">copy</span>())
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">t_a</span>)
@@ -617,57 +641,57 @@
 <div id="random-tensor" class="section level3">
 <h3 class="hasAnchor">
 <a href="#random-tensor" class="anchor"></a>Random tensor</h3>
-<div class="sourceCode" id="cb46"><pre class="r"><span class="co"># a random 1D tensor</span>
+<div class="sourceCode" id="cb47"><pre class="r"><span class="co"># a random 1D tensor</span>
 <span class="no">np_arr</span> <span class="kw">&lt;-</span> <span class="no">np</span>$<span class="no">random</span>$<span class="fu">rand</span>(<span class="fl">5L</span>)
 <span class="no">ft1</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">FloatTensor</span>(<span class="fu"><a href="https://rdrr.io/pkg/reticulate/man/r-py-conversion.html">r_to_py</a></span>(<span class="no">np_arr</span>)$<span class="fu">copy</span>())    <span class="co"># make a copy of numpy array</span>
 <span class="no">ft1</span>
-<span class="co">#&gt; tensor([0.2432, 0.4156, 0.8528, 0.1213, 0.1516])</span></pre></div>
-<div class="sourceCode" id="cb47"><pre class="r"><span class="co"># tensor as a float of 64-bits</span>
+<span class="co">#&gt; tensor([0.9119, 0.2411, 0.8793, 0.0926, 0.3876])</span></pre></div>
+<div class="sourceCode" id="cb48"><pre class="r"><span class="co"># tensor as a float of 64-bits</span>
 <span class="no">np_copy</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/reticulate/man/r-py-conversion.html">r_to_py</a></span>(<span class="no">np</span>$<span class="no">random</span>$<span class="fu">rand</span>(<span class="fl">5L</span>))$<span class="fu">copy</span>()       <span class="co"># make a copy of numpy array</span>
 <span class="no">ft2</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">as_tensor</span>(<span class="no">np_copy</span>, <span class="kw">dtype</span><span class="kw">=</span> <span class="no">torch</span>$<span class="no">float64</span>)
 <span class="no">ft2</span>
-<span class="co">#&gt; tensor([0.2582, 0.4416, 0.8573, 0.7499, 0.1214], dtype=torch.float64)</span></pre></div>
+<span class="co">#&gt; tensor([0.6910, 0.6938, 0.0272, 0.4911, 0.8299], dtype=torch.float64)</span></pre></div>
 <p>This is a very common operation in machine learning:</p>
-<div class="sourceCode" id="cb48"><pre class="r"><span class="co"># convert tensor to a numpy array</span>
+<div class="sourceCode" id="cb49"><pre class="r"><span class="co"># convert tensor to a numpy array</span>
 <span class="no">a</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">rand</span>(<span class="fl">5L</span>, <span class="fl">4L</span>)
 <span class="no">b</span> <span class="kw">=</span> <span class="no">a</span>$<span class="fu">numpy</span>()
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">b</span>)
-<span class="co">#&gt;            [,1]      [,2]       [,3]       [,4]</span>
-<span class="co">#&gt; [1,] 0.02097207 0.7226174 0.78863478 0.42448527</span>
-<span class="co">#&gt; [2,] 0.00889045 0.4461675 0.59246933 0.08432043</span>
-<span class="co">#&gt; [3,] 0.60031849 0.2679663 0.01217204 0.98249978</span>
-<span class="co">#&gt; [4,] 0.96241820 0.2832596 0.71320820 0.33583134</span>
-<span class="co">#&gt; [5,] 0.50087249 0.7533080 0.34680516 0.35286921</span></pre></div>
+<span class="co">#&gt;           [,1]      [,2]      [,3]       [,4]</span>
+<span class="co">#&gt; [1,] 0.6848236 0.9684556 0.8997048 0.07896882</span>
+<span class="co">#&gt; [2,] 0.3980704 0.7624654 0.9495270 0.28835654</span>
+<span class="co">#&gt; [3,] 0.5015878 0.2666380 0.3231024 0.14243948</span>
+<span class="co">#&gt; [4,] 0.6446342 0.5446183 0.7720912 0.21493351</span>
+<span class="co">#&gt; [5,] 0.6027130 0.1499205 0.8601646 0.08646047</span></pre></div>
 </div>
 <div id="change-the-type-of-a-tensor" class="section level3">
 <h3 class="hasAnchor">
 <a href="#change-the-type-of-a-tensor" class="anchor"></a>Change the type of a tensor</h3>
-<div class="sourceCode" id="cb49"><pre class="r"><span class="co"># convert tensor to float 16-bits</span>
+<div class="sourceCode" id="cb50"><pre class="r"><span class="co"># convert tensor to float 16-bits</span>
 <span class="no">ft2_dbl</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">as_tensor</span>(<span class="no">ft2</span>, <span class="kw">dtype</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="no">float16</span>)
 <span class="no">ft2_dbl</span>
-<span class="co">#&gt; tensor([0.2583, 0.4417, 0.8574, 0.7500, 0.1214], dtype=torch.float16)</span></pre></div>
+<span class="co">#&gt; tensor([0.6909, 0.6938, 0.0272, 0.4912, 0.8301], dtype=torch.float16)</span></pre></div>
 </div>
 <div id="create-an-uninitialized-tensor" class="section level3">
 <h3 class="hasAnchor">
 <a href="#create-an-uninitialized-tensor" class="anchor"></a>Create an uninitialized tensor</h3>
 <p>Create a tensor of size (5 x 7) with uninitialized memory:</p>
-<div class="sourceCode" id="cb50"><pre class="r"><span class="no">a</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">FloatTensor</span>(<span class="fl">5L</span>, <span class="fl">7L</span>)
+<div class="sourceCode" id="cb51"><pre class="r"><span class="no">a</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">FloatTensor</span>(<span class="fl">5L</span>, <span class="fl">7L</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">a</span>)
-<span class="co">#&gt; tensor([[0.0000e+00, 0.0000e+00, 0.0000e+00, 1.8750e+00, 0.0000e+00, 0.0000e+00,</span>
-<span class="co">#&gt;          0.0000e+00],</span>
-<span class="co">#&gt;         [1.8750e+00, 1.9618e-44, 1.5274e-43, 0.0000e+00, 0.0000e+00, 0.0000e+00,</span>
-<span class="co">#&gt;          1.8750e+00],</span>
-<span class="co">#&gt;         [0.0000e+00, 0.0000e+00, 0.0000e+00, 1.8750e+00, 0.0000e+00, 0.0000e+00,</span>
-<span class="co">#&gt;          0.0000e+00],</span>
-<span class="co">#&gt;         [0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,</span>
-<span class="co">#&gt;                 nan],</span>
-<span class="co">#&gt;         [2.5653e-21, 1.2286e+00, 8.9129e+04, 1.2850e+00, 2.5653e-21, 1.2286e+00,</span>
-<span class="co">#&gt;          8.9129e+04]])</span></pre></div>
+<span class="co">#&gt; tensor([[7.3229e-36, 4.5573e-41, 2.3680e+36, 3.0914e-41, 5.6819e+30, 3.0914e-41,</span>
+<span class="co">#&gt;          1.0035e-35],</span>
+<span class="co">#&gt;         [4.5573e-41, 7.4269e-44, 0.0000e+00, 0.0000e+00, 0.0000e+00, 1.4013e-45,</span>
+<span class="co">#&gt;          2.8026e-45],</span>
+<span class="co">#&gt;         [4.2039e-45, 5.6052e-45, 7.0065e-45, 8.4078e-45, 9.8091e-45, 1.1210e-44,</span>
+<span class="co">#&gt;          1.2612e-44],</span>
+<span class="co">#&gt;         [1.4013e-44, 1.5414e-44, 1.6816e-44, 1.8217e-44, 1.9618e-44, 2.1019e-44,</span>
+<span class="co">#&gt;          2.2421e-44],</span>
+<span class="co">#&gt;         [2.3822e-44, 2.5223e-44, 2.6625e-44, 2.8026e-44, 2.9427e-44, 3.0829e-44,</span>
+<span class="co">#&gt;          3.2230e-44]])</span></pre></div>
 </div>
 <div id="create-a-tensor-and-then-change-its-shape" class="section level3">
 <h3 class="hasAnchor">
 <a href="#create-a-tensor-and-then-change-its-shape" class="anchor"></a>Create a tensor and then change its shape</h3>
-<div class="sourceCode" id="cb51"><pre class="r"><span class="co"># using arange to create tensor. starts from 0</span>
+<div class="sourceCode" id="cb52"><pre class="r"><span class="co"># using arange to create tensor. starts from 0</span>
 <span class="no">v</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">arange</span>(<span class="fl">9L</span>)
 (<span class="no">v</span> <span class="kw">=</span> <span class="no">v</span>$<span class="fu">view</span>(<span class="fl">3L</span>, <span class="fl">3L</span>))
 <span class="co">#&gt; tensor([[0, 1, 2],</span>
@@ -679,19 +703,19 @@
 <h2 class="hasAnchor">
 <a href="#distributions" class="anchor"></a>Distributions</h2>
 <p>Initialize a tensor randomized with a normal distribution with mean=0, var=1:</p>
-<div class="sourceCode" id="cb52"><pre class="r"><span class="no">a</span>  <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">randn</span>(<span class="fl">5L</span>, <span class="fl">7L</span>)
+<div class="sourceCode" id="cb53"><pre class="r"><span class="no">a</span>  <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">randn</span>(<span class="fl">5L</span>, <span class="fl">7L</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">a</span>)
-<span class="co">#&gt; tensor([[-1.0884,  1.4974, -1.1903,  1.5565, -0.2749, -0.6752,  0.1277],</span>
-<span class="co">#&gt;         [ 0.5406, -0.9327, -1.2063,  0.2355, -3.1928, -0.8117, -1.2669],</span>
-<span class="co">#&gt;         [ 0.4761, -0.3625, -0.9238,  1.2328,  0.6140, -0.8383, -0.6853],</span>
-<span class="co">#&gt;         [ 1.3256,  1.3649,  0.3005, -1.5693, -2.1583,  0.5050, -0.1270],</span>
-<span class="co">#&gt;         [ 0.1971, -0.4892, -0.1286,  0.2350, -0.1630,  0.5773, -0.1214]])</span>
+<span class="co">#&gt; tensor([[ 0.6668,  0.6345, -1.4095, -1.0152, -0.6226,  1.2170,  0.1415],</span>
+<span class="co">#&gt;         [ 2.1792,  1.7715, -0.5101, -0.3340,  0.2276,  1.0559,  0.5256],</span>
+<span class="co">#&gt;         [ 0.9915, -1.5909, -0.7827,  0.6449,  0.0972, -0.5521,  0.2007],</span>
+<span class="co">#&gt;         [-3.1678, -0.3286, -2.0108, -0.6432, -0.7604, -1.5866, -0.2600],</span>
+<span class="co">#&gt;         [ 0.9792,  0.2887, -1.0482,  0.1023,  0.7420,  0.3071,  2.0751]])</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">a</span>$<span class="fu">size</span>())
 <span class="co">#&gt; torch.Size([5, 7])</span></pre></div>
 <div id="uniform-matrix" class="section level3">
 <h3 class="hasAnchor">
 <a href="#uniform-matrix" class="anchor"></a>Uniform matrix</h3>
-<div class="sourceCode" id="cb53"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">rTorch</span>)
+<div class="sourceCode" id="cb54"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">rTorch</span>)
 
 <span class="co"># 3x5 matrix uniformly distributed between 0 and 1</span>
 <span class="no">mat0</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">FloatTensor</span>(<span class="fl">3L</span>, <span class="fl">5L</span>)$<span class="fu">uniform_</span>(<span class="fl">0L</span>, <span class="fl">1L</span>)
@@ -703,9 +727,9 @@
 <span class="no">mat2</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">FloatTensor</span>(<span class="fl">5L</span>)$<span class="fu">uniform_</span>(<span class="fl">1</span>, <span class="fl">1</span>)
 
 <span class="no">mat0</span>
-<span class="co">#&gt; tensor([[0.6209, 0.2310, 0.4179, 0.4111, 0.4778],</span>
-<span class="co">#&gt;         [0.4603, 0.4948, 0.6558, 0.0941, 0.2888],</span>
-<span class="co">#&gt;         [0.6089, 0.4809, 0.7266, 0.1861, 0.0438]])</span>
+<span class="co">#&gt; tensor([[0.7932, 0.3900, 0.9329, 0.3227, 0.7272],</span>
+<span class="co">#&gt;         [0.5492, 0.2784, 0.9434, 0.4842, 0.8152],</span>
+<span class="co">#&gt;         [0.2145, 0.5279, 0.3204, 0.7764, 0.2032]])</span>
 <span class="no">mat1</span>
 <span class="co">#&gt; tensor([[0.1000, 0.1000, 0.1000, 0.1000, 0.1000],</span>
 <span class="co">#&gt;         [0.1000, 0.1000, 0.1000, 0.1000, 0.1000],</span>
@@ -714,34 +738,34 @@
 <div id="binomial-distribution" class="section level3">
 <h3 class="hasAnchor">
 <a href="#binomial-distribution" class="anchor"></a>Binomial distribution</h3>
-<div class="sourceCode" id="cb54"><pre class="r"><span class="no">Binomial</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="no">distributions</span>$<span class="no">binomial</span>$<span class="no">Binomial</span>
+<div class="sourceCode" id="cb55"><pre class="r"><span class="no">Binomial</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="no">distributions</span>$<span class="no">binomial</span>$<span class="no">Binomial</span>
 
 <span class="no">m</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">Binomial</a></span>(<span class="fl">100</span>, <span class="no">torch</span>$<span class="fu">tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">0</span> , <span class="fl">.2</span>, <span class="fl">.8</span>, <span class="fl">1</span>)))
 (<span class="no">x</span> <span class="kw">=</span> <span class="no">m</span>$<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>())
-<span class="co">#&gt; tensor([  0.,  22.,  78., 100.])</span></pre></div>
-<div class="sourceCode" id="cb55"><pre class="r"><span class="no">m</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">Binomial</a></span>(<span class="no">torch</span>$<span class="fu">tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">5.</span>), <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">10.</span>))),
+<span class="co">#&gt; tensor([  0.,  22.,  81., 100.])</span></pre></div>
+<div class="sourceCode" id="cb56"><pre class="r"><span class="no">m</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">Binomial</a></span>(<span class="no">torch</span>$<span class="fu">tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">5.</span>), <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">10.</span>))),
              <span class="no">torch</span>$<span class="fu">tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">0.5</span>, <span class="fl">0.8</span>)))
 (<span class="no">x</span> <span class="kw">=</span> <span class="no">m</span>$<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>())
 <span class="co">#&gt; tensor([[2., 5.],</span>
-<span class="co">#&gt;         [7., 9.]])</span></pre></div>
+<span class="co">#&gt;         [2., 9.]])</span></pre></div>
 </div>
 <div id="exponential-distribution" class="section level3">
 <h3 class="hasAnchor">
 <a href="#exponential-distribution" class="anchor"></a>Exponential distribution</h3>
-<div class="sourceCode" id="cb56"><pre class="r"><span class="no">Exponential</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="no">distributions</span>$<span class="no">exponential</span>$<span class="no">Exponential</span>
+<div class="sourceCode" id="cb57"><pre class="r"><span class="no">Exponential</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="no">distributions</span>$<span class="no">exponential</span>$<span class="no">Exponential</span>
 
 <span class="no">m</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">Exponential</a></span>(<span class="no">torch</span>$<span class="fu">tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">1.0</span>)))
 <span class="no">m</span>$<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>()  <span class="co"># Exponential distributed with rate=1</span>
-<span class="co">#&gt; tensor([1.2518])</span></pre></div>
+<span class="co">#&gt; tensor([1.3268])</span></pre></div>
 </div>
 <div id="weibull-distribution" class="section level3">
 <h3 class="hasAnchor">
 <a href="#weibull-distribution" class="anchor"></a>Weibull distribution</h3>
-<div class="sourceCode" id="cb57"><pre class="r"><span class="no">Weibull</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="no">distributions</span>$<span class="no">weibull</span>$<span class="no">Weibull</span>
+<div class="sourceCode" id="cb58"><pre class="r"><span class="no">Weibull</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="no">distributions</span>$<span class="no">weibull</span>$<span class="no">Weibull</span>
 
 <span class="no">m</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Weibull.html">Weibull</a></span>(<span class="no">torch</span>$<span class="fu">tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">1.0</span>)), <span class="no">torch</span>$<span class="fu">tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">1.0</span>)))
 <span class="no">m</span>$<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>()  <span class="co"># sample from a Weibull distribution with scale=1, concentration=1</span>
-<span class="co">#&gt; tensor([1.1720])</span></pre></div>
+<span class="co">#&gt; tensor([0.6977])</span></pre></div>
 </div>
 </div>
 <div id="tensor-default-data-types" class="section level2">
@@ -751,14 +775,14 @@
 <div id="float32" class="section level3">
 <h3 class="hasAnchor">
 <a href="#float32" class="anchor"></a>float32</h3>
-<div class="sourceCode" id="cb58"><pre class="r"><span class="co"># Default data type</span>
+<div class="sourceCode" id="cb59"><pre class="r"><span class="co"># Default data type</span>
 <span class="no">torch</span>$<span class="fu">tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">1.2</span>, <span class="fl">3</span>))$<span class="no">dtype</span>  <span class="co"># default for floating point is torch.float32</span>
 <span class="co">#&gt; torch.float32</span></pre></div>
 </div>
 <div id="float64" class="section level3">
 <h3 class="hasAnchor">
 <a href="#float64" class="anchor"></a>float64</h3>
-<div class="sourceCode" id="cb59"><pre class="r"><span class="co"># change default data type to float64</span>
+<div class="sourceCode" id="cb60"><pre class="r"><span class="co"># change default data type to float64</span>
 <span class="no">torch</span>$<span class="fu">set_default_dtype</span>(<span class="no">torch</span>$<span class="no">float64</span>)
 <span class="no">torch</span>$<span class="fu">tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">1.2</span>, <span class="fl">3</span>))$<span class="no">dtype</span>         <span class="co"># a new floating point tensor</span>
 <span class="co">#&gt; torch.float64</span></pre></div>
@@ -766,7 +790,7 @@
 <div id="double" class="section level3">
 <h3 class="hasAnchor">
 <a href="#double" class="anchor"></a>double</h3>
-<div class="sourceCode" id="cb60"><pre class="r"><span class="no">torch</span>$<span class="fu">set_default_dtype</span>(<span class="no">torch</span>$<span class="no">double</span>)
+<div class="sourceCode" id="cb61"><pre class="r"><span class="no">torch</span>$<span class="fu">set_default_dtype</span>(<span class="no">torch</span>$<span class="no">double</span>)
 <span class="no">torch</span>$<span class="fu">tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">1.2</span>, <span class="fl">3</span>))$<span class="no">dtype</span>
 <span class="co">#&gt; torch.float64</span></pre></div>
 </div>
@@ -778,16 +802,16 @@
 <h3 class="hasAnchor">
 <a href="#using-view" class="anchor"></a>Using <em>view</em>
 </h3>
-<div class="sourceCode" id="cb61"><pre class="r"><span class="no">x</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">randn</span>(<span class="fl">2L</span>, <span class="fl">3L</span>)            <span class="co"># Size 2x3</span>
+<div class="sourceCode" id="cb62"><pre class="r"><span class="no">x</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">randn</span>(<span class="fl">2L</span>, <span class="fl">3L</span>)            <span class="co"># Size 2x3</span>
 <span class="no">y</span> <span class="kw">=</span> <span class="no">x</span>$<span class="fu">view</span>(<span class="fl">6L</span>)                    <span class="co"># Resize x to size 6</span>
 <span class="no">z</span> <span class="kw">=</span> <span class="no">x</span>$<span class="fu">view</span>(-<span class="fl">1L</span>, <span class="fl">2L</span>)                <span class="co"># Size 3x2</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">y</span>)
-<span class="co">#&gt; tensor([ 1.9785, -1.5708, -0.2519,  0.4581, -0.2375, -0.5341])</span>
+<span class="co">#&gt; tensor([ 1.4930,  0.9769, -0.5405, -0.6723, -0.8389, -1.6264])</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">z</span>)
-<span class="co">#&gt; tensor([[ 1.9785, -1.5708],</span>
-<span class="co">#&gt;         [-0.2519,  0.4581],</span>
-<span class="co">#&gt;         [-0.2375, -0.5341]])</span></pre></div>
-<div class="sourceCode" id="cb62"><pre class="r"><span class="co"># 0 1 2</span>
+<span class="co">#&gt; tensor([[ 1.4930,  0.9769],</span>
+<span class="co">#&gt;         [-0.5405, -0.6723],</span>
+<span class="co">#&gt;         [-0.8389, -1.6264]])</span></pre></div>
+<div class="sourceCode" id="cb63"><pre class="r"><span class="co"># 0 1 2</span>
 <span class="co"># 3 4 5</span>
 <span class="co"># 6 7 8</span>
 <span class="no">v</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">arange</span>(<span class="fl">9L</span>)
@@ -799,32 +823,32 @@
 <div id="concatenating-tensors" class="section level3">
 <h3 class="hasAnchor">
 <a href="#concatenating-tensors" class="anchor"></a>Concatenating tensors</h3>
-<div class="sourceCode" id="cb63"><pre class="r"><span class="co"># concatenate tensors</span>
+<div class="sourceCode" id="cb64"><pre class="r"><span class="co"># concatenate tensors</span>
 <span class="no">x</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">randn</span>(<span class="fl">2L</span>, <span class="fl">3L</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">x</span>)
-<span class="co">#&gt; tensor([[-0.7656,  1.0629, -0.8742],</span>
-<span class="co">#&gt;         [-1.4987, -0.9417, -1.1116]])</span>
+<span class="co">#&gt; tensor([[ 0.2313,  0.3127,  0.5690],</span>
+<span class="co">#&gt;         [-0.3188, -0.8205, -0.2345]])</span>
 
 <span class="co"># concatenate tensors by dim=0"</span>
 <span class="no">torch</span>$<span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">x</span>, <span class="no">x</span>, <span class="no">x</span>), <span class="fl">0L</span>)
-<span class="co">#&gt; tensor([[-0.7656,  1.0629, -0.8742],</span>
-<span class="co">#&gt;         [-1.4987, -0.9417, -1.1116],</span>
-<span class="co">#&gt;         [-0.7656,  1.0629, -0.8742],</span>
-<span class="co">#&gt;         [-1.4987, -0.9417, -1.1116],</span>
-<span class="co">#&gt;         [-0.7656,  1.0629, -0.8742],</span>
-<span class="co">#&gt;         [-1.4987, -0.9417, -1.1116]])</span>
+<span class="co">#&gt; tensor([[ 0.2313,  0.3127,  0.5690],</span>
+<span class="co">#&gt;         [-0.3188, -0.8205, -0.2345],</span>
+<span class="co">#&gt;         [ 0.2313,  0.3127,  0.5690],</span>
+<span class="co">#&gt;         [-0.3188, -0.8205, -0.2345],</span>
+<span class="co">#&gt;         [ 0.2313,  0.3127,  0.5690],</span>
+<span class="co">#&gt;         [-0.3188, -0.8205, -0.2345]])</span>
 
 <span class="co"># concatenate tensors by dim=1</span>
 <span class="no">torch</span>$<span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="no">x</span>, <span class="no">x</span>, <span class="no">x</span>), <span class="fl">1L</span>)
-<span class="co">#&gt; tensor([[-0.7656,  1.0629, -0.8742, -0.7656,  1.0629, -0.8742, -0.7656,  1.0629,</span>
-<span class="co">#&gt;          -0.8742],</span>
-<span class="co">#&gt;         [-1.4987, -0.9417, -1.1116, -1.4987, -0.9417, -1.1116, -1.4987, -0.9417,</span>
-<span class="co">#&gt;          -1.1116]])</span></pre></div>
+<span class="co">#&gt; tensor([[ 0.2313,  0.3127,  0.5690,  0.2313,  0.3127,  0.5690,  0.2313,  0.3127,</span>
+<span class="co">#&gt;           0.5690],</span>
+<span class="co">#&gt;         [-0.3188, -0.8205, -0.2345, -0.3188, -0.8205, -0.2345, -0.3188, -0.8205,</span>
+<span class="co">#&gt;          -0.2345]])</span></pre></div>
 </div>
 <div id="reshape-tensors" class="section level3">
 <h3 class="hasAnchor">
 <a href="#reshape-tensors" class="anchor"></a>Reshape tensors</h3>
-<div class="sourceCode" id="cb64"><pre class="r"><span class="co"># ----- Reshape tensors -----</span>
+<div class="sourceCode" id="cb65"><pre class="r"><span class="co"># ----- Reshape tensors -----</span>
 <span class="no">img</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">ones</span>(<span class="fl">3L</span>, <span class="fl">28L</span>, <span class="fl">28L</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">img</span>$<span class="fu">size</span>())
 <span class="co">#&gt; torch.Size([3, 28, 28])</span>
@@ -879,7 +903,7 @@
 <div id="identity-matrix" class="section level3">
 <h3 class="hasAnchor">
 <a href="#identity-matrix" class="anchor"></a>Identity matrix</h3>
-<div class="sourceCode" id="cb65"><pre class="r"><span class="co"># identity matrix</span>
+<div class="sourceCode" id="cb66"><pre class="r"><span class="co"># identity matrix</span>
 <span class="no">eye</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">eye</span>(<span class="fl">3L</span>)              <span class="co"># Create an identity 3x3 tensor</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">eye</span>)
 <span class="co">#&gt; tensor([[1., 0., 0.],</span>
@@ -889,7 +913,7 @@
 <div id="ones" class="section level3">
 <h3 class="hasAnchor">
 <a href="#ones" class="anchor"></a>Ones</h3>
-<div class="sourceCode" id="cb66"><pre class="r">(<span class="no">v</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">ones</span>(<span class="fl">10L</span>))              <span class="co"># A tensor of size 10 containing all ones</span>
+<div class="sourceCode" id="cb67"><pre class="r">(<span class="no">v</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">ones</span>(<span class="fl">10L</span>))              <span class="co"># A tensor of size 10 containing all ones</span>
 <span class="co">#&gt; tensor([1., 1., 1., 1., 1., 1., 1., 1., 1., 1.])</span>
 (<span class="no">v</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">ones</span>(<span class="fl">2L</span>, <span class="fl">1L</span>, <span class="fl">2L</span>, <span class="fl">1L</span>))      <span class="co"># Size 2x1x2x1</span>
 <span class="co">#&gt; tensor([[[[1.],</span>
@@ -902,7 +926,7 @@
 <div id="eye" class="section level3">
 <h3 class="hasAnchor">
 <a href="#eye" class="anchor"></a>Eye</h3>
-<div class="sourceCode" id="cb67"><pre class="r"><span class="no">v</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">ones_like</span>(<span class="no">eye</span>)     <span class="co"># A tensor with same shape as eye. Fill it with 1.</span>
+<div class="sourceCode" id="cb68"><pre class="r"><span class="no">v</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">ones_like</span>(<span class="no">eye</span>)     <span class="co"># A tensor with same shape as eye. Fill it with 1.</span>
 <span class="no">v</span>
 <span class="co">#&gt; tensor([[1., 1., 1.],</span>
 <span class="co">#&gt;         [1., 1., 1.],</span>
@@ -911,7 +935,7 @@
 <div id="zeros" class="section level3">
 <h3 class="hasAnchor">
 <a href="#zeros" class="anchor"></a>Zeros</h3>
-<div class="sourceCode" id="cb68"><pre class="r">(<span class="no">z</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">zeros</span>(<span class="fl">10L</span>))             <span class="co"># A tensor of size 10 containing all zeros</span>
+<div class="sourceCode" id="cb69"><pre class="r">(<span class="no">z</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">zeros</span>(<span class="fl">10L</span>))             <span class="co"># A tensor of size 10 containing all zeros</span>
 <span class="co">#&gt; tensor([0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])</span></pre></div>
 </div>
 </div>
@@ -921,7 +945,7 @@
 <div id="fill-with-a-unique-value" class="section level3">
 <h3 class="hasAnchor">
 <a href="#fill-with-a-unique-value" class="anchor"></a>Fill with a unique value</h3>
-<div class="sourceCode" id="cb69"><pre class="r"><span class="co"># a tensor filled with ones</span>
+<div class="sourceCode" id="cb70"><pre class="r"><span class="co"># a tensor filled with ones</span>
 (<span class="no">v</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">ones</span>(<span class="fl">3L</span>, <span class="fl">3L</span>))
 <span class="co">#&gt; tensor([[1., 1., 1.],</span>
 <span class="co">#&gt;         [1., 1., 1.],</span>
@@ -930,13 +954,13 @@
 <div id="change-the-tensor-values-by-rows" class="section level3">
 <h3 class="hasAnchor">
 <a href="#change-the-tensor-values-by-rows" class="anchor"></a>Change the tensor values by rows</h3>
-<div class="sourceCode" id="cb70"><pre class="r"><span class="co"># change two rows in the tensor</span>
+<div class="sourceCode" id="cb71"><pre class="r"><span class="co"># change two rows in the tensor</span>
 <span class="co"># we are using 1-based index</span>
 <span class="no">v</span>[<span class="fl">2L</span>, ]$<span class="fu">fill_</span>(<span class="fl">2L</span>)         <span class="co"># fill row 1 with 2s</span>
 <span class="co">#&gt; tensor([2., 2., 2.])</span>
 <span class="no">v</span>[<span class="fl">3L</span>, ]$<span class="fu">fill_</span>(<span class="fl">3L</span>)         <span class="co"># fill row 2 with 3s</span>
 <span class="co">#&gt; tensor([3., 3., 3.])</span></pre></div>
-<div class="sourceCode" id="cb71"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">v</span>)
+<div class="sourceCode" id="cb72"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">v</span>)
 <span class="co">#&gt; tensor([[1., 1., 1.],</span>
 <span class="co">#&gt;         [2., 2., 2.],</span>
 <span class="co">#&gt;         [3., 3., 3.]])</span></pre></div>
@@ -944,16 +968,16 @@
 <div id="fill-a-tensor-with-a-set-increment" class="section level3">
 <h3 class="hasAnchor">
 <a href="#fill-a-tensor-with-a-set-increment" class="anchor"></a>Fill a tensor with a set increment</h3>
-<div class="sourceCode" id="cb72"><pre class="r"><span class="co"># Initialize Tensor with a range of values</span>
+<div class="sourceCode" id="cb73"><pre class="r"><span class="co"># Initialize Tensor with a range of values</span>
 (<span class="no">v</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">arange</span>(<span class="fl">10L</span>))             <span class="co"># similar to range(5) but creating a Tensor</span>
 <span class="co">#&gt; tensor([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</span></pre></div>
-<div class="sourceCode" id="cb73"><pre class="r">(<span class="no">v</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">arange</span>(<span class="fl">0L</span>, <span class="fl">10L</span>, <span class="kw">step</span> <span class="kw">=</span> <span class="fl">1L</span>))  <span class="co"># Size 5. Similar to range(0, 5, 1)</span>
+<div class="sourceCode" id="cb74"><pre class="r">(<span class="no">v</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">arange</span>(<span class="fl">0L</span>, <span class="fl">10L</span>, <span class="kw">step</span> <span class="kw">=</span> <span class="fl">1L</span>))  <span class="co"># Size 5. Similar to range(0, 5, 1)</span>
 <span class="co">#&gt; tensor([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</span></pre></div>
 </div>
 <div id="with-decimal-increments" class="section level3">
 <h3 class="hasAnchor">
 <a href="#with-decimal-increments" class="anchor"></a>With decimal increments</h3>
-<div class="sourceCode" id="cb74"><pre class="r"><span class="no">u</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">arange</span>(<span class="fl">0</span>, <span class="fl">10</span>, <span class="kw">step</span> <span class="kw">=</span> <span class="fl">0.5</span>)
+<div class="sourceCode" id="cb75"><pre class="r"><span class="no">u</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">arange</span>(<span class="fl">0</span>, <span class="fl">10</span>, <span class="kw">step</span> <span class="kw">=</span> <span class="fl">0.5</span>)
 <span class="no">u</span>
 <span class="co">#&gt; tensor([0.0000, 0.5000, 1.0000, 1.5000, 2.0000, 2.5000, 3.0000, 3.5000, 4.0000,</span>
 <span class="co">#&gt;         4.5000, 5.0000, 5.5000, 6.0000, 6.5000, 7.0000, 7.5000, 8.0000, 8.5000,</span>
@@ -962,7 +986,7 @@
 <div id="including-the-ending-value" class="section level3">
 <h3 class="hasAnchor">
 <a href="#including-the-ending-value" class="anchor"></a>Including the ending value</h3>
-<div class="sourceCode" id="cb75"><pre class="r"><span class="co"># range of values with increments including the end value</span>
+<div class="sourceCode" id="cb76"><pre class="r"><span class="co"># range of values with increments including the end value</span>
 <span class="no">start</span> <span class="kw">&lt;-</span> <span class="fl">0</span>
 <span class="no">end</span>   <span class="kw">&lt;-</span> <span class="fl">10</span>
 <span class="no">step</span>  <span class="kw">&lt;-</span> <span class="fl">0.25</span>
@@ -979,7 +1003,7 @@
 <div id="initialize-a-linear-or-log-scale-tensor" class="section level3">
 <h3 class="hasAnchor">
 <a href="#initialize-a-linear-or-log-scale-tensor" class="anchor"></a>Initialize a linear or log scale Tensor</h3>
-<div class="sourceCode" id="cb76"><pre class="r"><span class="co"># Initialize a linear or log scale Tensor</span>
+<div class="sourceCode" id="cb77"><pre class="r"><span class="co"># Initialize a linear or log scale Tensor</span>
 
 <span class="co"># Create a Tensor with 10 linear points for (1, 10) inclusively</span>
 (<span class="no">v</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">linspace</span>(<span class="fl">1L</span>, <span class="fl">10L</span>, <span class="kw">steps</span> <span class="kw">=</span> <span class="fl">10L</span>))
@@ -992,14 +1016,14 @@
 <div id="in-place--not-in-place" class="section level3">
 <h3 class="hasAnchor">
 <a href="#in-place--not-in-place" class="anchor"></a>In-place / Not-in-place</h3>
-<div class="sourceCode" id="cb77"><pre class="r"><span class="no">a</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">rand</span>(<span class="fl">5L</span>, <span class="fl">4L</span>)
+<div class="sourceCode" id="cb78"><pre class="r"><span class="no">a</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">rand</span>(<span class="fl">5L</span>, <span class="fl">4L</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span>(<span class="no">a</span>))
 <span class="co">#&gt; [1] "torch.Tensor"          "torch._C._TensorBase"  "python.builtin.object"</span></pre></div>
-<div class="sourceCode" id="cb78"><pre class="r"><span class="co"># converting the tensor to a numpy array, R automatically converts it</span>
+<div class="sourceCode" id="cb79"><pre class="r"><span class="co"># converting the tensor to a numpy array, R automatically converts it</span>
 <span class="no">b</span> <span class="kw">=</span> <span class="no">a</span>$<span class="fu">numpy</span>()
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span>(<span class="no">b</span>))
 <span class="co">#&gt; [1] "matrix"</span></pre></div>
-<div class="sourceCode" id="cb79"><pre class="r"><span class="no">a</span>$<span class="fu">fill_</span>(<span class="fl">3.5</span>)
+<div class="sourceCode" id="cb80"><pre class="r"><span class="no">a</span>$<span class="fu">fill_</span>(<span class="fl">3.5</span>)
 <span class="co">#&gt; tensor([[3.5000, 3.5000, 3.5000, 3.5000],</span>
 <span class="co">#&gt;         [3.5000, 3.5000, 3.5000, 3.5000],</span>
 <span class="co">#&gt;         [3.5000, 3.5000, 3.5000, 3.5000],</span>
@@ -1030,14 +1054,14 @@
 <div id="tensor-element-assigment-not-implemented-yet" class="section level3">
 <h3 class="hasAnchor">
 <a href="#tensor-element-assigment-not-implemented-yet" class="anchor"></a>Tensor element assigment not implemented yet</h3>
-<div class="sourceCode" id="cb80"><pre class="r"><span class="co"># this will throw an error because we don't still have a function for assignment</span>
+<div class="sourceCode" id="cb81"><pre class="r"><span class="co"># this will throw an error because we don't still have a function for assignment</span>
 <span class="no">a</span>[<span class="fl">1</span>, <span class="fl">1</span>] <span class="kw">&lt;-</span> <span class="fl">7.7</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">a</span>)
 <span class="co"># Error in a[1, 1] &lt;- 7.7 : object of type 'environment' is not subsettable</span></pre></div>
-<div class="sourceCode" id="cb81"><pre class="r"><span class="co"># This would be the right wayy to assign a value to a tensor element</span>
+<div class="sourceCode" id="cb82"><pre class="r"><span class="co"># This would be the right wayy to assign a value to a tensor element</span>
 <span class="no">a</span>[<span class="fl">1</span>, <span class="fl">1</span>]$<span class="fu">fill_</span>(<span class="fl">7.7</span>)
 <span class="co">#&gt; tensor(7.7000)</span></pre></div>
-<div class="sourceCode" id="cb82"><pre class="r"><span class="co"># we can see that the first element has been changed</span>
+<div class="sourceCode" id="cb83"><pre class="r"><span class="co"># we can see that the first element has been changed</span>
 <span class="no">a</span>
 <span class="co">#&gt; tensor([[7.7000, 3.5000, 3.5000, 3.5000],</span>
 <span class="co">#&gt;         [3.5000, 3.5000, 3.5000, 3.5000],</span>
@@ -1047,7 +1071,7 @@
 <blockquote>
 <p>Some operations like<code>narrow</code> do not have in-place versions, and hence, <code>.narrow_</code> does not exist. Similarly, some operations like <code>fill_</code> do not have an out-of-place version, so <code>.fill</code> does not exist.</p>
 </blockquote>
-<div class="sourceCode" id="cb83"><pre class="r"><span class="co"># a[[0L, 3L]]</span>
+<div class="sourceCode" id="cb84"><pre class="r"><span class="co"># a[[0L, 3L]]</span>
 <span class="no">a</span>[<span class="fl">1</span>, <span class="fl">4</span>]
 <span class="co">#&gt; tensor(3.5000)</span></pre></div>
 </div>
@@ -1058,17 +1082,17 @@
 <div id="change-a-tensor-element-given-its-index" class="section level3">
 <h3 class="hasAnchor">
 <a href="#change-a-tensor-element-given-its-index" class="anchor"></a>Change a tensor element given its index</h3>
-<div class="sourceCode" id="cb84"><pre class="r"><span class="co"># replace an element at position 0, 0</span>
+<div class="sourceCode" id="cb85"><pre class="r"><span class="co"># replace an element at position 0, 0</span>
 (<span class="no">new_tensor</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">Tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">1</span>, <span class="fl">2</span>), <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">3</span>, <span class="fl">4</span>))))
 <span class="co">#&gt; tensor([[1., 2.],</span>
 <span class="co">#&gt;         [3., 4.]])</span></pre></div>
-<div class="sourceCode" id="cb85"><pre class="r"><span class="co"># first row, firt column</span>
+<div class="sourceCode" id="cb86"><pre class="r"><span class="co"># first row, firt column</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">new_tensor</span>[<span class="fl">1L</span>, <span class="fl">1L</span>])
 <span class="co">#&gt; tensor(1.)</span></pre></div>
-<div class="sourceCode" id="cb86"><pre class="r"><span class="co"># change row 1, col 1 with value of 5</span>
+<div class="sourceCode" id="cb87"><pre class="r"><span class="co"># change row 1, col 1 with value of 5</span>
 <span class="no">new_tensor</span>[<span class="fl">1L</span>, <span class="fl">1L</span>]$<span class="fu">fill_</span>(<span class="fl">5</span>)
 <span class="co">#&gt; tensor(5.)</span></pre></div>
-<div class="sourceCode" id="cb87"><pre class="r"><span class="co"># which is the same as doing this</span>
+<div class="sourceCode" id="cb88"><pre class="r"><span class="co"># which is the same as doing this</span>
 <span class="no">new_tensor</span>[<span class="fl">1</span>, <span class="fl">1</span>]$<span class="fu">fill_</span>(<span class="fl">5</span>)
 <span class="co">#&gt; tensor(5.)</span></pre></div>
 <blockquote>
@@ -1078,44 +1102,44 @@
 <div id="in-r-the-index-is-1-based" class="section level3">
 <h3 class="hasAnchor">
 <a href="#in-r-the-index-is-1-based" class="anchor"></a>In R the index is 1-based</h3>
-<div class="sourceCode" id="cb88"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">new_tensor</span>)   <span class="co"># tensor([[ 5.,  2.],[ 3.,  4.]])</span>
+<div class="sourceCode" id="cb89"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">new_tensor</span>)   <span class="co"># tensor([[ 5.,  2.],[ 3.,  4.]])</span>
 <span class="co">#&gt; tensor([[5., 2.],</span>
 <span class="co">#&gt;         [3., 4.]])</span></pre></div>
-<div class="sourceCode" id="cb89"><pre class="r"><span class="co"># access an element at position (1, 0), 0-based index</span>
+<div class="sourceCode" id="cb90"><pre class="r"><span class="co"># access an element at position (1, 0), 0-based index</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">new_tensor</span>[<span class="fl">2L</span>, <span class="fl">1L</span>])           <span class="co"># tensor([ 3.])</span>
 <span class="co">#&gt; tensor(3.)</span></pre></div>
-<div class="sourceCode" id="cb90"><pre class="r"><span class="co"># convert it to a scalar value</span>
+<div class="sourceCode" id="cb91"><pre class="r"><span class="co"># convert it to a scalar value</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">new_tensor</span>[<span class="fl">2L</span>, <span class="fl">1L</span>]$<span class="fu">item</span>())    <span class="co"># 3.</span>
 <span class="co">#&gt; [1] 3</span></pre></div>
-<div class="sourceCode" id="cb91"><pre class="r"><span class="co"># which is the same as</span>
+<div class="sourceCode" id="cb92"><pre class="r"><span class="co"># which is the same as</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">new_tensor</span>[<span class="fl">2</span>, <span class="fl">1</span>])
 <span class="co">#&gt; tensor(3.)</span></pre></div>
-<div class="sourceCode" id="cb92"><pre class="r"><span class="co"># and the scalar</span>
+<div class="sourceCode" id="cb93"><pre class="r"><span class="co"># and the scalar</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">new_tensor</span>[<span class="fl">2</span>, <span class="fl">1</span>]$<span class="fu">item</span>())
 <span class="co">#&gt; [1] 3</span></pre></div>
 </div>
 <div id="extract-part-of-a-tensor" class="section level3">
 <h3 class="hasAnchor">
 <a href="#extract-part-of-a-tensor" class="anchor"></a>Extract part of a tensor</h3>
-<div class="sourceCode" id="cb93"><pre class="r"><span class="co"># Select indices</span>
+<div class="sourceCode" id="cb94"><pre class="r"><span class="co"># Select indices</span>
 <span class="no">x</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">randn</span>(<span class="fl">3L</span>, <span class="fl">4L</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">x</span>)
-<span class="co">#&gt; tensor([[ 0.3389,  0.2988,  0.7423,  0.5298],</span>
-<span class="co">#&gt;         [ 1.2931, -0.7453, -1.9668,  0.3296],</span>
-<span class="co">#&gt;         [ 2.1035, -1.3145,  1.8123, -0.4724]])</span></pre></div>
-<div class="sourceCode" id="cb94"><pre class="r"><span class="co"># extract first and third row</span>
+<span class="co">#&gt; tensor([[-0.3358,  0.3911,  0.8346, -0.9396],</span>
+<span class="co">#&gt;         [-2.3201, -0.1401, -1.2022,  1.6370],</span>
+<span class="co">#&gt;         [ 1.0699, -0.4464, -0.9055, -1.2303]])</span></pre></div>
+<div class="sourceCode" id="cb95"><pre class="r"><span class="co"># extract first and third row</span>
 <span class="co"># Select indices, dim=0</span>
 <span class="no">indices</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">0L</span>, <span class="fl">2L</span>))
 <span class="no">torch</span>$<span class="fu">index_select</span>(<span class="no">x</span>, <span class="fl">0L</span>, <span class="no">indices</span>)
-<span class="co">#&gt; tensor([[ 0.3389,  0.2988,  0.7423,  0.5298],</span>
-<span class="co">#&gt;         [ 2.1035, -1.3145,  1.8123, -0.4724]])</span></pre></div>
-<div class="sourceCode" id="cb95"><pre class="r"><span class="co"># extract first and third column</span>
+<span class="co">#&gt; tensor([[-0.3358,  0.3911,  0.8346, -0.9396],</span>
+<span class="co">#&gt;         [ 1.0699, -0.4464, -0.9055, -1.2303]])</span></pre></div>
+<div class="sourceCode" id="cb96"><pre class="r"><span class="co"># extract first and third column</span>
 <span class="co"># Select indices, dim=1</span>
 <span class="no">torch</span>$<span class="fu">index_select</span>(<span class="no">x</span>, <span class="fl">1L</span>, <span class="no">indices</span>)
-<span class="co">#&gt; tensor([[ 0.3389,  0.7423],</span>
-<span class="co">#&gt;         [ 1.2931, -1.9668],</span>
-<span class="co">#&gt;         [ 2.1035,  1.8123]])</span></pre></div>
-<div class="sourceCode" id="cb96"><pre class="r"><span class="co"># Take by indices</span>
+<span class="co">#&gt; tensor([[-0.3358,  0.8346],</span>
+<span class="co">#&gt;         [-2.3201, -1.2022],</span>
+<span class="co">#&gt;         [ 1.0699, -0.9055]])</span></pre></div>
+<div class="sourceCode" id="cb97"><pre class="r"><span class="co"># Take by indices</span>
 <span class="no">src</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">5</span>),
                         <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">8</span>)) )
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">src</span>)
@@ -1131,7 +1155,7 @@
 <div id="transpose" class="section level3">
 <h3 class="hasAnchor">
 <a href="#transpose" class="anchor"></a>Transpose</h3>
-<div class="sourceCode" id="cb97"><pre class="r"><span class="co"># two dimensions: 3x3</span>
+<div class="sourceCode" id="cb98"><pre class="r"><span class="co"># two dimensions: 3x3</span>
 <span class="no">x</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">arange</span>(<span class="fl">9L</span>)
 <span class="no">x</span> <span class="kw">&lt;-</span> <span class="no">x</span>$<span class="fu">view</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">3L</span>, <span class="fl">3L</span>))
 <span class="no">t</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">transpose</span>(<span class="no">x</span>, <span class="fl">0L</span>, <span class="fl">1L</span>)
@@ -1145,7 +1169,7 @@
 <span class="co">#&gt; tensor([[0, 3, 6],</span>
 <span class="co">#&gt;         [1, 4, 7],</span>
 <span class="co">#&gt;         [2, 5, 8]])</span></pre></div>
-<div class="sourceCode" id="cb98"><pre class="r"><span class="co"># three dimensions: 1x2x3</span>
+<div class="sourceCode" id="cb99"><pre class="r"><span class="co"># three dimensions: 1x2x3</span>
 <span class="no">x</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">ones</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1L</span>, <span class="fl">2L</span>, <span class="fl">3L</span>))
 <span class="no">t</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">transpose</span>(<span class="no">x</span>, <span class="fl">1L</span>, <span class="fl">0L</span>)
 
@@ -1171,7 +1195,7 @@
 <div id="permute-a-2d-tensor" class="section level3">
 <h3 class="hasAnchor">
 <a href="#permute-a-2d-tensor" class="anchor"></a>permute a 2D tensor</h3>
-<div class="sourceCode" id="cb99"><pre class="r"><span class="no">x</span>   <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">1</span>,<span class="fl">2</span>)), <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">3</span>,<span class="fl">4</span>)), <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">5</span>,<span class="fl">6</span>))))
+<div class="sourceCode" id="cb100"><pre class="r"><span class="no">x</span>   <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">tensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">1</span>,<span class="fl">2</span>)), <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">3</span>,<span class="fl">4</span>)), <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">5</span>,<span class="fl">6</span>))))
 <span class="no">xs</span>  <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">as_tensor</span>(<span class="no">x</span>$<span class="no">shape</span>)
 <span class="no">xp</span>  <span class="kw">&lt;-</span> <span class="no">x</span>$<span class="fu">permute</span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1L</span>, <span class="fl">2L</span>, <span class="fl">0L</span>))
 <span class="no">xps</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">as_tensor</span>(<span class="no">xp</span>$<span class="no">shape</span>)
@@ -1196,7 +1220,7 @@
 <div id="permute-a-3d-tensor" class="section level3">
 <h3 class="hasAnchor">
 <a href="#permute-a-3d-tensor" class="anchor"></a>permute a 3D tensor</h3>
-<div class="sourceCode" id="cb100"><pre class="r"><span class="no">torch</span>$<span class="fu">manual_seed</span>(<span class="fl">1234</span>)
+<div class="sourceCode" id="cb101"><pre class="r"><span class="no">torch</span>$<span class="fu">manual_seed</span>(<span class="fl">1234</span>)
 <span class="co">#&gt; &lt;torch._C.Generator&gt;</span>
 
 <span class="no">x</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">randn</span>(<span class="fl">10L</span>, <span class="fl">480L</span>, <span class="fl">640L</span>, <span class="fl">3L</span>)
@@ -1226,7 +1250,7 @@
 <span class="co">#&gt;          [[-0.0886, -1.3389],</span>
 <span class="co">#&gt;           [ 0.7163, -0.9050],</span>
 <span class="co">#&gt;           [-0.8144, -1.4922]]]])</span></pre></div>
-<div class="sourceCode" id="cb101"><pre class="r"><span class="no">xs</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">as_tensor</span>(<span class="no">x</span>$<span class="fu">size</span>())     <span class="co"># torch$tensor(c(10L, 480L, 640L, 3L))</span>
+<div class="sourceCode" id="cb102"><pre class="r"><span class="no">xs</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">as_tensor</span>(<span class="no">x</span>$<span class="fu">size</span>())     <span class="co"># torch$tensor(c(10L, 480L, 640L, 3L))</span>
 <span class="no">xp</span> <span class="kw">&lt;-</span> <span class="no">x</span>$<span class="fu">permute</span>(<span class="fl">0L</span>, <span class="fl">3L</span>, <span class="fl">1L</span>, <span class="fl">2L</span>)     <span class="co"># specify dimensions order</span>
 <span class="no">xps</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">as_tensor</span>(<span class="no">xp</span>$<span class="fu">size</span>())   <span class="co"># torch$tensor(c(10L, 3L, 480L, 640L))</span>
 
@@ -1235,7 +1259,7 @@
 
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">xps</span>)     <span class="co"># permuted tensor size</span>
 <span class="co">#&gt; tensor([ 10,   3, 480, 640])</span></pre></div>
-<div class="sourceCode" id="cb102"><pre class="r"><span class="no">xp</span>[<span class="fl">1</span>:<span class="fl">3</span>, <span class="fl">1</span>:<span class="fl">2</span>, <span class="fl">1</span>:<span class="fl">3</span>, <span class="fl">1</span>:<span class="fl">2</span>]
+<div class="sourceCode" id="cb103"><pre class="r"><span class="no">xp</span>[<span class="fl">1</span>:<span class="fl">3</span>, <span class="fl">1</span>:<span class="fl">2</span>, <span class="fl">1</span>:<span class="fl">3</span>, <span class="fl">1</span>:<span class="fl">2</span>]
 <span class="co">#&gt; tensor([[[[-0.0883,  1.0051],</span>
 <span class="co">#&gt;           [-0.1465, -1.6878],</span>
 <span class="co">#&gt;           [-0.6429,  0.5577]],</span>
@@ -1269,96 +1293,96 @@
 <div id="is-it-equal" class="section level3">
 <h3 class="hasAnchor">
 <a href="#is-it-equal" class="anchor"></a>is it equal</h3>
-<div class="sourceCode" id="cb103"><pre class="r">(<span class="no">m0</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">zeros</span>(<span class="fl">3L</span>, <span class="fl">5L</span>))
+<div class="sourceCode" id="cb104"><pre class="r">(<span class="no">m0</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">zeros</span>(<span class="fl">3L</span>, <span class="fl">5L</span>))
 <span class="co">#&gt; tensor([[0., 0., 0., 0., 0.],</span>
 <span class="co">#&gt;         [0., 0., 0., 0., 0.],</span>
 <span class="co">#&gt;         [0., 0., 0., 0., 0.]])</span></pre></div>
-<div class="sourceCode" id="cb104"><pre class="r">(<span class="no">m1</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">ones</span>(<span class="fl">3L</span>, <span class="fl">5L</span>))
+<div class="sourceCode" id="cb105"><pre class="r">(<span class="no">m1</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">ones</span>(<span class="fl">3L</span>, <span class="fl">5L</span>))
 <span class="co">#&gt; tensor([[1., 1., 1., 1., 1.],</span>
 <span class="co">#&gt;         [1., 1., 1., 1., 1.],</span>
 <span class="co">#&gt;         [1., 1., 1., 1., 1.]])</span></pre></div>
-<div class="sourceCode" id="cb105"><pre class="r">(<span class="no">m2</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">eye</span>(<span class="fl">3L</span>, <span class="fl">5L</span>))
+<div class="sourceCode" id="cb106"><pre class="r">(<span class="no">m2</span> <span class="kw">=</span> <span class="no">torch</span>$<span class="fu">eye</span>(<span class="fl">3L</span>, <span class="fl">5L</span>))
 <span class="co">#&gt; tensor([[1., 0., 0., 0., 0.],</span>
 <span class="co">#&gt;         [0., 1., 0., 0., 0.],</span>
 <span class="co">#&gt;         [0., 0., 1., 0., 0.]])</span></pre></div>
-<div class="sourceCode" id="cb106"><pre class="r"><span class="co"># is m1 equal to m0</span>
+<div class="sourceCode" id="cb107"><pre class="r"><span class="co"># is m1 equal to m0</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">m1</span> <span class="kw">==</span> <span class="no">m0</span>)
-<span class="co">#&gt; tensor([[0, 0, 0, 0, 0],</span>
-<span class="co">#&gt;         [0, 0, 0, 0, 0],</span>
-<span class="co">#&gt;         [0, 0, 0, 0, 0]], dtype=torch.uint8)</span></pre></div>
-<div class="sourceCode" id="cb107"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="fu"><a href="reference/as_boolean.html">as_boolean</a></span>(<span class="no">m1</span> <span class="kw">==</span> <span class="no">m0</span>))
 <span class="co">#&gt; tensor([[False, False, False, False, False],</span>
 <span class="co">#&gt;         [False, False, False, False, False],</span>
-<span class="co">#&gt;         [False, False, False, False, False]], dtype=torch.bool)</span></pre></div>
+<span class="co">#&gt;         [False, False, False, False, False]])</span></pre></div>
+<div class="sourceCode" id="cb108"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="fu"><a href="reference/as_boolean.html">as_boolean</a></span>(<span class="no">m1</span> <span class="kw">==</span> <span class="no">m0</span>))
+<span class="co">#&gt; tensor([[False, False, False, False, False],</span>
+<span class="co">#&gt;         [False, False, False, False, False],</span>
+<span class="co">#&gt;         [False, False, False, False, False]])</span></pre></div>
 </div>
 <div id="is-it-not-equal" class="section level3">
 <h3 class="hasAnchor">
 <a href="#is-it-not-equal" class="anchor"></a>is it not equal</h3>
-<div class="sourceCode" id="cb108"><pre class="r"><span class="co"># is it not equal</span>
+<div class="sourceCode" id="cb109"><pre class="r"><span class="co"># is it not equal</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">m1</span> <span class="kw">!=</span> <span class="no">m1</span>)
-<span class="co">#&gt; tensor([[0, 0, 0, 0, 0],</span>
-<span class="co">#&gt;         [0, 0, 0, 0, 0],</span>
-<span class="co">#&gt;         [0, 0, 0, 0, 0]], dtype=torch.uint8)</span></pre></div>
-<div class="sourceCode" id="cb109"><pre class="r"><span class="co"># are both equal</span>
+<span class="co">#&gt; tensor([[False, False, False, False, False],</span>
+<span class="co">#&gt;         [False, False, False, False, False],</span>
+<span class="co">#&gt;         [False, False, False, False, False]])</span></pre></div>
+<div class="sourceCode" id="cb110"><pre class="r"><span class="co"># are both equal</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">m2</span> <span class="kw">==</span> <span class="no">m2</span>)
-<span class="co">#&gt; tensor([[1, 1, 1, 1, 1],</span>
-<span class="co">#&gt;         [1, 1, 1, 1, 1],</span>
-<span class="co">#&gt;         [1, 1, 1, 1, 1]], dtype=torch.uint8)</span></pre></div>
-<div class="sourceCode" id="cb110"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="fu"><a href="reference/as_boolean.html">as_boolean</a></span>(<span class="no">m2</span> <span class="kw">==</span> <span class="no">m2</span>))
 <span class="co">#&gt; tensor([[True, True, True, True, True],</span>
 <span class="co">#&gt;         [True, True, True, True, True],</span>
-<span class="co">#&gt;         [True, True, True, True, True]], dtype=torch.bool)</span></pre></div>
-<div class="sourceCode" id="cb111"><pre class="r"><span class="co"># some are equal, others don't</span>
-<span class="no">m1</span> <span class="kw">!=</span> <span class="no">m2</span>
-<span class="co">#&gt; tensor([[0, 1, 1, 1, 1],</span>
-<span class="co">#&gt;         [1, 0, 1, 1, 1],</span>
-<span class="co">#&gt;         [1, 1, 0, 1, 1]], dtype=torch.uint8)</span></pre></div>
+<span class="co">#&gt;         [True, True, True, True, True]])</span></pre></div>
+<div class="sourceCode" id="cb111"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="fu"><a href="reference/as_boolean.html">as_boolean</a></span>(<span class="no">m2</span> <span class="kw">==</span> <span class="no">m2</span>))
+<span class="co">#&gt; tensor([[True, True, True, True, True],</span>
+<span class="co">#&gt;         [True, True, True, True, True],</span>
+<span class="co">#&gt;         [True, True, True, True, True]])</span></pre></div>
 <div class="sourceCode" id="cb112"><pre class="r"><span class="co"># some are equal, others don't</span>
+<span class="no">m1</span> <span class="kw">!=</span> <span class="no">m2</span>
+<span class="co">#&gt; tensor([[False,  True,  True,  True,  True],</span>
+<span class="co">#&gt;         [ True, False,  True,  True,  True],</span>
+<span class="co">#&gt;         [ True,  True, False,  True,  True]])</span></pre></div>
+<div class="sourceCode" id="cb113"><pre class="r"><span class="co"># some are equal, others don't</span>
 <span class="no">m0</span> <span class="kw">!=</span> <span class="no">m2</span>
-<span class="co">#&gt; tensor([[1, 0, 0, 0, 0],</span>
-<span class="co">#&gt;         [0, 1, 0, 0, 0],</span>
-<span class="co">#&gt;         [0, 0, 1, 0, 0]], dtype=torch.uint8)</span></pre></div>
-<div class="sourceCode" id="cb113"><pre class="r"><span class="fu"><a href="reference/as_boolean.html">as_boolean</a></span>(<span class="no">m0</span> <span class="kw">!=</span> <span class="no">m2</span>)
 <span class="co">#&gt; tensor([[ True, False, False, False, False],</span>
 <span class="co">#&gt;         [False,  True, False, False, False],</span>
-<span class="co">#&gt;         [False, False,  True, False, False]], dtype=torch.bool)</span></pre></div>
+<span class="co">#&gt;         [False, False,  True, False, False]])</span></pre></div>
+<div class="sourceCode" id="cb114"><pre class="r"><span class="fu"><a href="reference/as_boolean.html">as_boolean</a></span>(<span class="no">m0</span> <span class="kw">!=</span> <span class="no">m2</span>)
+<span class="co">#&gt; tensor([[ True, False, False, False, False],</span>
+<span class="co">#&gt;         [False,  True, False, False, False],</span>
+<span class="co">#&gt;         [False, False,  True, False, False]])</span></pre></div>
 </div>
 <div id="and" class="section level3">
 <h3 class="hasAnchor">
 <a href="#and" class="anchor"></a>AND</h3>
-<div class="sourceCode" id="cb114"><pre class="r"><span class="co"># AND</span>
+<div class="sourceCode" id="cb115"><pre class="r"><span class="co"># AND</span>
 <span class="no">m1</span> <span class="kw">&amp;</span> <span class="no">m1</span>
 <span class="co">#&gt; tensor([[1, 1, 1, 1, 1],</span>
 <span class="co">#&gt;         [1, 1, 1, 1, 1],</span>
 <span class="co">#&gt;         [1, 1, 1, 1, 1]], dtype=torch.uint8)</span></pre></div>
-<div class="sourceCode" id="cb115"><pre class="r"><span class="fu"><a href="reference/as_boolean.html">as_boolean</a></span>(<span class="no">m1</span> <span class="kw">&amp;</span> <span class="no">m1</span>)
+<div class="sourceCode" id="cb116"><pre class="r"><span class="fu"><a href="reference/as_boolean.html">as_boolean</a></span>(<span class="no">m1</span> <span class="kw">&amp;</span> <span class="no">m1</span>)
 <span class="co">#&gt; tensor([[True, True, True, True, True],</span>
 <span class="co">#&gt;         [True, True, True, True, True],</span>
-<span class="co">#&gt;         [True, True, True, True, True]], dtype=torch.bool)</span></pre></div>
+<span class="co">#&gt;         [True, True, True, True, True]])</span></pre></div>
 </div>
 <div id="or" class="section level3">
 <h3 class="hasAnchor">
 <a href="#or" class="anchor"></a>OR</h3>
-<div class="sourceCode" id="cb116"><pre class="r"><span class="co"># OR</span>
+<div class="sourceCode" id="cb117"><pre class="r"><span class="co"># OR</span>
 <span class="no">m0</span> <span class="kw">|</span> <span class="no">m2</span>
 <span class="co">#&gt; tensor([[1, 0, 0, 0, 0],</span>
 <span class="co">#&gt;         [0, 1, 0, 0, 0],</span>
 <span class="co">#&gt;         [0, 0, 1, 0, 0]], dtype=torch.uint8)</span></pre></div>
-<div class="sourceCode" id="cb117"><pre class="r"><span class="co"># OR</span>
+<div class="sourceCode" id="cb118"><pre class="r"><span class="co"># OR</span>
 <span class="no">m1</span> <span class="kw">|</span> <span class="no">m2</span>
 <span class="co">#&gt; tensor([[1, 1, 1, 1, 1],</span>
 <span class="co">#&gt;         [1, 1, 1, 1, 1],</span>
 <span class="co">#&gt;         [1, 1, 1, 1, 1]], dtype=torch.uint8)</span></pre></div>
-<div class="sourceCode" id="cb118"><pre class="r"><span class="fu"><a href="reference/as_boolean.html">as_boolean</a></span>(<span class="no">m1</span> <span class="kw">|</span> <span class="no">m2</span>)
+<div class="sourceCode" id="cb119"><pre class="r"><span class="fu"><a href="reference/as_boolean.html">as_boolean</a></span>(<span class="no">m1</span> <span class="kw">|</span> <span class="no">m2</span>)
 <span class="co">#&gt; tensor([[True, True, True, True, True],</span>
 <span class="co">#&gt;         [True, True, True, True, True],</span>
-<span class="co">#&gt;         [True, True, True, True, True]], dtype=torch.bool)</span></pre></div>
+<span class="co">#&gt;         [True, True, True, True, True]])</span></pre></div>
 </div>
 <div id="extract-only-one-logical-result-with-all" class="section level3">
 <h3 class="hasAnchor">
 <a href="#extract-only-one-logical-result-with-all" class="anchor"></a>Extract only one logical result with <em>all</em>
 </h3>
-<div class="sourceCode" id="cb119"><pre class="r"><span class="co"># tensor is less than</span>
+<div class="sourceCode" id="cb120"><pre class="r"><span class="co"># tensor is less than</span>
 <span class="no">A</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">ones</span>(<span class="fl">60000L</span>, <span class="fl">1L</span>, <span class="fl">28L</span>, <span class="fl">28L</span>)
 <span class="no">C</span> <span class="kw">&lt;-</span> <span class="no">A</span> * <span class="fl">0.5</span>
 
@@ -1374,7 +1398,7 @@
 <div id="greater-than" class="section level3">
 <h3 class="hasAnchor">
 <a href="#greater-than" class="anchor"></a>greater than</h3>
-<div class="sourceCode" id="cb120"><pre class="r"><span class="co"># tensor is greater than</span>
+<div class="sourceCode" id="cb121"><pre class="r"><span class="co"># tensor is greater than</span>
 <span class="no">A</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">ones</span>(<span class="fl">60000L</span>, <span class="fl">1L</span>, <span class="fl">28L</span>, <span class="fl">28L</span>)
 <span class="no">D</span> <span class="kw">&lt;-</span> <span class="no">A</span> * <span class="fl">2.0</span>
 <span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span>(<span class="no">torch</span>$<span class="fu">gt</span>(<span class="no">D</span>, <span class="no">A</span>))
@@ -1385,7 +1409,7 @@
 <div id="lower-than" class="section level3">
 <h3 class="hasAnchor">
 <a href="#lower-than" class="anchor"></a>lower than</h3>
-<div class="sourceCode" id="cb121"><pre class="r"><span class="co"># tensor is less than or equal</span>
+<div class="sourceCode" id="cb122"><pre class="r"><span class="co"># tensor is less than or equal</span>
 <span class="no">A1</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">ones</span>(<span class="fl">60000L</span>, <span class="fl">1L</span>, <span class="fl">28L</span>, <span class="fl">28L</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span>(<span class="no">torch</span>$<span class="fu">le</span>(<span class="no">A1</span>, <span class="no">A1</span>))
 <span class="co">#&gt; tensor(1, dtype=torch.uint8)</span>
@@ -1407,12 +1431,12 @@
 <div id="as-a-r-logical-value" class="section level3">
 <h3 class="hasAnchor">
 <a href="#as-a-r-logical-value" class="anchor"></a>As a R logical value</h3>
-<div class="sourceCode" id="cb122"><pre class="r"><span class="co"># we implement this little function</span>
+<div class="sourceCode" id="cb123"><pre class="r"><span class="co"># we implement this little function</span>
 <span class="no">all_as_boolean</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">x</span>) {
   <span class="co"># convert tensor of 1s and 0s to a unique boolean</span>
   <span class="fu"><a href="https://rdrr.io/r/base/logical.html">as.logical</a></span>(<span class="no">torch</span>$<span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span>(<span class="no">x</span>)$<span class="fu">numpy</span>())
 }</pre></div>
-<div class="sourceCode" id="cb123"><pre class="r"><span class="fu">all_as_boolean</span>(<span class="no">torch</span>$<span class="fu">gt</span>(<span class="no">D</span>, <span class="no">A</span>))
+<div class="sourceCode" id="cb124"><pre class="r"><span class="fu">all_as_boolean</span>(<span class="no">torch</span>$<span class="fu">gt</span>(<span class="no">D</span>, <span class="no">A</span>))
 <span class="co">#&gt; [1] TRUE</span>
 <span class="fu">all_as_boolean</span>(<span class="no">torch</span>$<span class="fu">gt</span>(<span class="no">A</span>, <span class="no">D</span>))
 <span class="co">#&gt; [1] FALSE</span>
@@ -1426,16 +1450,16 @@
 <div id="logical-not" class="section level3">
 <h3 class="hasAnchor">
 <a href="#logical-not" class="anchor"></a>Logical NOT</h3>
-<div class="sourceCode" id="cb124"><pre class="r"><span class="co"># vector of booleans</span>
+<div class="sourceCode" id="cb125"><pre class="r"><span class="co"># vector of booleans</span>
 <span class="no">all_true</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">BoolTensor</span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fl">TRUE</span>, <span class="fl">TRUE</span>, <span class="fl">TRUE</span>, <span class="fl">TRUE</span>))
 <span class="no">all_true</span>
-<span class="co">#&gt; tensor([True, True, True, True], dtype=torch.bool)</span></pre></div>
-<div class="sourceCode" id="cb125"><pre class="r"><span class="co"># logical NOT</span>
+<span class="co">#&gt; tensor([True, True, True, True])</span></pre></div>
+<div class="sourceCode" id="cb126"><pre class="r"><span class="co"># logical NOT</span>
 <span class="co"># negate vector with "!"</span>
 <span class="no">not_all_true</span> <span class="kw">&lt;-</span> !<span class="no">all_true</span>
 <span class="no">not_all_true</span>
-<span class="co">#&gt; tensor([False, False, False, False], dtype=torch.bool)</span></pre></div>
-<div class="sourceCode" id="cb126"><pre class="r"><span class="co"># a diagonal matrix</span>
+<span class="co">#&gt; tensor([False, False, False, False])</span></pre></div>
+<div class="sourceCode" id="cb127"><pre class="r"><span class="co"># a diagonal matrix</span>
 <span class="no">diag</span> <span class="kw">&lt;-</span> <span class="no">torch</span>$<span class="fu">eye</span>(<span class="fl">5L</span>)
 <span class="no">diag</span> <span class="kw">&lt;-</span> <span class="no">diag</span>$<span class="fu">to</span>(<span class="kw">dtype</span><span class="kw">=</span><span class="no">torch</span>$<span class="no">uint8</span>)   <span class="co"># convert to unsigned integer</span>
 <span class="no">diag</span>
@@ -1444,13 +1468,13 @@
 <span class="co">#&gt;         [0, 0, 1, 0, 0],</span>
 <span class="co">#&gt;         [0, 0, 0, 1, 0],</span>
 <span class="co">#&gt;         [0, 0, 0, 0, 1]], dtype=torch.uint8)</span></pre></div>
-<div class="sourceCode" id="cb127"><pre class="r"><span class="fu"><a href="reference/as_boolean.html">as_boolean</a></span>(<span class="no">diag</span>)
+<div class="sourceCode" id="cb128"><pre class="r"><span class="fu"><a href="reference/as_boolean.html">as_boolean</a></span>(<span class="no">diag</span>)
 <span class="co">#&gt; tensor([[ True, False, False, False, False],</span>
 <span class="co">#&gt;         [False,  True, False, False, False],</span>
 <span class="co">#&gt;         [False, False,  True, False, False],</span>
 <span class="co">#&gt;         [False, False, False,  True, False],</span>
-<span class="co">#&gt;         [False, False, False, False,  True]], dtype=torch.bool)</span></pre></div>
-<div class="sourceCode" id="cb128"><pre class="r"><span class="co"># logical NOT</span>
+<span class="co">#&gt;         [False, False, False, False,  True]])</span></pre></div>
+<div class="sourceCode" id="cb129"><pre class="r"><span class="co"># logical NOT</span>
 <span class="no">not_diag</span> <span class="kw">&lt;-</span> !<span class="no">diag</span>
 <span class="no">not_diag</span>
 <span class="co">#&gt; tensor([[0, 1, 1, 1, 1],</span>
@@ -1458,19 +1482,19 @@
 <span class="co">#&gt;         [1, 1, 0, 1, 1],</span>
 <span class="co">#&gt;         [1, 1, 1, 0, 1],</span>
 <span class="co">#&gt;         [1, 1, 1, 1, 0]], dtype=torch.uint8)</span></pre></div>
-<div class="sourceCode" id="cb129"><pre class="r"><span class="co"># and the negation</span>
+<div class="sourceCode" id="cb130"><pre class="r"><span class="co"># and the negation</span>
 !<span class="no">not_diag</span>
 <span class="co">#&gt; tensor([[1, 0, 0, 0, 0],</span>
 <span class="co">#&gt;         [0, 1, 0, 0, 0],</span>
 <span class="co">#&gt;         [0, 0, 1, 0, 0],</span>
 <span class="co">#&gt;         [0, 0, 0, 1, 0],</span>
 <span class="co">#&gt;         [0, 0, 0, 0, 1]], dtype=torch.uint8)</span></pre></div>
-<div class="sourceCode" id="cb130"><pre class="r"><span class="fu"><a href="reference/as_boolean.html">as_boolean</a></span>(!<span class="no">not_diag</span>)
+<div class="sourceCode" id="cb131"><pre class="r"><span class="fu"><a href="reference/as_boolean.html">as_boolean</a></span>(!<span class="no">not_diag</span>)
 <span class="co">#&gt; tensor([[ True, False, False, False, False],</span>
 <span class="co">#&gt;         [False,  True, False, False, False],</span>
 <span class="co">#&gt;         [False, False,  True, False, False],</span>
 <span class="co">#&gt;         [False, False, False,  True, False],</span>
-<span class="co">#&gt;         [False, False, False, False,  True]], dtype=torch.bool)</span></pre></div>
+<span class="co">#&gt;         [False, False, False, False,  True]])</span></pre></div>
 </div>
 </div>
 </div>
