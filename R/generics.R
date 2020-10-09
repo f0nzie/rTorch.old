@@ -595,6 +595,35 @@ tensor_ops <- function(a, b) UseMethod("tensor_ops")
 }
 
 
+#' @export
+"abs.torch.Tensor" <- function(x) {
+    torch$abs(x)
+}
+
+
+#' @export
+"sign.torch.Tensor" <- function(x) {
+    torch$sign(x)
+}
+
+
+#' @export
+"sqrt.torch.Tensor" <- function(x) {
+    torch$sqrt(x)
+}
+
+
+#' @export
+"floor.torch.Tensor" <- function(x) {
+    torch$floor(x)
+}
+
+
+#' @export
+"round.torch.Tensor" <- function(input, ...) {
+    # round: Returns a new tensor with each of the elements of input rounded to the closest integer.
+    torch$round(input, ...)
+}
 
 
 #' Dot product of two tensors
@@ -712,3 +741,35 @@ tensor_ops <- function(a, b) UseMethod("tensor_ops")
     torch$log10(x)
 }
 
+
+#' @export
+"sin.torch.Tensor" <- function(x) {
+    torch$sin(x)
+}
+
+#' @export
+"cos.torch.Tensor" <- function(x) {
+    torch$cos(x)
+}
+
+#' @export
+"tan.torch.Tensor" <- function(x) {
+    torch$tan(x)
+}
+
+
+#' @export
+"asin.torch.Tensor" <- function(x) {
+    torch$asin(x)
+}
+
+#' @export
+"acos.torch.Tensor" <- function(x) {
+    torch$acos(x)
+}
+
+
+#' @export
+"atan.torch.Tensor" <- function(x) {
+    torch$atan(x)
+}
