@@ -73,7 +73,7 @@ To generate This generic we use the function np$logical_not(x)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0-9004</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0-9005</span>
       </span>
     </div>
 
@@ -135,7 +135,7 @@ To generate This generic we use the function <code>np$logical_not(x)</code>.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for torch.Tensor</span>
-!(<span class='no'>x</span>)</pre>
+<span class='op'>!</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -152,13 +152,14 @@ To generate This generic we use the function <code>np$logical_not(x)</code>.</p>
 in a tensor of data type <code>torch$bool</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>A</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>ones</span>(<span class='fl'>5L</span>)
-!<span class='no'>A</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>A</span> <span class='op'>&lt;-</span> <span class='va'>torch</span><span class='op'>$</span><span class='fu'>ones</span><span class='op'>(</span><span class='fl'>5L</span><span class='op'>)</span>
+<span class='op'>!</span><span class='va'>A</span>
 
-<span class='no'>Z</span> <span class='kw'>&lt;-</span> <span class='no'>torch</span>$<span class='fu'>zeros</span>(<span class='fl'>5L</span>)
-!<span class='no'>Z</span>
-}</div></pre>
+<span class='va'>Z</span> <span class='op'>&lt;-</span> <span class='va'>torch</span><span class='op'>$</span><span class='fu'>zeros</span><span class='op'>(</span><span class='fl'>5L</span><span class='op'>)</span>
+<span class='op'>!</span><span class='va'>Z</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -174,7 +175,7 @@ in a tensor of data type <code>torch$bool</code>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
