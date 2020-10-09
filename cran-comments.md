@@ -1,3 +1,75 @@
+# 0.4.0
+
+## Notes by *Prof Brian Ripley* <ripley@stats.ox.ac.uk>
+
+20201009 3:42 AM (5 hours ago) 
+	
+to *alfonso.reyes*, CRAN
+Dear maintainer,
+Please see the problems shown on
+<https://cran.r-project.org/web/checks/check_results_rTorch.html>.
+Please correct before 2020-10-23 to safely retain your package on CRAN.
+
+![image-20201009090251822](assets/cran-comments/image-20201009090251822.png)
+
+
+
+###  Flavor: [r-devel-linux-x86_64-fedora-clang](https://www.r-project.org/nosvn/R.check/r-devel-linux-x86_64-fedora-clang/rTorch-00check.html)
+
+    ══ testthat results  ═══════════════════════════════════════════════════════════
+    [ OK: 99 | SKIPPED: 38 | WARNINGS: 0 | FAILED: 7 ]
+    \1. Error: Python and R share variables (@test_r_torch_share_objects.R#82) 
+    \2. Failure: Python string of commands returns a dictionary (@test_types.R#81) 
+    \3. Failure: Python string of commands returns a dictionary (@test_types.R#82) 
+    \4. Failure: Python string of commands returns a dictionary (@test_types.R#84) 
+    \5. Failure: Python string of commands returns a dictionary (@test_types.R#85) 
+    \6. Failure: Python string of commands returns a dictionary (@test_types.R#89) 
+    \7. Failure: Python string of commands returns a dictionary (@test_types.R#89) 
+    
+    Error: testthat unit tests failed
+    Execution halted 
+
+
+###  Flavor: [r-devel-linux-x86_64-fedora-gcc](https://www.r-project.org/nosvn/R.check/r-devel-linux-x86_64-fedora-gcc/rTorch-00check.html)
+
+    ══ testthat results  ═══════════════════════════════════════════════════════════
+    [ OK: 99 | SKIPPED: 38 | WARNINGS: 0 | FAILED: 7 ]
+    \1. Error: Python and R share variables (@test_r_torch_share_objects.R#82) 
+    \2. Failure: Python string of commands returns a dictionary (@test_types.R#81) 
+    \3. Failure: Python string of commands returns a dictionary (@test_types.R#82) 
+    \4. Failure: Python string of commands returns a dictionary (@test_types.R#84) 
+    \5. Failure: Python string of commands returns a dictionary (@test_types.R#85) 
+    \6. Failure: Python string of commands returns a dictionary (@test_types.R#89) 
+    \7. Failure: Python string of commands returns a dictionary (@test_types.R#89) 
+    
+    Error: testthat unit tests failed
+    Execution halted 
+
+
+###  Flavor: [r-patched-solaris-x86](https://www.r-project.org/nosvn/R.check/r-patched-solaris-x86/rTorch-00check.html)
+
+    ══ testthat results  ═══════════════════════════════════════════════════════════
+    [ OK: 48 | SKIPPED: 38 | WARNINGS: 0 | FAILED: 10 ]
+    \1.  Error: default (@test-install_rtorch_dryrun.R#7) 
+    \2.  Error: 1.2, Python 3.7 (@test-install_rtorch_dryrun.R#19) 
+    \3.  Error: 1.2, Python 3.7, Nightly (@test-install_rtorch_dryrun.R#32) 
+    \4.  Error: 1.6, Python 3.6, pandas (@test-install_rtorch_dryrun.R#47) 
+    \5.  Error: 1.3, Python 3.6, pandas+matplotlib, gpu=9.2 (@test-install_rtorch_dryrun.R#63) 
+    \6.  Error: Python and R share variables (@test_r_torch_share_objects.R#45) 
+    \7.  Error: Multi-dimensional arrays are handled correctly (@test_types.R#43) 
+    \8.  Error: shape of numpy array return in a list (@test_types.R#52) 
+    \9.  Error: indices in numpy array have to be integers (@test_types.R#58) 
+    \10. Error: Python string of commands returns a dictionary (@test_types.R#71) 
+    
+    Error: testthat unit tests failed
+    Execution halted 
+
+
+
+
+
+-----
+
 # v0.0.4
 20201008: Issues fixed by adding the proper `SystemRequirements`
 
