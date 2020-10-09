@@ -1,4 +1,5 @@
 # 0.4.0.9005
+* add unit tests for new functions
 * add functions sign, abs, sqrt, floor, ceil, round, sin, cos, tan, asin, acos, atan in `generics.R`
 
 # 0.4.0.9004

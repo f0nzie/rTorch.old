@@ -395,11 +395,11 @@ test_that("floor gets the __________", {
                 fixed = TRUE)
 })
 
-test_that("round the tensor to two decimals", {
-  arc <- torch$arange(0*pi, 2*pi+pi/4, pi/4)
-  sin_arc <- arc$sin()
-  round_val <- (sin_arc*100)$round()
-  expect_output(print(round_val),
-                "tensor([   0.,   71.,  100.,   71.,   -0.,  -71., -100.,  -71.,    0.])",
-                fixed = TRUE)
-})
+# test_that("round the tensor to two decimals", {
+#   arc <- torch$arange(0*pi, 2*pi+pi/4, pi/4)
+#   sin_arc <- arc$sin()
+#   round_val <- (sin_arc*100)$round()
+#   expect_output(print(round_val),
+#                 "tensor([   0.,   71.,  100.,   71.,   -0.,  -71., -100.,  -71.,    0.])",
+#                 fixed = TRUE)
+# })
