@@ -68,13 +68,11 @@ test_that("Python string of commands returns a dictionary", {
     # indent Python code to the left margin
     #
     # we can make prs a global variable with <<- but it will catch other objects
-    prs <- py_run_string(
-"
+    prs <- py_run_string("
 import numpy as np
 a = np.zeros((100, 100, 3))
 a[:,:,0] = 255
-"
-)
+")
     # print(reticulate::py_list_attributes(prs))
     expect_equal(class(prs),  c("python.builtin.dict", "python.builtin.object"))
     expect_true(all(class(prs) %in% c("python.builtin.dict", "python.builtin.object")))
