@@ -390,6 +390,7 @@ tensor_ops <- function(a, b) UseMethod("tensor_ops")
 "!=.torch.Tensor" <- function(x, y) {
     # there is not not_equal function in PyTorch
     if (x$data$type() == "torch.BoolTensor" & y$data$type() == "torch.BoolTensor") {
+        # if x and y are booleans then should return boolean
         torch$as_tensor(torch$ne(x, y), dtype = torch$bool)
     } else {
         torch$ne(x, y)
@@ -419,7 +420,7 @@ tensor_ops <- function(a, b) UseMethod("tensor_ops")
 #' @export
 #' @name logical_not
 "!.torch.Tensor" <- function(x) {
-    # there is not logical not in PyTorch
+    # there is not logical NOT in PyTorch
     # torch$BoolTensor(np$logical_not(a))
     # torch$as_tensor(np$logical_not(x), dtype = torch$bool)
     if (x$data$type() == "torch.BoolTensor") {
@@ -516,7 +517,6 @@ tensor_ops <- function(a, b) UseMethod("tensor_ops")
 #' }
 #' @export
 "<.torch.Tensor" <- function(a, b) {
-    # torch$lt(a, b)
     # torch$as_tensor(torch$lt(a, b), dtype = torch$bool)
     torch$lt(a, b)
 }
@@ -541,7 +541,6 @@ tensor_ops <- function(a, b) UseMethod("tensor_ops")
 #' }
 #' @export
 "<=.torch.Tensor" <- function(a, b) {
-    # torch$le(a, b)
     # torch$as_tensor(torch$le(a, b), dtype = torch$bool)
     torch$le(a, b)
 }
