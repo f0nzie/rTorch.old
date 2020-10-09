@@ -1,3 +1,7 @@
+# 0.4.0.9005
+* add unit tests for new functions
+* add functions sign, abs, sqrt, floor, ceil, round, sin, cos, tan, asin, acos, atan in `generics.R`
+
 # 0.4.0.9004
 * add file `tests/testthat/rhub-tests.R` that send rTorch for testing on three different platforms. Use it as well in addition to Travis and Appveyor.
 * removing `data.table` and `R6` from `Imports`. Not used yet.

@@ -1,4 +1,3 @@
-# np <- import("numpy")
 
 #' @importFrom utils str
 #' @export
@@ -121,9 +120,6 @@ one_tensor_op <- function(x) UseMethod("one_tensor_op")
     torch$remainder(a, b)
 }
 
-
-# all <- function(x, ...) UseMethod("all")
-# any <- function(x, ...) UseMethod("any")
 
 
 #' all
@@ -372,13 +368,6 @@ tensor_ops <- function(a, b) UseMethod("tensor_ops")
 }
 
 
-tensor_not_equal <- function(x, y) {
-    # there is not not_equal function in PyTorch
-    x <- r_to_py(x$numpy())
-    y <- r_to_py(y$numpy())
-    torch$BoolTensor(np$not_equal(x, y))
-}
-
 #' Compare two tensors if not equal
 #'
 #' This generic is approximately similar to \code{torch$ne(a, b)}, with the
@@ -401,6 +390,7 @@ tensor_not_equal <- function(x, y) {
 "!=.torch.Tensor" <- function(x, y) {
     # there is not not_equal function in PyTorch
     if (x$data$type() == "torch.BoolTensor" & y$data$type() == "torch.BoolTensor") {
+        # if x and y are booleans then should return boolean
         torch$as_tensor(torch$ne(x, y), dtype = torch$bool)
     } else {
         torch$ne(x, y)
@@ -430,7 +420,7 @@ tensor_not_equal <- function(x, y) {
 #' @export
 #' @name logical_not
 "!.torch.Tensor" <- function(x) {
-    # there is not logical not in PyTorch
+    # there is not logical NOT in PyTorch
     # torch$BoolTensor(np$logical_not(a))
     # torch$as_tensor(np$logical_not(x), dtype = torch$bool)
     if (x$data$type() == "torch.BoolTensor") {
@@ -441,20 +431,6 @@ tensor_not_equal <- function(x, y) {
 
 }
 
-
-tensor_logical_and <- function(x, y) {
-    x <- r_to_py(x$numpy())
-    y <- r_to_py(y$numpy())
-    np_logical_and <- r_to_py(np$logical_and(x, y))
-    torch$BoolTensor(np_logical_and$copy())            # prevent PyTorch warning
-}
-
-tensor_logical_or <- function(x, y) {
-    x <- r_to_py(x$numpy())
-    y <- r_to_py(y$numpy())
-    np_logical_or <- r_to_py(np$logical_or(x, y))
-    torch$BoolTensor(np_logical_or$copy())             # prevent PyTorch warning
-}
 
 
 #' Logical AND of two tensors
@@ -541,7 +517,6 @@ tensor_logical_or <- function(x, y) {
 #' }
 #' @export
 "<.torch.Tensor" <- function(a, b) {
-    # torch$lt(a, b)
     # torch$as_tensor(torch$lt(a, b), dtype = torch$bool)
     torch$lt(a, b)
 }
@@ -566,7 +541,6 @@ tensor_logical_or <- function(x, y) {
 #' }
 #' @export
 "<=.torch.Tensor" <- function(a, b) {
-    # torch$le(a, b)
     # torch$as_tensor(torch$le(a, b), dtype = torch$bool)
     torch$le(a, b)
 }
@@ -621,6 +595,35 @@ tensor_logical_or <- function(x, y) {
 }
 
 
+#' @export
+"abs.torch.Tensor" <- function(x) {
+    torch$abs(x)
+}
+
+
+#' @export
+"sign.torch.Tensor" <- function(x) {
+    torch$sign(x)
+}
+
+
+#' @export
+"sqrt.torch.Tensor" <- function(x) {
+    torch$sqrt(x)
+}
+
+
+#' @export
+"floor.torch.Tensor" <- function(x) {
+    torch$floor(x)
+}
+
+
+#' #' @export
+#' "round.torch.Tensor" <- function(input) {
+#'     # round: Returns a new tensor with each of the elements of input rounded to the closest integer.
+#'     torch$round(input)
+#' }
 
 
 #' Dot product of two tensors
@@ -738,3 +741,35 @@ tensor_logical_or <- function(x, y) {
     torch$log10(x)
 }
 
+
+#' @export
+"sin.torch.Tensor" <- function(x) {
+    torch$sin(x)
+}
+
+#' @export
+"cos.torch.Tensor" <- function(x) {
+    torch$cos(x)
+}
+
+#' @export
+"tan.torch.Tensor" <- function(x) {
+    torch$tan(x)
+}
+
+
+#' @export
+"asin.torch.Tensor" <- function(x) {
+    torch$asin(x)
+}
+
+#' @export
+"acos.torch.Tensor" <- function(x) {
+    torch$acos(x)
+}
+
+
+#' @export
+"atan.torch.Tensor" <- function(x) {
+    torch$atan(x)
+}

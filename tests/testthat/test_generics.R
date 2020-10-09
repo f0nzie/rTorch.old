@@ -275,3 +275,131 @@ test_that("matmul: batched matrix x broadcasted matrix", {
   # torch.Size([10, 3, 5])
   expect_equal(torch$matmul(tensor1, tensor2)$size(), torch$Size(list(10L, 3L, 5L)))
 })
+
+context("trigonometric functions: sin, cos, tan")
+
+test_that("sine of angle matches output", {
+  ang <- torch$arange(0*pi, 2*pi+pi/4, pi/4)
+  sin_arc <- ang$sin()
+  # copy paste output from the console
+  expect_output(print(sin_arc),
+                "tensor([ 0.0000e+00,  7.0711e-01,  1.0000e+00,  7.0711e-01, -8.7423e-08,
+        -7.0711e-01, -1.0000e+00, -7.0711e-01,  1.7485e-07])",
+                fixed = TRUE)
+})
+
+test_that("cosine of angle matches output", {
+  ang <- torch$arange(0*pi, 2*pi+pi/4, pi/4)
+  cos_arc <- ang$cos()
+  # copy paste output from the console
+  expect_output(print(cos_arc),
+                "tensor([ 1.0000e+00,  7.0711e-01, -4.3711e-08, -7.0711e-01, -1.0000e+00,
+        -7.0711e-01,  1.1925e-08,  7.0711e-01,  1.0000e+00])",
+                fixed = TRUE)
+})
+
+test_that("tangent of angle matches output", {
+  ang <- torch$arange(0*pi, 2*pi+pi/4, pi/4)
+  tan_arc <- ang$tan()
+  # copy paste output from the console
+  expect_output(print(tan_arc),
+                "tensor([ 0.0000e+00,  1.0000e+00, -2.2877e+07, -1.0000e+00,  8.7423e-08,
+         1.0000e+00, -8.3858e+07, -1.0000e+00,  1.7485e-07])",
+                fixed = TRUE)
+})
+
+
+context("inverse trigonometric functions: asin, acos, atan")
+
+test_that("sine of angle matches output", {
+  arc <- torch$arange(0*pi, pi/2+pi/12, pi/12)
+  sin_arc <- arc$sin()
+  arc_sin <- sin_arc$asin()
+  # copy paste output from the console
+  expect_output(print(arc_sin),
+                "tensor([0.0000, 0.2618, 0.5236, 0.7854, 1.0472, 1.3090, 1.5708])",
+                fixed = TRUE)
+})
+
+test_that("cosine of angle matches output", {
+  arc <- torch$arange(0*pi, pi/2+pi/12, pi/12)
+  cos_arc <- arc$cos()
+  arc_cos <- cos_arc$acos()
+  # copy paste output from the console
+  expect_output(print(arc_cos),
+                "tensor([0.0000, 0.2618, 0.5236, 0.7854, 1.0472, 1.3090, 1.5708])",
+                fixed = TRUE)
+})
+
+test_that("tangent of angle matches output", {
+  arc <- torch$arange(0*pi, pi/2+pi/12, pi/12)
+  tan_arc <- arc$tan()
+  arc_tan <- tan_arc$atan()
+  # copy paste output from the console
+  expect_output(print(arc_tan),
+                "tensor([ 0.0000,  0.2618,  0.5236,  0.7854,  1.0472,  1.3090, -1.5708])",
+                fixed = TRUE)
+})
+
+
+context("arithmetic")
+
+test_that("abs gets the absolute value", {
+  arc <- torch$arange(0*pi, 2*pi+pi/4, pi/4)
+  sin_arc <- arc$sin()
+  abs_val <- sin_arc$abs()
+  expect_output(print(abs_val),
+                "tensor([0.0000e+00, 7.0711e-01, 1.0000e+00, 7.0711e-01, 8.7423e-08, 7.0711e-01,
+        1.0000e+00, 7.0711e-01, 1.7485e-07])",
+                fixed = TRUE)
+})
+
+test_that("abs gets the absolute value", {
+  arc <- torch$arange(0*pi, 2*pi+pi/4, pi/4)
+  sin_arc <- arc$sin()
+  abs_val <- sin_arc$abs()
+  expect_output(print(abs_val),
+                "tensor([0.0000e+00, 7.0711e-01, 1.0000e+00, 7.0711e-01, 8.7423e-08, 7.0711e-01,
+        1.0000e+00, 7.0711e-01, 1.7485e-07])",
+                fixed = TRUE)
+})
+
+
+test_that("sign gets the 0, 1, or -1", {
+  arc <- torch$arange(0*pi, 2*pi+pi/4, pi/4)
+  sin_arc <- arc$sin()
+  sign_val <- sin_arc$sign()
+  expect_output(print(sign_val),
+                "tensor([ 0.,  1.,  1.,  1., -1., -1., -1., -1.,  1.])",
+                fixed = TRUE)
+})
+
+
+test_that("sqrt gets the squre root", {
+  arc <- torch$arange(0*pi, 2*pi+pi/4, pi/4)
+  sin_arc <- arc$sin()
+  sqrt_val <- sin_arc$sqrt()
+  expect_output(print(sqrt_val),
+                "tensor([0.0000e+00, 8.4090e-01, 1.0000e+00, 8.4090e-01,        nan,        nan,
+               nan,        nan, 4.1815e-04])",
+                fixed = TRUE)
+})
+
+
+test_that("floor gets the __________", {
+  arc <- torch$arange(0*pi, 2*pi+pi/4, pi/4)
+  sin_arc <- arc$sin()
+  floor_val <- (sin_arc*100)$floor()
+  expect_output(print(floor_val),
+                "tensor([   0.,   70.,  100.,   70.,   -1.,  -71., -100.,  -71.,    0.])",
+                fixed = TRUE)
+})
+
+# test_that("round the tensor to two decimals", {
+#   arc <- torch$arange(0*pi, 2*pi+pi/4, pi/4)
+#   sin_arc <- arc$sin()
+#   round_val <- (sin_arc*100)$round()
+#   expect_output(print(round_val),
+#                 "tensor([   0.,   71.,  100.,   71.,   -0.,  -71., -100.,  -71.,    0.])",
+#                 fixed = TRUE)
+# })
