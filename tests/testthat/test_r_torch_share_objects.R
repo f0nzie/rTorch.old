@@ -2,7 +2,8 @@ library(testthat)
 
 source("helper_utils.R")
 
-skip_if_no_python()
+skip_on_cran()
+# skip_if_no_python()
 
 context("print R values from within Python")
 
