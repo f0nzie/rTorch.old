@@ -24,8 +24,9 @@ Suggests:
     testthat,
     knitr,
     rmarkdown
-SystemRequirements: conda (python=3.6 pytorch torchvision cpuonly matplotlib 
-    pandas -c pytorch)
+SystemRequirements: "conda (python>=3.6 pytorch torchvision cpuonly numpy matplotlib 
+    pandas -c pytorch); Python (>=3.6), pytorch (>=1.6), torchvision, numpy; 
+    Anaconda (https://www.anaconda.com/download/)"
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 URL: https://github.com/f0nzie/rTorch

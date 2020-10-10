@@ -1,3 +1,19 @@
+# 0.4.0.9009
+* add Anaconda to SysReqs. bump version to 9009.
+* add Solaris to rhub
+
+# 0.4.0.9008
+* add explicit `numpy` package in SystemRequirements
+
+# 0.4.0.9007
+* Use a different _SystemRequirements_: `SystemRequirements: "conda (python=3.6 pytorch torchvision cpuonly matplotlib  pandas -c pytorch), Python (>=3.6), pytorch (>=1.6), torchvision, numpy"`
+
+# 0.4.0.9006
+* test with `fedora-clang-devel`. Still throwing error `ModuleNotFoundNo module named 'numpy'`. failed.
+* add `np` at top of test file in `test_types.R`. failed.
+* start with one of the tests in `test_types.R`. Put quotes at the beginning of the function parentheses.
+* received message from CRAN. errors in Fedora and Solaris
+
 # 0.4.0.9005
 * add unit tests for new functions
 * add functions sign, abs, sqrt, floor, ceil, round, sin, cos, tan, asin, acos, atan in `generics.R`
