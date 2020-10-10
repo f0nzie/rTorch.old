@@ -1,36 +1,22 @@
-# 0.4.0.9011
-* Try with `Solaris: pandoc (>= 2.0), qpdf ( >= 7.0);`. Getting now two notes and a Warrning.
-* add `Solaris: pkgutil -y -i qpdf, pkgutil -y -i pandoc"`
-* add `sudo dnf install pandoc qpdf`
-* remove `BuildRequires:  tex(latex) qpdf pandoc`, No accepted by Solaris
-* use skip_on_cran() in `test_r_torch_share_objects.R`, `test_types.R, `, and `test-install_rtorch_dryrun.R`. Causing errors in Fedora. It doesn't want to install `numpy`.
-* remove line importing numpy at the top of test file
-
-# 0.4.0.9010
-* add `BuildRequires:  tex(latex) qpdf pandoc`
-* Instead use `qpdf, pandoc (>= 2.7.2) on Solaris"`
-* add qpdf and pandoc in SysReqs for Solaris
-* numpy ( >= 1.14.0) for Fedora
-
-# 0.4.0.9009
-* add Anaconda to SysReqs. bump version to 9009.
-* add Solaris to rhub
-
-# 0.4.0.9008
-* add explicit `numpy` package in SystemRequirements
-
-# 0.4.0.9007
-* Use a different _SystemRequirements_: `SystemRequirements: "conda (python=3.6 pytorch torchvision cpuonly matplotlib  pandas -c pytorch), Python (>=3.6), pytorch (>=1.6), torchvision, numpy"`
+# 0.4.0
+* to CRAN after fixes.
 
 # 0.4.0.9006
+* Try with `Solaris: pandoc (>= 2.0), qpdf ( >= 7.0);`. Getting now two notes and a warrning.
+* add `Solaris: pkgutil -y -i qpdf, pkgutil -y -i pandoc"`
+* use `skip_on_cran()` in *test_r_torch_share_objects.R*, *test_types.R*, and *test-install_rtorch_dryrun.R*. Causing errors in Fedora. It doesn't want to install `numpy` but errors went away in Fedora and Solaris.
+* remove line importing `numpy` at the top of test file
+* Instead use `qpdf, pandoc (>= 2.7.2) on Solaris"`
+* add `numpy ( >= 1.14.0)` for Fedora
+* add Solaris platform to rhub.
+* Use a different _SystemRequirements_: `SystemRequirements: "conda (python=3.6 pytorch torchvision cpuonly matplotlib  pandas -c pytorch), Python (>=3.6), pytorch (>=1.6), torchvision, numpy"`
 * test with `fedora-clang-devel`. Still throwing error `ModuleNotFoundNo module named 'numpy'`. failed.
-* add `np` at top of test file in `test_types.R`. failed.
 * start with one of the tests in `test_types.R`. Put quotes at the beginning of the function parentheses.
-* received message from CRAN. errors in Fedora and Solaris
+* received message from **CRAN** after version 0.4.0 accepted. Errors in Fedora and Solaris. See [cran-comments](cran-comments.md)
 
 # 0.4.0.9005
 * add unit tests for new functions
-* add functions sign, abs, sqrt, floor, ceil, round, sin, cos, tan, asin, acos, atan in `generics.R`
+* add functions `sign`, `abs`, `sqrt`, `floor`, `ceil`, `round`, `sin`, `cos`, `tan`, `asin`, `acos`, `atan` in `generics.R`
 
 # 0.4.0.9004
 * add file `tests/testthat/rhub-tests.R` that send rTorch for testing on three different platforms. Use it as well in addition to Travis and Appveyor.
@@ -62,7 +48,7 @@ The major problem I found with these tests is that the `torch_config` objects do
 * move live torch example to a separate file
 * change dontest to dontrun in examples
 * create branch `0.4.0-fix_examples_problem_in_cran`
- 
+
 # rTorch 0.4.0
 * Modify `tests/testthat/utils.R` to include `skip_on_cran()`
 * change version numbering so it is easier to renumber when back to CRAN for fixes.
@@ -141,7 +127,7 @@ The major problem I found with these tests is that the `torch_config` objects do
 
 
 
- 
+
 # rTorch 0.0.3.9009
 * 20200911
 * add new vignette for PyTorch installation details

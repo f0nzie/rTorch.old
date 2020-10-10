@@ -1,6 +1,6 @@
 Package: rTorch
 Title: R Bindings to 'PyTorch'
-Version: 0.4.0
+Version: 0.4.0-9006
 Authors@R: c(
     person("Alfonso R.", "Reyes", role = c("aut", "cre", "cph"), email = "alfonso.reyes@oilgainsanalytics.com")
     )
@@ -25,11 +25,11 @@ Suggests:
     knitr,
     rmarkdown
 SystemRequirements: "python-minimal, pandoc pandoc-citeproc; 
-    Solaris: pandoc (>= 2.0), qpdf ( >= 7.0);
+    pandoc (>= 2.0), qpdf ( >= 7.0) on Solaris;
     conda (python>=3.6 pytorch torchvision cpuonly numpy ( >= 1.14.0) matplotlib pandas -c pytorch);
     Python (>=3.6), pytorch (>=1.4), torchvision, cpuonly, numpy ( >= 1.14.0);
     Anaconda (https://www.anaconda.com/download/), numpy ( >= 1.14.0);
-    Solaris: pkgutil -y -i qpdf, pkgutil -y -i pandoc"
+    pkgutil -y -i qpdf, pkgutil -y -i pandoc on Solaris"
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 URL: https://github.com/f0nzie/rTorch

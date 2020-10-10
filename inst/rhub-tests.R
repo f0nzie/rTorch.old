@@ -3,7 +3,10 @@ library(rhub)
 
 to_test_on <- c("windows-x86_64-release",
                 "ubuntu-gcc-release",
-                "macos-highsierra-release")
+                "macos-highsierra-release",
+                "fedora-clang-devel",
+                "solaris-x86-patched"
+                )
 
 check_cran <- rhub::check_for_cran(platforms = to_test_on)
 check_cran$cran_summary()
