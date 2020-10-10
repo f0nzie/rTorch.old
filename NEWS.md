@@ -1,3 +1,17 @@
+# 0.4.0.9011
+* Try with `Solaris: pandoc (>= 2.0), qpdf ( >= 7.0);`. Getting now two notes and a Warrning.
+* add `Solaris: pkgutil -y -i qpdf, pkgutil -y -i pandoc"`
+* add `sudo dnf install pandoc qpdf`
+* remove `BuildRequires:  tex(latex) qpdf pandoc`, No accepted by Solaris
+* use skip_on_cran() in `test_r_torch_share_objects.R`, `test_types.R, `, and `test-install_rtorch_dryrun.R`. Causing errors in Fedora. It doesn't want to install `numpy`.
+* remove line importing numpy at the top of test file
+
+# 0.4.0.9010
+* add `BuildRequires:  tex(latex) qpdf pandoc`
+* Instead use `qpdf, pandoc (>= 2.7.2) on Solaris"`
+* add qpdf and pandoc in SysReqs for Solaris
+* numpy ( >= 1.14.0) for Fedora
+
 # 0.4.0.9009
 * add Anaconda to SysReqs. bump version to 9009.
 * add Solaris to rhub
