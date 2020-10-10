@@ -1,5 +1,6 @@
-# context("install_pytorch, dry-run")
+context("install_pytorch, dry-run")
 
+skip_if_no_torch()
 
 
 test_that("default", {
