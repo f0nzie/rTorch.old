@@ -1,15 +1,16 @@
 Package: rTorch
 Title: R Bindings to 'PyTorch'
-Version: 0.4.1
+Version: 0.4.2
 Authors@R: c(
     person("Alfonso R.", "Reyes", role = c("aut", "cre", "cph"), email = "alfonso.reyes@oilgainsanalytics.com")
     )
 Description: 'R' implementation and interface of the Machine Learning platform 
     'PyTorch' <https://pytorch.org/> developed in 'Python'. It requires a 'conda'
-    environment with 'torch' and 'torchvision' to provide 'PyTorch' functions, 
-    methods and classes. The key object in 'PyTorch' is the tensor which is in
-    essence a multidimensional array. These tensors are fairly flexible to perform
-    calculations in CPUs as well as 'GPUs' to accelerate the process.
+    environment with 'torch' and 'torchvision' Python packages to provide 
+    'PyTorch' functions, methods and classes. The key object in 'PyTorch' is the 
+    tensor which is in essence a multidimensional array. These tensors are fairly 
+    flexible in performing calculations in CPUs as well as 'GPUs' to accelerate 
+    tensor operations.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
