@@ -165,13 +165,13 @@
 <span class="co">#&gt;         [0., 0., 0.],</span>
 <span class="co">#&gt;         [0., 0., 0.]])</span>
 <span class="va">double_tensor</span> 
-<span class="co">#&gt; tensor([[ 0.0000e+00,  0.0000e+00,  0.0000e+00],</span>
-<span class="co">#&gt;         [ 0.0000e+00,  0.0000e+00,  0.0000e+00],</span>
-<span class="co">#&gt;         [1.2095e-312, 4.6469e-310, 2.4703e-323]], dtype=torch.float64)</span>
+<span class="co">#&gt; tensor([[6.9259e-310, 6.9259e-310, 1.2095e-312],</span>
+<span class="co">#&gt;         [1.2697e-321, 6.9259e-310, 4.6888e-310],</span>
+<span class="co">#&gt;         [ 0.0000e+00,  0.0000e+00,  0.0000e+00]], dtype=torch.float64)</span>
 <span class="va">long_tensor</span>   
-<span class="co">#&gt; tensor([[             0,              0,              0],</span>
-<span class="co">#&gt;         [             0,              0, 94055027694160],</span>
-<span class="co">#&gt;         [             0, 94055027588736,              0]])</span>
+<span class="co">#&gt; tensor([[140182629985840, 140182629985840,               0],</span>
+<span class="co">#&gt;         [ 94902887985680,               0,               0],</span>
+<span class="co">#&gt;         [              0,               0,               0]])</span>
 <span class="va">bool_tensor</span>   
 <span class="co">#&gt; tensor([[False, False, False, False, False],</span>
 <span class="co">#&gt;         [False, False, False, False, False],</span>
@@ -244,32 +244,32 @@
 <div class="sourceCode" id="cb9"><pre class="downlit">
 <span class="co"># add two tensors</span>
 <span class="va">mat0</span> <span class="op">+</span> <span class="va">mat1</span>
-<span class="co">#&gt; tensor([[0.3499, 0.6426, 0.8035, 1.0417, 0.7170],</span>
-<span class="co">#&gt;         [0.5918, 0.4796, 0.9119, 0.9198, 0.2290],</span>
-<span class="co">#&gt;         [0.1658, 1.0311, 0.3840, 0.5588, 1.0310]])</span></pre></div>
+<span class="co">#&gt; tensor([[1.0472, 0.3601, 0.8105, 0.2573, 0.9311],</span>
+<span class="co">#&gt;         [0.8394, 0.1631, 0.5836, 0.2908, 0.1806],</span>
+<span class="co">#&gt;         [1.0795, 0.7679, 0.7024, 0.1542, 1.0788]])</span></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit">
 <span class="co"># add three tensors</span>
 <span class="va">mat0</span> <span class="op">+</span> <span class="va">mat1</span> <span class="op">+</span> <span class="va">mat2</span>
-<span class="co">#&gt; tensor([[1.3499, 1.6426, 1.8035, 2.0417, 1.7170],</span>
-<span class="co">#&gt;         [1.5918, 1.4796, 1.9119, 1.9198, 1.2290],</span>
-<span class="co">#&gt;         [1.1658, 2.0311, 1.3840, 1.5588, 2.0310]])</span></pre></div>
+<span class="co">#&gt; tensor([[2.0472, 1.3601, 1.8105, 1.2573, 1.9311],</span>
+<span class="co">#&gt;         [1.8394, 1.1631, 1.5836, 1.2908, 1.1806],</span>
+<span class="co">#&gt;         [2.0795, 1.7679, 1.7024, 1.1542, 2.0788]])</span></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit">
 <span class="co"># PyTorch add two tensors using add() function</span>
 <span class="va">x</span> <span class="op">=</span> <span class="va">torch</span><span class="op">$</span><span class="fu">rand</span><span class="op">(</span><span class="fl">5L</span>, <span class="fl">4L</span><span class="op">)</span>
 <span class="va">y</span> <span class="op">=</span> <span class="va">torch</span><span class="op">$</span><span class="fu">rand</span><span class="op">(</span><span class="fl">5L</span>, <span class="fl">4L</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="fu">add</span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; tensor([[0.8426, 0.6859, 0.6112, 1.2692],</span>
-<span class="co">#&gt;         [1.3672, 0.5447, 0.7486, 0.7841],</span>
-<span class="co">#&gt;         [1.2332, 0.7599, 0.1869, 0.7936],</span>
-<span class="co">#&gt;         [0.2844, 1.4652, 0.2128, 1.4776],</span>
-<span class="co">#&gt;         [0.9509, 1.0828, 0.8195, 1.0859]])</span>
+<span class="co">#&gt; tensor([[1.3989, 1.0835, 0.5394, 1.1483],</span>
+<span class="co">#&gt;         [1.3036, 0.3943, 1.2853, 1.2172],</span>
+<span class="co">#&gt;         [1.0630, 1.6868, 1.1131, 1.5882],</span>
+<span class="co">#&gt;         [0.5632, 0.6763, 1.1735, 1.5093],</span>
+<span class="co">#&gt;         [1.5244, 0.9094, 1.4205, 0.5644]])</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span> <span class="op">+</span> <span class="va">y</span><span class="op">)</span>
-<span class="co">#&gt; tensor([[0.8426, 0.6859, 0.6112, 1.2692],</span>
-<span class="co">#&gt;         [1.3672, 0.5447, 0.7486, 0.7841],</span>
-<span class="co">#&gt;         [1.2332, 0.7599, 0.1869, 0.7936],</span>
-<span class="co">#&gt;         [0.2844, 1.4652, 0.2128, 1.4776],</span>
-<span class="co">#&gt;         [0.9509, 1.0828, 0.8195, 1.0859]])</span></pre></div>
+<span class="co">#&gt; tensor([[1.3989, 1.0835, 0.5394, 1.1483],</span>
+<span class="co">#&gt;         [1.3036, 0.3943, 1.2853, 1.2172],</span>
+<span class="co">#&gt;         [1.0630, 1.6868, 1.1131, 1.5882],</span>
+<span class="co">#&gt;         [0.5632, 0.6763, 1.1735, 1.5093],</span>
+<span class="co">#&gt;         [1.5244, 0.9094, 1.4205, 0.5644]])</span></pre></div>
 </div>
 <div id="add-a-tensor-element-to-another-tensor" class="section level3">
 <h3 class="hasAnchor">
@@ -297,9 +297,9 @@
 <div class="sourceCode" id="cb15"><pre class="downlit">
 <span class="co"># add a scalar to a tensor</span>
 <span class="va">mat0</span> <span class="op">+</span> <span class="fl">0.1</span>
-<span class="co">#&gt; tensor([[0.3499, 0.6426, 0.8035, 1.0417, 0.7170],</span>
-<span class="co">#&gt;         [0.5918, 0.4796, 0.9119, 0.9198, 0.2290],</span>
-<span class="co">#&gt;         [0.1658, 1.0311, 0.3840, 0.5588, 1.0310]])</span></pre></div>
+<span class="co">#&gt; tensor([[1.0472, 0.3601, 0.8105, 0.2573, 0.9311],</span>
+<span class="co">#&gt;         [0.8394, 0.1631, 0.5836, 0.2908, 0.1806],</span>
+<span class="co">#&gt;         [1.0795, 0.7679, 0.7024, 0.1542, 1.0788]])</span></pre></div>
 </div>
 <div id="multiply-a-tensor-by-a-scalar" class="section level3">
 <h3 class="hasAnchor">
@@ -563,10 +563,10 @@
 <span class="co"># a 2D numpy array  </span>
 <span class="va">syn0</span> <span class="op">&lt;-</span> <span class="va">np</span><span class="op">$</span><span class="va">random</span><span class="op">$</span><span class="fu">rand</span><span class="op">(</span><span class="fl">3L</span>, <span class="fl">5L</span><span class="op">)</span>
 <span class="va">syn0</span>
-<span class="co">#&gt;           [,1]      [,2]      [,3]      [,4]      [,5]</span>
-<span class="co">#&gt; [1,] 0.9290388 0.2534306 0.0200905 0.7868779 0.4900428</span>
-<span class="co">#&gt; [2,] 0.5507188 0.6299202 0.7060720 0.5930674 0.5016310</span>
-<span class="co">#&gt; [3,] 0.6975174 0.7638627 0.2108130 0.1136493 0.8267176</span></pre></div>
+<span class="co">#&gt;           [,1]      [,2]      [,3]       [,4]       [,5]</span>
+<span class="co">#&gt; [1,] 0.1524218 0.7769113 0.6153864 0.00220404 0.78412198</span>
+<span class="co">#&gt; [2,] 0.4959399 0.7230621 0.9840282 0.64843544 0.06556167</span>
+<span class="co">#&gt; [3,] 0.5931231 0.6513373 0.4399219 0.57722973 0.94843503</span></pre></div>
 <div class="sourceCode" id="cb37"><pre class="downlit">
 <span class="co"># numpy arrays of zeros</span>
 <span class="va">syn1</span> <span class="op">&lt;-</span> <span class="va">np</span><span class="op">$</span><span class="fu">zeros</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5L</span>, <span class="fl">10L</span><span class="op">)</span><span class="op">)</span>
@@ -602,13 +602,13 @@
 <span class="co"># vector-matrix multiplication</span>
 <span class="va">np</span><span class="op">$</span><span class="fu">dot</span><span class="op">(</span><span class="va">syn0</span>, <span class="va">syn1</span><span class="op">)</span>
 <span class="co">#&gt;           [,1]      [,2]      [,3]      [,4]      [,5]      [,6]      [,7]</span>
-<span class="co">#&gt; [1,] 0.2479481 0.2479481 0.2479481 0.2479481 0.2479481 0.2479481 0.2479481</span>
-<span class="co">#&gt; [2,] 0.2981409 0.2981409 0.2981409 0.2981409 0.2981409 0.2981409 0.2981409</span>
-<span class="co">#&gt; [3,] 0.2612560 0.2612560 0.2612560 0.2612560 0.2612560 0.2612560 0.2612560</span>
+<span class="co">#&gt; [1,] 0.2331045 0.2331045 0.2331045 0.2331045 0.2331045 0.2331045 0.2331045</span>
+<span class="co">#&gt; [2,] 0.2917027 0.2917027 0.2917027 0.2917027 0.2917027 0.2917027 0.2917027</span>
+<span class="co">#&gt; [3,] 0.3210047 0.3210047 0.3210047 0.3210047 0.3210047 0.3210047 0.3210047</span>
 <span class="co">#&gt;           [,8]      [,9]     [,10]</span>
-<span class="co">#&gt; [1,] 0.2479481 0.2479481 0.2479481</span>
-<span class="co">#&gt; [2,] 0.2981409 0.2981409 0.2981409</span>
-<span class="co">#&gt; [3,] 0.2612560 0.2612560 0.2612560</span></pre></div>
+<span class="co">#&gt; [1,] 0.2331045 0.2331045 0.2331045</span>
+<span class="co">#&gt; [2,] 0.2917027 0.2917027 0.2917027</span>
+<span class="co">#&gt; [3,] 0.3210047 0.3210047 0.3210047</span></pre></div>
 <div class="sourceCode" id="cb41"><pre class="downlit">
 <span class="co"># build a numpy array from three R vectors</span>
 <span class="va">X</span> <span class="op">&lt;-</span> <span class="va">np</span><span class="op">$</span><span class="fu">array</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7</span>,<span class="fl">8</span>,<span class="fl">9</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
@@ -694,25 +694,25 @@
 <span class="va">np_arr</span> <span class="op">&lt;-</span> <span class="va">np</span><span class="op">$</span><span class="va">random</span><span class="op">$</span><span class="fu">rand</span><span class="op">(</span><span class="fl">5L</span><span class="op">)</span>
 <span class="va">ft1</span> <span class="op">&lt;-</span> <span class="va">torch</span><span class="op">$</span><span class="fu">FloatTensor</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/reticulate/man/r-py-conversion.html">r_to_py</a></span><span class="op">(</span><span class="va">np_arr</span><span class="op">)</span><span class="op">$</span><span class="fu">copy</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>    <span class="co"># make a copy of numpy array</span>
 <span class="va">ft1</span>
-<span class="co">#&gt; tensor([0.0719, 0.7019, 0.7769, 0.8034, 0.4814])</span></pre></div>
+<span class="co">#&gt; tensor([0.9408, 0.8752, 0.5924, 0.7329, 0.6719])</span></pre></div>
 <div class="sourceCode" id="cb49"><pre class="downlit">
 <span class="co"># tensor as a float of 64-bits</span>
 <span class="va">np_copy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/reticulate/man/r-py-conversion.html">r_to_py</a></span><span class="op">(</span><span class="va">np</span><span class="op">$</span><span class="va">random</span><span class="op">$</span><span class="fu">rand</span><span class="op">(</span><span class="fl">5L</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="fu">copy</span><span class="op">(</span><span class="op">)</span>       <span class="co"># make a copy of numpy array</span>
 <span class="va">ft2</span> <span class="op">&lt;-</span> <span class="va">torch</span><span class="op">$</span><span class="fu">as_tensor</span><span class="op">(</span><span class="va">np_copy</span>, dtype<span class="op">=</span> <span class="va">torch</span><span class="op">$</span><span class="va">float64</span><span class="op">)</span>
 <span class="va">ft2</span>
-<span class="co">#&gt; tensor([0.7496, 0.3676, 0.7673, 0.4852, 0.0815], dtype=torch.float64)</span></pre></div>
+<span class="co">#&gt; tensor([0.0462, 0.5851, 0.4886, 0.0725, 0.8959], dtype=torch.float64)</span></pre></div>
 <p>This is a very common operation in machine learning:</p>
 <div class="sourceCode" id="cb50"><pre class="downlit">
 <span class="co"># convert tensor to a numpy array</span>
 <span class="va">a</span> <span class="op">=</span> <span class="va">torch</span><span class="op">$</span><span class="fu">rand</span><span class="op">(</span><span class="fl">5L</span>, <span class="fl">4L</span><span class="op">)</span>
 <span class="va">b</span> <span class="op">=</span> <span class="va">a</span><span class="op">$</span><span class="fu">numpy</span><span class="op">(</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span>
-<span class="co">#&gt;            [,1]      [,2]       [,3]      [,4]</span>
-<span class="co">#&gt; [1,] 0.09395343 0.5595527 0.95875531 0.5781289</span>
-<span class="co">#&gt; [2,] 0.08485174 0.8512743 0.09576946 0.5076690</span>
-<span class="co">#&gt; [3,] 0.36763144 0.5652164 0.44276500 0.8933945</span>
-<span class="co">#&gt; [4,] 0.18297040 0.1315807 0.50351322 0.3735911</span>
-<span class="co">#&gt; [5,] 0.82712889 0.5211104 0.32848728 0.9897768</span></pre></div>
+<span class="co">#&gt;           [,1]      [,2]         [,3]      [,4]</span>
+<span class="co">#&gt; [1,] 0.8167720 0.8075168 0.2668687105 0.7421414</span>
+<span class="co">#&gt; [2,] 0.6829966 0.5185235 0.0005332828 0.9414444</span>
+<span class="co">#&gt; [3,] 0.2030416 0.7496545 0.0358363986 0.3475423</span>
+<span class="co">#&gt; [4,] 0.7263991 0.6163300 0.2169904113 0.9363614</span>
+<span class="co">#&gt; [5,] 0.4336911 0.5996053 0.2127178907 0.8461853</span></pre></div>
 </div>
 <div id="change-the-type-of-a-tensor" class="section level3">
 <h3 class="hasAnchor">
@@ -721,7 +721,7 @@
 <span class="co"># convert tensor to float 16-bits</span>
 <span class="va">ft2_dbl</span> <span class="op">&lt;-</span> <span class="va">torch</span><span class="op">$</span><span class="fu">as_tensor</span><span class="op">(</span><span class="va">ft2</span>, dtype <span class="op">=</span> <span class="va">torch</span><span class="op">$</span><span class="va">float16</span><span class="op">)</span>
 <span class="va">ft2_dbl</span>
-<span class="co">#&gt; tensor([0.7495, 0.3674, 0.7671, 0.4851, 0.0815], dtype=torch.float16)</span></pre></div>
+<span class="co">#&gt; tensor([0.0462, 0.5850, 0.4885, 0.0724, 0.8960], dtype=torch.float16)</span></pre></div>
 </div>
 <div id="create-an-uninitialized-tensor" class="section level3">
 <h3 class="hasAnchor">
@@ -730,15 +730,15 @@
 <div class="sourceCode" id="cb52"><pre class="downlit">
 <span class="va">a</span> <span class="op">&lt;-</span> <span class="va">torch</span><span class="op">$</span><span class="fu">FloatTensor</span><span class="op">(</span><span class="fl">5L</span>, <span class="fl">7L</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span>
-<span class="co">#&gt; tensor([[7.5670e-44, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,</span>
-<span class="co">#&gt;          0.0000e+00],</span>
-<span class="co">#&gt;         [0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,</span>
-<span class="co">#&gt;          0.0000e+00],</span>
-<span class="co">#&gt;         [0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,</span>
-<span class="co">#&gt;          0.0000e+00],</span>
-<span class="co">#&gt;         [0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,</span>
-<span class="co">#&gt;          0.0000e+00],</span>
-<span class="co">#&gt;         [0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,</span>
+<span class="co">#&gt; tensor([[1.4013e-45, 1.4013e-45, 1.4013e-45, 1.4013e-45, 1.4013e-45, 1.4013e-45,</span>
+<span class="co">#&gt;          1.4013e-45],</span>
+<span class="co">#&gt;         [1.4013e-45, 1.4013e-45, 1.4013e-45, 1.4013e-45, 1.4013e-45, 1.4013e-45,</span>
+<span class="co">#&gt;          1.4013e-45],</span>
+<span class="co">#&gt;         [1.4013e-45, 1.4013e-45, 1.4013e-45, 1.4013e-45, 1.4013e-45, 1.4013e-45,</span>
+<span class="co">#&gt;          1.4013e-45],</span>
+<span class="co">#&gt;         [1.4013e-45, 1.4013e-45, 1.4013e-45, 1.4013e-45, 1.4013e-45, 1.4013e-45,</span>
+<span class="co">#&gt;          1.4013e-45],</span>
+<span class="co">#&gt;         [1.4013e-45, 1.4013e-45, 0.0000e+00, 1.4013e-45, 1.4013e-45, 1.4013e-45,</span>
 <span class="co">#&gt;          1.4013e-45]])</span></pre></div>
 </div>
 <div id="create-a-tensor-and-then-change-its-shape" class="section level3">
@@ -760,11 +760,11 @@
 <div class="sourceCode" id="cb54"><pre class="downlit">
 <span class="va">a</span>  <span class="op">&lt;-</span> <span class="va">torch</span><span class="op">$</span><span class="fu">randn</span><span class="op">(</span><span class="fl">5L</span>, <span class="fl">7L</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span>
-<span class="co">#&gt; tensor([[-1.2573, -0.9536,  0.6686, -1.6667, -1.4893,  0.1584, -0.0630],</span>
-<span class="co">#&gt;         [ 0.2651,  2.0210, -0.7101,  0.3994,  1.1177, -0.8158,  0.6742],</span>
-<span class="co">#&gt;         [ 0.3766,  0.0532,  1.2202,  0.3820, -0.4392,  0.2881,  0.7138],</span>
-<span class="co">#&gt;         [ 0.1537, -1.2810, -0.5439, -0.4608,  0.9275,  0.6893,  0.2966],</span>
-<span class="co">#&gt;         [-0.8121, -0.3847, -0.0489,  0.4341,  0.1797,  0.8832, -0.1888]])</span>
+<span class="co">#&gt; tensor([[-0.9889,  0.6058,  0.5492, -0.0291,  1.3752, -0.2528, -1.8089],</span>
+<span class="co">#&gt;         [ 0.6621, -0.4370,  1.5590,  0.8149,  0.4004, -0.5299,  0.9275],</span>
+<span class="co">#&gt;         [ 0.0880,  0.5931,  0.2601,  1.6336,  1.0154,  1.2189, -1.6278],</span>
+<span class="co">#&gt;         [ 1.2171,  0.1377, -0.2377,  0.0792, -0.2885,  0.6316,  1.7481],</span>
+<span class="co">#&gt;         [-0.7538,  0.6162,  1.3023, -1.5574,  0.1196, -1.1652,  1.5082]])</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">a</span><span class="op">$</span><span class="fu">size</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; torch.Size([5, 7])</span></pre></div>
 <div id="uniform-matrix" class="section level3">
@@ -783,9 +783,9 @@
 <span class="va">mat2</span> <span class="op">&lt;-</span> <span class="va">torch</span><span class="op">$</span><span class="fu">FloatTensor</span><span class="op">(</span><span class="fl">5L</span><span class="op">)</span><span class="op">$</span><span class="fu">uniform_</span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>
 
 <span class="va">mat0</span>
-<span class="co">#&gt; tensor([[0.3815, 0.9766, 0.7075, 0.1034, 0.5313],</span>
-<span class="co">#&gt;         [0.3810, 0.2989, 0.4528, 0.3165, 0.7326],</span>
-<span class="co">#&gt;         [0.8210, 0.7691, 0.0505, 0.9630, 0.8254]])</span>
+<span class="co">#&gt; tensor([[0.9587, 0.3368, 0.3534, 0.0709, 0.6827],</span>
+<span class="co">#&gt;         [0.5521, 0.6874, 0.6756, 0.3705, 0.9120],</span>
+<span class="co">#&gt;         [0.4415, 0.9895, 0.4699, 0.5890, 0.0901]])</span>
 <span class="va">mat1</span>
 <span class="co">#&gt; tensor([[0.1000, 0.1000, 0.1000, 0.1000, 0.1000],</span>
 <span class="co">#&gt;         [0.1000, 0.1000, 0.1000, 0.1000, 0.1000],</span>
@@ -799,13 +799,13 @@
 
 <span class="va">m</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">Binomial</a></span><span class="op">(</span><span class="fl">100</span>, <span class="va">torch</span><span class="op">$</span><span class="fu">tensor</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">0</span> , <span class="fl">.2</span>, <span class="fl">.8</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="op">(</span><span class="va">x</span> <span class="op">=</span> <span class="va">m</span><span class="op">$</span><span class="fu">sample</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; tensor([  0.,  21.,  83., 100.])</span></pre></div>
+<span class="co">#&gt; tensor([  0.,  29.,  80., 100.])</span></pre></div>
 <div class="sourceCode" id="cb57"><pre class="downlit">
 <span class="va">m</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html">Binomial</a></span><span class="op">(</span><span class="va">torch</span><span class="op">$</span><span class="fu">tensor</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">5.</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">10.</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, 
              <span class="va">torch</span><span class="op">$</span><span class="fu">tensor</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="op">(</span><span class="va">x</span> <span class="op">=</span> <span class="va">m</span><span class="op">$</span><span class="fu">sample</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; tensor([[ 4.,  4.],</span>
-<span class="co">#&gt;         [ 6., 10.]])</span></pre></div>
+<span class="co">#&gt; tensor([[0., 4.],</span>
+<span class="co">#&gt;         [2., 8.]])</span></pre></div>
 </div>
 <div id="exponential-distribution" class="section level3">
 <h3 class="hasAnchor">
@@ -815,7 +815,7 @@
 
 <span class="va">m</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html">Exponential</a></span><span class="op">(</span><span class="va">torch</span><span class="op">$</span><span class="fu">tensor</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">1.0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="va">m</span><span class="op">$</span><span class="fu">sample</span><span class="op">(</span><span class="op">)</span>  <span class="co"># Exponential distributed with rate=1</span>
-<span class="co">#&gt; tensor([0.9798])</span></pre></div>
+<span class="co">#&gt; tensor([0.4214])</span></pre></div>
 </div>
 <div id="weibull-distribution" class="section level3">
 <h3 class="hasAnchor">
@@ -825,7 +825,7 @@
 
 <span class="va">m</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Weibull.html">Weibull</a></span><span class="op">(</span><span class="va">torch</span><span class="op">$</span><span class="fu">tensor</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">1.0</span><span class="op">)</span><span class="op">)</span>, <span class="va">torch</span><span class="op">$</span><span class="fu">tensor</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">1.0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="va">m</span><span class="op">$</span><span class="fu">sample</span><span class="op">(</span><span class="op">)</span>  <span class="co"># sample from a Weibull distribution with scale=1, concentration=1</span>
-<span class="co">#&gt; tensor([0.4497])</span></pre></div>
+<span class="co">#&gt; tensor([0.0745])</span></pre></div>
 </div>
 </div>
 <div id="tensor-default-data-types" class="section level2">
@@ -870,11 +870,11 @@
 <span class="va">y</span> <span class="op">=</span> <span class="va">x</span><span class="op">$</span><span class="fu">view</span><span class="op">(</span><span class="fl">6L</span><span class="op">)</span>                    <span class="co"># Resize x to size 6</span>
 <span class="va">z</span> <span class="op">=</span> <span class="va">x</span><span class="op">$</span><span class="fu">view</span><span class="op">(</span><span class="op">-</span><span class="fl">1L</span>, <span class="fl">2L</span><span class="op">)</span>                <span class="co"># Size 3x2</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>
-<span class="co">#&gt; tensor([ 2.6756,  0.0601,  0.1541, -0.0576, -0.6315,  2.1067])</span>
+<span class="co">#&gt; tensor([ 0.8073, -0.7656,  1.0641,  0.3801,  0.5983,  0.7950])</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span>
-<span class="co">#&gt; tensor([[ 2.6756,  0.0601],</span>
-<span class="co">#&gt;         [ 0.1541, -0.0576],</span>
-<span class="co">#&gt;         [-0.6315,  2.1067]])</span></pre></div>
+<span class="co">#&gt; tensor([[ 0.8073, -0.7656],</span>
+<span class="co">#&gt;         [ 1.0641,  0.3801],</span>
+<span class="co">#&gt;         [ 0.5983,  0.7950]])</span></pre></div>
 <div class="sourceCode" id="cb64"><pre class="downlit">
 <span class="co"># 0 1 2</span>
 <span class="co"># 3 4 5</span>
@@ -892,24 +892,24 @@
 <span class="co"># concatenate tensors</span>
 <span class="va">x</span> <span class="op">=</span> <span class="va">torch</span><span class="op">$</span><span class="fu">randn</span><span class="op">(</span><span class="fl">2L</span>, <span class="fl">3L</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-<span class="co">#&gt; tensor([[ 1.4248, -0.2922,  0.2605],</span>
-<span class="co">#&gt;         [-1.6589, -0.8634, -1.8625]])</span>
+<span class="co">#&gt; tensor([[-0.6563,  1.5943, -0.0617],</span>
+<span class="co">#&gt;         [ 0.5502,  1.6150, -2.0000]])</span>
 
 <span class="co"># concatenate tensors by dim=0"</span>
 <span class="va">torch</span><span class="op">$</span><span class="fu">cat</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">x</span>, <span class="va">x</span><span class="op">)</span>, <span class="fl">0L</span><span class="op">)</span>
-<span class="co">#&gt; tensor([[ 1.4248, -0.2922,  0.2605],</span>
-<span class="co">#&gt;         [-1.6589, -0.8634, -1.8625],</span>
-<span class="co">#&gt;         [ 1.4248, -0.2922,  0.2605],</span>
-<span class="co">#&gt;         [-1.6589, -0.8634, -1.8625],</span>
-<span class="co">#&gt;         [ 1.4248, -0.2922,  0.2605],</span>
-<span class="co">#&gt;         [-1.6589, -0.8634, -1.8625]])</span>
+<span class="co">#&gt; tensor([[-0.6563,  1.5943, -0.0617],</span>
+<span class="co">#&gt;         [ 0.5502,  1.6150, -2.0000],</span>
+<span class="co">#&gt;         [-0.6563,  1.5943, -0.0617],</span>
+<span class="co">#&gt;         [ 0.5502,  1.6150, -2.0000],</span>
+<span class="co">#&gt;         [-0.6563,  1.5943, -0.0617],</span>
+<span class="co">#&gt;         [ 0.5502,  1.6150, -2.0000]])</span>
 
 <span class="co"># concatenate tensors by dim=1</span>
 <span class="va">torch</span><span class="op">$</span><span class="fu">cat</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">x</span>, <span class="va">x</span><span class="op">)</span>, <span class="fl">1L</span><span class="op">)</span>
-<span class="co">#&gt; tensor([[ 1.4248, -0.2922,  0.2605,  1.4248, -0.2922,  0.2605,  1.4248, -0.2922,</span>
-<span class="co">#&gt;           0.2605],</span>
-<span class="co">#&gt;         [-1.6589, -0.8634, -1.8625, -1.6589, -0.8634, -1.8625, -1.6589, -0.8634,</span>
-<span class="co">#&gt;          -1.8625]])</span></pre></div>
+<span class="co">#&gt; tensor([[-0.6563,  1.5943, -0.0617, -0.6563,  1.5943, -0.0617, -0.6563,  1.5943,</span>
+<span class="co">#&gt;          -0.0617],</span>
+<span class="co">#&gt;         [ 0.5502,  1.6150, -2.0000,  0.5502,  1.6150, -2.0000,  0.5502,  1.6150,</span>
+<span class="co">#&gt;          -2.0000]])</span></pre></div>
 </div>
 <div id="reshape-tensors" class="section level3">
 <h3 class="hasAnchor">
@@ -1220,23 +1220,23 @@
 <span class="co"># Select indices</span>
 <span class="va">x</span> <span class="op">=</span> <span class="va">torch</span><span class="op">$</span><span class="fu">randn</span><span class="op">(</span><span class="fl">3L</span>, <span class="fl">4L</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-<span class="co">#&gt; tensor([[ 2.0866, -1.5293, -0.0176, -0.0173],</span>
-<span class="co">#&gt;         [ 0.4589,  0.4754, -0.4929,  0.8043],</span>
-<span class="co">#&gt;         [ 0.0169,  0.4875,  0.5488,  0.2263]])</span></pre></div>
+<span class="co">#&gt; tensor([[-2.4324,  0.5563,  1.3308, -0.6363],</span>
+<span class="co">#&gt;         [ 1.1925,  2.4744, -0.0463, -2.2281],</span>
+<span class="co">#&gt;         [-1.5476,  1.1377,  0.3645, -0.8908]])</span></pre></div>
 <div class="sourceCode" id="cb96"><pre class="downlit">
 <span class="co"># extract first and third row</span>
 <span class="co"># Select indices, dim=0</span>
 <span class="va">indices</span> <span class="op">=</span> <span class="va">torch</span><span class="op">$</span><span class="fu">tensor</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">0L</span>, <span class="fl">2L</span><span class="op">)</span><span class="op">)</span>
 <span class="va">torch</span><span class="op">$</span><span class="fu">index_select</span><span class="op">(</span><span class="va">x</span>, <span class="fl">0L</span>, <span class="va">indices</span><span class="op">)</span>
-<span class="co">#&gt; tensor([[ 2.0866, -1.5293, -0.0176, -0.0173],</span>
-<span class="co">#&gt;         [ 0.0169,  0.4875,  0.5488,  0.2263]])</span></pre></div>
+<span class="co">#&gt; tensor([[-2.4324,  0.5563,  1.3308, -0.6363],</span>
+<span class="co">#&gt;         [-1.5476,  1.1377,  0.3645, -0.8908]])</span></pre></div>
 <div class="sourceCode" id="cb97"><pre class="downlit">
 <span class="co"># extract first and third column</span>
 <span class="co"># Select indices, dim=1</span>
 <span class="va">torch</span><span class="op">$</span><span class="fu">index_select</span><span class="op">(</span><span class="va">x</span>, <span class="fl">1L</span>, <span class="va">indices</span><span class="op">)</span>
-<span class="co">#&gt; tensor([[ 2.0866, -0.0176],</span>
-<span class="co">#&gt;         [ 0.4589, -0.4929],</span>
-<span class="co">#&gt;         [ 0.0169,  0.5488]])</span></pre></div>
+<span class="co">#&gt; tensor([[-2.4324,  1.3308],</span>
+<span class="co">#&gt;         [ 1.1925, -0.0463],</span>
+<span class="co">#&gt;         [-1.5476,  0.3645]])</span></pre></div>
 <div class="sourceCode" id="cb98"><pre class="downlit">
 <span class="co"># Take by indices</span>
 <span class="va">src</span> <span class="op">=</span> <span class="va">torch</span><span class="op">$</span><span class="fu">tensor</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span>,
