@@ -1,64 +1,68 @@
+# 0.4.2
+* Release to CRAN after fix.
+
+# 0.4.1.9000
+* Returned from CRAN with note: shouldn't link using `[]()` or local link. Must use full URL if want to link to `cran-comments.md`.
+
 # 0.4.1
 * to CRAN after fixes.
 
 # 0.4.0.9006
 * Try with `Solaris: pandoc (>= 2.0), qpdf ( >= 7.0);`. Getting now two notes and a warrning.
-* add `Solaris: pkgutil -y -i qpdf, pkgutil -y -i pandoc"`
-* use `skip_on_cran()` in *test_r_torch_share_objects.R*, *test_types.R*, and *test-install_rtorch_dryrun.R*. Causing errors in Fedora. It doesn't want to install `numpy` but errors went away in Fedora and Solaris.
+* add `Solaris: pkgutil -y -i qpdf, pkgutil -y -i pandoc"` to SysReqs.
+* use `skip_on_cran()` in *test_r_torch_share_objects.R*, *test_types.R*, and *test-install_rtorch_dryrun.R*. Causing errors in Fedora. It doesn't want to install `numpy` but now errors went away in Fedora and Solaris because is nos tested on `numpy`.
 * remove line importing `numpy` at the top of test file
-* Instead use `qpdf, pandoc (>= 2.7.2) on Solaris"`
-* add `numpy ( >= 1.14.0)` for Fedora
-* add Solaris platform to rhub.
-* Use a different _SystemRequirements_: `SystemRequirements: "conda (python=3.6 pytorch torchvision cpuonly matplotlib  pandas -c pytorch), Python (>=3.6), pytorch (>=1.6), torchvision, numpy"`
-* test with `fedora-clang-devel`. Still throwing error `ModuleNotFoundNo module named 'numpy'`. failed.
-* start with one of the tests in `test_types.R`. Put quotes at the beginning of the function parentheses.
-* received message from **CRAN** after version 0.4.0 accepted. Errors in Fedora and Solaris. See [cran-comments](cran-comments.md)
+* Instead use `qpdf, pandoc (>= 2.7.2) on Solaris"`. 
+* add `numpy ( >= 1.14.0)` for Fedora. 
+* add Solaris `solaris-x86-patched` platform to rhub.
+* Use a different _SystemRequirements_ in DESCRIPTION: `SystemRequirements: "conda (python=3.6 pytorch torchvision cpuonly matplotlib  pandas -c pytorch), Python (>=3.6), pytorch (>=1.6), torchvision, numpy"`. It makes no difference in Fedora.
+* test with `fedora-clang-devel` in _rhub_. Still throwing error `ModuleNotFoundNo module named 'numpy'`. failed. It seems tha Fedora cannot install `numpy` as painless as in Debian or Ubuntu.
+* start with one of the tests in `test_types.R`. Put quotes at the beginning of the function parentheses in Python code.
+* received message from **CRAN** after version 0.4.0 been accepted. Errors in Fedora and Solaris. Will use `rhub` to debug.
 
 # 0.4.0.9005
 * add unit tests for new functions
-* add functions `sign`, `abs`, `sqrt`, `floor`, `ceil`, `round`, `sin`, `cos`, `tan`, `asin`, `acos`, `atan` in `generics.R`
+* add functions `sign`, `abs`, `sqrt`, `floor`, `ceil`, `round`, `sin`, `cos`, `tan`, `asin`, `acos`, `atan` in `generics.R`. Documented.
 
 # 0.4.0.9004
-* add file `tests/testthat/rhub-tests.R` that send rTorch for testing on three different platforms. Use it as well in addition to Travis and Appveyor.
+* add file `tests/testthat/rhub-tests.R` that sends rTorch for testing on three different platforms. Use it as well in addition to Travis and Appveyor. Closer to CRAN tests.
 * removing `data.table` and `R6` from `Imports`. Not used yet.
-* add more live tests. They work but `torch_config` does not update after issuing a `install_pytorch` command; they returned the previous installed PyTorch info. The purpose of these test was initially see if the installation performed as
-initially planned. It works. But we cannot enable this test for CRAN because it will take some time and may not work due to the PyTorch installation process.
-The major problem I found with these tests is that the `torch_config` objects do not update after issuing a new `install_pytorch`.
+* add more live tests. They work but `torch_config` does not update output after issuing a `install_pytorch()` command; they return the previous installed PyTorch info. The purpose of these test was initially see if the installation performed as
+initially planned. It works outside unit tests. But we cannot enable this test for CRAN because it will take longer time and may not work due to the PyTorch installation process. The major problem I found with these tests is that the `torch_config` objects do not update after issuing a new `install_pytorch`.
 * Links to tutorials added to README.
-* Remove `reticulate.R`. Some functions were customized to accept `channel`.
+* Remove `reticulate.R` from rTorch code. Some functions were previously customized to accept `channel`. Now the `reticulate` package accepts `channel` as a function parameter.
 
 # 0.4.0.9003
 * Now CRAN WinBuilder tests are passing.
 * Add conda to `SystemRequirements` because CRAN is not passing.
 
 # 0.4.0.9002
-* add skip_if_no_python() so CRAN doesn't throw error in test `test-install_rtorch_dryrun.R`
-* replace function name utils.R by helper_utils.R
-
+* add `skip_if_no_python()` so CRAN doesn't throw error in unit test `test-install_rtorch_dryrun.R`
+* replace function name `utils.R` by `helper_utils.R`. We also have `utils.R` under the R folder.
 
 # 0.4.0.9001
 * split test `test-install_rtorch_dryrun.R` in two files. The second one `test-install_rtorch_parse_version.R` will only perform the parsing of what is being sent to `install_pytorch()`.
 * use `skip_if_no_python()` in case there is no way Python is installed at the testing point.
 * using package `rhub` for testing before releasing to __CRAN__.
 
-
 # 0.4.0.9000
-* use `skip_if_no_torch()`
-* add function `skip_if_no_python()`
-* move live torch example to a separate file
-* change dontest to dontrun in examples
-* create branch `0.4.0-fix_examples_problem_in_cran`
+* use `skip_if_no_torch()` in tests in cases where PyTorch cannot be installed in CRAN.
+* add function `skip_if_no_python()`.
+* move live torch example to a separate file.
+* change `\dontest` to `\dontrun` in examples.
+* create branch `0.4.0-fix_examples_problem_in_cran`.
 
 # rTorch 0.4.0
 * Modify `tests/testthat/utils.R` to include `skip_on_cran()`
 * change version numbering so it is easier to renumber when back to CRAN for fixes.
 
-# rTorch 0.0.4
+# rTorch 0.0.4.9000
 * Returned from CRAN because of errors. Mainly due to lack of Python and PyTorch installation.
-* Release to CRAN
-* Updated version of rTorch to adapt to new PyTorch versions 1.4, 1.5, 1.6.
-* This rTorch release has been tested against Travis Linux, macOs, and Appveyor for Windows. All tests passed successfully. Furthermore, the package has been tested under Python 3.6, 3.7 and 3.8. A testing matrix was implemented in Travis and Appveyor to test version combinations of Python, PyTorch and R. The R versions tested were R-3.4.3, R-3.5.3, R-3.6.3, and R-4.0.2.
 
+# rTorch 0.0.4
+* Release to CRAN
+* Updated version of rTorch to adapt to new `PyTorch` versions 1.4, 1.5, 1.6.
+* This rTorch release has been tested against Travis Linux, macOs, and Appveyor for Windows. All tests passed successfully. Furthermore, the package has been tested under `Python` 3.6, 3.7 and 3.8. A testing matrix was implemented in `Travis` and `Appveyor` to test version combinations of Python, PyTorch and R. The R versions tested were `R-3.4.3`, `R-3.5.3`, `R-3.6.3`, and `R-4.0.2`.
 
 # rTorch 0.0.3.9013
 * Fixed `travis.yml` by bringing `- PYTHON_V="3.7" PYTORCH_V="1.6"` near `env: metrix`. Maybe some space or alignment was preventing ennvronment variables being passed to Travis containers.

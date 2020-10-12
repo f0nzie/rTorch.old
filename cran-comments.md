@@ -1,5 +1,21 @@
-# 0.4.0
+# 0.4.1
+Notes by Uwe Ligges
+6:29 AM (1 hour ago)
+to CRAN, Alfonso
+Thanks, we see:
+```
+   Found the following (possibly) invalid file URI:
+     URI: cran-comments.md
+       From: NEWS.md
+```       
+_cran-comments.md_ is not part of the source tarball and should not. If
+you really want to link to it, __you have to link via a fully specified URL__.
+Please fix and resubmit.
+Best,
+Uwe Ligges
 
+
+# 0.4.0
 ## Notes by *Prof Brian Ripley* <ripley@stats.ox.ac.uk>
 
 20201009 3:42 AM (5 hours ago) 

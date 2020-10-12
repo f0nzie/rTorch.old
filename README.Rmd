@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 
 # rTorch
 
-The goal of `rTorch` is providing an R wrapper to [PyTorch](https://pytorch.org/). `rTorch` provides all the functionality of  PyTorch plus all the features that R provides.  We have borrowed ideas and code used in R [tensorflow](https://github.com/rstudio/tensorflow) to implement `rTorch`.
+The goal of `rTorch` is providing an R wrapper to [PyTorch](https://pytorch.org/). `rTorch` provides all the functionality of PyTorch plus all the features that R provides. We have borrowed some ideas and code used in R [tensorflow](https://github.com/rstudio/tensorflow) to implement `rTorch`.
 
 Besides the module `torch`, which directly provides `PyTorch` methods, classes and functions, the package also provides the modules `numpy` as a method called `np`, and `torchvision`, as well. The dollar sign `$` after the module will provide you access to all their sub-objects. Example: 
 
@@ -38,23 +38,21 @@ torch_module
 
 
 ## rTorch Examples
-To lighten up the time in building this `rTorch` package, we moved the examples that use tensor operations and neural bnetworks to separate repositories. There are two sets of examples:
+To lighten up the time in building this `rTorch` package, we moved the examples that use _tensor operations_ and _neural networks_ to separate repositories. There are two sets of examples:
 
 * _The rTorch Minimal Book_ at https://f0nzie.github.io/rtorch-minimal-book/
 * _rTorch Advanced Examples_ at https://github.com/f0nzie/rTorch.examples
 
 
-
 ## rTorch installation
+`rTorch` is available via CRAN and from GitHub.
 
 ### From CRAN
-`rTorch` is available in via CRAN and GitHub.
-
 Install from CRAN using `install.packages("rTorch")` from the R console, or from *RStudio* using `Tools`, `Install Packages` from the menu.
 
 ### From GitHub
-
-From GitHub, install `rTorch` with:
+For the latest version install from GitHub. 
+Install `rTorch` with:
 
 `devtools::install_github("f0nzie/rTorch")`
 
@@ -62,6 +60,11 @@ Installing from GitHub gives you the flexibility of experimenting with the lates
 
 `devtools::install_github("f0nzie/rTorch", ref="develop")`
 
+or clone with Git with:
+
+```
+git clone https://github.com/f0nzie/rTorch.git
+```
 
 
 # Getting Started
