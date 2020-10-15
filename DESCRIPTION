@@ -19,8 +19,7 @@ Imports:
     reticulate (>= 1.10),
     jsonlite (>= 1.2),
     utils,
-    methods,
-    rstudioapi (>= 0.7),
+    rstudioapi (>= 0.7)
 Suggests: 
     testthat,
     knitr,

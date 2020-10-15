@@ -1,3 +1,8 @@
+# 0.4.2.9000
+* Add few examples for `install_pytorch()` function
+* Note at CRAN: _"Result: NOTE.  Namespace in Imports field not imported from: ‘methods’. All declared Imports should be used. "_. Remove `methods` from `Imports` in DESCRIPTION.
+
+
 # 0.4.2
 * Release to CRAN after fix.
 
