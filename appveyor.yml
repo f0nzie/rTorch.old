@@ -7,6 +7,16 @@ environment:
   APPVEYOR_RDP_PASSWORD: rTorch%package
   R_ARCH: x64
   matrix:
+      - R_VERSION: 4.0.2
+        TORCH_VERSION: 1.6
+        PYTHON_VERSION: 3.7
+
+      - R_VERSION: 3.6.3
+        TORCH_VERSION: 1.6
+        PYTHON_VERSION: 3.7
+
+  # 2nd testing set: only R-4.0.2
+  # matrix:
     # - R_VERSION: 4.0.2
     #   TORCH_VERSION: 1.1
     #   PYTHON_VERSION: 3.7
@@ -22,11 +32,12 @@ environment:
     # - R_VERSION: 4.0.2
     #   TORCH_VERSION: 1.6
     #   PYTHON_VERSION: 3.7
+#
+#     - R_VERSION: 4.0.2
+#       TORCH_VERSION: 1.6
+#       PYTHON_VERSION: 3.7
 
-    - R_VERSION: 4.0.2
-      TORCH_VERSION: 1.6
-      PYTHON_VERSION: 3.7
-
+  # 3rd testing set
   # matrix:
   # # Python 3.6
   #   - R_VERSION: 3.5.3

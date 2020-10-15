@@ -1,6 +1,6 @@
 Package: rTorch
 Title: R Bindings to 'PyTorch'
-Version: 0.4.2
+Version: 0.4.2-9000
 Authors@R: c(
     person("Alfonso R.", "Reyes", role = c("aut", "cre", "cph"), email = "alfonso.reyes@oilgainsanalytics.com")
     )
@@ -19,8 +19,7 @@ Imports:
     reticulate (>= 1.10),
     jsonlite (>= 1.2),
     utils,
-    methods,
-    rstudioapi (>= 0.7),
+    rstudioapi (>= 0.7)
 Suggests: 
     testthat,
     knitr,

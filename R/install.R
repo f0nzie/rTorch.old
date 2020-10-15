@@ -42,6 +42,22 @@
 #'   [reticulate::virtualenv_install()].
 #'
 #' @importFrom jsonlite fromJSON
+#' @examples
+#' \dontrun{
+#'
+#' # install PyTorch 1.6 on Python 3.7 including pandas
+#' install_pytorch(version = "1.6", conda_python_version = "3.7",
+#' extra_packages = "pandas")
+#'
+#' # Install PyTorch 1.4, Python 3.6, pandas, matplotlib install from the console
+#' install_pytorch(version = "1.4", conda_python_version = "3.6",
+#' extra_packages = c("pandas", "matplotlib"))
+#'
+#' # Install PyTorch 1.3 on Python 3.6 including pandas, matplotlib
+#' install_pytorch(version = "1.3", conda_python_version = "3.6",
+#' extra_packages = c("pandas", "matplotlib"),
+#' dry_run = FALSE)
+#' }
 #'
 #' @export
 install_pytorch <- function(method = c("conda", "virtualenv", "auto"),
