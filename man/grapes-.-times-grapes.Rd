@@ -2,7 +2,12 @@
 % Please edit documentation in R/generics.R
 \name{\%.*\%}
 \alias{\%.*\%}
-\title{Dot product of two tensors}
+\title{#' @export
+"round.torch.Tensor" <- function(input) {
+# round: Returns a new tensor with each of the elements of input rounded to the closest integer.
+torch$round(input)
+}
+Dot product of two tensors}
 \usage{
 a \%.*\% b
 }
@@ -18,7 +23,7 @@ a scalar
 This generic is similar to \code{torch$dot(a, b)}
 }
 \examples{
-\donttest{
+\dontrun{
 p <- torch$Tensor(list(2, 3))
 q <- torch$Tensor(list(2, 1))
 p \%.*\% q

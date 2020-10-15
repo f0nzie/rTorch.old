@@ -18,7 +18,7 @@ Another tensor representing the addition of two tensors.
 This generic is similar to applying \code{torch$add(a, b)}
 }
 \examples{
-\donttest{
+\dontrun{
 a <- torch$Tensor(list(1, 1, 1))
 b <- torch$Tensor(list(2, 2, 2))
 s <- 2.0

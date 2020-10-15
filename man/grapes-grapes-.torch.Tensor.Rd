@@ -18,7 +18,7 @@ the reminder of the division between tensor by a scalar or tensor
 Computes the element-wise remainder of division.
 }
 \examples{
-\donttest{
+\dontrun{
 x <- torch$Tensor(list(-3., -2, -1, 1, 2, 3))
 y <- torch$Tensor(list(1., 2, 3, 4, 5))
 torch$remainder(x, 2)

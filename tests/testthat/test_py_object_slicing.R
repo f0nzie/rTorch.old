@@ -1,11 +1,12 @@
 library(testthat)
 
-skip_on_cran()
+source("helper_utils.R")
 
-source("tensor_functions.R")
+skip_if_no_python()
 
 # function narrow() extracts part of a tensor ----------------------------------
-context("extract parts of a Python object")
+#
+context("extract parts of a Python object 1")
 
 test_that("extract a slice from a list", {
     builtins    <- import_builtins()
@@ -18,10 +19,14 @@ test_that("extract a slice from a list", {
     py_run_string("del li")  # remove variable from Python environment
 })
 
+
+context("extract parts of a Python object 2")
 test_that("tensor dimension is 4D: 60000x3x28x28", {
+    skip_if_no_torch()
+
     img <<- torch$ones(60000L, 3L, 28L, 28L)
     expect_equal(tensor_dim(img), c(60000, 3, 28, 28))
-    expect_equal(tensor_dim_(img), 4)
+    expect_equal(tensor_ndim(img), 4)
     # print(img[10:11][0:1])
     expect_equal(tensor_dim(py_eval("r.img[0:10]")), c(10, 3, 28, 28))
 

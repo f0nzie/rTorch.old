@@ -1,39 +1,98 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+# The language 'r' is currently unsupported on the Windows Build Environment.
 
 language: R
 # cache: packages
 
+r:
+ - 4.0.2
+ - 3.6.3
+ # - 3.5.3
+ # - 3.4.3
+
 warnings_are_errors: false
 
+os:
+  - linux
+  - osx
 
+# # -- this worked before --
+# env:
+#   - PYTHON_V="3.6" PYTORCH_V="1.1"
+#   - PYTHON_V="3.7" PYTORCH_V="1.1"
+#   - PYTHON_V="3.8" PYTORCH_V="1.1"
+# # ----------------------------------------------
+
+
+# # this matrix generates 36 jobs
+# env:
+#   matrix:
+#     # Python 3.6
+#     - PYTHON_V="3.6" PYTORCH_V="1.1"
+#     - PYTHON_V="3.6" PYTORCH_V="1.2"
+#     - PYTHON_V="3.6" PYTORCH_V="1.4"
+#     - PYTHON_V="3.6" PYTORCH_V="1.6"
+#     # Python 3.7
+#     - PYTHON_V="3.7" PYTORCH_V="1.1"
+#     - PYTHON_V="3.7" PYTORCH_V="1.2"
+#     - PYTHON_V="3.7" PYTORCH_V="1.4"
+#     - PYTHON_V="3.7" PYTORCH_V="1.6"
+#     # Python 3.8
+#     - PYTHON_V="3.8" PYTORCH_V="1.6"
+
+
+# this matrix generates 2 jobs
 env:
-  global:
-    - PYTORCH_VERSION="1.1"
+  matrix:
+    - PYTHON_V="3.7" PYTORCH_V="1.6"
+    # - PYTHON_V="3.7" PYTORCH_V="1.1"
+    # - PYTHON_V="3.7" PYTORCH_V="1.2"
+    # - PYTHON_V="3.7" PYTORCH_V="1.4"
+    # - PYTHON_V="3.7" PYTORCH_V="1.5""
+    # - PYTHON_V="3.7" PYTORCH_V="1.6"
 
 r-packages:
-  - logging
   - reticulate
   - jsonlite
   - R6
   - rstudioapi
   - data.table
 
-
 before_script:
-# do not need these commented lines
-#  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
-  - sudo apt-get update
-  - sudo apt-get install gcc-4.9
-#  - sudo apt-get install libstdc++6   # needed by PyTorch
-  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+  # - sudo apt-get update
+  # new lines with breaks using |
+  - |
+    if [ "$TRAVIS_OS_NAME" = "linux" ];
+      then wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+    fi
+  - |
+    if [ "$TRAVIS_OS_NAME" = "osx"   ];
+      then wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh;
+    fi
   - bash miniconda.sh -b -p $HOME/miniconda
   - export PATH="$HOME/miniconda/bin:$PATH"
+  - export LD_LIBRARY_PATH=${TRAVIS_HOME}/miniconda/lib
   - hash -r
   - rm miniconda.sh
   - conda config --set always_yes yes --set changeps1 no
   - conda update -q conda
+  - conda init bash
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; then conda install nomkl;fi
   - conda info -a
   - R CMD INSTALL .
-  - R -e 'rTorch::install_pytorch(method="conda", version=Sys.getenv("PYTORCH_VERSION"), channel="pytorch", conda_python_version="3.6")'
+  - |
+    if [ "$TRAVIS_OS_NAME" = "linux" ];
+      then sudo rm /usr/lib/x86_64-linux-gnu/libstdc++.so.6;
+    fi
+  - # new lines without hard breaks using >
+  - >
+    R -e 'rTorch:::install_conda(
+    package=paste0("pytorch=", Sys.getenv("PYTORCH_V")),
+    envname="r-torch", conda="auto",
+    conda_python_version=Sys.getenv("PYTHON_V"),
+    pip=FALSE, channel="pytorch",
+    extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))'
+
+  # - R -e 'rTorch:::install_conda(package="pytorch=1.6", envname="r-torch", conda="auto", conda_python_version="3.6", pip=FALSE, channel="pytorch", extra_packages=c("torchvision", "cpuonly", "matplotlib", "pandas"))'
 
 

@@ -9,7 +9,7 @@ is_unix <- function() {
 }
 
 is_osx <- function() {
-  Sys.info()["sysname"] == "Darwin"
+  Sys.info()[["sysname"]] == "Darwin"
 }
 
 is_linux <- function() {
@@ -21,6 +21,16 @@ is_ubuntu <- function() {
   if (is_unix() && file.exists("/etc/lsb-release")) {
     lsbRelease <- readLines("/etc/lsb-release")
     any(grepl("Ubuntu", lsbRelease))
+  } else {
+    FALSE
+  }
+}
+
+is_debian <- function() {
+  # check /etc/os-release
+  if (is_unix() && file.exists("/etc/os-release")) {
+    osRelease <- readLines("/etc/os-release")
+    any(grepl("Debian", osRelease))
   } else {
     FALSE
   }
@@ -51,3 +61,8 @@ call_hook <- function(name, ...) {
   response
 }
 
+
+is_rtorch_env_name <- function(default_env_name = "r-torch") {
+    grep(pattern = default_env_name, reticulate::conda_list()[["name"]], value = TRUE) == "r-torch"
+
+}

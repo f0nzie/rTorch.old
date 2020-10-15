@@ -1,13 +1,17 @@
 library(testthat)
 
-skip_on_cran()
+source("helper_utils.R")
 
-source("tensor_functions.R")
+skip_if_no_torch()
+
 
 context("PyTorch version")
 
-test_that("PyTorch version is 1.1.0", {
-    expect_true(torch$`__version__` %in% c("1.1.0", "1.1", "1.0", "1.0.0"))
+VERSIONS <- c("1.1", "1.0", "1.2", "1.3", "1.4", "1.5", "1.6")
+
+test_that("PyTorch version ", {
+    expect_true(substr(torch$`__version__`, 1, 3)  %in% VERSIONS
+                  )
 })
 
 
@@ -18,15 +22,17 @@ test_that("CUDA is not available", {
 
 skip_on_travis()
 test_that("Number of CPUs", {
-    expect_true(torch$get_num_threads() %in% c(2, 4))
+    expect_true(torch$get_num_threads() >= 1)
 })
 
 
 
-context("package config functions")
+context("package version")
 
 test_that("torch_version returns value", {
-  expect_true(torch_version() %in% c("1.1", "1.1.0", "1.0.0"))
-  # print(torch_version())
+  expect_true(torch_version() %in% VERSIONS)
+  version <- torch$`__version__`
+  version <- strsplit(version, ".", fixed = TRUE)[[1]]
+  expect_equal(length(version), 3)
 
 })

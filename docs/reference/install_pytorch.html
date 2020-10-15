@@ -6,23 +6,31 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Install TensorFlow and its dependencies — install_pytorch • rTorch</title>
+<title>Install PyTorch and its dependencies — install_pytorch • rTorch</title>
+
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,10 +38,10 @@
 
 
 
-<meta property="og:title" content="Install TensorFlow and its dependencies — install_pytorch" />
 
-<meta property="og:description" content="Install TensorFlow and its dependencies" />
-<meta name="twitter:card" content="summary" />
+<meta property="og:title" content="Install PyTorch and its dependencies — install_pytorch" />
+<meta property="og:description" content="Install PyTorch and its dependencies" />
+
 
 
 
@@ -47,9 +55,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -63,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rTorch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.2</span>
       </span>
     </div>
 
@@ -71,22 +80,33 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/installation.html">Installation</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/f0nzie/rTorch">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/f0nzie/rTorch/">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -97,28 +117,36 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Install TensorFlow and its dependencies</h1>
+    <h1>Install PyTorch and its dependencies</h1>
     <small class="dont-index">Source: <a href='https://github.com/f0nzie/rTorch/blob/master/R/install.R'><code>R/install.R</code></a></small>
     <div class="hidden name"><code>install_pytorch.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    
-    <p>Install TensorFlow and its dependencies</p>
-    
+    <p>Install PyTorch and its dependencies</p>
     </div>
 
-    <pre class="usage"><span class='fu'>install_pytorch</span>(<span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"conda"</span>, <span class='st'>"virtualenv"</span>, <span class='st'>"auto"</span>),
-  <span class='kw'>conda</span> <span class='kw'>=</span> <span class='st'>"auto"</span>, <span class='kw'>version</span> <span class='kw'>=</span> <span class='st'>"default"</span>, <span class='kw'>envname</span> <span class='kw'>=</span> <span class='st'>"r-torch"</span>,
-  <span class='kw'>extra_packages</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>restart_session</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>conda_python_version</span> <span class='kw'>=</span> <span class='st'>"3.6"</span>, <span class='kw'>pip</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>channel</span> <span class='kw'>=</span> <span class='st'>"pytorch"</span>,
-  <span class='no'>...</span>)</pre>
-    
+    <pre class="usage"><span class='fu'>install_pytorch</span><span class='op'>(</span>
+  method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"conda"</span>, <span class='st'>"virtualenv"</span>, <span class='st'>"auto"</span><span class='op'>)</span>,
+  conda <span class='op'>=</span> <span class='st'>"auto"</span>,
+  version <span class='op'>=</span> <span class='st'>"default"</span>,
+  envname <span class='op'>=</span> <span class='st'>"r-torch"</span>,
+  extra_packages <span class='op'>=</span> <span class='cn'>NULL</span>,
+  restart_session <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  conda_python_version <span class='op'>=</span> <span class='st'>"3.6"</span>,
+  pip <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  channel <span class='op'>=</span> <span class='st'>"stable"</span>,
+  cuda_version <span class='op'>=</span> <span class='cn'>NULL</span>,
+  dry_run <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -127,33 +155,31 @@
       <td><p>Installation method. By default, "auto" automatically finds a
 method that will work in the local environment. Change the default to force
 a specific installation method. Note that the "virtualenv" method is not
-available on Windows (as this isn't supported by TensorFlow). Note also
+available on <em>Windows</em> (as this isn't supported by <em>PyTorch</em>). Note also
 that since this command runs without privillege the "system" method is
-available only on Windows.</p></td>
+available only on <em>Windows</em>.</p></td>
     </tr>
     <tr>
       <th>conda</th>
-      <td><p>Path to conda executable (or "auto" to find conda using the
-PATH and other conventional install locations).</p></td>
+      <td><p>The path to a <code>conda</code> executable. Use <code>"auto"</code> to allow <code>reticulate</code> to
+automatically find an appropriate <code>conda</code> binary. See <strong>Finding Conda</strong> for more details.</p></td>
     </tr>
     <tr>
       <th>version</th>
-      <td><p>TensorFlow version to install. Specify "default" to install
-  the CPU version of the latest release. Specify "gpu" to install the GPU
-  version of the latest release.</p>
-<p>You can also provide a full major.minor.patch specification (e.g. "1.1.0"),
-  appending "-gpu" if you want the GPU version (e.g. "1.1.0-gpu").</p>
-<p>Alternatively, you can provide the full URL to an installer binary (e.g.
-  for a nightly binary).</p></td>
+      <td><p>PyTorch version to install. The "default" version is <strong>1.4</strong>.
+You can specify a specific <strong>PyTorch</strong> version with <code>version="1.2"</code>,
+or <code>version="1.6"</code>.</p></td>
     </tr>
     <tr>
       <th>envname</th>
-      <td><p>Name of Python environment to install within</p></td>
+      <td><p>Name of Python or conda environment to install within.
+The default environment name is <code>r-torch</code>.</p></td>
     </tr>
     <tr>
       <th>extra_packages</th>
       <td><p>Additional Python packages to install along with
-TensorFlow.</p></td>
+PyTorch. If more than one package use a character vector:
+<code><a href='https://rdrr.io/r/base/c.html'>c("pandas", "matplotlib")</a></code>.</p></td>
     </tr>
     <tr>
       <th>restart_session</th>
@@ -162,8 +188,9 @@ only occur within RStudio).</p></td>
     </tr>
     <tr>
       <th>conda_python_version</th>
-      <td><p>the python version installed in the created conda
-environment. Python 3.6 is installed by default.</p></td>
+      <td><p>the <em>Python</em> version installed in the created <em>conda</em>
+environment. Python <strong>3.4</strong> is installed by default. But you could specify for instance:
+<code>conda_python_version="3.7"</code>.</p></td>
     </tr>
     <tr>
       <th>pip</th>
@@ -171,25 +198,35 @@ environment. Python 3.6 is installed by default.</p></td>
     </tr>
     <tr>
       <th>channel</th>
-      <td><p>conda channel</p></td>
+      <td><p>conda channel. The default channel is <code>stable</code>.
+The alternative channel is <code>nightly</code>.</p></td>
+    </tr>
+    <tr>
+      <th>cuda_version</th>
+      <td><p>string for the cuda toolkit version to install. For example,
+to install a specific CUDA version use <code>cuda_version="10.2"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>dry_run</th>
+      <td><p>logical, set to TRUE for unit tests, otherwise will execute
+the command.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>other arguments passed to [reticulate::conda_install()] or
-[reticulate::virtualenv_install()].</p></td>
+      <td><p>other arguments passed to <code><a href='https://rdrr.io/pkg/reticulate/man/conda-tools.html'>reticulate::conda_install()</a></code> or
+<code><a href='https://rdrr.io/pkg/reticulate/man/virtualenv-tools.html'>reticulate::virtualenv_install()</a></code>.</p></td>
     </tr>
     </table>
-    
+
 
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-                </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -197,13 +234,16 @@ environment. Python 3.6 is installed by default.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

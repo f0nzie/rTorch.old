@@ -13,7 +13,7 @@
     <loc>https://github.com/f0nzie/rTorch/reference/any.torch.Tensor.html</loc>
   </url>
   <url>
-    <loc>https://github.com/f0nzie/rTorch/reference/conda-tools.html</loc>
+    <loc>https://github.com/f0nzie/rTorch/reference/as_boolean.html</loc>
   </url>
   <url>
     <loc>https://github.com/f0nzie/rTorch/reference/dataset_mnist_digits.html</loc>
@@ -49,6 +49,9 @@
     <loc>https://github.com/f0nzie/rTorch/reference/install_torch_extras.html</loc>
   </url>
   <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/is_tensor.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/f0nzie/rTorch/reference/length.torch.Tensor.html</loc>
   </url>
   <url>
@@ -74,6 +77,9 @@
   </url>
   <url>
     <loc>https://github.com/f0nzie/rTorch/reference/logical_or.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/reference/make_copy.html</loc>
   </url>
   <url>
     <loc>https://github.com/f0nzie/rTorch/reference/modules.html</loc>
@@ -115,9 +121,9 @@
     <loc>https://github.com/f0nzie/rTorch/reference/torch_extract_opts.html</loc>
   </url>
   <url>
-    <loc>https://github.com/f0nzie/rTorch/reference/torch_getLogger.html</loc>
+    <loc>https://github.com/f0nzie/rTorch/reference/torch_size.html</loc>
   </url>
   <url>
-    <loc>https://github.com/f0nzie/rTorch/reference/torch_size.html</loc>
+    <loc>https://github.com/f0nzie/rTorch/articles/installation.html</loc>
   </url>
 </urlset>

@@ -4,51 +4,52 @@
 \alias{torch_extract_opts}
 \title{Tensor extract options}
 \usage{
-torch_extract_opts(style = getOption("torch.extract.style"), ...,
+torch_extract_opts(
+  style = getOption("torch.extract.style"),
+  ...,
   one_based = getOption("torch.extract.one_based", TRUE),
   inclusive_stop = getOption("torch.extract.inclusive_stop", TRUE),
-  disallow_out_of_bounds = getOption("torch.extract.dissallow_out_of_bounds",
-  TRUE),
-  warn_tensors_passed_asis = getOption("torch.extract.warn_tensors_passed_asis",
-  TRUE),
-  warn_negatives_pythonic = getOption("torch.extract.warn_negatives_pythonic",
-  TRUE))
+  disallow_out_of_bounds = getOption("torch.extract.dissallow_out_of_bounds", TRUE),
+  warn_tensors_passed_asis = getOption("torch.extract.warn_tensors_passed_asis", TRUE),
+  warn_negatives_pythonic = getOption("torch.extract.warn_negatives_pythonic", TRUE)
+)
 }
 \arguments{
-\item{style}{one of `NULL` (the default) `"R"` or `"python"`. If supplied,
-this overrides all other options. `"python"` is equivalent to all the other
-arguments being `FALSE`. `"R"` is equivalent to
-`warn_tensors_passed_asis` and `warn_negatives_pythonic`
-set to `FALSE`}
+\item{style}{one of \code{NULL} (the default) \code{"R"} or \code{"python"}. If supplied,
+this overrides all other options. \code{"python"} is equivalent to all the other
+arguments being \code{FALSE}. \code{"R"} is equivalent to
+\code{warn_tensors_passed_asis} and \code{warn_negatives_pythonic}
+set to \code{FALSE}}
 
 \item{...}{ignored}
 
 \item{one_based}{TRUE or FALSE, if one-based indexing should be used}
 
-\item{inclusive_stop}{TRUE or FALSE, if slices like `start:stop` should be
-inclusive of `stop`}
+\item{inclusive_stop}{TRUE or FALSE, if slices like \code{start:stop} should be
+inclusive of \code{stop}}
 
 \item{disallow_out_of_bounds}{TRUE or FALSE, whether checks are performed on
 the slicing index to ensure it is within bounds.}
 
 \item{warn_tensors_passed_asis}{TRUE or FALSE, whether to emit a warning the
-first time a tensor is supplied to `[` that tensors are passed as-is, with
+first time a tensor is supplied to \code{[} that tensors are passed as-is, with
 no R to python translation}
 
 \item{warn_negatives_pythonic}{TRUE or FALSE, whether to emit
-a warning the first time a negative number is supplied to `[` about the
+a warning the first time a negative number is supplied to \code{[} about the
 non-standard (python-style) interpretation}
 }
 \value{
 an object with class "torch_extract_opts", suitable for passing to
-  `[.torch.tensor()`
+\verb{[.torch.tensor()}
 }
 \description{
 Tensor extract options
 }
 \examples{
-\donttest{
-x <- tf$constant(1:10)
+\dontrun{
+
+x <- torch$arange(1L, 10L)
 
 opts <-  torch_extract_opts("R")
 x[1, options = opts]

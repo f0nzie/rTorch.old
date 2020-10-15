@@ -6,7 +6,13 @@
 \alias{np}
 \alias{torchvision}
 \title{Main PyTorch module}
-\format{PyTorch module}
+\format{
+PyTorch module
+
+numpy module
+
+Torchvision module
+}
 \usage{
 torch
 

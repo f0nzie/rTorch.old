@@ -3,8 +3,7 @@
 \docType{package}
 \name{rTorch}
 \alias{rTorch}
-\alias{rTorch-package}
-\title{Torch for R}
+\title{PyTorch for R}
 \description{
-Torch for R
+PyTorch bindings for R
 }

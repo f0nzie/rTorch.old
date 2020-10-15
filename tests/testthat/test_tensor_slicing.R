@@ -1,8 +1,8 @@
 library(testthat)
 
-skip_on_cran()
+source("helper_utils.R")
 
-source("tensor_functions.R")
+skip_if_no_torch()
 
 # test slicing with chunk() and select_index() ---------------------------------
 context("test slicing with chunk() and select_index()")
@@ -13,7 +13,7 @@ test_that("test tensor has 3 dimensions", {
     result <- builtins$list(img$size())
     # print(result)
     expect_equal(result, c(3, 28, 28))
-    expect_equal(tensor_dim_(img), 3)
+    expect_equal(tensor_ndim(img), 3)
 })
 
 
@@ -100,7 +100,7 @@ test_that("select_index() can also select a tensor layer", {
 
     # first block in dim=0
     indices = torch$tensor(c(0L))      # get block 1 on dim=0
-    expect_equal(tensor_dim_(img), 4)
+    expect_equal(tensor_ndim(img), 4)
     # expect_equal(img[0]$numel(), 60000)
     img_mod <- torch$index_select(img, dim = 0L, index = indices)
     expect_equal(tensor_dim(img_mod), c(1, 3, 28, 28))
@@ -115,28 +115,28 @@ test_that("select_index() can also select a tensor layer", {
 
     # first layer in dim=1
     indices = torch$tensor(c(0L))      # get layer 1 on dim=1
-    expect_equal(tensor_dim_(img), 4)
+    expect_equal(tensor_ndim(img), 4)
     img_mod <- torch$index_select(img, dim = 1L, index = indices)
     expect_equal(tensor_dim(img_mod), c(60000, 1, 28, 28))
     expect_equal(tensor_sum(img_mod), 60000*28*28)
 
     # last layer in dim=1
     indices = torch$tensor(c(2L))      # get layer 1 on dim=1
-    expect_equal(tensor_dim_(img), 4)
+    expect_equal(tensor_ndim(img), 4)
     img_mod <- torch$index_select(img, dim = 1L, index = indices)
     expect_equal(tensor_dim(img_mod), c(60000, 1, 28, 28))
     expect_equal(tensor_sum(img_mod), 60000*28*28)
 
     # first square in dim=2
     indices = torch$tensor(c(0L))      # get layer 1 on dim=1
-    expect_equal(tensor_dim_(img), 4)
+    expect_equal(tensor_ndim(img), 4)
     img_mod <- torch$index_select(img, dim = 2L, index = indices)
     expect_equal(tensor_dim(img_mod), c(60000, 3, 1, 28))
     expect_equal(tensor_sum(img_mod), 60000*3*1*28)
 
     # last square in dim=2
     indices = torch$tensor(c(27L))      # get layer 1 on dim=1
-    expect_equal(tensor_dim_(img), 4)
+    expect_equal(tensor_ndim(img), 4)
     img_mod <- torch$index_select(img, dim = 2L, index = indices)
     expect_equal(tensor_dim(img_mod), c(60000, 3, 1, 28))
     expect_equal(tensor_sum(img_mod), 60000*3*1*28)
@@ -146,7 +146,7 @@ test_that("select_index() can also select a tensor layer", {
 
     # last square in dim=3
     indices = torch$tensor(c(27L))
-    expect_equal(tensor_dim_(img), 4)
+    expect_equal(tensor_ndim(img), 4)
     img_mod <- torch$index_select(img, dim = 3L, index = indices)
     expect_equal(tensor_dim(img_mod), c(60000, 3, 28, 1))
     expect_equal(tensor_sum(img_mod), 60000*3*28*1)

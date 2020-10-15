@@ -23,7 +23,7 @@ Two tensor operations
 }}
 
 \examples{
-\donttest{
+\dontrun{
 a <- torch$Tensor(list(1, 1, 1))
 b <- torch$Tensor(list(2, 2, 2))
 s <- 2.0
@@ -50,4 +50,10 @@ zeros & zeros
 diag & zeros
 diag | zeros
 }
+\dontrun{
+x <- torch$arange(1,11)
+torch$pow(x, 2)      #     x^(2)
+torch$pow(x, -2)     #     x^(1/2)
+}
+
 }

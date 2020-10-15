@@ -14,3 +14,13 @@
 \description{
 Logarithm of a tensor given the tensor and the base
 }
+\examples{
+\dontrun{
+x <- torch$tensor(c(512, 1024, 2048, 4096))   # tensor([ 9., 10., 11., 12.])
+base <- 2
+log(x, base)
+
+x <- torch$tensor(c(1, 10, 100, 1000))         # tensor([0., 1., 2., 3.])
+log(x, 10)
+}
+}

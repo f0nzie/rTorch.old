@@ -19,11 +19,11 @@ There is not equivalent function in PyTorch for this generic.
 To generate This generic we use the function \code{np$logical_not(x)}.
 }
 \examples{
-\donttest{
+\dontrun{
 A <- torch$ones(5L)
 !A
 
 Z <- torch$zeros(5L)
-!B
+!Z
 }
 }

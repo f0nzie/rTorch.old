@@ -7,7 +7,129 @@ environment:
   APPVEYOR_RDP_PASSWORD: rTorch%package
   R_ARCH: x64
   matrix:
-    - TORCH_VERSION: 1.1.0
+    # - R_VERSION: 4.0.2
+    #   TORCH_VERSION: 1.1
+    #   PYTHON_VERSION: 3.7
+    #
+    # - R_VERSION: 4.0.2
+    #   TORCH_VERSION: 1.2
+    #   PYTHON_VERSION: 3.7
+    #
+    # - R_VERSION: 4.0.2
+    #   TORCH_VERSION: 1.4
+    #   PYTHON_VERSION: 3.7
+    #
+    # - R_VERSION: 4.0.2
+    #   TORCH_VERSION: 1.6
+    #   PYTHON_VERSION: 3.7
+
+    - R_VERSION: 4.0.2
+      TORCH_VERSION: 1.6
+      PYTHON_VERSION: 3.7
+
+  # matrix:
+  # # Python 3.6
+  #   - R_VERSION: 3.5.3
+  #     TORCH_VERSION: 1.1
+  #     PYTHON_VERSION: 3.6
+  #
+  #   - R_VERSION: 3.5.3
+  #     TORCH_VERSION: 1.2
+  #     PYTHON_VERSION: 3.6
+  #
+  #   - R_VERSION: 3.5.3
+  #     TORCH_VERSION: 1.4
+  #     PYTHON_VERSION: 3.6
+  #
+  #   - R_VERSION: 3.5.3
+  #     TORCH_VERSION: 1.6
+  #     PYTHON_VERSION: 3.6
+  #
+  #
+  #   - R_VERSION: 3.6.3
+  #     TORCH_VERSION: 1.1
+  #     PYTHON_VERSION: 3.6
+  #
+  #   - R_VERSION: 3.6.3
+  #     TORCH_VERSION: 1.2
+  #     PYTHON_VERSION: 3.6
+  #
+  #   - R_VERSION: 3.6.3
+  #     TORCH_VERSION: 1.4
+  #     PYTHON_VERSION: 3.6
+  #
+  #   - R_VERSION: 3.6.3
+  #     TORCH_VERSION: 1.6
+  #     PYTHON_VERSION: 3.6
+  #
+  #
+  #   - R_VERSION: 4.0.2
+  #     TORCH_VERSION: 1.1
+  #     PYTHON_VERSION: 3.6
+  #
+  #   - R_VERSION: 4.0.2
+  #     TORCH_VERSION: 1.2
+  #     PYTHON_VERSION: 3.6
+  #
+  #   - R_VERSION: 4.0.2
+  #     TORCH_VERSION: 1.4
+  #     PYTHON_VERSION: 3.6
+  #
+  #   - R_VERSION: 4.0.2
+  #     TORCH_VERSION: 1.6
+  #     PYTHON_VERSION: 3.6
+  #
+  # # Python 3.7
+  #   - R_VERSION: 3.5.3
+  #     TORCH_VERSION: 1.1
+  #     PYTHON_VERSION: 3.7
+  #
+  #   - R_VERSION: 3.5.3
+  #     TORCH_VERSION: 1.2
+  #     PYTHON_VERSION: 3.7
+  #
+  #   - R_VERSION: 3.5.3
+  #     TORCH_VERSION: 1.4
+  #     PYTHON_VERSION: 3.7
+  #
+  #   - R_VERSION: 3.5.3
+  #     TORCH_VERSION: 1.6
+  #     PYTHON_VERSION: 3.7
+  #
+  #
+  #   - R_VERSION: 3.6.3
+  #     TORCH_VERSION: 1.1
+  #     PYTHON_VERSION: 3.7
+  #
+  #   - R_VERSION: 3.6.3
+  #     TORCH_VERSION: 1.2
+  #     PYTHON_VERSION: 3.7
+  #
+  #   - R_VERSION: 3.6.3
+  #     TORCH_VERSION: 1.4
+  #     PYTHON_VERSION: 3.7
+  #
+  #   - R_VERSION: 3.6.3
+  #     TORCH_VERSION: 1.6
+  #     PYTHON_VERSION: 3.7
+  #
+  #
+  #   - R_VERSION: 4.0.2
+  #     TORCH_VERSION: 1.1
+  #     PYTHON_VERSION: 3.7
+  #
+  #   - R_VERSION: 4.0.2
+  #     TORCH_VERSION: 1.2
+  #     PYTHON_VERSION: 3.7
+  #
+  #   - R_VERSION: 4.0.2
+  #     TORCH_VERSION: 1.4
+  #     PYTHON_VERSION: 3.7
+  #
+  #   - R_VERSION: 4.0.2
+  #     TORCH_VERSION: 1.6
+  #     PYTHON_VERSION: 3.7
+
 
 # Download script file from GitHub
 init:
@@ -25,7 +147,7 @@ cache:
 # Adapt as necessary starting from here
 
 build_script:
-  - C:\Miniconda3-x64\Scripts\conda create -y --name r-torch pytorch-cpu=%TORCH_VERSION% torchvision-cpu python=3.6.1 -c pytorch
+  - C:\Miniconda3-x64\Scripts\conda create -y --name r-torch pytorch=%TORCH_VERSION% torchvision python=%PYTHON_VERSION% -c pytorch
   - travis-tool.sh install_deps
 
 test_script:

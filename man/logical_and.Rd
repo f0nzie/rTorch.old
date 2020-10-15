@@ -5,12 +5,12 @@
 \alias{&.torch.Tensor}
 \title{Logical AND of two tensors}
 \usage{
-\method{&}{torch.Tensor}(a, b)
+\method{&}{torch.Tensor}(x, y)
 }
 \arguments{
-\item{a}{tensor}
+\item{x}{tensor}
 
-\item{b}{tensor}
+\item{y}{tensor}
 }
 \value{
 A tensor of booleans representing the logical result of the comparison.
@@ -21,7 +21,7 @@ There is not equivalent function in PyTorch for this generic.
 To generate this generic we use the function \code{np$logical_and()}.
 }
 \examples{
-\donttest{
+\dontrun{
 A <- torch$BoolTensor(list(0L, 1L))
 B <- torch$BoolTensor(list(1L, 0L))
 C <- torch$BoolTensor(list(1L, 1L))

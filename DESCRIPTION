@@ -1,33 +1,36 @@
 Package: rTorch
 Title: R Bindings to 'PyTorch'
-Version: 0.0.3
+Version: 0.4.2
 Authors@R: c(
-    person("Alfonso R.", "Reyes", role = c("aut", "cre", "cph"), email = "alfonso.reyes@oilgainsanalytics.com"),
-    person("Daniel", "Falbel", role = c("ctb", "cph"), email = "daniel@rstudio.com"),
-    person("JJ", "Allaire", role = c("ctb", "cph"))
+    person("Alfonso R.", "Reyes", role = c("aut", "cre", "cph"), email = "alfonso.reyes@oilgainsanalytics.com")
     )
 Description: 'R' implementation and interface of the Machine Learning platform 
     'PyTorch' <https://pytorch.org/> developed in 'Python'. It requires a 'conda'
-    environment with 'torch' and 'torchvision' to provide 'PyTorch' functions, 
-    methods and classes. The key object in 'PyTorch' is the tensor which is in
-    essence a multidimensional array. These tensors are fairly flexible to perform
-    calculations in CPUs as well as 'GPUs' to accelerate the process.
+    environment with 'torch' and 'torchvision' Python packages to provide 
+    'PyTorch' functions, methods and classes. The key object in 'PyTorch' is the 
+    tensor which is in essence a multidimensional array. These tensors are fairly 
+    flexible in performing calculations in CPUs as well as 'GPUs' to accelerate 
+    tensor operations.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends: R (>= 3.1)
-Imports: logging,
-    reticulate,
+Imports: 
+    reticulate (>= 1.10),
     jsonlite (>= 1.2),
     utils,
     methods,
-    R6,
     rstudioapi (>= 0.7),
-    data.table
 Suggests: 
     testthat,
     knitr,
     rmarkdown
-SystemRequirements: PyTorch (https://pytorch.org/)
-RoxygenNote: 6.1.1
+SystemRequirements: "conda (python>=3.6 pytorch torchvision cpuonly numpy ( >= 1.14.0) matplotlib pandas -c pytorch);
+    python-minimal, pandoc pandoc-citeproc, qpdf; 
+    Python (>=3.6), pytorch (>=1.4), torchvision, cpuonly, numpy ( >= 1.14.0);
+    pandoc (>= 2.0), qpdf ( >= 7.0) on Solaris"
+RoxygenNote: 7.1.1
+Roxygen: list(markdown = TRUE)
 URL: https://github.com/f0nzie/rTorch
+BugReports: https://github.com/f0nzie/rTorch/issues
+VignetteBuilder: knitr
