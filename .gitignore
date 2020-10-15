@@ -1,23 +1,10 @@
 .Rproj.user
 .Rhistory
 .RData
-inst/doc
-notebooks
-vignettes/data
-vignettes/datasets
-
 *.pyc
-
-inst/raw_data/MNIST/
-
+*.ckpt
 *.pkl
 *.pt
-doc
-Meta
-
-*.ckpt
-
-vignettes/mnist_fashion/FashionMNIST/raw/
 datasets/
 
 
