@@ -1,0 +1,19 @@
+---
+title: "Neural Network in PyTorch"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Neural Network in PyTorch}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(rTorch)
+```

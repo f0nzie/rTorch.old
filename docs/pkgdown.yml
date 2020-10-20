@@ -6,10 +6,13 @@ articles:
   how-to/quick-install: quick-install.html
   how-to/tensor-operations: tensor-operations.html
   installation: installation.html
+  pytorch-examples/linear-regression-pytorch: linear-regression-pytorch.html
+  pytorch-examples/logistic-regression-pytorch: logistic-regression-pytorch.html
+  pytorch-examples/neural-network-pytorch: neural-network-pytorch.html
   rtorch-examples/linear-regression: linear-regression.html
   rtorch-examples/logistic-regression: logistic-regression.html
   rtorch-examples/neural-network: neural-network.html
-last_built: 2020-10-20T16:36Z
+last_built: 2020-10-20T16:43Z
 urls:
   reference: https://github.com/f0nzie/rTorch/reference
   article: https://github.com/f0nzie/rTorch/articles

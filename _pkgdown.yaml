@@ -32,11 +32,11 @@ navbar:
     text: PyTorch with Rmarkdown
     menu:
       - text: Logistic Regression
-        href: articles/pytorch-examples/logistic-regression.html
+        href: articles/pytorch-examples/logistic-regression-pytorch.html
       - text: Linear Regression
-        href: articles/pytorch-examples/linear-regression.html
+        href: articles/pytorch-examples/linear-regression-pytorch.html
       - text: Neural Network
-        href: articles/pytorch-examples/neural-network.html
+        href: articles/pytorch-examples/neural-network-pytorch.html
   articles:
     text: Articles
     menu:

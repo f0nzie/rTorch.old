@@ -136,6 +136,15 @@
     <loc>https://github.com/f0nzie/rTorch/articles/installation.html</loc>
   </url>
   <url>
+    <loc>https://github.com/f0nzie/rTorch/articles/pytorch-examples/linear-regression-pytorch.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/articles/pytorch-examples/logistic-regression-pytorch.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/articles/pytorch-examples/neural-network-pytorch.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/f0nzie/rTorch/articles/rtorch-examples/linear-regression.html</loc>
   </url>
   <url>
