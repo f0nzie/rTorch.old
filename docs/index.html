@@ -49,8 +49,59 @@
      
   </a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    How to
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
 <li>
-  <a href="reference/index.html">Reference</a>
+      <a href="articles/how-to/quick-install.html">Quick install</a>
+    </li>
+    <li>
+      <a href="articles/how-to/creating-tensors.html">Creating tensors</a>
+    </li>
+    <li>
+      <a href="articles/how-to/tensor-operations.html">Tensor basic operations</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    rTorch Examples
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/rtorch-examples/logistic-regression.html">Logistic Regression</a>
+    </li>
+    <li>
+      <a href="articles/rtorch-examples/linear-regression.html">Linear Regression</a>
+    </li>
+    <li>
+      <a href="articles/rtorch-examples/neural-network.html">Neural Network</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    PyTorch with Rmarkdown
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/pytorch-examples/logistic-regression.html">Logistic Regression</a>
+    </li>
+    <li>
+      <a href="articles/pytorch-examples/linear-regression.html">Linear Regression</a>
+    </li>
+    <li>
+      <a href="articles/pytorch-examples/neural-network.html">Neural Network</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -63,6 +114,9 @@
       <a href="articles/installation.html">Installation</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="reference/index.html">Reference</a>
 </li>
 <li>
   <a href="news/index.html">Changelog</a>
@@ -136,7 +190,7 @@
 <p>Installing from GitHub gives you the flexibility of experimenting with the latest development version of <code>rTorch</code>. For instance, to install <code>rTorch</code> from the <code>develop</code> branch:</p>
 <p><code><a href="https://devtools.r-lib.org//reference/remote-reexports.html">devtools::install_github("f0nzie/rTorch", ref="develop")</a></code></p>
 <p>or clone with Git with:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>git clone https<span class="op">:</span><span class="er">//</span>github.com<span class="op">/</span>f0nzie<span class="op">/</span>rTorch.git</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>git clone https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>f0nzie<span class="sc">/</span>rTorch.git</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -628,11 +682,11 @@
 <h3 class="hasAnchor">
 <a href="#copying-a-numpy-object" class="anchor"></a>Copying a numpy object</h3>
 <p>With newer PyTorch versions we should work with NumPy array copies There have been minor changes in the latest versions of PyTorch that prevents a direct use of a NumPy array. You will get this warning:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>sys<span class="op">:</span><span class="dv">1</span><span class="op">:</span><span class="st"> </span>UserWarning<span class="op">:</span><span class="st"> </span>The given NumPy array is not writeable, and PyTorch does </span>
-<span id="cb43-2"><a href="#cb43-2"></a>not support non<span class="op">-</span>writeable tensors. This means you can write to the underlying</span>
-<span id="cb43-3"><a href="#cb43-3"></a>(supposedly non<span class="op">-</span>writeable) NumPy array using the tensor. You may want to copy </span>
-<span id="cb43-4"><a href="#cb43-4"></a>the array to protect its data or make it writeable before converting it to a </span>
-<span id="cb43-5"><a href="#cb43-5"></a>tensor. This type of warning will be suppressed <span class="cf">for</span> the rest of this program.</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>sys<span class="sc">:</span><span class="dv">1</span><span class="sc">:</span> UserWarning<span class="sc">:</span> The given NumPy array is not writeable, and PyTorch does </span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>not support non<span class="sc">-</span>writeable tensors. This means you can write to the underlying</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>(supposedly non<span class="sc">-</span>writeable) NumPy array using the tensor. You may want to copy </span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>the array to protect its data or make it writeable before converting it to a </span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>tensor. This type of warning will be suppressed <span class="cf">for</span> the rest of this program.</span></code></pre></div>
 <p>For instance, this code will produce the warning:</p>
 <div class="sourceCode" id="cb44"><pre class="downlit">
 <span class="co"># as_tensor. Modifying tensor modifies numpy object as well</span>

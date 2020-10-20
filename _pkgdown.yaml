@@ -1,9 +1,47 @@
 title: rTorch
 url: https://github.com/f0nzie/rTorch
-
 template:
   params:
     bootswatch: cosmo
+
+
+navbar:
+ structure:
+  left:  [home, how-to, rtorch-examples, pytorch-rmarkdown, articles, reference, news]
+  right: [github]
+ components:
+  how-to:
+    text: How to
+    menu:
+      - text: Quick install
+        href: articles/how-to/quick-install.html
+      - text: Creating tensors
+        href: articles/how-to/creating-tensors.html
+      - text: Tensor basic operations
+        href: articles/how-to/tensor-operations.html
+  rtorch-examples:
+    text: rTorch Examples
+    menu:
+      - text: Logistic Regression
+        href: articles/rtorch-examples/logistic-regression.html
+      - text: Linear Regression
+        href: articles/rtorch-examples/linear-regression.html
+      - text: Neural Network
+        href: articles/rtorch-examples/neural-network.html
+  pytorch-rmarkdown:
+    text: PyTorch with Rmarkdown
+    menu:
+      - text: Logistic Regression
+        href: articles/pytorch-examples/logistic-regression.html
+      - text: Linear Regression
+        href: articles/pytorch-examples/linear-regression.html
+      - text: Neural Network
+        href: articles/pytorch-examples/neural-network.html
+  articles:
+    text: Articles
+    menu:
+      - text: Installation
+        href: articles/installation.html
 
 reference:
   - title: All
@@ -20,26 +58,22 @@ reference:
       - log10.torch.Tensor
       - log2.torch.Tensor
       - '`%%.torch.Tensor`'
-
   - title: Generics
     desc: ~
     contents:
       - '`%.*%`'
       - '`%**%`'
       - '`[.torch.Tensor`'
-
   - title: One tensor operation
     contents:
       - '`dim.torch.Tensor`'
       - '`length.torch.Tensor`'
       - '`exp.torch.Tensor`'
       - 'make_copy'
-
   - title: Two tensor operations
     decs: ~
     contents:
       - tensor_ops
-
   - title: Basic arithmetic
     decs: ~
     contents:
@@ -47,7 +81,6 @@ reference:
       - '-.torch.Tensor'
       - '*.torch.Tensor'
       - '/.torch.Tensor'
-
   - title: Logical operations
     decs: ~
     contents:
@@ -62,19 +95,16 @@ reference:
       - 'logical_or'
       - 'as_boolean'
       - 'is_tensor'
-
   - title: Get datasets
     desc: ~
     contents:
       - '`dataset_mnist_digits`'
-
   - title: Modules
     desc: ~
     contents:
       - '`np`'
       - '`torch`'
       - '`torchvision`'
-
   - title: Installation
     desc: ~
     contents:

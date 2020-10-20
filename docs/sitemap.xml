@@ -124,6 +124,24 @@
     <loc>https://github.com/f0nzie/rTorch/reference/torch_size.html</loc>
   </url>
   <url>
+    <loc>https://github.com/f0nzie/rTorch/articles/how-to/creating-tensors.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/articles/how-to/quick-install.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/articles/how-to/tensor-operations.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/f0nzie/rTorch/articles/installation.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/articles/rtorch-examples/linear-regression.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/articles/rtorch-examples/logistic-regression.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/f0nzie/rTorch/articles/rtorch-examples/neural-network.html</loc>
   </url>
 </urlset>

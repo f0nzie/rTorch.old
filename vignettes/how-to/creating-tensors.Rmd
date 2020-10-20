@@ -1,0 +1,19 @@
+---
+title: "Creating tensors"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Creating tensors}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(rTorch)
+```
