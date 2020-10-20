@@ -153,8 +153,8 @@
 <div id="installing-python-and-pytorch" class="section level3">
 <h3 class="hasAnchor">
 <a href="#installing-python-and-pytorch" class="anchor"></a>Installing Python and PyTorch</h3>
-<p>Although, <em>Python</em> and <em>PyTorch</em> can be installed directly from the <em>R</em> console, before start running <code>rTorch</code>, I would recommend installing <strong>PyTorch</strong> first in a new Python or Python-Anaconda environment. Then, testing if PyTorch and Torchvision packages are imported alright. The advantage of doing it this way is that you define in advanced the base Python or Anaconda version to install. Although the same can be done from <strong>rTorch</strong> you will need to get familiar passing parameters through one its functions.</p>
-<p>If you opt to install <em>PyTorch</em> from <em>R</em>, <strong>rTorch</strong> has functions that could help you install <em>PyTorch</em> from the <em>R</em> console.</p>
+<p>Although, <em>Python</em> and <em>PyTorch</em> can be installed directly from the <em>R</em> console, before start running <code>rTorch</code>, I would recommend testing <strong>PyTorch</strong> first in a new Python or Anaconda environment. Check if PyTorch and Torchvision packages are imported alright. The advantage of doing it this way is that you could have already in advance a PyTorch version that you are sure is working alright.</p>
+<p>If you prefer to install PyTorch and its dependencies, that can be done from <strong>rTorch</strong> through one its functions <code><a href="../reference/install_pytorch.html">install_pytorch()</a></code>.</p>
 </div>
 <div id="rtorch-functions-to-install-pytorch" class="section level3">
 <h3 class="hasAnchor">
@@ -177,8 +177,7 @@
   cuda_version = NULL,
   dry_run = FALSE,
   ...
-)
-</a></code></pre>
+)</a></code></pre>
 </div>
 </div>
 </div>

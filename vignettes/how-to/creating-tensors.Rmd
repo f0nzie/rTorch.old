@@ -17,3 +17,66 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(rTorch)
 ```
+
+## Creating a tensor
+
+If you are in a hurry to test rTorch, here some examples:
+
+### Example 1
+
+```{r}
+library(rTorch)
+
+a <- torch$tensor(c(1, 2, 3, 4, 5))
+a
+```
+
+Notice that this is a `float` tensor (see the comma `,`). By default, rTorch will choose a 32-bit `float` for you.
+
+```{r}
+class(a)
+a$dtype
+```
+
+### Example 2
+
+```{r}
+b <- torch$tensor(seq(1,10))
+b
+```
+
+These are all integers.
+
+```{r}
+class(b)
+b$dtype
+```
+
+### Example 3
+
+```{r}
+c <- torch$arange(1, 10)
+c
+```
+
+```{r}
+torch$ones(c(2L, 3L))
+```
+
+### Example 4
+
+```{r}
+torch$rand(5L, 4L)
+```
+
+### Example 5
+
+```{r}
+torch$linspace(1L, 10L, steps = 100L)
+```
+
+### Example 6
+
+```{r}
+torch$eye(5L)
+```

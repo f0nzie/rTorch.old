@@ -149,11 +149,101 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit">
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/f0nzie/rTorch">rTorch</a></span><span class="op">)</span></pre></div>
+<div id="creating-a-tensor" class="section level2">
+<h2 class="hasAnchor">
+<a href="#creating-a-tensor" class="anchor"></a>Creating a tensor</h2>
+<p>If you are in a hurry to test rTorch, here some examples:</p>
+<div id="example-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#example-1" class="anchor"></a>Example 1</h3>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/f0nzie/rTorch">rTorch</a></span><span class="op">)</span>
+
+<span class="va">a</span> <span class="op">&lt;-</span> <span class="va">torch</span><span class="op">$</span><span class="fu">tensor</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span>
+<span class="va">a</span>
+<span class="co">#&gt; tensor([1., 2., 3., 4., 5.])</span></pre></div>
+<p>Notice that this is a <code>float</code> tensor (see the comma <code>,</code>). By default, rTorch will choose a 32-bit <code>float</code> for you.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span>
+<span class="co">#&gt; [1] "torch.Tensor"          "torch._C._TensorBase"  "python.builtin.object"</span>
+<span class="va">a</span><span class="op">$</span><span class="va">dtype</span>
+<span class="co">#&gt; torch.float32</span></pre></div>
+</div>
+<div id="example-2" class="section level3">
+<h3 class="hasAnchor">
+<a href="#example-2" class="anchor"></a>Example 2</h3>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="va">b</span> <span class="op">&lt;-</span> <span class="va">torch</span><span class="op">$</span><span class="fu">tensor</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">10</span><span class="op">)</span><span class="op">)</span>
+<span class="va">b</span>
+<span class="co">#&gt; tensor([ 1,  2,  3,  4,  5,  6,  7,  8,  9, 10])</span></pre></div>
+<p>These are all integers.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span>
+<span class="co">#&gt; [1] "torch.Tensor"          "torch._C._TensorBase"  "python.builtin.object"</span>
+<span class="va">b</span><span class="op">$</span><span class="va">dtype</span>
+<span class="co">#&gt; torch.int64</span></pre></div>
+</div>
+<div id="example-3" class="section level3">
+<h3 class="hasAnchor">
+<a href="#example-3" class="anchor"></a>Example 3</h3>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="va">c</span> <span class="op">&lt;-</span> <span class="va">torch</span><span class="op">$</span><span class="fu">arange</span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span>
+<span class="va">c</span>
+<span class="co">#&gt; tensor([1., 2., 3., 4., 5., 6., 7., 8., 9.])</span></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="va">torch</span><span class="op">$</span><span class="fu">ones</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2L</span>, <span class="fl">3L</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; tensor([[1., 1., 1.],</span>
+<span class="co">#&gt;         [1., 1., 1.]])</span></pre></div>
+</div>
+<div id="example-4" class="section level3">
+<h3 class="hasAnchor">
+<a href="#example-4" class="anchor"></a>Example 4</h3>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="va">torch</span><span class="op">$</span><span class="fu">rand</span><span class="op">(</span><span class="fl">5L</span>, <span class="fl">4L</span><span class="op">)</span>
+<span class="co">#&gt; tensor([[0.1204, 0.7093, 0.4903, 0.4168],</span>
+<span class="co">#&gt;         [0.0275, 0.6446, 0.0686, 0.6303],</span>
+<span class="co">#&gt;         [0.0742, 0.1938, 0.5334, 0.0878],</span>
+<span class="co">#&gt;         [0.8497, 0.3705, 0.1403, 0.7640],</span>
+<span class="co">#&gt;         [0.0024, 0.6117, 0.3877, 0.2032]])</span></pre></div>
+</div>
+<div id="example-5" class="section level3">
+<h3 class="hasAnchor">
+<a href="#example-5" class="anchor"></a>Example 5</h3>
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="va">torch</span><span class="op">$</span><span class="fu">linspace</span><span class="op">(</span><span class="fl">1L</span>, <span class="fl">10L</span>, steps <span class="op">=</span> <span class="fl">100L</span><span class="op">)</span>
+<span class="co">#&gt; tensor([ 1.0000,  1.0909,  1.1818,  1.2727,  1.3636,  1.4545,  1.5455,  1.6364,</span>
+<span class="co">#&gt;          1.7273,  1.8182,  1.9091,  2.0000,  2.0909,  2.1818,  2.2727,  2.3636,</span>
+<span class="co">#&gt;          2.4545,  2.5455,  2.6364,  2.7273,  2.8182,  2.9091,  3.0000,  3.0909,</span>
+<span class="co">#&gt;          3.1818,  3.2727,  3.3636,  3.4545,  3.5455,  3.6364,  3.7273,  3.8182,</span>
+<span class="co">#&gt;          3.9091,  4.0000,  4.0909,  4.1818,  4.2727,  4.3636,  4.4545,  4.5455,</span>
+<span class="co">#&gt;          4.6364,  4.7273,  4.8182,  4.9091,  5.0000,  5.0909,  5.1818,  5.2727,</span>
+<span class="co">#&gt;          5.3636,  5.4545,  5.5455,  5.6364,  5.7273,  5.8182,  5.9091,  6.0000,</span>
+<span class="co">#&gt;          6.0909,  6.1818,  6.2727,  6.3636,  6.4545,  6.5455,  6.6364,  6.7273,</span>
+<span class="co">#&gt;          6.8182,  6.9091,  7.0000,  7.0909,  7.1818,  7.2727,  7.3636,  7.4545,</span>
+<span class="co">#&gt;          7.5455,  7.6364,  7.7273,  7.8182,  7.9091,  8.0000,  8.0909,  8.1818,</span>
+<span class="co">#&gt;          8.2727,  8.3636,  8.4545,  8.5455,  8.6364,  8.7273,  8.8182,  8.9091,</span>
+<span class="co">#&gt;          9.0000,  9.0909,  9.1818,  9.2727,  9.3636,  9.4545,  9.5455,  9.6364,</span>
+<span class="co">#&gt;          9.7273,  9.8182,  9.9091, 10.0000])</span></pre></div>
+</div>
+<div id="example-6" class="section level3">
+<h3 class="hasAnchor">
+<a href="#example-6" class="anchor"></a>Example 6</h3>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="va">torch</span><span class="op">$</span><span class="fu">eye</span><span class="op">(</span><span class="fl">5L</span><span class="op">)</span>
+<span class="co">#&gt; tensor([[1., 0., 0., 0., 0.],</span>
+<span class="co">#&gt;         [0., 1., 0., 0., 0.],</span>
+<span class="co">#&gt;         [0., 0., 1., 0., 0.],</span>
+<span class="co">#&gt;         [0., 0., 0., 1., 0.],</span>
+<span class="co">#&gt;         [0., 0., 0., 0., 1.]])</span></pre></div>
+</div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-      </div>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
+</div>
 
 </div>
 

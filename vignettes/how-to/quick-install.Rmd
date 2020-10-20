@@ -17,3 +17,15 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(rTorch)
 ```
+
+## Quick install of rTorch
+
+1.  Install Anaconda3. Preferably, the latest for 64-bit architecture
+
+2.  Test that your Anaconda installation is running properly
+
+3.  Get into an R console via R-GUI or RStudio and install rTorch
+
+4.  Install PyTorch in its own `conda` environment
+
+5.  Test that rTorch and PyTorch are running as expected

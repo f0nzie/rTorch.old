@@ -12,7 +12,7 @@ articles:
   rtorch-examples/linear-regression: linear-regression.html
   rtorch-examples/logistic-regression: logistic-regression.html
   rtorch-examples/neural-network: neural-network.html
-last_built: 2020-10-20T16:43Z
+last_built: 2020-10-20T17:21Z
 urls:
   reference: https://github.com/f0nzie/rTorch/reference
   article: https://github.com/f0nzie/rTorch/articles
