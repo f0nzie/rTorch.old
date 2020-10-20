@@ -1,6 +1,12 @@
-# 0.4.2.9002
+# 0.4.3.9002
+* TODO. 
+    * short article on `basic torch operations`
+    * short article on `conversion from NumPy` to `torch` and viceversa
+    * article `logistic regression`
+    * article `linear regression`
+    
 
-# 0.4.2.9001
+# 0.4.3.9001
 * Add few examples for `install_pytorch()` function
 * Note at CRAN: _"Result: NOTE.  Namespace in Imports field not imported from: ‘methods’. All declared Imports should be used. "_. Remove `methods` from `Imports` in DESCRIPTION.
 
