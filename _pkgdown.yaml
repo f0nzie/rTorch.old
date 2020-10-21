@@ -37,6 +37,11 @@ navbar:
         href: articles/pytorch-examples/linear-regression-pytorch.html
       - text: Neural Network
         href: articles/pytorch-examples/neural-network-pytorch.html
+      - text:  Python and Rmarkdown
+      - text: Printing matplotlib in Rmarkdown
+        href: articles/pytorch-examples/matplotlib-rmarkdown.html
+      - text: Printing matplotlib in Rmarkdown (2)
+        href: articles/pytorch-examples/matplotlib-rmarkdown-2.html
   articles:
     text: Articles
     menu:
