@@ -78,3 +78,10 @@ After *Miniconda* is installed, you could proceed to install the flavor or *PyTo
 The command above will install the **stable** **PyTorch 1.4** version on **Python 3.6**, including three additional packages: `torchvision`, `cpuonly`, `matplotlib` and `pandas.`
 
 > NOTE. My experience with `Miniconda` is spotty and not 100% reliable, specially in *macOS*. I would strongly recommend using full *conda* for your PyTorch installation.
+
+
+
+
+
+
+

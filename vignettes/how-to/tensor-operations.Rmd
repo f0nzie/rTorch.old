@@ -17,3 +17,77 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(rTorch)
 ```
+
+
+## Add tensors
+
+```{r}
+(a <- torch$tensor(seq(1, 10)))
+(b <- torch$ones(10L))
+(c <- torch$linspace(0.1, 1.0, steps = 10L))
+```
+```{r}
+a$add(b) == a + b
+```
+```{r}
+a + c == c$add(a)
+```
+
+```{r}
+a + b + c
+```
+
+
+## Subtract
+
+```{r}
+a - c == a$sub(c)
+```
+```{r}
+a - b - c
+```
+
+
+## Multiply
+
+```{r}
+a * b == a$mul(b)
+```
+
+```{r}
+a * b * c
+```
+
+
+## Divide
+
+```{r}
+# division by integers not accepted
+a$dtype
+c$dtype
+torch$div(a, c) == a / c
+```
+
+```{r}
+b$dtype
+a / c / b
+```
+
+## Exponentiation
+
+```{r}
+2^a
+```
+```{r}
+a^(1 / c)
+```
+
+## Logarithms
+```{r}
+c$log10()
+```
+
+```{r}
+c$log()
+```
+
