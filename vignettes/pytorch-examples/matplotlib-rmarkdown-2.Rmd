@@ -1,0 +1,343 @@
+---
+title: "Printing matplotlib in Rmarkdown (2)"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Printing matplotlib in Rmarkdown (2)}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(rTorch)
+reticulate::py_config()
+```
+
+```{r}
+# trees <- trees
+```
+
+```{python, engine="python3", eval=FALSE}
+# https://stackoverflow.com/a/56860331/5270873
+import PyQt5
+import pandas as pd
+from pandas import Series, DataFrame
+import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
+
+
+trees = np.array(r.trees) #Imported an internal R dataset. It got rid of headers and first row. Don't know how to deal with that right now.
+type(trees)
+np.shape(trees)
+print(trees[1:6,:])
+
+plt.plot(trees[:,0], trees[:,1])
+plt.show()
+plt.clf() #Reset plot surface
+```
+
+* Error printout from python block
+
+```
+RuntimeError: Evaluation error: ValueError: Format 'ragg_png' is not supported (supported formats: eps, jpeg, jpg, pdf, pgf, png, ps, raw, rgba, svg, svgz, tif, tiff)
+```
+
+## 2nd
+
+```{r setup2, include=FALSE}
+# https://stackoverflow.com/a/56872635/5270873
+# https://stackoverflow.com/a/56860331/5270873
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE)
+library(reticulate) #Allows for Python to be run in chunks
+```
+
+```{python import, eval=FALSE}
+import os
+# os.environ['QT_QPA_PLATFORM_PLUGIN_PATH'] = '~/Anaconda3/Library/plugins/platforms'
+import numpy as np
+import matplotlib.pyplot as plt
+import PyQt5
+
+trees = np.array(r.trees) #Imported an internal R dataset. It got rid of headers and first row. Don't know how to deal with that right now.
+type(trees)
+np.shape(trees)
+print(trees[1:6,:])
+
+plt.plot(trees[:,0], trees[:,1])
+plt.show()
+plt.clf() #Reset plot surface
+```
+
+* Error printout from python block
+
+```
+-- RMarkdown error -------------------------------------------------------------
+Quitting from lines 73-83 (matplotlib-rmarkdown-2.Rmd) 
+Error in py_call_impl(callable, dots$args, dots$keywords) : 
+  RuntimeError: Evaluation error: ValueError: Format 'ragg_png' is not supported (supported formats: eps, jpeg, jpg, pdf, pgf, png, ps, raw, rgba, svg, svgz, tif, tiff)
+```  
+
+## 3rd 
+
+```{r}
+# https://stackoverflow.com/q/58502671/5270873
+library(reticulate)
+```
+
+```{python, echo=FALSE, include=FALSE, warning=FALSE, eval=FALSE}
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+# Setting some default plotting features to give nicer plots. This can be commented out for beginners. 
+rc_fonts = {
+    "text.usetex": True,
+    'text.latex.preview': True, # Gives correct legend alignment.
+    'mathtext.default': 'regular',
+    'figure.figsize': (6, 4),
+    "font.family": "serif",
+    "font.serif": "computer modern roman",
+}
+mpl.rcParams.update(rc_fonts)
+
+plt.plot([0, 2, 1, 4])
+plt.title(r'Some Latex with symbol \$')
+plt.show()
+```
+
+
+* Error
+
+```
+-- RMarkdown error -------------------------------------------------------------
+Quitting from lines 113-116 (matplotlib-rmarkdown-2.Rmd) 
+Error in py_call_impl(callable, dots$args, dots$keywords) : 
+  RuntimeError: Evaluation error: ValueError: Format 'ragg_png' is not supported (supported formats: eps, jpeg, jpg, pdf, pgf, png, ps, raw, rgba, svg, svgz, tif, tiff)
+```
+
+## 4th
+
+```{r, setup3}
+# https://community.rstudio.com/t/how-to-display-the-plot-in-the-python-chunk/22039/3
+library(reticulate)
+# use_python("/usr/bin/python3")
+use_condaenv("r-torch")
+matplotlib <- import("matplotlib")
+matplotlib$use("Agg", force = TRUE)
+```
+
+```{python, engine='python3', eval=FALSE}
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.DataFrame([[1, 2], [3, 4], [4, 3], [2, 3]])
+fig = plt.figure(figsize=(14,8))
+
+for i in df.columns:
+    ax = plt.subplot(2,1,i+1) 
+    df[[i]].plot(ax=ax)
+    print(i)
+
+plt.show()
+```
+* Error
+
+```
+-- RMarkdown error -------------------------------------------------------------
+Quitting from lines 136-146 (matplotlib-rmarkdown-2.Rmd) 
+Error in py_call_impl(callable, dots$args, dots$keywords) : 
+  RuntimeError: Evaluation error: ValueError: Format 'ragg_png' is not supported (supported formats: eps, jpeg, jpg, pdf, pgf, png, ps, raw, rgba, svg, svgz, tif, tiff)
+```  
+
+
+## 5th
+* Throwing error
+
+```{python pyplot, eval=FALSE}
+import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+
+t = np.arange(0.0, 2.0, 0.01)
+s = 1 + np.sin(2 * np.pi * t)
+
+fig, ax = plt.subplots()
+ax.plot(t, s)
+
+ax.set(xlabel='time (s)', ylabel='voltage (mV)',
+       title='About as simple as it gets, folks')
+ax.grid()
+
+plt.show()
+```
+
+```
+-- RMarkdown error -------------------------------------------------------------
+Quitting from lines 165-180 (matplotlib-rmarkdown-2.Rmd) 
+Error in py_call_impl(callable, dots$args, dots$keywords) : 
+  RuntimeError: Evaluation error: ValueError: Format 'ragg_png' is not supported (supported formats: eps, jpeg, jpg, pdf, pgf, png, ps, raw, rgba, svg, svgz, tif, tiff)
+  --------------------------------------------------------------------------------
+Error : Failed to render RMarkdown
+Error: callr subprocess failed: Failed to render RMarkdown
+Type .Last.error.trace to see where the error occured
+  
+```  
+## 6th
+
+
+```{python, engine="python3", eval=FALSE}
+# https://matplotlib.org/3.1.1/gallery/misc/print_stdout_sgskip.html#sphx-glr-gallery-misc-print-stdout-sgskip-py
+import sys
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
+plt.plot([1, 2, 3])
+plt.savefig(sys.stdout.buffer)
+```
+
+<!-- python block giving error -->
+
+```
+-- RMarkdown error -------------------------------------------------------------
+Quitting from lines 85-93 (installation.Rmd) 
+Error in py_call_impl(callable, dots$args, dots$keywords) : 
+  AttributeError: '_io.StringIO' object has no attribute 'buffer'
+
+Detailed traceback: 
+  File "<string>", line 1, in <module>
+
+--------------------------------------------------------------------------------
+Error : Failed to render RMarkdown
+Error: callr subprocess failed: Failed to render RMarkdown
+Type .Last.error.trace to see where the error occured
+```
+
+
+
+## 7th
+
+```{python}
+# https://stackoverflow.com/a/458295/5270873
+import matplotlib
+from matplotlib.pyplot import plot, draw, show
+plot([1,2,3])
+draw()
+print('continue computation')
+
+# at the end call show to ensure window won't close.
+# show()
+```
+
+```
+-- RMarkdown error -------------------------------------------------------------
+Quitting from lines 72-81 (matplotlib-rmarkdown.Rmd) 
+Error in py_call_impl(callable, dots$args, dots$keywords) : 
+  RuntimeError: Evaluation error: ValueError: Format 'ragg_png' is not supported (supported formats: eps, jpeg, jpg, pdf, pgf, png, ps, raw, rgba, svg, svgz, tif, tiff)
+
+Detailed traceback: 
+  File "/home/msfz751/anaconda3/envs/r-torch/lib/python3.7/site-packages/matplotlib/pyplot.py", line 843, in savefig
+    res = fig.savefig(*args, **kwargs)
+  File "/home/msfz751/anaconda3/envs/r-torch/lib/python3.7/site-packages/matplotlib/figure.py", line 2311, in savefig
+    self.canvas.print_figure(fname, **kwargs)
+  File "/home/msfz751/anaconda3/envs/r-torch/lib/python3.7/site-packages/matplotlib/backends/backend_qt5agg.py", line 81, in print_figure
+    super().print_figure(*args, **kwargs)
+  File "/home/msfz751/anaconda3/envs/r-torch/lib/python3.7/site-packages/matplotlib/backend_bases.py", line 2150, in print_figure
+    canvas = self._get_output_canvas(backend, format)
+  File "/home/msfz751/anaconda3/envs/r-torch/lib/python3.7/site-packages/matplotlib/backend_bases.py", line 2081, in _get_output_canvas
+    .format(fmt, ", ".join(sorted(self.get_supported_filetypes()))))
+.
+
+Detailed traceback: 
+  File "<string>", line 1, in <module>
+  File "/home/msfz751/R/x86_64-pc-linux-gnu-library/3.6/reticulate/python/rpytools/call.py", line 21, in python_function
+    raise RuntimeError(res[kErrorKey])
+
+--------------------------------------------------------------------------------
+Error : Failed to render RMarkdown
+Error: callr subprocess failed: Failed to render RMarkdown
+Type .Last.error.trace to see where the error occured
+```
+
+## 
+
+
+```{python, eval=FALSE}
+import matplotlib.pyplot as plt
+plt.plot([1,2,3])
+plt.show(block=False)
+# other code
+# [...]
+
+# Put
+plt.show()
+```
+
+```
+-- RMarkdown error -------------------------------------------------------------
+Quitting from lines 70-78 (matplotlib-rmarkdown.Rmd) 
+Error in py_call_impl(callable, dots$args, dots$keywords) : 
+  RuntimeError: Evaluation error: ValueError: Format 'ragg_png' is not supported (supported formats: eps, jpeg, jpg, pdf, pgf, png, ps, raw, rgba, svg, svgz, tif, tiff)
+```
+
+## draw, pause
+
+```{python, eval=FALSE}
+# https://stackoverflow.com/a/40509088/5270873
+import matplotlib.pyplot as plt
+
+plt.scatter([0], [1])
+plt.draw()
+plt.show(block=False)
+
+for i in range(10):
+    plt.scatter([i], [i+1])
+    plt.draw()
+    plt.pause(0.001)
+```
+
+```
+-- RMarkdown error -------------------------------------------------------------
+Quitting from lines 87-98 (matplotlib-rmarkdown.Rmd) 
+Error in py_call_impl(callable, dots$args, dots$keywords) : 
+  RuntimeError: Evaluation error: ValueError: Format 'ragg_png' is not supported (supported formats: eps, jpeg, jpg, pdf, pgf, png, ps, raw, rgba, svg, svgz, tif, tiff)
+```
+
+## animation
+
+
+```{r setup4, include=FALSE, eval=FALSE}
+# https://stackoverflow.com/a/47690171/5270873
+library(knitr)
+library(reticulate)
+knitr::knit_engines$set(python = reticulate::eng_python)
+```
+
+```{python, eval=FALSE}
+import numpy as np
+import matplotlib.pyplot as plt
+import numpy.random as rng
+import matplotlib.cm as cm
+from matplotlib.animation import FuncAnimation
+
+radii=(rng.random(int(1e3))+1)**2
+iota=2*np.pi*rng.random(int(1e3))
+x_posit=np.sqrt(radii)*np.cos(iota)
+y_posit=np.sqrt(radii)*np.sin(iota)
+plt.plot(x_posit, y_posit, 'go')
+
+plt.show()
+```
+
+```
+-- RMarkdown error -------------------------------------------------------------
+Quitting from lines 121-134 (matplotlib-rmarkdown.Rmd) 
+Error in py_call_impl(callable, dots$args, dots$keywords) : 
+  RuntimeError: Evaluation error: ValueError: Format 'ragg_png' is not supported (supported formats: eps, jpeg, jpg, pdf, pgf, png, ps, raw, rgba, svg, svgz, tif, tiff)
+```  
