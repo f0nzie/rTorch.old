@@ -9,11 +9,169 @@ vignette: >
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
+  collapse = FALSE,
+  results = "markup",
+  comment = ""
 )
 ```
 
-```{r setup}
+__Sources:__
+
+* [Linear Regression using PyTorch](https://medium.com/@aakanksha.ns/linear-regression-using-pytorch-4c1e3b0f4f67)
+
+* [Linear Regression with PyTorch](https://medium.com/analytics-vidhya/linear-regression-with-pytorch-147fed55f138)
+
+* [PyTorch basics - Linear Regression from scratch](https://www.kaggle.com/aakashns/pytorch-basics-linear-regression-from-scratch)
+
+```{r, eval=FALSE}
 library(rTorch)
+
+invisible(torch$manual_seed(0))
+device = torch$device('cpu')
+
+# Input (temp, rainfall, humidity)
+inputs = np$array(list(
+                   list( 73,  67, 43),
+                   list( 91,  88, 64),
+                   list( 87, 134, 58),
+                   list(102,  43, 37),
+                   list( 69,  96, 70)), dtype='float32')
+
+# Targets (apples, oranges)
+targets = np$array(list(
+                    list( 56,  70), 
+                    list( 81, 101),
+                    list(119, 133),
+                    list( 22,  37), 
+                    list(103, 119)), dtype='float32')
+
+# Convert inputs and targets to tensors
+inputs  = torch$from_numpy(inputs)
+targets = torch$from_numpy(targets)
+message("tensor shapes: input, targets")
+print(inputs$shape); print(targets$shape)
+
+# random numbers for weights and biases. Then convert to double()
+torch$set_default_dtype(torch$double)
+
+w = torch$randn(2L, 3L, requires_grad=TRUE)  #$double()
+b = torch$randn(2L, requires_grad=TRUE)      #$double()
+message("Weight tensor shapes: w, b")
+print(w$shape); print(b$shape)
+
+model <- function(x) {
+  wt <- w$t()
+  return(torch$add(torch$mm(x, wt), b))
+}
+
+# MSE loss function
+mse = function(t1, t2) {
+  diff <- torch$sub(t1, t2)
+  mul <- torch$sum(torch$mul(diff, diff))
+  return(torch$div(mul, diff$numel()))
+}
+
+# Running all together
+# Adjust weights and reset gradients
+num_epochs <- 100
+message("training loop")
+for (i in 1:num_epochs) {
+  preds = model(inputs)
+  loss = mse(preds, targets)
+  loss$backward()
+  with(torch$no_grad(), {
+    w$data <- torch$sub(w$data, torch$mul(w$grad, torch$scalar_tensor(1e-5)))
+    b$data <- torch$sub(b$data, torch$mul(b$grad, torch$scalar_tensor(1e-5)))
+    w$grad$zero_()
+    b$grad$zero_()
+  })
+}
+
+# Calculate loss
+preds = model(inputs)
+loss = mse(preds, targets)
+cat("loss as tensor = ", "\t"); print(loss)
+cat("loss as scalar = ", "\t"); print(loss$item())
+
+# predictions
+message("predictions"); print(preds)
+# Targets
+message("targets"); print(targets)
+```
+
+
+
+```{r, echo=FALSE, collapse=TRUE}
+library(rTorch)
+
+invisible(torch$manual_seed(0))
+device = torch$device('cpu')
+
+# Input (temp, rainfall, humidity)
+inputs = np$array(list(
+                   list( 73,  67, 43),
+                   list( 91,  88, 64),
+                   list( 87, 134, 58),
+                   list(102,  43, 37),
+                   list( 69,  96, 70)), dtype='float32')
+
+# Targets (apples, oranges)
+targets = np$array(list(
+                    list( 56,  70), 
+                    list( 81, 101),
+                    list(119, 133),
+                    list( 22,  37), 
+                    list(103, 119)), dtype='float32')
+
+# Convert inputs and targets to tensors
+inputs  = torch$from_numpy(inputs)
+targets = torch$from_numpy(targets)
+message("tensor shapes: input, targets")
+print(inputs$shape); print(targets$shape)
+
+# random numbers for weights and biases. Then convert to double()
+torch$set_default_dtype(torch$double)
+
+w = torch$randn(2L, 3L, requires_grad=TRUE)  #$double()
+b = torch$randn(2L, requires_grad=TRUE)      #$double()
+message("Weight tensor shapes: w, b")
+print(w$shape); print(b$shape)
+
+model <- function(x) {
+  wt <- w$t()
+  return(torch$add(torch$mm(x, wt), b))
+}
+
+# MSE loss function
+mse = function(t1, t2) {
+  diff <- torch$sub(t1, t2)
+  mul <- torch$sum(torch$mul(diff, diff))
+  return(torch$div(mul, diff$numel()))
+}
+
+num_epochs <- 100
+message("training loop")
+for (i in 1:num_epochs) {
+  preds = model(inputs)
+  loss = mse(preds, targets)
+  loss$backward()
+  with(torch$no_grad(), {
+    w$data <- torch$sub(w$data, torch$mul(w$grad, torch$scalar_tensor(1e-5)))
+    b$data <- torch$sub(b$data, torch$mul(b$grad, torch$scalar_tensor(1e-5)))
+    
+    w$grad$zero_()
+    b$grad$zero_()
+  })
+}
+
+# Calculate loss
+preds = model(inputs)
+loss = mse(preds, targets)
+cat("loss as tensor = ", "\t"); print(loss)
+cat("loss as scalar = ", "\t"); print(loss$item())
+
+# predictions
+message("predictions"); print(preds)
+# Targets
+message("targets"); print(targets)
 ```
