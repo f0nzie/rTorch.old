@@ -1,4 +1,8 @@
 # 0.4.3.9002
+* 20211022: run tests and fix them if possible
+* Set Python environment from RStudio project settings
+*
+
 * TODO. 
     * short article on `basic torch operations`
     * short article on `conversion from NumPy` to `torch` and viceversa
