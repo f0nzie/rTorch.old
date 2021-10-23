@@ -16,6 +16,10 @@ if (reticulate::py_module_available("torch")) {
 }
 
 
+torch_version <- function() {
+  torch$`__version__`
+}
+
 
 tensor_logical_and <- function(x, y) {
     x <- r_to_py(x$numpy())
