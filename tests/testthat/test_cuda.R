@@ -6,7 +6,6 @@ skip_if_no_torch()
 skip_if_no_cuda()
 
 test_that("CUDA is available", {
-    # print(torch$cuda$is_available())
     expect_equal(torch$cuda$is_available(), TRUE)
 })
 
@@ -18,6 +17,8 @@ test_that("device is CUDA selected", {
     expect_true(class(dev)[1] %in% torch_object)
     expect_equal(class(dev), two_objects)
 })
+
+
 test_that("objects get assigned to cuda or cpu", {
     dev <- torch$device(ifelse(torch$cuda$is_available(), "cuda", "cpu"))
     x <-  10L
