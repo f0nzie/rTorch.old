@@ -97,7 +97,9 @@ a[:,:,0] = 255
     expect_true(all(names(prs) %in% five_objects))
     expect_true(all(names(py_to_r(prs) %in% twelve_objects)))
     expect_true(all(names(reticulate::py_list_attributes(prs) %in% forty_objects)))
+
     expect_s3_class(prs$keys(), 'python.builtin.dict_keys')
+    # check dimensions
     expect_equal(dim(prs$a), c(100, 100, 3))
     expect_equal(dim(prs['a']), c(100, 100, 3))
 })
