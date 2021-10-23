@@ -102,6 +102,20 @@ a[:,:,0] = 255
     # check dimensions
     expect_equal(dim(prs$a), c(100, 100, 3))
     expect_equal(dim(prs['a']), c(100, 100, 3))
+    # check we get zeros in the 3rd dim slice 2 and 3
+    expect_equal(prs$a[1,1,2], 0)
+    expect_equal(prs$a[1,1,3], 0)
+    expect_equal(prs$a[2,2,3], 0)
+    expect_equal(prs$a[3,3,3], 0)
+    expect_equal(prs$a[100,100,2], 0)
+    expect_equal(prs$a[100,100,3], 0)
+    # check we get 255 in the 3rd dim slice 1
+    expect_equal(prs$a[1,1,1], 255)
+    expect_equal(prs$a[2,2,1], 255)
+    expect_equal(prs$a[3,3,1], 255)
+    expect_equal(prs$a[3,2,1], 255)
+    expect_equal(prs$a[2,3,1], 255)
+    expect_equal(prs$a[100,100,1], 255)
 })
 
 
