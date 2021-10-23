@@ -74,17 +74,29 @@ import numpy as np
 a = np.zeros((100, 100, 3))
 a[:,:,0] = 255
 ")
-    # print(reticulate::py_list_attributes(prs))
-    expect_equal(class(prs),  c("python.builtin.dict", "python.builtin.object"))
-    expect_true(all(class(prs) %in% c("python.builtin.dict", "python.builtin.object")))
-    expect_equal(length(names(prs)), 5)            # before conversion
-    expect_equal(length(names(py_to_r(prs))), 12)  # after conversion
-    # print(names(prs))
-    expect_true(all(names(prs) %in% c("a", "np", "r", "R", "sys")))
-    expect_equal(names(py_to_r(prs)),
-                 c("__name__", "__doc__", "__package__", "__loader__",
-                   "__spec__", "__annotations__", "__builtins__", "sys",
-                   "R", "r", "np", "a"))
+    two_objects <- c("python.builtin.dict", "python.builtin.object")
+    five_objects <- c("a", "np", "r", "R", "sys")
+    twelve_objects <- c("__name__", "__doc__", "__package__", "__loader__",
+                        "__spec__", "__annotations__", "__builtins__", "sys",
+                        "R", "r", "np", "a")
+    forty_objects <- c("__contains__", "__delattr__", "__delitem__", "__dir__",
+                       "__doc__", "__eq__", "__format__", "__ge__",
+                       "__getattribute__", "__getitem__", "__gt__",
+                       "__hash__", "__init__", "__init_subclass__", "__iter__",
+                       "__le__", "__len__", "__lt__", "__ne__", "__new__",
+                       "__reduce__", "__reduce_ex__", "__repr__", "__setattr__",
+                       "__setitem__", "__sizeof__", "__str__", "__subclasshook__",
+                       "clear", "copy", "fromkeys", "get", "items", "keys",
+                       "pop", "popitem", "setdefault", "update", "values")
+
+    expect_equal(class(prs), two_objects)
+    expect_true(all(class(prs) %in% two_objects))
+    expect_equal(length(names(prs)), 5-1)            # before conversion
+    expect_equal(length(names(py_to_r(prs))), 12-1)  # after conversion
+
+    expect_true(all(names(prs) %in% five_objects))
+    expect_true(all(names(py_to_r(prs) %in% twelve_objects)))
+    expect_true(all(names(reticulate::py_list_attributes(prs) %in% forty_objects)))
     expect_s3_class(prs$keys(), 'python.builtin.dict_keys')
     expect_equal(dim(prs$a), c(100, 100, 3))
     expect_equal(dim(prs['a']), c(100, 100, 3))
