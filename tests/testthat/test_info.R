@@ -15,9 +15,9 @@ test_that("PyTorch version ", {
 })
 
 
-test_that("CUDA is not available", {
-    expect_equal(torch$cuda$is_available(), FALSE)
-})
+# test_that("CUDA is not available", {
+#     expect_equal(torch$cuda$is_available(), FALSE)
+# })
 
 
 skip_on_travis()
