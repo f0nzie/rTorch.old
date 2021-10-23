@@ -7,7 +7,7 @@ skip_if_no_torch()
 
 context("PyTorch version")
 
-VERSIONS <- c("1.1", "1.0", "1.2", "1.3", "1.4", "1.5", "1.6")
+VERSIONS <- c("1.1", "1.0", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9")
 
 test_that("PyTorch version ", {
     expect_true(substr(torch$`__version__`, 1, 3)  %in% VERSIONS
