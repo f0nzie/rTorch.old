@@ -18,3 +18,24 @@ test_that("device is CUDA selected", {
     expect_true(class(dev)[1] %in% torch_object)
     expect_equal(class(dev), two_objects)
 })
+test_that("objects get assigned to cuda or cpu", {
+    dev <- torch$device(ifelse(torch$cuda$is_available(), "cuda", "cpu"))
+    x <-  10L
+    y <- 200L
+    z <- 3L
+
+    t1 <- torch$randn(x, y, z)
+    t2 <- torch$randn(x, y, z)$to(dev)
+
+    expect_false(t1$is_cuda)
+    expect_true(t2$is_cuda)
+
+    t1$to(dev)
+    expect_false(t1$is_cuda)
+
+    t1 <- t1$to(dev)
+    expect_true(t1$is_cuda)
+
+    expect_equal(t1$is_cuda, t2$is_cuda)
+
+})
