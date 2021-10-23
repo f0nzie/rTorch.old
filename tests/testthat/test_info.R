@@ -30,7 +30,6 @@ test_that("Number of CPUs", {
 context("package version")
 
 test_that("torch_version returns value", {
-  expect_true(torch_version() %in% VERSIONS)
   version <- torch$`__version__`
   version <- strsplit(version, ".", fixed = TRUE)[[1]]
   expect_equal(length(version), 3)
