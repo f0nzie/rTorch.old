@@ -39,3 +39,33 @@ test_that("objects get assigned to cuda or cpu", {
     expect_equal(t1$is_cuda, t2$is_cuda)
 
 })
+
+
+test_that("Linear Model class to CUDA", {
+    prs <- py_run_string("
+import torch
+import torch.nn as nn
+
+class M(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.l1 = nn.Linear(1,2)
+
+    def forward(self, x):
+        x = self.l1(x)
+        return x
+")
+    model <- prs$M()
+    expect_true(any(class(model) %in% c("torch.nn.modules.module.Module")))
+
+    dev <- torch$device(ifelse(torch$cuda$is_available(), "cuda", "cpu"))
+    model$to(dev)
+    expect_true(reticulate::iter_next(model$parameters())$is_cuda)
+
+    # rm(prs)
+    # remove Python objects so they are not found later in tests
+    py_run_string("del M")
+    py_run_string("del nn")
+    py_run_string("del torch")
+    rm(prs)
+})
