@@ -21,6 +21,6 @@ PackageInstallArgs: --no-multiarch --with-keep.source
 PackageCheckArgs: --as-cran --run-donttest
 PackageRoxygenize: rd,collate,namespace,vignette
 
-PythonType: conda
-PythonVersion: 3.6.13
-PythonPath: ~/anaconda3/envs/r-torch/bin/python3.6
+PythonType: system
+PythonVersion: 3.8.10
+PythonPath: /usr/bin/python3.8
