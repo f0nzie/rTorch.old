@@ -110,6 +110,12 @@ skip_if_no_python <- function(verbose = FALSE) {
 }
 
 
+skip_if_no_cuda <- function(verbose = FALSE) {
+  if (!torch$cuda$is_available())
+    skip("CUDA not available")
+}
+
+
 expect_all_true <- function(obj, ...) {
     testthat::expect_true(all(object = obj), ...)
 }
