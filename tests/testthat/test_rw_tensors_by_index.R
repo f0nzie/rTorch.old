@@ -42,7 +42,7 @@ test_that("Proper way to assign a value to a tensor", {
 
 test_that("Write to tensor using Python, no global", {
   new_tensor <- torch$Tensor(list(list(1, 2), list(3, 4)))
-  # expect_error(py_run_string("r.new_tensor[0,0] = 7"))
+  # expect_error(py_run_string("r.new_tensor[0,0] = 7"))  # not an error anymore
   py_run_string("r.new_tensor[0,0] = 7")
   expect_equal(new_tensor[1, 1]$item(), 7)
 })
